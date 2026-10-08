@@ -1,0 +1,1694 @@
+{
+  "records": [
+    {
+      "id": "kochon-dorm-2026-relay",
+      "title": "2026년 종근당고촌재단 무상기숙사 장학생 모집 안내",
+      "institution": "종근당고촌재단 · 명지대학교 전달 공고",
+      "year": "2026",
+      "url": "https://www.mju.ac.kr/bbs/mjukr/145/228314/artclView.do",
+      "sourceId": "kochon",
+      "school": "공통",
+      "region": "전국",
+      "kind": "기숙사비 지원",
+      "amount": "무상기숙사 · 생활비 장학과 별도 모집",
+      "dateKind": "unknown",
+      "eligibility": "보호자 거주지·통학시간·성적·학년·재학 및 대상 대학 조건을 재단 요강에서 확인. 한양·한여의 추천 및 지원 가능 여부 미확인",
+      "summary": "2026년 상반기 재단 모집을 전달한 대학의 공개 공고입니다. 현행 모집으로 표시하지 않으며 일정은 원문 확인이 필요합니다.",
+      "documents": [],
+      "attachments": [],
+      "stages": [],
+      "facts": {
+        "출처 구분": "운영기관 직접 수집 아님 · 대학 전달 공고",
+        "현재 모집": "과거 상반기 공고 · 현재 접수 가능으로 추천하지 않음"
+      },
+      "verified": false,
+      "cancelled": false,
+      "mode": "관리자 등록",
+      "checkedAt": "2026-09-11T02:40:25.628Z",
+      "foundAt": "2026-09-11T02:40:25.628Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "종근당고촌재단 · 명지대학교 전달 공고",
+          "url": "https://www.mju.ac.kr/bbs/mjukr/145/228314/artclView.do"
+        }
+      ]
+    },
+    {
+      "id": "guri-gbfh-2026",
+      "title": "2026년 경기푸른미래관 입사생 선발",
+      "institution": "경기푸른미래관 · 구리시 공지",
+      "year": "2026",
+      "url": "https://www.guri.go.kr/www/selectBbsNttView.do?bbsNo=41&integrDeptCode=&key=389&nttNo=134046&pageIndex=35&searchCnd=all&searchCtgry=&searchKrwd=",
+      "sourceId": "gbfh",
+      "school": "공통",
+      "region": "경기",
+      "kind": "기숙사 입사",
+      "start": "2026-01-02T11:00:00+09:00",
+      "end": "2026-02-06T20:00:00+09:00",
+      "dateKind": "official",
+      "eligibility": "경기도 출신 2년 이상 계속 거주, 서울·경기도 소재 대학 신입생·재학생. 거주 주체·기준일·학교 유형 세부 기준은 선발요강 확인",
+      "summary": "구리시가 게시한 실제 2026년 입사 모집입니다. 이미 마감한 기록이며 다음 모집 일정의 예측 근거로 자동 사용하지 않습니다.",
+      "documents": [],
+      "attachments": [],
+      "stages": [],
+      "facts": {
+        "지원 방식": "기숙사 입사 · 장학금 현금 지급과 구분",
+        "신청 방법": "경기푸른미래관 온라인 신청 · 방문·우편 불가",
+        "일정 근거": "구리시 공고의 접수 일정 항목"
+      },
+      "verified": false,
+      "cancelled": false,
+      "mode": "관리자 등록",
+      "checkedAt": "2026-09-11T02:40:25.613Z",
+      "foundAt": "2026-09-11T02:40:25.613Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "경기푸른미래관 · 구리시 공지",
+          "url": "https://www.guri.go.kr/www/selectBbsNttView.do?bbsNo=41&integrDeptCode=&key=389&nttNo=134046&pageIndex=35&searchCnd=all&searchCtgry=&searchKrwd="
+        }
+      ]
+    },
+    {
+      "id": "guide-ndhs",
+      "title": "남도학숙 · 입사 모집 확인",
+      "institution": "남도학숙",
+      "url": "https://www.ndhs.or.kr/",
+      "sourceId": "ndhs",
+      "school": "공통",
+      "region": "전남",
+      "kind": "기숙사 입사",
+      "dateKind": "guide",
+      "eligibility": "광주·전남 지역 및 보호자 거주 조건, 대상 학교, 해당 학숙의 선발요강 확인 필요",
+      "summary": "광주·전남 지역 학생을 위한 학숙 모집을 확인할 공식 홈페이지입니다. 대기열을 거쳐 원문에서 확인하세요.",
+      "documents": [],
+      "attachments": [],
+      "stages": [],
+      "facts": {
+        "추가 관심 지역": "광주",
+        "수집 상태": "대기열·게시판 수집 제한 · 자동 확인하지 않음"
+      },
+      "verified": false,
+      "cancelled": false,
+      "mode": "관리자 등록",
+      "checkedAt": "2026-09-11T02:40:25.598Z",
+      "foundAt": "2026-09-11T02:40:25.598Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "남도학숙",
+          "url": "https://www.ndhs.or.kr/"
+        }
+      ]
+    },
+    {
+      "id": "guide-lotte-dorm",
+      "title": "신격호롯데장학관 · 모집 확인",
+      "institution": "신격호롯데장학재단",
+      "url": "https://www.lottefoundation.or.kr/scholarship?tab=move",
+      "sourceId": "lotte",
+      "school": "공통",
+      "region": "전국",
+      "kind": "기숙사 입사",
+      "dateKind": "guide",
+      "eligibility": "대상 대학·학교 추천 여부·학년·지원구간 확인 필요. 다른 대학의 추천 공고를 한양·한여 지원 자격으로 적용하지 않음",
+      "summary": "재단 공식 기숙사 사업 페이지입니다. 현재 모집 내용은 동적 페이지와 해당 학교 추천 공고에서 확인해야 합니다.",
+      "documents": [],
+      "attachments": [],
+      "stages": [],
+      "verified": false,
+      "cancelled": false,
+      "mode": "관리자 등록",
+      "checkedAt": "2026-09-11T02:40:25.583Z",
+      "foundAt": "2026-09-11T02:40:25.583Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "신격호롯데장학재단",
+          "url": "https://www.lottefoundation.or.kr/scholarship?tab=move"
+        }
+      ]
+    },
+    {
+      "id": "guide-kosaf-startup",
+      "title": "한국장학재단 창업기숙사 · 무상 주거 지원",
+      "institution": "한국장학재단",
+      "url": "https://www.kosaf.go.kr/ko/igrtdmtr.do?naviParam=HB,07,01,00&pg=PTHBJCIN_01M",
+      "sourceId": "kosaf",
+      "school": "공통",
+      "region": "전국",
+      "kind": "기숙사비 지원",
+      "amount": "기숙사비 무료 · 공공요금 등 본인 부담 가능",
+      "dateKind": "guide",
+      "eligibility": "창업에 관심 있거나 창업한 국내 대학(원) 재학생·휴학생. 센터별 입주 심사와 모집 조건 확인 필요",
+      "summary": "서울 등 지역 센터의 주거·창업 지원 사업 안내입니다. 현재 입주 가능 여부와 모집 기간은 별도 공고에서 확인하세요.",
+      "documents": [],
+      "attachments": [],
+      "stages": [],
+      "facts": {
+        "지원 방식": "기숙사 제공 · 현금 장학금 아님",
+        "서울 센터": "서울 중구 장충단로6길 54",
+        "근거": "공식 사업소개 페이지의 대상·지원 내용. 사업 안내를 올해 모집으로 간주하지 않음"
+      },
+      "verified": false,
+      "cancelled": false,
+      "mode": "관리자 등록",
+      "checkedAt": "2026-09-11T02:40:25.568Z",
+      "foundAt": "2026-09-11T02:40:25.568Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단",
+          "url": "https://www.kosaf.go.kr/ko/igrtdmtr.do?naviParam=HB,07,01,00&pg=PTHBJCIN_01M"
+        }
+      ]
+    },
+    {
+      "id": "kosaf-notice-21163",
+      "title": "2026학년도 2학기 2차 주거안정장학금 신청 안내",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000002&ctgrId2=0000000022&seqNo=21163",
+      "sourceId": "kosaf-housing",
+      "institution": "한국장학재단 주거안정장학금",
+      "region": "전국",
+      "school": "공통",
+      "kind": "주거비 지원",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "2026년 2학기 2차 신청은 마감됐습니다. 신청한 학생의 서류제출·가구원 동의 기한은 별도로 남아 있습니다.",
+      "checkedAt": "2026-09-11T02:40:25.554Z",
+      "foundAt": "2026-09-11T02:38:29.731Z",
+      "version": 2,
+      "sources": [
+        {
+          "name": "한국장학재단 주거안정장학금",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000002&ctgrId2=0000000022&seqNo=21163"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "56f09d1da22d7d10f7305a608ba9b9e5bcf8ce4b1632f7d241462bc0fe5d0e44",
+        "본문 확인": "공개 원문 응답 확인",
+        "일정 근거": "공식 원문 신청기간 및 서류제출·가구원 동의 항목",
+        "대상 근거": "공식 원문 기타사항 · 참여대학 명단은 붙임 확인"
+      },
+      "round": "2학기 2차",
+      "start": "2026-08-12T09:00:00+09:00",
+      "end": "2026-09-09T18:00:00+09:00",
+      "dateKind": "official",
+      "eligibility": "사업 참여대학·원거리 진학·기초생활수급 또는 차상위계층·만 39세 이하 미혼 등 조건 확인. 두 학교의 참여 여부를 확인해야 함",
+      "documents": [],
+      "stages": [
+        {
+          "name": "서류제출 및 가구원 동의 (기간 내 신청자)",
+          "date": "2026-09-16T18:00:00+09:00"
+        }
+      ],
+      "cancelled": false
+    },
+    {
+      "id": "gwd-dorm-7b98ba78ba616477",
+      "title": "2026년 강원학사 2학기 신입사생 선발 공고",
+      "url": "https://injae.gwd.go.kr/gwd/haksa_communication/haksa_notice?seq=2945",
+      "sourceId": "gwd-dorm",
+      "institution": "강원인재원 강원학사",
+      "region": "강원",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "관악·도봉 강원학사 신입사생 모집입니다. 입사비 10만원과 4개월 학사비 72만원을 납부하는 기숙사 입사 모집이며 접수는 마감됐습니다.",
+      "checkedAt": "2026-09-11T02:40:25.526Z",
+      "foundAt": "2026-09-11T02:38:34.103Z",
+      "version": 2,
+      "sources": [
+        {
+          "name": "강원인재원 강원학사",
+          "url": "https://injae.gwd.go.kr/gwd/haksa_communication/haksa_notice?seq=2945"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "[붙임2] 신입사생 접수지원 작성안내(필독).pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2813"
+        },
+        {
+          "name": "[붙임1] 2026년도 강원학사 2학기 신입사생 선발요강.pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2812"
+        }
+      ],
+      "facts": {
+        "fingerprint": "8a378dab597bc072d50d8d70b7d270d1084503ff480753fc79b2cd9a24be3962",
+        "본문 확인": "공개 원문 응답 확인",
+        "기숙사 위치": "서울 관악·도봉 (거주 자격 지역과 구분)",
+        "일정·금액 근거": "공식 공고 1.선발안내 및 2.접수유의사항 사 항목"
+      },
+      "round": "2학기 신입사생",
+      "amount": "지원금 아님 · 신입사생 부담금 82만원",
+      "start": "2026-07-20",
+      "end": "2026-07-27T16:00:00+09:00",
+      "dateKind": "official",
+      "eligibility": "지역·학적 등 지원 조건은 강원학사 선발요강 확인",
+      "documents": [],
+      "stages": [],
+      "cancelled": false
+    },
+    {
+      "id": "dooeul-813ab8a146336fd2",
+      "title": "[2026년 제29기 두을장학생 선발 공고]",
+      "url": "https://www.dooeul.or.kr/home/main/board/bbsDetail.do?encMenuId=456e4a7650636263787265524c786556464e424c4e773d3d&encBbsNo=7278345078305733346241634f7a65627536393970513d3d",
+      "sourceId": "dooeul",
+      "institution": "두을장학재단",
+      "region": "전국",
+      "school": "공통",
+      "schoolType": "4년제",
+      "kind": "등록금",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "공식 2026년 제29기 모집입니다. 원문의 접수 날짜와 요일이 서로 맞지 않아 확정 일정 표시는 보류했습니다.",
+      "checkedAt": "2026-09-11T02:40:25.498Z",
+      "foundAt": "2026-09-11T02:38:34.200Z",
+      "version": 2,
+      "sources": [
+        {
+          "name": "두을장학재단",
+          "url": "https://www.dooeul.or.kr/home/main/board/bbsDetail.do?encMenuId=456e4a7650636263787265524c786556464e424c4e773d3d&encBbsNo=7278345078305733346241634f7a65627536393970513d3d"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "e55e9a32d59cde68c7d0235807bae119b474e1501ae7f58b6005331d50d47d09",
+        "본문 확인": "공개 원문 응답 확인",
+        "일정 확인 필요": "원문은 2026.9.1(월) 09:00~9.30(화) 18:00로 표기. 2026년 달력과 요일이 불일치하여 관리자 검토 필요",
+        "조건·금액 근거": "공식 모집 공고 지원자격·장학생 특전 항목"
+      },
+      "round": "제29기",
+      "amount": "등록금 전액·학기당 자기계발비 90만원 (계속지급 평가)",
+      "dateKind": "unknown",
+      "eligibility": "국내 4년제 1학년 2학기 재학 중인 대한민국 국적 여학생. 1학기 15학점 이상, 성적 3.5/4.5 이상 등 확인",
+      "documents": [],
+      "stages": [],
+      "cancelled": false,
+      "minGpa": 3.5,
+      "gpaScale": "4.5"
+    },
+    {
+      "id": "kosaf-notice-20960",
+      "title": "[수정게시][대학생 연합생활관(은행권,고양)] 2026년 2학기 신규 입주자 모집 공고(2026년 2학기 3차)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20960",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20960"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "65cb9c6c0a1efe84cc3d21ff91e1458cc696a700bc30ad05778df2468706843b",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-20959",
+      "title": "[수정게시][대학생 연합생활관(은행권,고양)] 2026년 2학기 계속 거주자 모집 공고(2026년 2학기 1, 2차)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20959",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20959"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "77ab0d778d985b3c7f6928d02e96e6437346632eac96a62179423c46b5b62c96",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-20707",
+      "title": "[대학생 연합생활관(은행권,고양)] 2026년 1학기 신규 입주자 수시 모집 공고(4월)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20707",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20707"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "3e8787d0eb3895fa684c5197be256f5cedff02ad8bc95cd4f36fac888c0dea07",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-20404",
+      "title": "[대학생 연합생활관(은행권,고양)] 2026년 1학기 신규 입주자 모집 공고(2026년 1학기 2차)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20404",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20404"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "f8f08bb133af23543199e52e463833c1c6654b22433bb7758b6f50eef52ba1af",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-20403",
+      "title": "[대학생 연합생활관(은행권,고양)] 2026년 1학기 계속 거주자 모집 공고(2026년 1학기 1차)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20403",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20403"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "e687030a3bb5ee8f2663ff8842b6d8dc68f32ee125692e03766d31cc30a97fa4",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-20251",
+      "title": "[대학생 연합생활관(은행권,고양)] 2025년 2학기 신규 입주자 수시 모집 공고(11월)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20251",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2025",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=20251"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "5973c4ccd6a1366d1c9e8bd4800e61b0fe07e2245e656dece3b45409c9bfc510",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-18816",
+      "title": "[대학생 연합생활관(은행권,고양)] 2025년 2학기 신규 입주자 모집 공고(2025년 2학기 2차)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=18816",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2025",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=18816"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "30f600c4e215fdf039039e70a766fa6584949101b0785998453d7ca36c9746aa",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-18815",
+      "title": "[대학생 연합생활관(은행권,고양)] 2025년 2학기 계속 거주자 모집 공고(2025년 2학기 1차)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=18815",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2025",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=18815"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "c1eed9f2831169b69f01186321979e32c28d78771b3be02532d27dde8fa763aa",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-18684",
+      "title": "[대학생 연합생활관(은행권,고양)] 2025년 1학기 신규 입주자 수시 모집 공고(6월)",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=18684",
+      "sourceId": "kosaf-dorm",
+      "institution": "한국장학재단 연합생활관",
+      "region": "전국",
+      "school": "공통",
+      "kind": "기숙사 입사",
+      "year": "2025",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:31.082Z",
+      "foundAt": "2026-09-11T02:38:31.082Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 연합생활관",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000009&ctgrId2=&seqNo=18684"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "c7469761c373425de270a211374fb8214d07897f0e87e2c9b42fb651ba9fa779",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-20886",
+      "title": "2026학년도 2학기 1차 주거안정장학금 신청 안내",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000002&ctgrId2=0000000022&seqNo=20886",
+      "sourceId": "kosaf-housing",
+      "institution": "한국장학재단 주거안정장학금",
+      "region": "전국",
+      "school": "공통",
+      "kind": "주거비 지원",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:29.731Z",
+      "foundAt": "2026-09-11T02:38:29.731Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 주거안정장학금",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000002&ctgrId2=0000000022&seqNo=20886"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "a32253b02498f62ab14a66e96bf6fddb03baa0de95ba2dad8801955377409bce",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-20532",
+      "title": "2026학년도 1학기 2차 주거안정장학금 신청 안내",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000002&ctgrId2=0000000022&seqNo=20532",
+      "sourceId": "kosaf-housing",
+      "institution": "한국장학재단 주거안정장학금",
+      "region": "전국",
+      "school": "공통",
+      "kind": "주거비 지원",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:29.731Z",
+      "foundAt": "2026-09-11T02:38:29.731Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 주거안정장학금",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000002&ctgrId2=0000000022&seqNo=20532"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "347881f3ad86d915824285b69c5349dd88cec86f06d7726fff55b91d4c168954",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-notice-20309",
+      "title": "2026학년도 1학기 1차 주거안정장학금 신청 안내",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000002&ctgrId2=0000000022&seqNo=20309",
+      "sourceId": "kosaf-housing",
+      "institution": "한국장학재단 주거안정장학금",
+      "region": "전국",
+      "school": "공통",
+      "kind": "주거비 지원",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "본문 또는 첨부파일 확인이 필요합니다. 지원 조건은 원문에서 확인하세요.",
+      "checkedAt": "2026-09-11T02:38:29.731Z",
+      "foundAt": "2026-09-11T02:38:29.731Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단 주거안정장학금",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&searchStr=&searchType=&page=1&ctgrId1=0000000002&ctgrId2=0000000022&seqNo=20309"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "ed85edbb99d8025b01d3090054aaca071ef975835ae7c4a446bfcf180986d08c",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "incheon-38fee293028ec87e",
+      "title": "관외대학 거주비 지원 장학금",
+      "url": "https://itle.or.kr/user/scholarship/service/view.do?sq=735",
+      "sourceId": "incheon",
+      "institution": "인천인재평생교육진흥원",
+      "region": "인천",
+      "school": "공통",
+      "kind": "확인 필요",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:54.728Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "인천인재평생교육진흥원",
+          "url": "https://itle.or.kr/user/scholarship/service/view.do?sq=735"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "b5943dc6e59a31f79d28334ca201e46fa6f2fbc520fda7b72b750fd47610eca3",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "incheon-82a71c613a8eab7f",
+      "title": "SK행복 장학생(대학생)",
+      "url": "https://itle.or.kr/user/scholarship/service/view.do?sq=744",
+      "sourceId": "incheon",
+      "institution": "인천인재평생교육진흥원",
+      "region": "인천",
+      "school": "공통",
+      "kind": "확인 필요",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:54.728Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "인천인재평생교육진흥원",
+          "url": "https://itle.or.kr/user/scholarship/service/view.do?sq=744"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "0837e2fb8478f408714ca3d5e021443d4d30c4cb5d244c714d7d8cadfbaadf40",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "gangwon-0eb93a2a1817cd14",
+      "title": "[정정공고] 2026년 「생활비 장학금」 장학생 선발 공고",
+      "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2958",
+      "sourceId": "gangwon",
+      "institution": "강원인재원",
+      "region": "강원",
+      "school": "공통",
+      "kind": "생활비",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:54.253Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "강원인재원",
+          "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2958"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "2026년 「생활비 장학금」장학생 선발 공고문(정정공고).pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2847"
+        }
+      ],
+      "facts": {
+        "fingerprint": "e3d53d65bf4bc8d87c897f1ca928a4b485dd5b58f751065a61b1d6af92d42270",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "gangwon-13f18836451dd377",
+      "title": "2026년 「생활비 장학금」 장학생 선발 공고",
+      "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2953",
+      "sourceId": "gangwon",
+      "institution": "강원인재원",
+      "region": "강원",
+      "school": "공통",
+      "kind": "생활비",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:54.253Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "강원인재원",
+          "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2953"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "강원인재원 공고 제2026-40호 2026년 「생활비 장학금」장학생 선발 공고문(수정).pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2848"
+        }
+      ],
+      "facts": {
+        "fingerprint": "172293446c03ac37c84bdcd3543e052e76bb9d8ffdc9cb88d4ddf8b7ffa3380a",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "gangwon-97322d27f3078f14",
+      "title": "2026년도 강원특별자치도 청년‧대학생 학자금대출 이자지원 장학금 장학생 선발 공고",
+      "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2942",
+      "sourceId": "gangwon",
+      "institution": "강원인재원",
+      "region": "강원",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:54.253Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "강원인재원",
+          "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2942"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "강원인재원 공고 제2026-35호 2026년도 강원특별자치도 청년 대학생 학자금대출 이자지원 장학금 장학생 선발 공고.pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2837"
+        },
+        {
+          "name": "붙임 4대 사회보험 가입자 가입내역 확인서 발급방법.pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2803"
+        },
+        {
+          "name": "신청화면 안내.pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2802"
+        }
+      ],
+      "facts": {
+        "fingerprint": "1bb5afb418f6bd548d257d45d56688984be52ae0a879f4528cda7c9688fa0df5",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "gangwon-44afbf38189d7e19",
+      "title": "2026년 하반기 미래인재 장학금 신청 안내",
+      "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2957",
+      "sourceId": "gangwon",
+      "institution": "강원인재원",
+      "region": "강원",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:54.253Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "강원인재원",
+          "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2957"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "붙임_장학금 신청안내.pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2844"
+        }
+      ],
+      "facts": {
+        "fingerprint": "f5eba4952b8ba1639439222dc64f7277664379c9b019687f1293d756158567c0",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "gangwon-dd4d1a5355f61195",
+      "title": "2026년 상반기 미래인재 장학금 신청 및 연간 미래인재 활동실적 평가 안내",
+      "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2891",
+      "sourceId": "gangwon",
+      "institution": "강원인재원",
+      "region": "강원",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:54.253Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "강원인재원",
+          "url": "https://injae.gwd.go.kr/injae/community/notice?seq=2891"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "붙임_장학금 신청안내.pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2752"
+        },
+        {
+          "name": "붙임2_평가용 활동계획서 서식.hwp",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2751"
+        },
+        {
+          "name": "붙임1_2026 미래인재 평가제출서류안내.pdf",
+          "url": "https://injae.gwd.go.kr/egf/ext/download/notice/2750"
+        }
+      ],
+      "facts": {
+        "fingerprint": "5f9c408b0def9aa6b41ec33dbb1595c762a10f31fcd98110c2ecff6c7f42b1df",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-38c8680c174a0391",
+      "title": "2026학년도 2학기 한양리더(HY-Leader) 장학금 신청 안내",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=115603",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "한양대학교 서울캠퍼스",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-15T03:05:18.998066+00:00",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=115603"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "붙임1. 한양리더(HY-Leader) 장학금 선발 공고(신청기간연장).pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%841.+%ED%95%9C%EC%96%91%EB%A6%AC%EB%8D%94%28HY-Leader%29+%EC%9E%A5%ED%95%99%EA%B8%88+%EC%84%A0%EB%B0%9C+%EA%B3%B5%EA%B3%A0%28%EC%8B%A0%EC%B2%AD%EA%B8%B0%EA%B0%84%EC%97%B0%EC%9E%A5%29.pdf/c134963f-87b6-199c-0910-16492da5d607?status=0&download=true"
+        },
+        {
+          "name": "붙임2. 한양리더(HY-Leader) 장학금 신청서(양식).hwp",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%842.+%ED%95%9C%EC%96%91%EB%A6%AC%EB%8D%94%28HY-Leader%29+%EC%9E%A5%ED%95%99%EA%B8%88+%EC%8B%A0%EC%B2%AD%EC%84%9C%28%EC%96%91%EC%8B%9D%29.hwp/c50c4142-6add-465e-393c-d40e20cc1008?status=0&download=true"
+        },
+        {
+          "name": "붙임3.한양리더(HY-Leader) 종합활동계획서 작성가이드.pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%843.%ED%95%9C%EC%96%91%EB%A6%AC%EB%8D%94%28HY-Leader%29+%EC%A2%85%ED%95%A9%ED%99%9C%EB%8F%99%EA%B3%84%ED%9A%8D%EC%84%9C+%EC%9E%91%EC%84%B1%EA%B0%80%EC%9D%B4%EB%93%9C.pdf/d1ea2564-3866-5d7f-3fb1-e9b13fa072b9?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "d64250217d40c5ca15b40aeb963c6374b5df522cd16a82780a9e1f19414d4a3f",
+        "본문 확인": "공개 원문 응답 확인"
+      },
+      "extractedDocuments": [
+        {
+          "hash": "ef6b2640a1661c173d5509cb4132993075599b891d8c3734236fa3b85c72c86d",
+          "status": "partial",
+          "blocks": [
+            {
+              "text": "- 1 -\r\n학생인재개발처 학생지원팀에서는 시대를 선도하는 리더를 양성하기 위한 장학제도의 필요성 대두됨에 따\r\n라 한양리더(HY-Leader) 장학 제도를 신설하여 학업에 몰두할 수 있는 환경을 조성하고 다양한 경험을 \r\n지원하여 뛰어난 역량의 사회적 리더를 양성하고자 합니다. 이에 다음과 같이 안내하오니 학생들은 내용을 \r\n확인하여 신청하기 바랍니다. 1 한양리더(HY-Leader) 장학금 개요\r\n한양리더(HY-Leader)장학은 가계곤란 여부는 심사하지 않고, 학생의 활동계획서 중심으로 심사 및 선발\r\n하며, 선발된 경우에는 해당 장학금을 학기당 2회에 걸쳐 총 500만원을 지급하는 제도로 학생이 스스로 \r\n설계한 계획에 따라 다양한 목표를 달성하는데 중요한 기회를 제공할 예정입니다. 2 한양리더(HY-Leader) 장학금 신청 안내\r\n□ 신청자격\r\n ○ 이수완료 학기가 2학기 이상인 재학생(2026-1학기 기준)\r\n ○ 직전년도 이수학점 30학점 이상(편입학 인정학점은 미포함 / 마지막 학기 재학생은 20학점 이상)\r\n ○ 직전학기 성적 3.0/4.5 이상 \r\n ○ 단과대학 지도교수(학과장)의 추천을 받은 자\r\n ○ 장학 수혜중 휴학계획이 없는 자(휴학시 장학 수혜 불가 및 기 지급된 장학금 환수조치)\r\n ○ 외국인 학생 신청 불가\r\n□ 제출서류\r\n ○ 장학신청서\r\n ○ 지도교수(학과장) 추천서(※ 추천서 작성 교수는 이후 중간 및 결과보고서 서명까지 필요)\r\n ○ 자기소개서 \r\n ○ 종합활동계획서\r\n ○ 서약서 \r\n ○ 중간보고서(장학생 선정 후 학기 중 제출)\r\n ○ 결과보고서(장학생 선정 후 장학기간 종료 시점 제출)\r\n □ 신청방법 : HY-IN포털 > 등록장학 > 기타교내장학신청 > 한양리더(HY-Leader) 장학금 온라인 신청\r\n ○ 제출서류 일체를 1개의 PDF파일로 작성하여 신청서 접수\r\n□ 장학금 및 기간 : 2026-2학기 中 500만원 지원\r\n ○ 1차지급 : 장학생 선발 시 \r\n ○ 2차지급 : 중간보고서 제출 시\r\n□ 선발인원 : 총 50명(단과대별 선발 TO배정)\r\n한양리더(HY-Leader) 장학금 선발 공고",
+              "location": "1쪽",
+              "method": "text",
+              "confidence": null
+            },
+            {
+              "text": "HANYANG UNIVERSITY\n~220000000000000000000000000000000000000000000000000000000 ㅋㅋ ㅋㅋ!\nBHAZ|Cl(HY-Leader) 장학금 선발 공고\n~2220000000000000000000000000000000000000000000000000000000 ㅋㅋ 1:\n학생인재개발처 학생지원팀에서는 시대를 선도하는 리더를 양성하기 위한 장학제도의 필요성 대두됨에 따\n라 한양리더(17-ㄴ68067) 장학 HES 신설하여 학업에 몰두할 수 있는 환경을 조성하고 다양한 경험을\n지원하여 뛰어난 역량의 사회적 리더를 양성하고자 합니다. 이에 다음과 같이 안내하오니 학생들은 내용을\n\n확인하여 신청하기 바랍니다.\nIN 한양리더(1\\-Ｌㄴ6806!) 장학금 개요\n한양리더({1/-ㄴ6806「)장학은 가계곤란 여부는 심사하지 않고, 학생의 활동계획서 중심으로 심사 및 선발\n하며, 선발된 경우에는 해당 장학금을 학기당 2회에 걸쳐 총 500만원을 지급하는 제도로 학생이 스스로\n설계한 계획에 따라 다양한 SES 달성하는데 중요한 기회를 제공할 예정입니다.\nPAN 한양리더꺼-1Ｌ6306!) 장학금 신청 안내\nO 신청자격\nO 이수완료 학기가 2학기 이상인 재학생.2026-1학기 기준)\nO 직전년도 이수학점 30학점 이상(편입학 인정학점은 미포함 / 마지막 학기 재학생은 20학점 이상)\nO 직전학기 성적 3.0/4.5 이상\nO 단과대학 지도교수(학과장)의 추천을 받은 자\nO 장학 수혜중 휴학계획이 없는 자(휴학시 장학 수혜 불가 및 기 지급된 장학금 환수조치)\n< 외국인 학생 신청 불가\n[ 제출서류\nO 장학신청서\nO 지도교수(학과장) 추천서(※ 추천서 작성 교수는 이후 중간 및 결과보고서 서명까지 필요)\n<> 자기소개서\n< 종합활동계획서\nO 서약서\n< 중간보고서(장학생 선정 후 학기 중 제출)\n< 결봐보고서(장학생 선정 후 장학기간 종료 시점 제출)\nO 신청방법 : HY-INEE ) 등록장학 > 기타교내장학신청 >한양리더({1/-ㄴ68067) 장학금 온라인 신청\nO 제출서류 일체를 1개의 0[파일로 작성하여 신청서 접수\n[ 장학금 및 기간 : 2026-2학기 # 500만원 지원\nO 1차지급 : 장학생 선발 시\nO 2차지급 : 중간보고서 제출 시\n[ 선발인원 : 총 50명(단과대별 선발 10배정)\n-1-",
+              "location": "1쪽 이미지",
+              "method": "ocr",
+              "confidence": 89
+            },
+            {
+              "text": "- 2 -\r\n□ 신청기간 및 주요 일정 \r\n□ 종합활동계획서 작성시 유의사항 \r\n ○ 시기별 구체적인 계획이 작성되어야 함\r\n ○ 2026-2학기 이내 실행 가능한 목표 및 실행 계획을 중심으로 작성되어야 함 \r\n ○ 지원 가능 활동\r\n - 대학 학위과정과 연계된 학술 연구 및 전공 심화 활동\r\n - 국가공인 또는 국제공인 전문자격증 취득 계획\r\n - 학문적 발표, 공모전 참여, 산학협력 프로젝트 등 자기주도적 학업 활동\r\n - AI, 데이터분석, 머신러닝 등 신기술 분야의 학습, 연구, 프로젝트 수행 \r\n - 구체적 계획이 수립되어 있으며, 심사위원회의 지원 가능 판정을 받은 활동\r\n ○ 지원 불가 활동\r\n - 일상생활의 편의성 증진 또는 기초기술 습득 목적의 활동(예: 운전면허 등)\r\n - 전공과 무관한 취미 또는 여가 활동(예: 캘리그라피, 바리스타, 플로리스트, 드론 조종, 음악 작곡, 미술 교습 등)\r\n - 일반 자격증 취득 또는 창업 관련 활동 중 전공과 무관한 것(예: 공인중개사, 제과제빵, 네일아트, 미용사 자격증, 온라인 쇼핑몰 창업 교육 등)\r\n - 목표가 불분명하거나 구체성이 결여된 활동(예: 독서, 성적 향상, 자기계발 계획 수립 등)\r\n - 개인 콘텐츠 운영 중심의 활동(예: 유튜브 채널 운영, 블로그 브랜딩, SNS 팔로워 증가 활동 등)\r\n - 단기성과 중심의 일회성 또는 상업적 목적의 활동(예: 외부 강연 청취, 유료 세미나 수강, 단기 부\r\n업 연계 교육 등)\r\n - 단, 위 활동에 해당하더라도 해당 활동이 전공, 연구 주제, 또는 학문적 계획과 명확히 연계된 경\r\n우에는 장학위원회의 심의를 거쳐 예외적으로 인정할 수 있다. 3 한양리더(HY-Leader) 장학금 유의사항\r\n□ 결격사유 발생 시 장학금 전액 환수\r\n ○ 퇴학, 정학 등 학칙에 의한 징계처분 시\r\n ○ 장학 취지 및 학생 본분에 어긋나는 행위를 한 경우 \r\n ○ 휴학 등의 학업 중단의 경우\r\n ○ 활동계획에 대한 실행의무를 준수하지 않을 경우 \r\n ○ 중간보고서 및 결과보고서를 제출하지 않을 경우 \r\n순번 일정 내용 비고\r\n1 2026.07월 中 장학 공지\r\n2 ~ 2026.09.15.(화) 장학금 신청 HY-IN포털 온라인 신청\r\n3 2026.09월 中 1차 서류 심사 단과대별 일정 상이\r\n4 2026.09월 中 2차 면접 심사 단과대별 일정 상이\r\n5 2026.10월 中 장학생 최종 선발 1차 장학금 지급\r\n6 ~ 2026.11.15. 중간보고서 제출 2차 장학금 지급\r\n7 ~ 2027.02.09. 결과보고서 제출 성과 공유\r\n※ 정확한 심사 일정은 각 단과대학 홈페이지 공지사항을 참고하여 주시기 바랍니다.",
+              "location": "2쪽",
+              "method": "text",
+              "confidence": null
+            },
+            {
+              "text": "” HANYANG UNIVERSITY\nㅁ 신청기간 및 주요 일정\n(ee | 일정. _ | . 내용 . . | 000 Hm _ |\n      2026.07월 +      mex | |\n     ~ 2026.09.15.(화)            장학금 신청           HY-INES 온라인 신청\n      2026.09월 뿌            1차 서류 심사\n      2026.09월 뿌            2차 면접 심사\n      2026.10월 뽀           장학생 최종 선발           1차 장학금 지급\n| 6 |      ~ 2026.11.15.            중간보고서 제출\n      ~ 2027.02.09.           결과보고서 제출\n※ 정확한 심사 일정은 각 단과대학 홈페이지 공지사항을 참고하여 주시기 바랍니다.\nㅁ 종합활동계획서 작성시 유의사항\nO 시기별 구체적인 계획이 작성되어야 함\n<ㅇ 2026-2학기 이내 실행 가능한 목표 및 실행 계획을 중심으로 작성되어야 함\n<> 지원 가능 활동\n- 대학 학위과정과 연계된 학술 연구 및 전공 심화 활동\n- 국가공인 또는 국제공인 전문자격증 취득 계획\n- 학문적 발표, 공모전 참여, 산학협력 프로젝트 등 자기주도적 학업 활동\n- 시, 데이터분석, 머신러닝 등 신기술 분야의 학습, 연구, 프로젝트 수행\n- 구체적 계획이 수립되어 있으며, 심사위원회의 지원 가능 판정을 받은 활동\n<> 지원 불가 활동\n- 일상생활의 편의성 증진 또는 기초기술 습득 목적의 활동(예: 운전면허 등)\n- 전공과 무관한 취미 또는 여가 활동(예: 캘리그라피, 바리스타, 플로리스트, 드론 조종, 음악 작곡,\n미술 교습 등)\n- 일반 자격증 취득 또는 창업 관련 활동 중 전공과 무관한 것(예: 공인중개사, 제과제방, 네일아트,\n미용사 자격증, 온라인 쇼핑몰 창업 교육 등)\n- 목표가 불분명하거나 구체성이 결여된 활동(예: 독서, 성적 향상, 자기계발 계획 수립 등)\n- 개인 콘텐츠 운영 중심의 활동(예: 유튜브 채널 운영, 블로그 브랜딩, SNS 팔로워 증가 활동 등)\n- 단기성과 중심의 일회성 또는 상업적 목적의 활동(예: 외부 강연 청취, 유료 세미나 수강, 단기 부\n업 연계 교육 등)\n- 단, 위 활동에 해당하더라도 해당 활동이 전공, 연구 주제, 또는 학문적 계획과 명확히 연계된 경\n우에는 장학위원회의 심의를 거쳐 예외적으로 인정할 수 있다.\nEN 한양리더(-ㄴ6806!) 장학금 유의사항\n[ 결격사유 발생 시 장학금 전액 환수\n< 퇴학, 정학 등 학칙에 의한 징계처분 시\n< 장학 취지 및 학생 본분에 어긋나는 행위를 한 경우\n< 휴학 등의 학업 중단의 경우\nO 활동계획에 대한 실행의무를 준수하지 않을 경우\n< 중간보고서 및 결과보고서를 제출하지 않을 경우\n~",
+              "location": "2쪽 이미지",
+              "method": "ocr",
+              "confidence": 91
+            }
+          ],
+          "issues": [
+            "1쪽 이미지 자동 글자 인식 결과 · 표 배치와 숫자 검토 필요",
+            "2쪽 이미지 자동 글자 인식 결과 · 표 배치와 숫자 검토 필요"
+          ],
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%841.+%ED%95%9C%EC%96%91%EB%A6%AC%EB%8D%94%28HY-Leader%29+%EC%9E%A5%ED%95%99%EA%B8%88+%EC%84%A0%EB%B0%9C+%EA%B3%B5%EA%B3%A0%28%EC%8B%A0%EC%B2%AD%EA%B8%B0%EA%B0%84%EC%97%B0%EC%9E%A5%29.pdf/c134963f-87b6-199c-0910-16492da5d607?status=0&download=true",
+          "name": "붙임1. 한양리더(HY-Leader) 장학금 선발 공고(신청기간연장).pdf",
+          "checkedAt": "2026-09-15T03:05:18.998066+00:00"
+        },
+        {
+          "hash": "1849b76d06274705e1d26355a2f94949a1feb62dcddb317a39cb7cbf0fcd63f1",
+          "status": "partial",
+          "blocks": [
+            {
+              "text": "PP HANYANG UNIVERSITY UNIVERSITY",
+              "location": "BinData/BIN0001.jpg",
+              "method": "ocr",
+              "confidence": 75
+            },
+            {
+              "text": "한양리더(HY-Leader) 장학금 신청서\n\n\n\n신청자정보\n\n단과대학\n\n학과\n\n성명\n\n(한글) \n\n학번\n\n연락처\n\nE-mail\n\n성적\n\n직전학기\n\n/4.5\n\n누적\n\n/4.5\n\n지도교수\n\n성명\n\n소속\n\n직위\n\n위와 같이 본인은 한양리더(HY-Leader) 장학금 신청서를 제출합니다. \n\n아울러, 이 제출서류에서 기재된 내용이 사실임을 확인하며,\n\n허위 내용 기재 사실이 확인될 경우 선발 취소 및 장학금 반납에 동의함을 서약합니다.\n\n년\n\n월\n\n일\n\n신청자\n\n(인)\n\n한양대학교 학생인재개발처장 귀하\n\n한양리더(HY-Leader) 장학금 추천서\n\n\n\n추천대상자\n\n성명\n\n학번\n\n단과대학\n\n학과\n\n지도교수\n\n(학과장)\n\n성명\n\n소속\n\n전화번호\n\n이메일\n\n추천사유\n\n학생의 인성, 교내활동, 학업역량, 전공분야 학업성취도, 경제사정 등 자유롭게 기술\n\n위와 같이 본인은 신청자를 한양리더(HY-Leader) 장학생으로 추천합니다.\n\n년\n\n월\n\n일\n\n신청자\n\n(인)\n\n한양대학교 학생인재개발처장 귀하\n\n한양리더(HY-Leader) 장학금 자기소개서\n\n\n\n신청자\n\n성명\n\n단과대학\n\n학과\n\n학번\n\n자기소개서\n\n신청자 본인에 대한 소개를 자유롭게 기술\n\n굴림체 / 10P / 160% / 2페이지 이내\n\n년\n\n월\n\n일\n\n신청자\n\n(인)\n\n한양대학교 학생인재개발처장 귀하\n\n한양리더(HY-Leader) 장학금 종합 활동계획서\n\n\n\n신청자\n\n성명\n\n단과대학\n\n학과\n\n학번\n\n활동계획서\n\n1년간 진행할 종합적인 활동계획 기술(가능한 구체적으로 기술)\n\n굴림체 / 10P / 160% / 4페이지 이내\n\n실행계획 추진일정\n\n장학금 사용계획 \n\n날짜\n\n내용\n\n세부 추진 계획\n\n3월\n\n내용에 따라 추가 \n\n4월\n\n5월\n\n6월\n\n7월\n\n8월\n\n9월\n\n`\n\n10월\n\n11월\n\n12월\n\n1월\n\n2월\n\n순번\n\n내용\n\n금액\n\n1\n\n내용에 따라 추가 \n\n2\n\n3\n\n총액\n\n5,000,000\n\n년\n\n월\n\n일\n\n신청자\n\n(인)\n\n한양대학교 학생인재개발처장 귀하\n\n한양리더(HY-Leader) 장학금 서약서\n\n\n\n신청자\n\n성명\n\n단과대학\n\n학과\n\n학번\n\n서약서\n\n  1. 장학생 선정이 될 경우 매학기 (중간/결과)보고서를 제출하여야 하며, 심사에 따라 활동을 성실히 \n\n     이행해야 합니다. \n\n☐ 동의       ☐ 미동의\n\n  2. 장학생 결격 사유를 확인하였으며 충실히 의무를 이행할 것을 서약합니다. \n\n☐ 동의       ☐ 미동의\n\n  3. 의무를 이행하지 않을 경우 장학생 자격이 박탈됨을 확인하였습니다. \n\n    *장학생 자격 박탈시 기 지급된 장학금은 환수 조치됩니다.\n\n☐ 동의       ☐ 미동의\n\n  \n\n본인은 20  년 한양리더(HY-Leader) 장학금의 신청자로 위 내용에 동의하지 않은 경우 장학생으로 선발되지 않을 수 있음을 확인하였으며, 장학생으로 선정된 이후에는 의무사항을 충실히 이행할 것을 서약합니다.\n\n년\n\n월\n\n일\n\n신청자\n\n(인)\n\n한양대학교 학생인재개발처장 귀하\n\n한양리더(HY-Leader) 장학금 중간보고서\n\n\n\n신청자\n\n성명\n\n단과대학\n\n학과\n\n학번\n\n중간보고서\n\n현재까지 진행된 활동 내용 기술(가능한 구체적으로 기술)\n\n굴림체 / 10P / 160% / 4페이지 이내\n\n실행계획 추진경과\n\n\n\n날짜\n\n내용\n\n세부 추진 계획\n\n추진 경과\n\n3월\n\n내용에 따라 추가 \n\n진행중 / 진행완료 中 택 1\n\n4월\n\n5월\n\n6월\n\n7월\n\n8월\n\n9월\n\n`\n\n10월\n\n11월\n\n12월\n\n1월\n\n2월\n\n년\n\n월\n\n일\n\n신청자\n\n(인)\n\n지도교수\n\n(인)\n\n한양대학교 학생인재개발처장 귀하\n\n한양리더(HY-Leader) 장학금 결과보고서\n\n\n\n신청자\n\n성명\n\n단과대학\n\n학과\n\n학번\n\n결과보고서\n\n최종 진행된 활동 내용 기술(가능한 구체적으로 기술)\n\n별도 파일로 해당 활동에 대한 증빙 첨부 요망\n\n굴림체 / 10P / 160% / 4페이지 이내\n\n실행계획 추진경과\n\n\n\n날짜\n\n내용\n\n세부 추진 계획\n\n추진 경과\n\n3월\n\n내용에 따라 추가 \n\n내용에 따라 추가\n\n4월\n\n5월\n\n6월\n\n7월\n\n8월\n\n9월\n\n`\n\n10월\n\n11월\n\n12월\n\n1월\n\n2월\n\n년\n\n월\n\n일\n\n신청자\n\n(인)\n\n지도교수\n\n(인)\n\n한양대학교 학생인재개발처장 귀하",
+              "location": "BodyText/Section0",
+              "method": "text",
+              "confidence": null
+            }
+          ],
+          "issues": [
+            "BinData/BIN0001.jpg 자동 글자 인식 결과 · 표 배치와 숫자 검토 필요",
+            "HWP 문서 위치는 구역 기준 · 페이지 배치 검증 안 됨"
+          ],
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%842.+%ED%95%9C%EC%96%91%EB%A6%AC%EB%8D%94%28HY-Leader%29+%EC%9E%A5%ED%95%99%EA%B8%88+%EC%8B%A0%EC%B2%AD%EC%84%9C%28%EC%96%91%EC%8B%9D%29.hwp/c50c4142-6add-465e-393c-d40e20cc1008?status=0&download=true",
+          "name": "붙임2. 한양리더(HY-Leader) 장학금 신청서(양식).hwp",
+          "checkedAt": "2026-09-15T03:05:18.998066+00:00"
+        }
+      ]
+    },
+    {
+      "id": "hanyang-0bce7aa886f58d37",
+      "title": "[서울] 2026-2학기 학부 재학생(신편입생 포함) 교내 가계곤란장학 2차 신청 안내(2026.08.13.(목) ~ 2026.09.30.(수))",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=115601",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "한양대학교 서울캠퍼스",
+      "kind": "등록금",
+      "year": "2026",
+      "start": "2026-08-13",
+      "end": "2026-09-30T23:59:00+09:00",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "사랑의실천·실용인재 장학금. 국가장학금 신청만으로 교내 신청을 대신할 수 없습니다. 교내 접수는 9월 30일 23:59 종료하며, 국가장학금 2차 접수는 9월 9일 18:00에 종료되었습니다.",
+      "checkedAt": "2026-09-15T03:00:30.775739+00:00",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=115601"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "3ee41b2bbb54e374a2bf8b24d92a456480350392c16371a6e1da1a1712d8d62e",
+        "본문 확인": "공개 원문 응답 확인",
+        "지원액 구분": "기초·차상위: 사랑의실천 장학금, 국가+교내 합계 수업료 100%. 1~9구간: 실용인재 장학금, 국가장학금을 뺀 등록금 범위에서 지원구간별 차등 지급. 개인별 확정 금액은 공고에 없음.",
+        "성적·이수학점": "직전 학기 취득학점 10학점 이상, 장학평점 2.0 이상. 공고 이미지에는 평점 만점 척도가 명시되지 않음.",
+        "국가장학금 선행 신청": "2026-2학기 국가장학금 신청 필수. 1차 5월 22일~6월 22일 18:00, 2차 8월 12일 09:00~9월 9일 18:00. 재학생은 1차 신청이 원칙이며 재학 중 2회에 한해 2차 신청 가능.",
+        "국가장학금 심사 준비": "소득구간이 산출되도록 가구원 동의와 요구된 증빙서류 제출 등 한국장학재단 심사 절차를 완료해야 함.",
+        "신청 제외": "이번 학기 재입학자, 초과학기 등록자, 학업연장학기 등록 예정자는 미대상. 이번 학기 교내 신청을 하지 않으면 국가장학금 수혜 여부와 관계없이 교내 심사에서 제외.",
+        "등록휴학 후 복학": "무등록 복학자는 등록휴학 당시 교내·외 등록금 지원 장학금을 받았으면 이번 교내·외 장학금 대상에서 제외.",
+        "신·편입생": "학적(학번) 생성 이후 교내 시스템에서 신청 가능.",
+        "국가장학금 탈락자": "지원횟수 초과 또는 성적 미달로 국가장학금을 받지 못한 경우 교내 학적·성적 기준으로 심사하여 구간별 일부 지원. 국가장학금 신청기간 미준수 탈락자는 학적·성적과 관계없이 교내 선발 제외.",
+        "지급 시기·방식": "등록 완료 및 선발 후 학기 말 12월 환불. 국가장학금 지급 결과 확인이 늦어지면 선발이 지연될 수 있음. 한국장학재단 학자금대출자는 해당 기관으로 입금.",
+        "신청 방법": "HY-in 로그인 → 등록장학 → 교내장학신청 → 신청구분 일반가계곤란자 → 신청/저장. 신청기간 외에는 메뉴 비활성화. 국가장학금·교내장학금은 각각 신청하며 신청 순서는 무관.",
+        "결과 확인": "학기 중 HY-in → 등록장학 → 장학수혜내역조회에서 개별 확인.",
+        "중복 지원 제한": "국가장학금 우선 적용, 교내장학금 우선 반영 불가. 국가·교내·외 등록금 장학과 등록금 학자금대출의 합계는 등록금 총액을 넘을 수 없음. 초과액은 해당 학기 대출 상환 또는 반환 필요. 중복수혜 확인 시 다음 학기 장학금 및 국가장학금 수혜 불가.",
+        "서류 안내": "공고는 교내 별도 제출서류 목록을 제시하지 않음. 국가장학금 심사에서 요구되는 가구원 동의·증빙서류는 개인별로 제출.",
+        "추가 안내": "2027-1학기부터 학자금 지원구간 10구간 체계가 5구간 체계로 개편 예정: 기존 1~3→2, 4~6→3, 7~8→4, 9~10→5. 이번 2026-2학기 기준과 구분.",
+        "정보 근거": "한양대학교 학생지원팀 공식 공고 이미지 1·2를 읽어 정리. 신청 종료 시각은 이미지 2의 23:59 표기 기준."
+      },
+      "amount": "등록금 범위 내 차등 지원 · 기초/차상위 국가+교내 수업료 100%",
+      "schoolType": "4년제",
+      "round": "2026년 2학기 · 2차",
+      "eligibility": "한양대학교 서울캠퍼스 학부 재학생. 2026-2학기 신·편입생과 복학생 포함. 이번 학기 국가장학금 신청과 교내 가계곤란장학 신청을 모두 완료해야 심사 대상이 됩니다.",
+      "minGpa": 2.0,
+      "noticeImages": [
+        "https://www.hanyang.ac.kr/documents/20122/0/%EC%84%9C%EC%9A%B8%EC%BA%A0%ED%8D%BC%EC%8A%A4+2026-2%ED%95%99%EA%B8%B0+%ED%95%99%EB%B6%80%EC%83%9D+%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88%28%EA%B0%80%EA%B3%84%EA%B3%A4%EB%9E%80%EC%9E%A5%ED%95%99%29+2%EC%B0%A8+%EC%8B%A0%EC%B2%AD+%EC%95%88%EB%82%B4_1.jpg/3e53b061-7b81-e5c4-191e-48ced3b3a2ec?t=1786499825852",
+        "https://www.hanyang.ac.kr/documents/20122/0/%EC%84%9C%EC%9A%B8%EC%BA%A0%ED%8D%BC%EC%8A%A4+2026-2%ED%95%99%EA%B8%B0+%ED%95%99%EB%B6%80%EC%83%9D+%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88%28%EA%B0%80%EA%B3%84%EA%B3%A4%EB%9E%80%EC%9E%A5%ED%95%99%29+2%EC%B0%A8+%EC%8B%A0%EC%B2%AD+%EC%95%88%EB%82%B4_2.jpg/3c3c5a4c-8e13-3c19-e092-4d8316367003?t=1786499834300"
+      ],
+      "extractedDocuments": [
+        {
+          "hash": "52ef7951d5a44c5e0c194b7e84856baea6868dd97ea01a3a7fe4a17d43ce55ef",
+          "status": "partial",
+          "blocks": [
+            {
+              "text": "서울캠퍼스 2026-2학기 학부생 교내 가계곤란장학 2차 신청 안내\n한양대학교 서울캠퍼스에서는 2026-2학기 학부생의 교내 가계곤란장학(사랑의실천 장학/실용인재 장\n학) 2차 신청을 다음과 같이 안내하오니, 수혜를 희망하는 학생은 기간 중 신청을 완료하시기 바랍니\n다.\n지원장학명 ： 사랑의실천장학금 / 실용인재장학금\n교내 가계곤란장학 2차 신청기간 : 2026.08.13.(목) ~ 2026.09.30.(수)\n1. 신청대상 : 시랑의실천 징학 또는 실용인재 징학 수혜를 회망하는 학부 재학생(2026-2학기 신(편입생, 복학생 포함)\n가. 매 학기 위의 교내 가계곤란장학금을 신청하지 않을 경우 상기 장학금의 심사 대상에서 제외됨\n※ 국가장학금을 신청하여 소득구간별 국가장학금 지급이 확인되더라도 이번 학기 교내장학 가계곤란장학을\n신청하지 않은 경우 상기의 교내 가계곤란장학 심사 대상에서 제외됨\n나. 2026-2학기 국가장학금 신청 필수\nx 국가장학금 1차 신청기간 [2026.05.22.(금) ~ 2026.06.22.(월) 18:00] 종료\n국가장학금 2차 신청기간 [2026.08.12.(수) 09:00 ~ 2026.09.09.(수) 18:0이\n(한국장학재단의 국가장학금 재학생은 1차 신청을 원칙으로 하며, 재학 중 2회에 한해 2차 신청으로 수\n혜 가능. 다만, 국가장학금 신청기간 미준수로 인한 탈락자는 소득구간이 확인되더라도 교내 가계곤란장\n학 선발에서 제외되니 유의)\n※ 국가장학금 신청 후 소득구간이 정상적으로 산출될 수 있도록 가구원 동의, 증빙서류제출 등 한국장학재\n단 심사에 적극 협조 필요\n※ 교내가계곤란장학 선발은 이번 학기 한국장학재단의 국가장학금 지급결과가 확인된 경우 진행 됨(2차\n신청자의 경우 지급결과 확인 지연으로 교내 가계곤장학은 선발이 늦어질 수 있음)\n'※ 국가장학금 신청 홈페이지 : hitp://www.kosaf.go.kr\n'※ 한국장학재단 국가장학금 신청으로 교내장학 신청을 대신할 수 없으므로 국가장학금과 교내장학금을 각각\n신청(신청 순서는 관계없음)하여야 함 [등록금 범위내에서 국가장학금과 교내장학금은 이중 수혜 가능]\n다. 이번 학기 재입학자, 초과학기 혹은 학업연장학기 등록 예정자는 교내장학금 지원 대상이 아님\n라. 등록휴학 후 이번 학기 무등록 복학자는 SERS 학기에 교내/외 등록금지원 SHY 장학금을 수혜한\n경우 교내-외 장학금 대상에서 제외됨\n마. 이번 학기 신(편)입학자는 학적(학번)이 생성된 이후 교내 시스템에서 교내가계곤란장학 신청이 가능함.\n2. 장학금 지급 방법 : 2026-2학기 등록완료 후 장학대상자로 선발된 경우 학기말(12월) 환불로 진행 함\n* 한국장학재단의 국가장학 지급심사가 등록금 납부이후 확인되거나, 등록을 완료한 신(편)입생의 경우 12월\n중 등록금 환불로 진행(다만, 한국장학재단 등의 학자금대출자의 경우 해당 기관으로 입금)\n3. 선발 결과 확인 : 학기중 HY-in 로그인 > 등록장학 > 장학수혜내역조회 메뉴에서 개별 확인",
+              "location": "이미지 1",
+              "method": "ocr",
+              "confidence": 92
+            }
+          ],
+          "issues": [
+            "이미지 1 자동 글자 인식 결과 · 표 배치와 숫자 검토 필요"
+          ],
+          "url": "https://www.hanyang.ac.kr/documents/20122/0/%EC%84%9C%EC%9A%B8%EC%BA%A0%ED%8D%BC%EC%8A%A4+2026-2%ED%95%99%EA%B8%B0+%ED%95%99%EB%B6%80%EC%83%9D+%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88%28%EA%B0%80%EA%B3%84%EA%B3%A4%EB%9E%80%EC%9E%A5%ED%95%99%29+2%EC%B0%A8+%EC%8B%A0%EC%B2%AD+%EC%95%88%EB%82%B4_1.jpg/3e53b061-7b81-e5c4-191e-48ced3b3a2ec?t=1786499825852",
+          "name": "공고 이미지 1",
+          "checkedAt": "2026-09-15T03:00:30.774739+00:00"
+        },
+        {
+          "hash": "648d9e0c6a6da11645d7ab772a5f33eed89a09bb84ecd6d156fce1289362053a",
+          "status": "partial",
+          "blocks": [
+            {
+              "text": "4. 신청 기간 및 방법\n가. 교내장학 가계곤란장학 2차 HAIIZKHY-IN) © 2026.08.13.(목) ~ 2026.09.30.(수) 23:50 까지\n나. 신청 방법(경로) : 1\\-17(한양인포탈) 로그인 ㅡ\n등록장학 ㅡ 교내장학신청 ㅡ 신청구분(일반가계곤란자) 선택 및 신청/저장\n※ 교내장학 신청기간 중 온라인으로 신청하며, 신청기간이 아닌 경우 메뉴 비활성화 됨\n5. 소득구간별 교내 가계곤란장학 지원(참고)\n한국장학재단                         SE\n기초/차상위 | 사람의실천 장학금 | 국가+교내 = 수업료 100%           국가장학금을 우선 적용하며, 등록금 범\n위내 소득구간별 차등지원 함\n= ㅣ소득구간별 국가장학금을 제외한 등록금          개\n UBM 장학금 ㅣ 남위내(차등지원         {ERR A\n 교내(가계곤란)장학은 한국장학재단의 당해 학기 국가장학금 소득구간 및 HALE 활용하여 AST 차등지원 함\n(교내 가계곤란 HRA : 직전학기 취득학점 10학점 이상 및 장학평점 2.0 이상)\n0 AT NAR 우선하며, 교내장학금은 HIE 제외한 등록금범위내에서 소득구간별 차등지원 함\n0 당해 학기 국가장학금 틸락사유가 DIVAS NEUSE 또는 성적미달인 경우 교내 학적 및 성적기준(직전학기 취\n득학점 10학점 이상, 장학평점 2.0이상)으로 MARIN] ATE 차등하여 일부 지원함\n0 Yaz 틸략사유가 DINER 신청기간 미준수로 인한 탈락인 경우 학적 및 성적과 무관하게 교내 가계곤란장학\n선발에서 제외됨(신청기간준수 필요)\nO 한국장학재단 학자금 지원구간 산정체계 개편 안내(2027-1학기부터) : 현행 10구간 체계에서 5구간 HAZ 개편\n1~3구간ㅡ구간, 4~6구간ㅡ구간, 7~8구간ㅡ8구간, 9구간-8구간, 10구간-8무간]\n6. 주의사항(중복지원제한)\n한국장학재단에서는 등록금지원 목적으로 수혜한 학자금(취업 후 상환 학자금 대출, 일반상환학자금 대출, 농\n어촌출신대학생학자금융자, 공무원학자금 대출(공무원연금공단), 군인 및 군인자녀 학자금 대부(국방부), 장기\n복무제대군인 학자금 대부(국가보훈처), 사립학교교직원 학자금 대출(사립학교교직원연금공단), 근로자학자금\n대부(한국산업인력공단, 근로복지공단), 공공기관에서 직원 및 직원 자녀를 대상으로 지원하는 학자금 대부\nSI 국가 및 교내ㆍ외장학금을 합산하여 등록금 총액 초과 수혜여부를 지속적으로 점검하고 있으며, 중복수\n혜로 확인되는 경우 다음 학기 학자금 및 국가장학금 수혜가 불가. 이에, 학자금 및 장학금 수혜 총액이 입\n학금 및 등록금 총액을 초과한 학생의 경우 해당학기 초과금액을 대출상환 혹은 반환해야 함을 유의\n7. FAQ 바로 가기",
+              "location": "이미지 1",
+              "method": "ocr",
+              "confidence": 83
+            }
+          ],
+          "issues": [
+            "이미지 1 자동 글자 인식 결과 · 표 배치와 숫자 검토 필요"
+          ],
+          "url": "https://www.hanyang.ac.kr/documents/20122/0/%EC%84%9C%EC%9A%B8%EC%BA%A0%ED%8D%BC%EC%8A%A4+2026-2%ED%95%99%EA%B8%B0+%ED%95%99%EB%B6%80%EC%83%9D+%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88%28%EA%B0%80%EA%B3%84%EA%B3%A4%EB%9E%80%EC%9E%A5%ED%95%99%29+2%EC%B0%A8+%EC%8B%A0%EC%B2%AD+%EC%95%88%EB%82%B4_2.jpg/3c3c5a4c-8e13-3c19-e092-4d8316367003?t=1786499834300",
+          "name": "공고 이미지 2",
+          "checkedAt": "2026-09-15T03:00:30.775739+00:00"
+        }
+      ]
+    },
+    {
+      "id": "hanyang-8b11164d86925763",
+      "title": "[서울] 2026-2학기 국가장학금(2차) 신청 안내",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=115201",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=115201"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "붙임1. 2026년 2학기 국가장학금 2차 신청매뉴얼(홈페이지).pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%841.+2026%EB%85%84+2%ED%95%99%EA%B8%B0+%EA%B5%AD%EA%B0%80%EC%9E%A5%ED%95%99%EA%B8%88+2%EC%B0%A8+%EC%8B%A0%EC%B2%AD%EB%A7%A4%EB%89%B4%EC%96%BC%28%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%29.pdf/28e7c8ed-eff0-cd84-8b2f-f0741a0aab1a?status=0&download=true"
+        },
+        {
+          "name": "붙임2. 2026년 2학기 국가장학금 2차 신청매뉴얼(모바일앱).pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%842.+2026%EB%85%84+2%ED%95%99%EA%B8%B0+%EA%B5%AD%EA%B0%80%EC%9E%A5%ED%95%99%EA%B8%88+2%EC%B0%A8+%EC%8B%A0%EC%B2%AD%EB%A7%A4%EB%89%B4%EC%96%BC%28%EB%AA%A8%EB%B0%94%EC%9D%BC%EC%95%B1%29.pdf/8e585438-70a5-d64d-66d7-661df8d4f4a5?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "af99798a1287139cb9479b444b217f7e2436512ff77464faa3709c7486313b5c",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-b452a99ff8f888e3",
+      "title": "[서울] 2026-2학기 국가장학금(1차) 신청 안내",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=107803",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=107803"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "붙임1. 2026년 2학기 국가장학금 1차 신청매뉴얼(홈페이지).pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%841.+2026%EB%85%84+2%ED%95%99%EA%B8%B0+%EA%B5%AD%EA%B0%80%EC%9E%A5%ED%95%99%EA%B8%88+1%EC%B0%A8+%EC%8B%A0%EC%B2%AD%EB%A7%A4%EB%89%B4%EC%96%BC%28%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%29.pdf/6336fa72-8e2a-8d23-1bdb-05c9a32e53cf?status=0&download=true"
+        },
+        {
+          "name": "붙임2. 2026년 2학기 국가장학금 1차 신청매뉴얼(모바일앱).pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%842.+2026%EB%85%84+2%ED%95%99%EA%B8%B0+%EA%B5%AD%EA%B0%80%EC%9E%A5%ED%95%99%EA%B8%88+1%EC%B0%A8+%EC%8B%A0%EC%B2%AD%EB%A7%A4%EB%89%B4%EC%96%BC%28%EB%AA%A8%EB%B0%94%EC%9D%BC%EC%95%B1%29.pdf/2a2ee647-a381-f224-1ef1-814f828f9f1d?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "a793dcc676377a2cbd05f96bcc6fb9ed9fa7a6f7f159ba447305165768911b96",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-5e7fbcf5012e0c01",
+      "title": "[총무인사팀]우편물실 근로장학생 모집(화요일)",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=104201",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "한양대학교 서울캠퍼스",
+      "kind": "근로",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=104201"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "교내근로장학생지원서_양식.hwp",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EA%B5%90%EB%82%B4%EA%B7%BC%EB%A1%9C%EC%9E%A5%ED%95%99%EC%83%9D%EC%A7%80%EC%9B%90%EC%84%9C_%EC%96%91%EC%8B%9D.hwp/1f6a073e-caf7-a954-f671-ba2f2960d06e?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "910184fdd537d045b60ce7cb20f5d770ff9f91b657f132d022f986a04bcb84e1",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-c16582f5b4d77a03",
+      "title": "[서울] 2026-1학기 학부 재학생(신편입생 포함) 교내장학금 2차 신청 안내(2026.02.03.~2026.03.31.)",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=98466",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "한양대학교 서울캠퍼스",
+      "kind": "확인 필요",
+      "year": "2026",
+      "start": "2026-02-03",
+      "end": "2026-03-31",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=98466"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "서울캠퍼스 2026-1학기 학부생 교내장학금(가계곤란장학) 2차 신청 안내.pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EC%84%9C%EC%9A%B8%EC%BA%A0%ED%8D%BC%EC%8A%A4+2026-1%ED%95%99%EA%B8%B0+%ED%95%99%EB%B6%80%EC%83%9D+%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88%28%EA%B0%80%EA%B3%84%EA%B3%A4%EB%9E%80%EC%9E%A5%ED%95%99%29+2%EC%B0%A8+%EC%8B%A0%EC%B2%AD+%EC%95%88%EB%82%B4.pdf/4f03c6f9-41f2-82d7-b39a-6fb15b663a4b?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "996e73a482d355c3c5aa56faf7b8fa98a347be935edb7741737ac688ffe59b17",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-b826e2ec846b02b3",
+      "title": "[서울] 2026-1학기 국가장학금(2차) 신청 안내",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94435",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94435"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "a3ad08fad85cafa1cf513117a94d53c5d2628cfa71d615b9ae1bded0b258fbea",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-b525671994385a3f",
+      "title": "[서울] 2026-1학기 학부 재학생 교내 가계곤란장학 신청(2025.11.20.(목) ~ 2026.01.30.(금))",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94968",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "한양대학교 서울캠퍼스",
+      "kind": "확인 필요",
+      "year": "2026",
+      "start": "2025-11-20",
+      "end": "2026-01-30",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94968"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "서울캠퍼스 2026-1학기 학부생 교내장학금(가계곤란장학) 신청 안내.pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EC%84%9C%EC%9A%B8%EC%BA%A0%ED%8D%BC%EC%8A%A4+2026-1%ED%95%99%EA%B8%B0+%ED%95%99%EB%B6%80%EC%83%9D+%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88%28%EA%B0%80%EA%B3%84%EA%B3%A4%EB%9E%80%EC%9E%A5%ED%95%99%29+%EC%8B%A0%EC%B2%AD+%EC%95%88%EB%82%B4.pdf/7578b5df-0e93-0a2f-4f61-8a2a434d1430?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "de53ea39491e2474e481e0e324f88ecd628259f1b0e70ebecf6416e0f0379e3f",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-1b2528c824be6e71",
+      "title": "[서울] 2026-1학기 국가장학금(1차) 신청 안내",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94967",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94967"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "붙임1. 2026년 1학기 국가장학금 1차 신청매뉴얼(홈페이지).pptx",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%841.+2026%EB%85%84+1%ED%95%99%EA%B8%B0+%EA%B5%AD%EA%B0%80%EC%9E%A5%ED%95%99%EA%B8%88+1%EC%B0%A8+%EC%8B%A0%EC%B2%AD%EB%A7%A4%EB%89%B4%EC%96%BC%28%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%29.pptx/73c19a00-b69d-5b48-ade4-729ccef8b4a7?status=0&download=true"
+        },
+        {
+          "name": "붙임2. 2026년 1학기 국가장학금 1차 신청매뉴얼(모바일).pptx",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%842.+2026%EB%85%84+1%ED%95%99%EA%B8%B0+%EA%B5%AD%EA%B0%80%EC%9E%A5%ED%95%99%EA%B8%88+1%EC%B0%A8+%EC%8B%A0%EC%B2%AD%EB%A7%A4%EB%89%B4%EC%96%BC%28%EB%AA%A8%EB%B0%94%EC%9D%BC%29.pptx/e05cd99b-eab1-ab49-c2fa-b69ccdcce18a?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "820d26006e9c94fff97808111226417a4c4663510aef0c7047c6c82d4f362e63",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-97a646ab34c128b8",
+      "title": "[서울] 2025-2학기 학부 재학생 교내 가계곤란장학 추가 신청 안내(2025.9.17.(수)~2025.10.10.(금))",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94375",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "한양대학교 서울캠퍼스",
+      "kind": "확인 필요",
+      "year": "2025",
+      "start": "2025-09-17",
+      "end": "2025-10-10",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94375"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "95dc797dd9ef800a0c9d0a53e0d2c7aca41bd98455ddb8aef600b41f018a82aa",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-caacaa5c09711b83",
+      "title": "[서울] 2025-2학기 학부 복학 및 신(편)입생 교내장학금(가계곤란장학) 신청 안내(2025.08.13. ~ 2025.09.10.)",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94349",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "한양대학교 서울캠퍼스",
+      "kind": "확인 필요",
+      "year": "2025",
+      "start": "2025-08-13",
+      "end": "2025-09-10",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94349"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "서울캠퍼스 2025-2학기 학부 복학및신(편)입생 교내 장학금 신청 안내.pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EC%84%9C%EC%9A%B8%EC%BA%A0%ED%8D%BC%EC%8A%A4+2025-2%ED%95%99%EA%B8%B0+%ED%95%99%EB%B6%80+%EB%B3%B5%ED%95%99%EB%B0%8F%EC%8B%A0%28%ED%8E%B8%29%EC%9E%85%EC%83%9D+%EA%B5%90%EB%82%B4+%EC%9E%A5%ED%95%99%EA%B8%88+%EC%8B%A0%EC%B2%AD+%EC%95%88%EB%82%B4.pdf/d86c6922-a5b5-299d-b35e-c555b01de355?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "8bb8b0959dce7228787ddeb3b01770397a0e6960c1f2dd4ba69444e7dc7b0c64",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-f4b5ba75617d2649",
+      "title": "[서울]2025-2학기 국가장학금(1차) 신청 안내",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94317",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2025",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94317"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "붙임1 2025년 2학기 국가장학금 1차 신청매뉴얼(홈페이지)_b5f392edb1854e04b5b4048670ca73f0.pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%841+2025%EB%85%84+2%ED%95%99%EA%B8%B0+%EA%B5%AD%EA%B0%80%EC%9E%A5%ED%95%99%EA%B8%88+1%EC%B0%A8+%EC%8B%A0%EC%B2%AD%EB%A7%A4%EB%89%B4%EC%96%BC%28%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%29_b5f392edb1854e04b5b4048670ca73f0.pdf/6e75c9be-bcab-5f37-72fc-a7c206a56ff4?status=0&download=true"
+        },
+        {
+          "name": "붙임2 2025년 2학기 국가장학금 1차 신청매뉴얼(모바일)_01dae8bbdbe74c2fb70ef9d227ebad8e.pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EB%B6%99%EC%9E%842+2025%EB%85%84+2%ED%95%99%EA%B8%B0+%EA%B5%AD%EA%B0%80%EC%9E%A5%ED%95%99%EA%B8%88+1%EC%B0%A8+%EC%8B%A0%EC%B2%AD%EB%A7%A4%EB%89%B4%EC%96%BC%28%EB%AA%A8%EB%B0%94%EC%9D%BC%29_01dae8bbdbe74c2fb70ef9d227ebad8e.pdf/97b9ec35-c2c3-5192-5de8-f89d37e5e5d3?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "948081c9eeafb71a81715c600d62f4be5d1d830a3de74887c98ceb7e58690eb8",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "hanyang-02db016627c23a5f",
+      "title": "[서울] 2025-2학기 학부 재학생 교내 가계곤란장학 신청(2025.05.23.(금) ~ 2025.07.31.(목))",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94316",
+      "sourceId": "hanyang",
+      "institution": "한양대학교 장학/등록",
+      "region": "서울",
+      "school": "한양대학교 서울캠퍼스",
+      "kind": "확인 필요",
+      "year": "2025",
+      "start": "2025-05-23",
+      "end": "2025-07-31",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:46.615Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한양대학교 장학/등록",
+          "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view_message&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_entryId=94316"
+        }
+      ],
+      "attachments": [
+        {
+          "name": "서울캠퍼스 2025-1학기 학부 재학생 교내장학금(가계곤란장학) 신청 안내.pdf",
+          "url": "https://www.hanyang.ac.kr/documents/portlet_file_entry/20122/%EC%84%9C%EC%9A%B8%EC%BA%A0%ED%8D%BC%EC%8A%A4+2025-1%ED%95%99%EA%B8%B0+%ED%95%99%EB%B6%80+%EC%9E%AC%ED%95%99%EC%83%9D+%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88%28%EA%B0%80%EA%B3%84%EA%B3%A4%EB%9E%80%EC%9E%A5%ED%95%99%29+%EC%8B%A0%EC%B2%AD+%EC%95%88%EB%82%B4.pdf/05d7de4a-5f13-89c8-3735-92b80514fbc4?status=0&download=true"
+        }
+      ],
+      "facts": {
+        "fingerprint": "4aa6c8e6f05fdf94cbaa8752a7d0ac4886cd3b59ff4f0244b5d179e551201105",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    },
+    {
+      "id": "kosaf-3be19888a23da568",
+      "title": "2026년 2학기 푸른등대 삼성기부장학금 계속장학생 지원 안내",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=21288&naviParam=DN,08,01,00",
+      "sourceId": "kosaf",
+      "institution": "한국장학재단",
+      "region": "전국",
+      "school": "공통",
+      "kind": "확인 필요",
+      "year": "2026",
+      "mode": "자동 수집",
+      "verified": false,
+      "summary": "지원 조건과 신청 절차는 공식 원문을 확인하세요.",
+      "checkedAt": "2026-09-10T16:17:29.083Z",
+      "foundAt": "2026-09-10T11:14:28.360Z",
+      "version": 1,
+      "sources": [
+        {
+          "name": "한국장학재단",
+          "url": "https://www.kosaf.go.kr/ko/notice.do?mode=view&seqNo=21288&naviParam=DN,08,01,00"
+        }
+      ],
+      "attachments": [],
+      "facts": {
+        "fingerprint": "5df662258162738b6e49a888e17cfe9d5a13fb2517794cab3aba177993d9db6c",
+        "본문 확인": "공개 원문 응답 확인"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "intervalHours": 3,
+      "status": "정상",
+      "id": "kosaf-housing",
+      "name": "한국장학재단 주거안정장학금",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000002&ctgrId2=0000000022&naviParam=JH,09,08,00",
+      "region": "전국",
+      "enabled": true,
+      "note": "신청 공고의 제목·원문 링크 중심 수집. 사업 참여대학·원거리 조건은 별도 확인. 원문 저작권 조건 존중",
+      "robots": "Allow: /",
+      "lastAttempt": "2026-09-11T02:38:29.731Z",
+      "count": 4,
+      "lastSuccess": "2026-09-11T02:38:29.731Z",
+      "errors": 0,
+      "nextAt": "2026-09-11T05:38:31.063Z"
+    },
+    {
+      "intervalHours": 3,
+      "status": "정상",
+      "id": "kosaf-dorm",
+      "name": "한국장학재단 연합생활관",
+      "url": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000009&naviParam=HB,06,02,00",
+      "region": "전국",
+      "enabled": true,
+      "note": "유상 기숙사 입주 모집. 현금 장학금과 구분. 고양 소재를 거주 자격 지역으로 간주하지 않음",
+      "robots": "Allow: /",
+      "lastAttempt": "2026-09-11T02:38:31.082Z",
+      "count": 9,
+      "lastSuccess": "2026-09-11T02:38:31.082Z",
+      "errors": 0,
+      "nextAt": "2026-09-11T05:38:34.086Z"
+    },
+    {
+      "intervalHours": 3,
+      "status": "정상",
+      "id": "gwd-dorm",
+      "name": "강원인재원 강원학사",
+      "url": "https://injae.gwd.go.kr/gwd/haksa_communication/haksa_notice",
+      "region": "강원",
+      "enabled": true,
+      "note": "신입사생 모집 링크 수집. /gwd 외 첨부 경로 자동 다운로드 제한. 선발요강 원문 확인",
+      "robots": "/gwd 허용",
+      "lastAttempt": "2026-09-11T02:38:34.103Z",
+      "count": 1,
+      "lastSuccess": "2026-09-11T02:38:34.103Z",
+      "errors": 0,
+      "nextAt": "2026-09-11T05:38:34.175Z"
+    },
+    {
+      "intervalHours": 3,
+      "status": "정상",
+      "id": "dooeul",
+      "name": "두을장학재단",
+      "url": "https://www.dooeul.or.kr/home/main/board/bbsNormalList.do?encMenuId=456e4a7650636263787265524c786556464e424c4e773d3d",
+      "region": "전국",
+      "enabled": true,
+      "note": "공개 모집 공고 링크 수집. 국내 4년제 여학생 대상, 한양여대 지원 가능 추천 제외",
+      "robots": "공개 게시판 허용, 마이페이지·관리 경로 제외",
+      "lastAttempt": "2026-09-11T02:38:34.200Z",
+      "count": 1,
+      "lastSuccess": "2026-09-11T02:38:34.200Z",
+      "errors": 0,
+      "nextAt": "2026-09-11T05:38:34.603Z"
+    },
+    {
+      "intervalHours": 3,
+      "status": "수동 보완",
+      "id": "lotte",
+      "name": "신격호롯데장학재단 · 장학관",
+      "url": "https://www.lottefoundation.or.kr/scholarship?tab=move",
+      "region": "전국",
+      "enabled": false,
+      "note": "공식 사업 페이지 접근 확인. 동적 화면과 수집 정책 확인 필요. 학교 추천과 대상 대학은 해당 차수 원문 확인"
+    },
+    {
+      "intervalHours": 3,
+      "status": "수동 보완",
+      "id": "kochon",
+      "name": "종근당고촌재단 · 무상기숙사",
+      "url": "https://www.kochon.org/",
+      "region": "전국",
+      "enabled": false,
+      "note": "공식 대학의 재단 공고로 기관 확인. 재단 사이트 TLS 인증서 검증 실패. 우회 없이 대학 공개 원문으로 보완"
+    },
+    {
+      "intervalHours": 3,
+      "status": "수동 보완",
+      "id": "gbfh",
+      "name": "경기푸른미래관",
+      "url": "https://www.gbfh.co.kr/",
+      "region": "경기",
+      "enabled": false,
+      "note": "구리시 공식 입사 공고로 기관 주소 확인. TLS 인증서 검증 실패. 지자체 공개 원문으로 보완"
+    },
+    {
+      "intervalHours": 3,
+      "status": "수동 보완",
+      "id": "ndhs",
+      "name": "남도학숙",
+      "url": "https://www.ndhs.or.kr/",
+      "region": "전남",
+      "enabled": false,
+      "note": "공식 홈페이지 대기열 확인. 게시판 수집 제한과 대기열을 우회하지 않음. 입사자 광주·전남 조건 원문 확인"
+    },
+    {
+      "id": "hanyang",
+      "name": "한양대학교 장학/등록",
+      "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300",
+      "region": "서울",
+      "enabled": true,
+      "intervalHours": 3,
+      "status": "정상",
+      "note": "공개 장학 게시판 · RSS는 통합 공지 전체 피드라 장학 게시판을 병행 확인 · 세부 조건 검토 필요",
+      "robots": "전체 경로 제한 없음",
+      "lastSuccess": "2026-09-10T16:17:46.615Z",
+      "lastAttempt": "2026-09-10T16:17:46.615Z",
+      "count": 13,
+      "errors": 0,
+      "nextAt": "2026-09-10T19:17:54.229Z"
+    },
+    {
+      "id": "kosaf",
+      "name": "한국장학재단",
+      "url": "https://www.kosaf.go.kr/ko/main.do",
+      "region": "전국",
+      "enabled": true,
+      "intervalHours": 3,
+      "status": "정상",
+      "note": "공개 홈페이지의 장학 관련 공지 링크 수집 · 신청은 원문 사이트 · 세부 조건 검토 필요",
+      "robots": "Allow: /",
+      "lastSuccess": "2026-09-10T16:17:29.083Z",
+      "lastAttempt": "2026-09-10T16:17:29.083Z",
+      "count": 1,
+      "errors": 0,
+      "nextAt": "2026-09-10T19:17:29.770Z"
+    },
+    {
+      "id": "gangwon",
+      "name": "강원인재원",
+      "url": "https://injae.gwd.go.kr/injae",
+      "region": "강원",
+      "enabled": true,
+      "intervalHours": 3,
+      "status": "정상",
+      "note": "허용된 /injae 경로의 공지 수집 · 세부 조건 검토 필요",
+      "robots": "/injae 허용",
+      "lastSuccess": "2026-09-10T16:17:54.253Z",
+      "lastAttempt": "2026-09-10T16:17:54.253Z",
+      "count": 5,
+      "errors": 0,
+      "nextAt": "2026-09-10T19:17:54.711Z"
+    },
+    {
+      "id": "incheon",
+      "name": "인천인재평생교육진흥원",
+      "url": "https://itle.or.kr/user/scholarship/service/list.do",
+      "region": "인천",
+      "enabled": true,
+      "intervalHours": 3,
+      "status": "정상",
+      "note": "장학사업 안내 · 고교 전용 공고 제외 · 세부 조건 검토 필요",
+      "robots": "/user/scholarship 허용",
+      "lastSuccess": "2026-09-10T16:17:54.728Z",
+      "lastAttempt": "2026-09-10T16:17:54.728Z",
+      "count": 2,
+      "errors": 0,
+      "nextAt": "2026-09-10T19:17:55.660Z"
+    },
+    {
+      "id": "hywoman",
+      "name": "한양여자대학교",
+      "url": "https://www.hywoman.ac.kr/",
+      "region": "서울",
+      "enabled": false,
+      "intervalHours": 3,
+      "status": "연결 확인 필요",
+      "note": "공식 홈페이지 반복 리디렉션으로 접근 실패. 관리자 원문 등록으로 보완"
+    },
+    {
+      "id": "dreamspon",
+      "name": "드림스폰",
+      "url": "https://www.dreamspon.com/",
+      "region": "전국",
+      "enabled": false,
+      "intervalHours": 3,
+      "status": "이용 조건 확인 필요",
+      "note": "공개 목록 접근 확인. 이용약관의 정보 복제·제3자 제공 제한으로 자동 재게시 보류. 운영기관 원문 또는 허용된 제휴 연동 필요",
+      "policy": "https://www.dreamspon.com/member/terms.html"
+    },
+    {
+      "id": "hyin",
+      "name": "HY-in 포털",
+      "url": "https://portal.hanyang.ac.kr/",
+      "region": "서울",
+      "enabled": false,
+      "intervalHours": 3,
+      "status": "공식 연동 필요",
+      "note": "포털 자격증명을 수집하지 않음. 공개 공지와 관리자 링크 등록으로 보완"
+    },
+    {
+      "id": "seoul",
+      "name": "서울미래인재재단",
+      "url": "https://www.hissf.or.kr/home/kor/main.do",
+      "region": "서울",
+      "enabled": false,
+      "intervalHours": 3,
+      "status": "연결 확인 필요",
+      "note": "검색 도구에서는 확인했으나 수집 환경에서 DNS 조회 실패"
+    },
+    {
+      "id": "chungbuk",
+      "name": "충북인재평생교육진흥원",
+      "url": "https://www.cbitle.or.kr/www/selectSchlshipWebList.do?key=36",
+      "region": "충북",
+      "enabled": false,
+      "intervalHours": 3,
+      "status": "수집 정책 확인 필요",
+      "note": "페이지는 접근 가능하나 robots.txt 403 응답. 공식 연동 또는 허용 범위 확인 필요"
+    }
+  ]
+}

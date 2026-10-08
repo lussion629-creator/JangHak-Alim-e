@@ -1,0 +1,2255 @@
+{
+  "schemaVersion": 1,
+  "baselineCount": 123,
+  "records": [
+    {
+      "recruitmentId": "hyin-2025-20-011801-1",
+      "title": "국가유산진흥원",
+      "state": "verified_notice",
+      "sourceId": "skku-heritage",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=129580"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=129580",
+          "checkedAt": "2026-09-16T12:46:43.512Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2025년 국가유산진흥원 전통 기·예능 분야 및 매장유산 관련 분야 우수 장학생 선발 공고 안내",
+      "requiredTitle": "2025년 국가유산진흥원 전통 기·예능 분야 및 매장유산 관련 분야 우수 장학생 선발 공고 안내"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011822-1",
+      "title": "일운과학기술재단",
+      "state": "verified_notice",
+      "sourceId": "skku-ilwoon",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=129875"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=129875",
+          "checkedAt": "2026-09-16T12:46:44.582Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "일운과학기술재단 2025년 일운 장학생 선발",
+      "requiredTitle": "일운과학기술재단 2025년 일운 장학생 선발"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011794-1",
+      "title": "광산장학회",
+      "state": "verified_notice",
+      "sourceId": "skku-gwangsan",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=129370"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.gwangsan.go.kr/boardView.do?pageId=www521&boardId=GW_JH&seq=3145794",
+          "checkedAt": "2026-09-15T15:21:28.618Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=129370",
+          "checkedAt": "2026-09-16T13:48:44.505Z"
+        }
+      ],
+      "note": "운영기관 직접 사이트의 서버 응답 실패로 동일 연도·모집의 성균관대 공개 재게시 공고를 연결했습니다. 운영기관 원문은 근거 목록에 보존합니다. 한양대 포털 일정·조건을 별도로 보존하며 첨부 조건은 별도 검증합니다. 2025년 모집은 재공고에서 9월 19일까지 연장되어 포털의 9월 12일 마감과 다릅니다. 연장 근거를 함께 표시합니다.",
+      "noticeTitle": "2025년도 (재)광산장학회 장학생 선발계획 안내(★기한연장)",
+      "requiredTitle": "2025년도 (재)광산장학회 장학생 선발계획 안내(★기한연장)"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011824-1",
+      "title": "춘천시 봄내장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-chuncheon",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=129847"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=129847",
+          "checkedAt": "2026-09-16T12:46:45.664Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "(재)춘천시민장학재단 2025년 하반기 봄내장학생 선발 안내",
+      "requiredTitle": "(재)춘천시민장학재단 2025년 하반기 봄내장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011834-1",
+      "title": "미래의동반자재단",
+      "state": "research",
+      "sourceId": null,
+      "noticeUrls": [],
+      "evidence": [],
+      "note": "2026-09-16 재조사: 한양대 인문대 2025-2 추천 공고는 9월 25일 마감이며 포털의 9월 26일~10월 공개모집과 추천 단계가 다릅니다. 동일 모집 확정 전 자동 병합하지 않습니다. 포털 캘린더 10월 14일과 본문 10월 12일 23:59도 충돌합니다."
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011836-1",
+      "title": "논산시장학회",
+      "state": "verified_notice",
+      "sourceId": "skku-nonsan",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130167"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130167",
+          "checkedAt": "2026-09-16T12:46:46.753Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2025년도 하반기 논산시장학회 장학생 선발안내",
+      "requiredTitle": "2025년도 하반기 논산시장학회 장학생 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-4",
+      "title": "2026 두산연강재단",
+      "state": "verified_notice",
+      "sourceId": "skku-doosan",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130397"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130397",
+          "checkedAt": "2026-09-16T12:46:48.926Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 두산연강재단 장학생 선발 공고",
+      "requiredTitle": "2026년도 두산연강재단 장학생 선발 공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-5",
+      "title": "2026년 한국지도자육성장학재단",
+      "state": "verified_notice",
+      "sourceId": "skku-leaders",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130452"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130452",
+          "checkedAt": "2026-09-16T12:46:50.015Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 한양대 포털 추천 마감 2025-11-06을 보존합니다. 대체 원문의 11월 7일은 성균관대 기한입니다.",
+      "noticeTitle": "한국지도자육성장학재단 2026년도 신규장학생 선발 안내(~2025년 11월 7일(금)까지)",
+      "requiredTitle": "한국지도자육성장학재단 2026년도 신규장학생 선발 안내(~2025년 11월 7일(금)까지)"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011871-1",
+      "title": "문우림장학",
+      "state": "verified_notice",
+      "sourceId": "skku-moonwoorim",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130533"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130533",
+          "checkedAt": "2026-09-16T12:58:02.410Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "한국고등교육재단 문우림 제5기 장학생 선발 안내",
+      "requiredTitle": "한국고등교육재단 문우림 제5기 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011873-1",
+      "title": "인재림 제 5기 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-injaerim",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130755"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130755",
+          "checkedAt": "2026-09-16T12:46:51.105Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=130755",
+          "checkedAt": "2026-09-16T13:44:50.116Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2025년도 한국고등교육재단 인재림 제5기 장학생 선발 홍보 협조 공문",
+      "requiredTitle": "2025년도 한국고등교육재단 인재림 제5기 장학생 선발 홍보 협조 공문"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-3",
+      "title": "2026 STX장학재단",
+      "state": "verified_notice",
+      "sourceId": "skku-stx",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice01.do?articleNo=130122&mode=view"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice01.do?articleNo=130122&mode=view",
+          "checkedAt": "2026-09-16T12:29:48.745Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice01.do?articleNo=130122&mode=view",
+          "checkedAt": "2026-09-16T13:44:50.237Z"
+        }
+      ],
+      "note": "재단 직접 연결 대신 대학 공개 원문을 수집합니다. 성균관대학교 자체 추천 기한·조건을 한양대·한양여대 자격으로 적용하지 않습니다.",
+      "noticeTitle": "2026년 STX장학재단 장학생 선발 안내",
+      "requiredTitle": "2026년 STX장학재단 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-11",
+      "title": "2026 전기공사공제조합장학회",
+      "state": "verified_notice",
+      "sourceId": "sw-ecfcsf",
+      "noticeUrls": [
+        "https://sw.ac.kr/sw/promotion/scholarship.do?articleNo=4468&mode=view"
+      ],
+      "evidence": [
+        {
+          "url": "https://ecfcsf.or.kr/bbs/board.php?bo_table=notice&wr_id=55",
+          "checkedAt": "2026-09-15T15:40:53.456Z"
+        },
+        {
+          "url": "https://sw.ac.kr/sw/promotion/scholarship.do?articleNo=4468&mode=view",
+          "checkedAt": "2026-09-16T14:18:18.370Z"
+        }
+      ],
+      "note": "운영기관 서버의 반복 403 응답으로 동일한 2026년도 제21기 모집을 재게시한 성운대학교 공개 공고로 대체했습니다. 기존 운영기관 근거와 한양대 포털 일정·조건을 보존합니다. 첨부파일 및 이미지 추출은 별도 검증입니다.",
+      "noticeTitle": "2026년도 전기공사공제조합 장학회 제21기 장학생 선발 안내",
+      "requiredTitle": "2026년도 전기공사공제조합 장학회 제21기 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-8",
+      "title": "2026년 송원문화재단",
+      "state": "verified_notice",
+      "sourceId": "skku-songwon",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131422"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131422",
+          "checkedAt": "2026-09-16T12:53:40.221Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "송원문화재단 제 23기 장학생 선발안내",
+      "requiredTitle": "송원문화재단 제 23기 장학생 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011884-3",
+      "title": "거창군장학회",
+      "state": "verified_notice",
+      "sourceId": "skku-geochang",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131775"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131775",
+          "checkedAt": "2026-09-16T12:53:41.299Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2025년 2학기 거창군 지역출신 대학생 등록금 지원사업 안내",
+      "requiredTitle": "2025년 2학기 거창군 지역출신 대학생 등록금 지원사업 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-6",
+      "title": "2026년 Sunny Scholar 5기",
+      "state": "verified_notice",
+      "sourceId": "skku-sunny",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=131803"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=131803",
+          "checkedAt": "2026-09-16T12:58:03.736Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 Sunny Scholar 5기 모집 안내",
+      "requiredTitle": "2026년 Sunny Scholar 5기 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-7",
+      "title": "제9기 유하푸른재단 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-yuha",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131836"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131836",
+          "checkedAt": "2026-09-16T12:46:53.254Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 유하푸른장학재단 9기 장학생 선발 안내(★이공계열 학부생★)",
+      "requiredTitle": "2026년도 유하푸른장학재단 9기 장학생 선발 안내(★이공계열 학부생★)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-5",
+      "title": "롯데장학관(2026년입주)",
+      "state": "verified_notice",
+      "sourceId": "skku-lotte",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131901"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131901",
+          "checkedAt": "2026-09-16T12:53:42.389Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 1학기 롯데장학관 신규 입주생 모집 안내( ~ 25.12.09(화)까지)",
+      "requiredTitle": "2026년 1학기 롯데장학관 신규 입주생 모집 안내( ~ 25.12.09(화)까지)"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011884-9",
+      "title": "삼성드림클래스 대학생 멘토",
+      "state": "verified_notice",
+      "sourceId": "skku-dreamclass",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=132043"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=132043",
+          "checkedAt": "2026-09-16T12:58:05.033Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 삼성드림클래스 대학생멘토 선발 공고",
+      "requiredTitle": "2026년 삼성드림클래스 대학생멘토 선발 공고"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011884-1",
+      "title": "DB보험금융공모전",
+      "state": "verified_notice",
+      "sourceId": "skku-db",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131463"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=131463",
+          "checkedAt": "2026-09-16T12:53:43.474Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 포털 2026-01-27은 사전신청 기한이며 작품제출은 02-27 15시로 별도 단계입니다.",
+      "noticeTitle": "2025년도 제16회 DB보험금융공모전 안내",
+      "requiredTitle": "2025년도 제16회 DB보험금융공모전 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-3",
+      "title": "2026 농협장학관",
+      "state": "verified_notice",
+      "sourceId": "nhschool",
+      "noticeUrls": [
+        "https://www.nhschool.co.kr/ko/0501/board/notice/?mode=V&idx=603594398967544064"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.nhschool.co.kr/ko/0501/board/notice/?mode=V&idx=603594398967544064",
+          "checkedAt": "2026-09-15T15:40:53.457Z"
+        }
+      ],
+      "note": "공식 개별 모집 원문 대조 완료. 정기 수집 및 첨부 처리 연결.",
+      "noticeTitle": "2026년도 농협장학관 생활생 모집 공고",
+      "requiredTitle": "2026년도 농협장학관"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-1",
+      "title": "강남장학회",
+      "state": "verified_notice",
+      "sourceId": "yonsei-gangnam",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942088/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942088/artclView.do",
+          "checkedAt": "2026-09-16T13:04:20.897Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다. 기한 충돌: 포털 2025-12-16, 공개 공고 12-26 22시. 기존 일정 보존, 검토 필요.",
+      "noticeTitle": "2026학년도 강남장학회 장학생 선발 공고 안내(신촌캠퍼스)",
+      "requiredTitle": "2026학년도 강남장학회 장학생 선발 공고 안내(신촌캠퍼스)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-1",
+      "title": "OK배정장학재단(16기)",
+      "state": "verified_notice",
+      "sourceId": "skku-ok",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=132673"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=132673",
+          "checkedAt": "2026-09-16T12:53:44.550Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 제16기 OK배정장학생 선발안내[대학생 + 대학원생]",
+      "requiredTitle": "2026년 제16기 OK배정장학생 선발안내[대학생 + 대학원생]"
+    },
+    {
+      "recruitmentId": "hyin-2025-20-011884-10",
+      "title": "2025년 사랑나눔 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-love",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133179"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133179",
+          "checkedAt": "2026-09-16T12:46:54.332Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2025년 서울사회복지공동모금회 하반기 사랑나눔장학생 모집 안내",
+      "requiredTitle": "2025년 서울사회복지공동모금회 하반기 사랑나눔장학생 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-2",
+      "title": "2026년 협성장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-hyupsung",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=132296"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=132296",
+          "checkedAt": "2026-09-16T12:46:55.418Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 신규 협성장학생 선발 안내(① 부산․울산․경남지역 고교출신 전형 / ② 건설근로자 자녀 전형)",
+      "requiredTitle": "2026년 신규 협성장학생 선발 안내(① 부산․울산․경남지역 고교출신 전형 / ② 건설근로자 자녀 전형)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-19",
+      "title": "백암복지재단 주거지원장학생",
+      "state": "verified_notice",
+      "sourceId": "baekam",
+      "noticeUrls": [
+        "https://baek-am.org/sub/sub06_01.php?boardid=free&idx=540&mNum=8&mode=view&sNum=1"
+      ],
+      "evidence": [
+        {
+          "url": "https://baek-am.org/sub/sub06_01.php?boardid=free&idx=540&mNum=8&mode=view&sNum=1",
+          "checkedAt": "2026-09-16T12:38:33.541Z"
+        }
+      ],
+      "note": "공식 원문에 모집 연도 2026과 본문 마감 연도 2025가 함께 적혀 있어 충돌 검토가 필요합니다. 임의 정정하지 않음.",
+      "noticeTitle": "[선발공고] 2026년도 주거지원장학생(특화형매입임대주택 입주자) 모집",
+      "requiredTitle": "2026년도 주거지원장학생"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-10",
+      "title": "DB김준기문화재단 드림리더 3기",
+      "state": "verified_notice",
+      "sourceId": "skku-db",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133263"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133263",
+          "checkedAt": "2026-09-16T12:53:45.626Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 DB김준기문화재단 장학생 드림리더 모집",
+      "requiredTitle": "2026년 DB김준기문화재단 장학생 드림리더 모집"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-13",
+      "title": "굿패밀리 '대원' 장학생",
+      "state": "verified_notice",
+      "sourceId": "yonsei-goodfamily",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942178/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942178/artclView.do",
+          "checkedAt": "2026-09-16T13:04:22.265Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다. 대체 본문 시작연도가 2026-12-22로 오기되어 있습니다. 목록·포털 2025-12-22와 마감 2026-01-30을 대조했습니다.",
+      "noticeTitle": "2026년 상반기 굿패밀리복지재단 \"대원\" 장학생 모집",
+      "requiredTitle": "2026년 상반기 굿패밀리복지재단 \"대원\" 장학생 모집"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-18",
+      "title": "용운장학재단(신입생)",
+      "state": "verified_notice",
+      "sourceId": "yonsei-yongwoon",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942180/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942180/artclView.do",
+          "checkedAt": "2026-09-16T13:04:23.619Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "[용운장학재단]2026년 39기 용운장학생(신입생) 모집 안내",
+      "requiredTitle": "[용운장학재단]2026년 39기 용운장학생(신입생) 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-26",
+      "title": "위드다문화",
+      "state": "verified_notice",
+      "sourceId": "skku-with",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133578"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133578",
+          "checkedAt": "2026-09-16T12:46:56.495Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 상반기 위드다문화 장학생 모집안내",
+      "requiredTitle": "2026년도 상반기 위드다문화 장학생 모집안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-12",
+      "title": "종근당고촌재단 생활비 장학",
+      "state": "verified_notice",
+      "sourceId": "skku-kochon",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133507"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133507",
+          "checkedAt": "2026-09-16T12:46:58.650Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133507",
+          "checkedAt": "2026-09-16T13:44:50.305Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "26년 종근당고촌재단 생활비 장학생 모집 공고",
+      "requiredTitle": "26년 종근당고촌재단 생활비 장학생 모집 공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-23",
+      "title": "종근당고촌학사 입사생",
+      "state": "verified_notice",
+      "sourceId": "skku-kochon",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=133506&mode=view"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=133506&mode=view",
+          "checkedAt": "2026-09-16T12:29:48.746Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=133506&mode=view",
+          "checkedAt": "2026-09-16T13:44:50.356Z"
+        }
+      ],
+      "note": "재단 직접 연결 대신 대학 공개 원문을 수집합니다. 성균관대학교 자체 추천 기한·조건을 한양대·한양여대 자격으로 적용하지 않습니다.",
+      "noticeTitle": "2026년 종근당고촌학사 신규 입사생 모집 공고",
+      "requiredTitle": "2026년 종근당고촌학사 신규 입사생 모집 공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-28",
+      "title": "대은강완석재단",
+      "state": "verified_notice",
+      "sourceId": "yonsei-daeeun",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942266/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942266/artclView.do",
+          "checkedAt": "2026-09-16T13:04:24.970Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2026학년도 1학기 대은강완석장학재단 장학생 추천 안내",
+      "requiredTitle": "2026학년도 1학기 대은강완석장학재단 장학생 추천 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-14",
+      "title": "부산진구장학회",
+      "state": "verified_notice",
+      "sourceId": "yonsei-busanjin",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942243/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942243/artclView.do",
+          "checkedAt": "2026-09-16T13:04:26.333Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2026년도 제30회 (재)부산진구장학회 일반장학생 선발안내",
+      "requiredTitle": "2026년도 제30회 (재)부산진구장학회 일반장학생 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011932-1",
+      "title": "인산장학문화재단",
+      "state": "verified_notice",
+      "sourceId": "yonsei-insan",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942373/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942373/artclView.do",
+          "checkedAt": "2026-09-16T13:04:27.691Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2026학년도 1학기 인산장학문화재단 장학생 추천 요청 안내",
+      "requiredTitle": "2026학년도 1학기 인산장학문화재단 장학생 추천 요청 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011933-1",
+      "title": "성련장학재단",
+      "state": "verified_notice",
+      "sourceId": "yonsei-sungryun",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942258/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942258/artclView.do",
+          "checkedAt": "2026-09-16T13:04:29.061Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2026학년도 1학기 성련장학재단 장학생 추천 안내",
+      "requiredTitle": "2026학년도 1학기 성련장학재단 장학생 추천 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-27",
+      "title": "엔지니어링인재육성재단",
+      "state": "verified_notice",
+      "sourceId": "skku-engineering",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133574"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133574",
+          "checkedAt": "2026-09-16T12:53:46.719Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "[엔지니어링인재육성재단] 제1차 장학생 모집 안내",
+      "requiredTitle": "[엔지니어링인재육성재단] 제1차 장학생 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-24",
+      "title": "MBK장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-mbk",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133517"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133517",
+          "checkedAt": "2026-09-16T12:46:59.734Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 날짜 충돌: 포털 마감 2026-01-11, 대체 원문 마감 2026-01-13 17:00. 포털 마감 유지, 관리자 검토 필요.",
+      "noticeTitle": "2026년도 MBK장학생 선발 안내",
+      "requiredTitle": "2026년도 MBK장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011768-1",
+      "title": "경기도 대학생 학자금 대출이자 지원",
+      "state": "verified_notice",
+      "sourceId": "skku-gyeonggi",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133819"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133819",
+          "checkedAt": "2026-09-16T12:47:00.810Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 상반기 경기도 대학생 학자금 대출이자 지원 사업 안내",
+      "requiredTitle": "2026년 상반기 경기도 대학생 학자금 대출이자 지원 사업 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-16",
+      "title": "백운백합재단",
+      "state": "research",
+      "sourceId": null,
+      "noticeUrls": [],
+      "evidence": [],
+      "note": "2026-09-16 재조사: 동아대 백운백합 추천자 발표는 모집 공고가 아니며 개인정보 포함 결과입니다. 군인·경찰·소방관 자녀 생활비 300만원 모집의 공개 원문을 확보하지 못했습니다. 포털 공식 연동 또는 공개 원문 필요."
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-29",
+      "title": "인촌기념회",
+      "state": "verified_notice",
+      "sourceId": "skku-inchon",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133986"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=133986",
+          "checkedAt": "2026-09-16T12:53:47.794Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 한양대 추천 마감 2026-02-02, 성균관대 추천 마감 2026-01-30으로 서로 다릅니다.",
+      "noticeTitle": "2026학년도 1학기 인촌기념회 장학생 선발 안내 (~2026년 1월 30일(금)까지)",
+      "requiredTitle": "2026학년도 1학기 인촌기념회 장학생 선발 안내 (~2026년 1월 30일(금)까지)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-19",
+      "title": "제4차 극지연구 전문인력 양성 장학금",
+      "state": "verified_notice",
+      "sourceId": "mof-polar",
+      "noticeUrls": [
+        "https://www.mof.go.kr/doc/ko/selectDoc.do?bbsSeq=9&docSeq=64499&menuSeq=375"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.mof.go.kr/doc/ko/selectDoc.do?bbsSeq=9&docSeq=64499&menuSeq=375",
+          "checkedAt": "2026-09-16T12:38:33.541Z"
+        }
+      ],
+      "note": "기관 원문 대조 완료. 첨부 HML 형식은 추출 지원 여부 별도 확인 필요.",
+      "noticeTitle": "2026년도 극지연구 전문인력 양성 장학사업 제4차 장학생 선발 공고",
+      "requiredTitle": "장학사업 제4차"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-30",
+      "title": "KT디지털인재장학금",
+      "state": "verified_notice",
+      "sourceId": "ktgf",
+      "noticeUrls": [
+        "https://www.ktgf.or.kr/news/notice.php?boardid=notice&mode=view&idx=38"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.ktgf.or.kr/news/notice.php?boardid=notice&mode=view&idx=38",
+          "checkedAt": "2026-09-15T15:15:03.663Z"
+        }
+      ],
+      "note": "공식 개별 모집 원문 대조 완료. 수집기 운영 연결 및 실제 저장 결과 검증 중",
+      "requiredTitle": "2026년 KT디지털",
+      "noticeTitle": "2026년 KT디지털인재장학생 선발(26.1.5 ~ 1.30)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-20",
+      "title": "대학생 교육봉사단 현대점프스쿨",
+      "state": "verified_notice",
+      "sourceId": "skku-hyundaijump",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134283"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134283",
+          "checkedAt": "2026-09-16T12:58:08.860Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 현대차그룹 대학생 교육봉사단 현대점프스쿨 13기 대학생 봉사자 (장학샘) 모집 안내",
+      "requiredTitle": "2026년도 현대차그룹 대학생 교육봉사단 현대점프스쿨 13기 대학생 봉사자 (장학샘) 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-31",
+      "title": "동암장학회(성적우수&생활)",
+      "state": "verified_notice",
+      "sourceId": "skku-dongam",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134254"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134254",
+          "checkedAt": "2026-09-16T12:53:48.876Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 동암장학회 장학생 선발 안내",
+      "requiredTitle": "2026년 동암장학회 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-21",
+      "title": "무지개 디딤돌 멘토링 11기",
+      "state": "verified_notice",
+      "sourceId": "skku-rainbow",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134414"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134414",
+          "checkedAt": "2026-09-16T12:53:49.971Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "코오롱「무지개 디딤돌 멘토링 11기」대학(원)생 멘토 모집 안내",
+      "requiredTitle": "코오롱「무지개 디딤돌 멘토링 11기」대학(원)생 멘토 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-23",
+      "title": "카카오뱅크 모두의 멘토링",
+      "state": "verified_notice",
+      "sourceId": "skku-modu",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134537"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134537",
+          "checkedAt": "2026-09-16T12:58:10.126Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 모두의 멘토링 대학생 멘토 모집 안내",
+      "requiredTitle": "2026년 모두의 멘토링 대학생 멘토 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-33",
+      "title": "문주장학재단",
+      "state": "verified_notice",
+      "sourceId": "yonsei-moonju",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942552/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942552/artclView.do",
+          "checkedAt": "2026-09-16T13:04:31.807Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2026년 상반기 문주장학재단 주관 AI ICT 장학생 선발 안내",
+      "requiredTitle": "2026년 상반기 문주장학재단 주관 AI ICT 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-24",
+      "title": "세계시민포럼",
+      "state": "verified_notice",
+      "sourceId": "skku-globalcitizen",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134648"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134648",
+          "checkedAt": "2026-09-16T12:53:51.044Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 연장 공고에 2026-03-08 24시가 명시되어 있습니다. 포털 03-02와 비교 검토 필요.",
+      "noticeTitle": "세계시민포럼 가현 장학금 안내 (이주배경 청소년 장학사업)★기한연장★",
+      "requiredTitle": "세계시민포럼 가현 장학금 안내 (이주배경 청소년 장학사업)★기한연장★"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-34",
+      "title": "2026년 상반기 강남구 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-gangnamgu",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134928"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134928",
+          "checkedAt": "2026-09-16T12:58:07.606Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 상반기 강남구 장학생 선발 계획 공고",
+      "requiredTitle": "2026년 상반기 강남구 장학생 선발 계획 공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-22",
+      "title": "삼다수 장학생(제주도민)",
+      "state": "verified_notice",
+      "sourceId": "skku-samdasoo",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134539"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134539",
+          "checkedAt": "2026-09-16T12:53:52.105Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 재단법인 제주삼다수재단 삼다수 장학생 모집 선발 공고",
+      "requiredTitle": "2026년도 재단법인 제주삼다수재단 삼다수 장학생 모집 선발 공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-25",
+      "title": "총동문회 부산 동문회 멘토링 장학금",
+      "state": "research",
+      "sourceId": null,
+      "noticeUrls": [],
+      "evidence": [],
+      "note": "2026-09-16 재조사: 총동문회 공식 사이트의 공지 및 장학금 안내를 확인했으나 2026-1 부산 멘토링 장학생 모집 원문 미확보. 2024 ERICA 경영학부 공고는 다른 연도·대상이라 연결하지 않았습니다. HY-in 공식 연동 또는 해당 공개 공고 필요."
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-27",
+      "title": "성보장학회",
+      "state": "verified_notice",
+      "sourceId": "skku-sungbo",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134760"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134760",
+          "checkedAt": "2026-09-16T12:58:11.390Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 대체 공고 제목은 2025년으로 오기되어 있으나 본문은 2026-1학기 모집임을 명시합니다. 한양대 추천마감 02-26과 성균관대 03-02를 구분합니다.",
+      "noticeTitle": "2025년 성보장학회 장학생 선발안내(~2026년 03월 02일(월)까지)",
+      "requiredTitle": "2025년 성보장학회 장학생 선발안내(~2026년 03월 02일(월)까지)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-28",
+      "title": "인문지혜 장학생 PAN+",
+      "state": "verified_notice",
+      "sourceId": "skku-pan",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134841"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=134841",
+          "checkedAt": "2026-09-16T12:53:53.170Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "재단법인 지관 인문지혜 장학생 판플러스 모집 안내",
+      "requiredTitle": "재단법인 지관 인문지혜 장학생 판플러스 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-35",
+      "title": "통영시 등록금 전액 지원사업",
+      "state": "verified_notice",
+      "sourceId": "gachon-tongyeong",
+      "noticeUrls": [
+        "https://www.gachon.ac.kr/bbs/kor/478/117509/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.gachon.ac.kr/kor/1146/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGa29yJTJGNDc4JTJGMTE3NTA5JTJGYXJ0Y2xWaWV3LmRvJTNG",
+          "checkedAt": "2026-09-16T13:19:39.608Z"
+        }
+      ],
+      "note": "동일 연도·학기 모집의 대학 공개 원문 본문을 확인했습니다. 타 대학의 추천 인원·추천 기한·제출처·성적 조건은 적용하지 않고 한양대 기존 정보를 보존합니다. 실제 운영 수집 결과는 별도 표시합니다.",
+      "requiredTitle": "[공통] 2026-1학기 통영시 대학생 등록금 전액 지원사업 안내",
+      "noticeTitle": "[공통] 2026-1학기 통영시 대학생 등록금 전액 지원사업 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-30",
+      "title": "KEC과학교육재단 산학장학생",
+      "state": "verified_notice",
+      "sourceId": "kec",
+      "noticeUrls": [
+        "https://ksec.kec.co.kr/notice/notice_view.asp?b_num=402&bbs_table=bbs_15"
+      ],
+      "evidence": [
+        {
+          "url": "https://ksec.kec.co.kr/notice/notice_view.asp?b_num=402&bbs_table=bbs_15",
+          "checkedAt": "2026-09-16T12:35:46.059Z"
+        }
+      ],
+      "note": "운영기관 개별 모집 원문 대조 완료 · 운영 서버 수집 결과 검증 대기",
+      "noticeTitle": "2026년도 산학장학생(4년) 모집 안내",
+      "requiredTitle": "2026년도 산학장학생"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-37",
+      "title": "울산연구원",
+      "state": "verified_notice",
+      "sourceId": "skku-ulsan",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135154"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135154",
+          "checkedAt": "2026-09-16T12:53:54.259Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 상반기 울산연구원 장학생 선발 공고",
+      "requiredTitle": "2026년도 상반기 울산연구원 장학생 선발 공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-36",
+      "title": "선원가족 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-seafarer",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135126"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135126",
+          "checkedAt": "2026-09-16T12:53:55.324Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 1학기 선원가족 장학사업 선발 안내",
+      "requiredTitle": "2026년 1학기 선원가족 장학사업 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-34",
+      "title": "KB인재양성 장학금",
+      "state": "verified_notice",
+      "sourceId": "inu-kb",
+      "noticeUrls": [
+        "https://www.inu.ac.kr/bbs/ite/941/420744/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.inu.ac.kr/bbs/ite/941/420744/artclView.do",
+          "checkedAt": "2026-09-16T13:16:40.409Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 타 대학 공개 공고로 보완하며 학교별 추천 기한·인원·성적·제출처는 기존 한양대 정보를 보존합니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "[안내]2026년 KB인재양성 대학생 참가자 모집 안내",
+      "requiredTitle": "[안내]2026년 KB인재양성 대학생 참가자 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-32",
+      "title": "KSD꿈이룸 장학사업",
+      "state": "verified_notice",
+      "sourceId": "skku-ksd",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=135665&mode=view"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=135665&mode=view",
+          "checkedAt": "2026-09-16T12:32:00.081Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=135665&mode=view",
+          "checkedAt": "2026-09-16T13:44:50.405Z"
+        }
+      ],
+      "note": "대학 공개 대체 원문. 타 대학 자체 추천 기한·제출처는 한양대·한양여대에 적용하지 않음. 포털 기준은 별도 보존.",
+      "noticeTitle": "2026년도 KSD 꿈이룸 장학사업 장학생 모집 안내(~3/26 목요일 오전 9시까지)",
+      "requiredTitle": "2026년도 KSD 꿈이룸 장학사업 장학생 모집 안내(~3/26 목요일 오전 9시까지)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-33",
+      "title": "재단법인 참마중물",
+      "state": "verified_notice",
+      "sourceId": "snu-cham",
+      "noticeUrls": [
+        "https://snupharm.snu.ac.kr/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/?mod=document&uid=8753"
+      ],
+      "evidence": [
+        {
+          "url": "https://snupharm.snu.ac.kr/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/?mod=document&uid=8753",
+          "checkedAt": "2026-09-16T13:19:38.765Z"
+        }
+      ],
+      "note": "동일 연도·학기 모집의 대학 공개 원문 본문을 확인했습니다. 타 대학의 추천 인원·추천 기한·제출처·성적 조건은 적용하지 않고 한양대 기존 정보를 보존합니다. 실제 운영 수집 결과는 별도 표시합니다.",
+      "requiredTitle": "[기간 연장] 2026학년도 재단법인 참마중물 장학생 선발 안내(~2026. 3. 17. (화) 12:00까지)",
+      "noticeTitle": "[기간 연장] 2026학년도 재단법인 참마중물 장학생 선발 안내(~2026. 3. 17. (화) 12:00까지)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011977-3",
+      "title": "2025년 하반기분 통영시 대학생 학자금 이자 지원 사업",
+      "state": "verified_notice",
+      "sourceId": "yonsei-tongyeong",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942734/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942734/artclView.do",
+          "checkedAt": "2026-09-16T13:04:33.173Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2025년 하반기분 통영시 대학생 학자금 이자 지원 안내",
+      "requiredTitle": "2025년 하반기분 통영시 대학생 학자금 이자 지원 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-38",
+      "title": "금옥학술문화재단",
+      "state": "verified_notice",
+      "sourceId": "ssu-geumok",
+      "noticeUrls": [
+        "https://scatch.ssu.ac.kr/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/page/8/?category&f&keyword=%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88&slug=%E2%98%85-2026%ED%95%99%EB%85%84%EB%8F%84-1%ED%95%99%EA%B8%B0-%EA%B8%88%EC%98%A5%ED%95%99%EC%88%A0%EB%AC%B8%ED%99%94%EC%9E%AC%EB%8B%A8-%EC%9E%A5%ED%95%99%EC%83%9D-%EC%84%A0%EB%B0%9C-%EA%B3%B5%EA%B3%A0"
+      ],
+      "evidence": [
+        {
+          "url": "https://scatch.ssu.ac.kr/%EA%B3%B5%EC%A7%80%EC%82%AC%ED%95%AD/page/8/?category&f&keyword=%EA%B5%90%EB%82%B4%EC%9E%A5%ED%95%99%EA%B8%88&slug=%E2%98%85-2026%ED%95%99%EB%85%84%EB%8F%84-1%ED%95%99%EA%B8%B0-%EA%B8%88%EC%98%A5%ED%95%99%EC%88%A0%EB%AC%B8%ED%99%94%EC%9E%AC%EB%8B%A8-%EC%9E%A5%ED%95%99%EC%83%9D-%EC%84%A0%EB%B0%9C-%EA%B3%B5%EA%B3%A0",
+          "checkedAt": "2026-09-16T13:13:05.750Z"
+        }
+      ],
+      "note": "동일 연도·학기 모집의 대학 공개 원문 본문을 확인했습니다. 타 대학의 추천 인원·추천 기한·제출처·성적 조건은 적용하지 않고 한양대 기존 정보를 보존합니다. 실제 운영 수집 결과는 별도 표시합니다.",
+      "requiredTitle": "★ 2026학년도 1학기 금옥학술문화재단 장학생 선발 공고(~3/18수 15시)",
+      "noticeTitle": "★ 2026학년도 1학기 금옥학술문화재단 장학생 선발 공고(~3/18수 15시)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-35",
+      "title": "타이베이시 장학생 서울시장 추천자 모집",
+      "state": "verified_notice",
+      "sourceId": "skku-taipei",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135083"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135083",
+          "checkedAt": "2026-09-16T12:53:56.397Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026 타이베이시 장학생 서울시장 추천 안내",
+      "requiredTitle": "2026 타이베이시 장학생 서울시장 추천 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-37",
+      "title": "유한재단-특별생활비(연장)",
+      "state": "verified_notice",
+      "sourceId": "skku-yuhan",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135438"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135438",
+          "checkedAt": "2026-09-16T12:58:12.660Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "(★ 신청기한 연장) 2026학년도 1학기 유한재단 학부 결손/다문화가정 대상 장학생 선발안내(~3/19 목요일까지)",
+      "requiredTitle": "(★ 신청기한 연장) 2026학년도 1학기 유한재단 학부 결손/다문화가정 대상 장학생 선발안내(~3/19 목요일까지)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-40",
+      "title": "AI서울테크연구지원사업",
+      "state": "verified_notice",
+      "sourceId": "snu-aitech",
+      "noticeUrls": [
+        "https://cee.snu.ac.kr/bbs/board.php?bo_table=sub6_1&wr_id=4327"
+      ],
+      "evidence": [
+        {
+          "url": "https://cee.snu.ac.kr/bbs/board.php?bo_table=sub6_1&wr_id=4327",
+          "checkedAt": "2026-09-16T13:16:40.404Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 타 대학 공개 공고로 보완하며 학교별 추천 기한·인원·성적·제출처는 기존 한양대 정보를 보존합니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "2026년 AI서울테크연구지원사업",
+      "requiredTitle": "2026년 AI서울테크연구지원사업"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-31",
+      "title": "일주재단 34기 국내학사 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-ilju",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135196"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135196",
+          "checkedAt": "2026-09-16T12:58:13.937Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 태광그룹 일주학술문화재단 34기 국내학사 장학생 선발",
+      "requiredTitle": "2026년도 태광그룹 일주학술문화재단 34기 국내학사 장학생 선발"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-40",
+      "title": "성남시 다자녀가구 등록금 지원",
+      "state": "verified_notice",
+      "sourceId": "yonsei-seongnam",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942735/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942735/artclView.do",
+          "checkedAt": "2026-09-16T13:04:34.532Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2026년 1힉기 성남시 다자녀가구(셋째부터) 대학생 등록금 지원 안내",
+      "requiredTitle": "2026년 1힉기 성남시 다자녀가구(셋째부터) 대학생 등록금 지원 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-44",
+      "title": "웰투시드림재단 청년창업지원",
+      "state": "verified_notice",
+      "sourceId": "snu-welltusi",
+      "noticeUrls": [
+        "https://startup.snu.ac.kr/bbs/board.php?bo_table=sub5_2&wr_id=97"
+      ],
+      "evidence": [
+        {
+          "url": "https://startup.snu.ac.kr/bbs/board.php?bo_table=sub5_2&wr_id=97",
+          "checkedAt": "2026-09-16T13:16:40.403Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 타 대학 공개 공고로 보완하며 학교별 추천 기한·인원·성적·제출처는 기존 한양대 정보를 보존합니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "[한베문화교류센터] 제6기 웰투시드림재단 청년창업지원 장학생 모집",
+      "requiredTitle": "[한베문화교류센터] 제6기 웰투시드림재단 청년창업지원 장학생 모집"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-43",
+      "title": "KT그룹희망나눔재단 대학생 멘토",
+      "state": "verified_notice",
+      "sourceId": "gachon-kt",
+      "noticeUrls": [
+        "https://www.sn.ac.kr/bbs/kor/479/118351/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.sn.ac.kr/bbs/kor/479/118351/artclView.do",
+          "checkedAt": "2026-09-16T13:16:40.408Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 타 대학 공개 공고로 보완하며 학교별 추천 기한·인원·성적·제출처는 기존 한양대 정보를 보존합니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "[공통] KT그룹희망나눔재단 온라인 공공 학습 서비스 대학생 멘토 모집 안내",
+      "requiredTitle": "[공통] KT그룹희망나눔재단 온라인 공공 학습 서비스 대학생 멘토 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011977-4",
+      "title": "2026년 상반기 군산시 대학생 학자금 이자 지원사업 안내",
+      "state": "verified_notice",
+      "sourceId": "yonsei-gunsan",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942778/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942778/artclView.do",
+          "checkedAt": "2026-09-16T13:04:35.892Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "군산시 대학생 학자금 이자 지원",
+      "requiredTitle": "군산시 대학생 학자금 이자 지원"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011977-5",
+      "title": "2026년 상반기 익산시 대학생 학자금 대출이자 지원 신청",
+      "state": "verified_notice",
+      "sourceId": "yonsei-iksan",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942822/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942822/artclView.do",
+          "checkedAt": "2026-09-16T13:04:37.244Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2026년 상반기 익산시 대학(원)생 학자금 이자 지원 신청 안내",
+      "requiredTitle": "2026년 상반기 익산시 대학(원)생 학자금 이자 지원 신청 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-41",
+      "title": "그랜드피스 투어 장학생",
+      "state": "verified_notice",
+      "sourceId": "yonsei-grandpeace",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942780/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942780/artclView.do",
+          "checkedAt": "2026-09-16T13:04:38.601Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "YP가 후원하는 그랜드피스투어 장학생 모집",
+      "requiredTitle": "YP가 후원하는 그랜드피스투어 장학생 모집"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-36",
+      "title": "논산시장학회 학업장려 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-nonsan",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135379"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135379",
+          "checkedAt": "2026-09-16T12:46:47.827Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 논산시장학회 학업장려 장학생 선발 안내",
+      "requiredTitle": "2026년도 논산시장학회 학업장려 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-41",
+      "title": "달서인재육성재단 진학장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-dalseo",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135757"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.dalseoij.org/dalseoij/page.do?mnu_code=MAIN0401&bod_sn=2364&cmd=2",
+          "checkedAt": "2026-09-15T15:22:53.656Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135757",
+          "checkedAt": "2026-09-16T13:48:44.604Z"
+        }
+      ],
+      "note": "운영기관 직접 사이트의 서버 응답 실패로 동일 연도·모집의 성균관대 공개 재게시 공고를 연결했습니다. 운영기관 원문은 근거 목록에 보존합니다. 한양대 포털 일정·조건을 별도로 보존하며 첨부 조건은 별도 검증합니다.",
+      "noticeTitle": "2026년 (재)달서인재육성장학재단 진학장학생 선발 안내",
+      "requiredTitle": "2026년 (재)달서인재육성장학재단 진학장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-46",
+      "title": "맑고 향기롭게 제7기 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-clean",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135591"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135591",
+          "checkedAt": "2026-09-16T12:58:15.204Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 맑고 향기롭게 장학생 선발 공고 안내",
+      "requiredTitle": "2026년도 맑고 향기롭게 장학생 선발 공고 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-39",
+      "title": "용인시 장학재단",
+      "state": "verified_notice",
+      "sourceId": "yijanghak",
+      "noticeUrls": [
+        "https://www.yijanghak.or.kr/notice/?bmode=view&idx=170190675"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yijanghak.or.kr/notice/?bmode=view&idx=170190675",
+          "checkedAt": "2026-09-15T15:21:28.618Z"
+        }
+      ],
+      "note": "공식 개별 모집 원문 대조 완료. 수집기 운영 연결 및 실제 저장 결과 검증 중",
+      "noticeTitle": "2026년 장학금.교육비 지원자 선발계획 공고",
+      "requiredTitle": "2026년 장학금"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-48",
+      "title": "태암문화재단",
+      "state": "verified_notice",
+      "sourceId": "mokwon-taeam",
+      "noticeUrls": [
+        "https://mokwon.ac.kr/kr/html/sub06/0603.html?mode=V&no=07fee8d9236ecc352412150630fb2db2"
+      ],
+      "evidence": [
+        {
+          "url": "https://mokwon.ac.kr/kr/html/sub06/0603.html?mode=V&no=07fee8d9236ecc352412150630fb2db2",
+          "checkedAt": "2026-09-16T13:16:40.410Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 타 대학 공개 공고로 보완하며 학교별 추천 기한·인원·성적·제출처는 기존 한양대 정보를 보존합니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "[태암문화재단] 2026년도 상반기 태암장학생 선발요강 및 신청안내(~3.24)",
+      "requiredTitle": "[태암문화재단] 2026년도 상반기 태암장학생 선발요강 및 신청안내(~3.24)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-42",
+      "title": "대구동구교육재단",
+      "state": "verified_notice",
+      "sourceId": "skku-donggu",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135548"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135548",
+          "checkedAt": "2026-09-16T12:58:16.489Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 (재)대구동구교육재단 장학생 선발 안내",
+      "requiredTitle": "2026년도 (재)대구동구교육재단 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-52",
+      "title": "스타벅스 청년인재 12기",
+      "state": "verified_notice",
+      "sourceId": "chorogusan",
+      "noticeUrls": [
+        "https://www.chorogusan.or.kr/news/noticeView.do?bdId=20042430&bmId=10000023"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.chorogusan.or.kr/news/noticeView.do?bdId=20042430&bmId=10000023",
+          "checkedAt": "2026-09-16T12:35:46.060Z"
+        }
+      ],
+      "note": "운영기관 개별 모집 원문 대조 완료 · 운영 서버 수집 결과 검증 대기",
+      "noticeTitle": "2026년 스타벅스 청년인재 12기 모집 안내",
+      "requiredTitle": "2026년 스타벅스 청년인재 12기"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-56",
+      "title": "시드볼트 캠퍼스 담다 프로젝트",
+      "state": "verified_notice",
+      "sourceId": "ciw-seed",
+      "noticeUrls": [
+        "https://chunginwookfoundation.org/bbs/board.php?bo_table=m03_01&wr_id=128"
+      ],
+      "evidence": [
+        {
+          "url": "https://chunginwookfoundation.org/bbs/board.php?bo_table=m03_01&wr_id=128",
+          "checkedAt": "2026-09-16T13:16:40.401Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 운영기관 공고와 직접 연결했습니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "2026 시드볼트 캠퍼스 담다 프로젝트 모집 공고",
+      "requiredTitle": "2026 시드볼트 캠퍼스 담다 프로젝트 모집 공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-59",
+      "title": "카카오뱅크 스칼라십",
+      "state": "verified_notice",
+      "sourceId": "skku-kakaobank",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135932"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135932",
+          "checkedAt": "2026-09-16T12:53:57.477Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 기간 충돌: 포털 2026-05-19, 대체 본문 2026-04-19. 원문 간 검토 필요.",
+      "noticeTitle": "2026년 사단법인 유쾌한 반란 \"카카오뱅크\" 스칼라십 장학생 모집 안내",
+      "requiredTitle": "2026년 사단법인 유쾌한 반란 \"카카오뱅크\" 스칼라십 장학생 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-54",
+      "title": "25기 해커스장학",
+      "state": "verified_notice",
+      "sourceId": "skku-hackers",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135817"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135817",
+          "checkedAt": "2026-09-16T12:58:17.771Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 해커스교육그룹 장학생 모집 안내",
+      "requiredTitle": "2026년 해커스교육그룹 장학생 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-42",
+      "title": "춘천인재육성장학재단",
+      "state": "verified_notice",
+      "sourceId": "skku-chuncheon",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135802"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135802",
+          "checkedAt": "2026-09-16T12:58:19.041Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 상반기 (재)춘천시민장학재단 봄내장학생 선발안내",
+      "requiredTitle": "2026년 상반기 (재)춘천시민장학재단 봄내장학생 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-50",
+      "title": "우덕재단-우장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-woodeok",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135783"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135783",
+          "checkedAt": "2026-09-16T12:58:20.312Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 우덕재단 우(友)장학생 모집 안내",
+      "requiredTitle": "2026년도 우덕재단 우(友)장학생 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2027-20-011934-1",
+      "title": "풀브라이트 미국 대학원",
+      "state": "verified_notice",
+      "sourceId": "skku-fulbright",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135648"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=135648",
+          "checkedAt": "2026-09-16T12:53:58.551Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2027-2028학년도 풀브라이트 미국 대학원 장학 프로그램 선발 안내",
+      "requiredTitle": "2027-2028학년도 풀브라이트 미국 대학원 장학 프로그램 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-57",
+      "title": "인천 청년 해외배낭연수 장학생",
+      "state": "verified_notice",
+      "sourceId": "yonsei-incheon",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/942909/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/942909/artclView.do",
+          "checkedAt": "2026-09-16T13:04:39.965Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다.",
+      "noticeTitle": "2026 인천 청년 해외배낭연수 장학생 선발 공고",
+      "requiredTitle": "2026 인천 청년 해외배낭연수 장학생 선발 공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-55",
+      "title": "전북 향토인재장학금",
+      "state": "verified_notice",
+      "sourceId": "jbiles",
+      "noticeUrls": [
+        "https://www.jbiles.or.kr/sub05_01/1505"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.jbiles.or.kr/sub05_01/1505",
+          "checkedAt": "2026-09-16T12:32:00.080Z"
+        }
+      ],
+      "note": "기관 공식 모집 원문 대조 완료 · 운영 수집 검증 대기",
+      "noticeTitle": "2026년도 향토인재 장학금 장학생 선발 공고",
+      "requiredTitle": "2026년도"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-63",
+      "title": "DB김준기문화재단 12회 DB글로벌 자산배분 투자대회",
+      "state": "verified_notice",
+      "sourceId": "skku-db",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136283"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136283",
+          "checkedAt": "2026-09-16T12:53:59.631Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 DB김준기문화재단 제12회 DB 글로벌 자산배분(GAPS) 투자 대회 안내",
+      "requiredTitle": "2026년도 DB김준기문화재단 제12회 DB 글로벌 자산배분(GAPS) 투자 대회 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-39",
+      "title": "미래에셋 해외교환 장학생(35기)",
+      "state": "verified_notice",
+      "sourceId": "miraeasset",
+      "noticeUrls": [
+        "https://foundation.miraeasset.com/ko/news/notice/view.do?detailsKey=523"
+      ],
+      "evidence": [
+        {
+          "url": "https://foundation.miraeasset.com/ko/news/notice/view.do?detailsKey=523",
+          "checkedAt": "2026-09-15T15:15:03.664Z"
+        }
+      ],
+      "note": "공식 개별 모집 원문 대조 완료. 수집기 운영 연결 및 실제 저장 결과 검증 중",
+      "requiredTitle": "제35기",
+      "noticeTitle": "제35기 미래에셋 해외교환 장학생 선발 공고(2026년 가을학기 파견)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-43",
+      "title": "송화재단",
+      "state": "verified_notice",
+      "sourceId": "skku-songhwa",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136322"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136322",
+          "checkedAt": "2026-09-16T12:54:00.700Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 한양대 2026-04-26과 성균관대 04-22 추천 마감은 별도로 보존합니다.",
+      "noticeTitle": "2026년 송화재단 장학생 선발 안내(~2026.04.22 오전 9시까지)",
+      "requiredTitle": "2026년 송화재단 장학생 선발 안내(~2026.04.22 오전 9시까지)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-46",
+      "title": "KICS 한국통신학회",
+      "state": "verified_notice",
+      "sourceId": "skku-kics",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136664"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136664",
+          "checkedAt": "2026-09-16T12:58:21.585Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 한국통신학회 장학금 신청 안내(학부 및 대학원)",
+      "requiredTitle": "2026년 한국통신학회 장학금 신청 안내(학부 및 대학원)"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-64",
+      "title": "강원랜드 멘토링 장학",
+      "state": "verified_notice",
+      "sourceId": "skku-high1",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136412"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136412",
+          "checkedAt": "2026-09-16T12:54:01.772Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 강원랜드 멘토링 장학 신규장학생 모집 안내",
+      "requiredTitle": "2026년도 강원랜드 멘토링 장학 신규장학생 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-1",
+      "title": "제6기 인재림 장학",
+      "state": "verified_notice",
+      "sourceId": "skku-injaerim",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=136510&mode=view"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=136510&mode=view",
+          "checkedAt": "2026-09-16T12:32:00.081Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?articleNo=136510&mode=view",
+          "checkedAt": "2026-09-16T13:44:50.466Z"
+        }
+      ],
+      "note": "대학 공개 대체 원문. 타 대학 자체 추천 기한·제출처는 한양대·한양여대에 적용하지 않음. 포털 기준은 별도 보존.",
+      "noticeTitle": "2026년도 한국고등교육재단 인재림 제6기 장학생 선발 안내",
+      "requiredTitle": "2026년도 한국고등교육재단 인재림 제6기 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-68",
+      "title": "충남평생교육진흥원 재능키움 장학",
+      "state": "verified_notice",
+      "sourceId": "skku-chungnam",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136494"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136494",
+          "checkedAt": "2026-09-16T12:54:02.852Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 충남평생교육인재육성진흥원 재능키움 장학사업 선발안내",
+      "requiredTitle": "2026년 충남평생교육인재육성진흥원 재능키움 장학사업 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-65",
+      "title": "EBS 꿈장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-ebs",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136409"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136409",
+          "checkedAt": "2026-09-16T12:54:03.933Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026학년도 EBS 꿈장학생 수기 공모 안내",
+      "requiredTitle": "2026학년도 EBS 꿈장학생 수기 공모 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-44",
+      "title": "구미시장학재단",
+      "state": "verified_notice",
+      "sourceId": "skku-gumi",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136328"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136328",
+          "checkedAt": "2026-09-16T12:54:05.043Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 (재)구미시장학재단 장학생 선발 안내",
+      "requiredTitle": "2026년도 (재)구미시장학재단 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-2",
+      "title": "세종이도인재장학금",
+      "state": "verified_notice",
+      "sourceId": "skku-sejong",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137012"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137012",
+          "checkedAt": "2026-09-16T12:54:06.116Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 세종연구원 \"세종이도인재장학금\" 장학생 선발안내",
+      "requiredTitle": "2026년도 세종연구원 \"세종이도인재장학금\" 장학생 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-47",
+      "title": "화성시인재육성재단",
+      "state": "verified_notice",
+      "sourceId": "skku-hwaseong",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136907"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136907",
+          "checkedAt": "2026-09-16T12:54:16.049Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 화성시인재육성재단 꿈드림 장학금 장학생 선발 안내",
+      "requiredTitle": "2026년 화성시인재육성재단 꿈드림 장학금 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-73",
+      "title": "화성시인재육성재단",
+      "state": "verified_notice",
+      "sourceId": "skku-hwaseong",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137146"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137146",
+          "checkedAt": "2026-09-16T12:54:17.125Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 화성시인재육성재단 해외유학 장학금 장학생 선발 안내",
+      "requiredTitle": "2026년 화성시인재육성재단 해외유학 장학금 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-72",
+      "title": "맥쿼리X초록우산",
+      "state": "verified_notice",
+      "sourceId": "skku-macquarie",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137082"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137082",
+          "checkedAt": "2026-09-16T12:58:22.856Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026학년도 초록우산 어린이재단 맥쿼리 청년리더 양성프로그램 장학생 모집 안내",
+      "requiredTitle": "2026학년도 초록우산 어린이재단 맥쿼리 청년리더 양성프로그램 장학생 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-70",
+      "title": "아산시미래장학회",
+      "state": "verified_notice",
+      "sourceId": "skku-asanmirae",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136905"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=136905",
+          "checkedAt": "2026-09-16T12:54:18.195Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 아산시미래장학회 4차산업 인재육성 장학생 선발 안내",
+      "requiredTitle": "2026년 아산시미래장학회 4차산업 인재육성 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-3",
+      "title": "삼성드림클래스 대학생멘토",
+      "state": "verified_notice",
+      "sourceId": "skku-dreamclass",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=137249"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=137249",
+          "checkedAt": "2026-09-16T12:58:06.332Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "삼성드림클래스 2026년 2학기 대학생멘토 선발공고",
+      "requiredTitle": "삼성드림클래스 2026년 2학기 대학생멘토 선발공고"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-48",
+      "title": "거창군 지역출신 대학생 등록금 지원",
+      "state": "verified_notice",
+      "sourceId": "skku-geochang",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137183"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137183",
+          "checkedAt": "2026-09-16T12:46:52.174Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 1학기 (재)거창군장학회 거창군 지역출신 대학생 등록금 지원 신청 안내",
+      "requiredTitle": "2026년도 1학기 (재)거창군장학회 거창군 지역출신 대학생 등록금 지원 신청 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011884-49",
+      "title": "강화군 대학생 등록금 지원",
+      "state": "verified_notice",
+      "sourceId": "skku-ganghwa",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137217"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137217",
+          "checkedAt": "2026-09-16T12:54:07.181Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 상반기 강화군 대학생 등록금 지원 사업 안내",
+      "requiredTitle": "2026년도 상반기 강화군 대학생 등록금 지원 사업 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-10-011934-74",
+      "title": "아산시미래장학회 희망장학금",
+      "state": "verified_notice",
+      "sourceId": "skku-asanmirae",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137267"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137267",
+          "checkedAt": "2026-09-16T12:54:08.259Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 마감 충돌: 포털 2026-06-12, 대체 본문 06-11(금)으로 날짜·요일 불일치. 확정 변경하지 않습니다.",
+      "noticeTitle": "2026년 아산시미래장학회 희망 장학금 장학생 선발 안내",
+      "requiredTitle": "2026년 아산시미래장학회 희망 장학금 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-7",
+      "title": "롯데 취업준비생 장학사업",
+      "state": "verified_notice",
+      "sourceId": "skku-lotte",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137640"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137640",
+          "checkedAt": "2026-09-16T12:54:09.318Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 롯데장학재단 신격호 롯데 취업준비생 장학생 모집 안내",
+      "requiredTitle": "2026년 롯데장학재단 신격호 롯데 취업준비생 장학생 모집 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-9",
+      "title": "OK배정장학재단",
+      "state": "verified_notice",
+      "sourceId": "skku-ok",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137930"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137930",
+          "checkedAt": "2026-09-16T12:54:10.380Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 제17기 OK배정장학생 선발 안내(학부, 대학원생)",
+      "requiredTitle": "2026년 제17기 OK배정장학생 선발 안내(학부, 대학원생)"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011884-3",
+      "title": "위드다문화",
+      "state": "verified_notice",
+      "sourceId": "skku-with",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138069"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138069",
+          "checkedAt": "2026-09-16T12:46:57.568Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 하반기 위드다문화 장학생 모집안내",
+      "requiredTitle": "2026년도 하반기 위드다문화 장학생 모집안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011884-4",
+      "title": "성련장학재단",
+      "state": "verified_notice",
+      "sourceId": "yonsei-sungryun",
+      "noticeUrls": [
+        "https://www.yonsei.ac.kr/bbs/sc/58/943518/artclView.do"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.yonsei.ac.kr/bbs/sc/58/943518/artclView.do",
+          "checkedAt": "2026-09-16T13:04:30.442Z"
+        }
+      ],
+      "note": "동일 연도·모집의 연세대학교 공개 공고로 보완합니다. 연세대 추천 인원·학과·제출처·학교추천 마감은 한양대·한양여대에 적용하지 않으며 기존 포털 정보를 보존합니다. 이미지·첨부파일의 조건 검증 상태는 별도입니다. 한양대 캘린더 2026-07-26, 한양대 본문 07-19, 연세대 추천 07-08이 서로 다르므로 자동으로 확정 변경하지 않습니다.",
+      "noticeTitle": "2026학년도 2학기 성련장학재단 장학생 추천 안내",
+      "requiredTitle": "2026학년도 2학기 성련장학재단 장학생 추천 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-12",
+      "title": "Qualcomm Innovation Fellowship Korea 2026",
+      "state": "verified_notice",
+      "sourceId": "skku-qualcomm",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138102"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138102",
+          "checkedAt": "2026-09-16T12:54:11.440Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026 Qualcomm Innovation Fellowship Korea 안내(대학원생)",
+      "requiredTitle": "2026 Qualcomm Innovation Fellowship Korea 안내(대학원생)"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-10",
+      "title": "The가꿈 11기",
+      "state": "verified_notice",
+      "sourceId": "gaggoom",
+      "noticeUrls": [
+        "https://www.gaggoom.net/sub0401.php?num=760&pageName=view"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.gaggoom.net/sub0401.php?num=760&pageName=view",
+          "checkedAt": "2026-09-16T13:16:40.402Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 운영기관 공고와 직접 연결했습니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "[The가꿈 11기] 대학생 가꾸미 모집 (~7/7)",
+      "requiredTitle": "[The가꿈 11기] 대학생 가꾸미 모집 (~7/7)"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-11",
+      "title": "서암 윤세영 재단",
+      "state": "verified_notice",
+      "sourceId": "skku-seoam",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138058"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138058",
+          "checkedAt": "2026-09-16T12:58:24.127Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년도 윤세영 스칼라십 신규 장학생 선발 안내",
+      "requiredTitle": "2026년도 윤세영 스칼라십 신규 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011884-2",
+      "title": "3.1문화재단",
+      "state": "verified_notice",
+      "sourceId": "skku-31cf",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137733"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137733",
+          "checkedAt": "2026-09-16T12:58:25.397Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 (재)3·1문화재단 장학생 모집 공고(대학원-박사과정)",
+      "requiredTitle": "2026년 (재)3·1문화재단 장학생 모집 공고(대학원-박사과정)"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-8",
+      "title": "부마민주항쟁기념재단 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-buma",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137688"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=137688",
+          "checkedAt": "2026-09-16T12:54:12.500Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 부마민주항쟁기념재단 장학생 선발안내",
+      "requiredTitle": "2026년 부마민주항쟁기념재단 장학생 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-13",
+      "title": "정읍시민장학재단 우수인재장학금",
+      "state": "verified_notice",
+      "sourceId": "jcsf",
+      "noticeUrls": [
+        "https://www.jcsf.or.kr/sub0402/152"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.jcsf.or.kr/sub0402/152",
+          "checkedAt": "2026-09-15T15:15:03.664Z"
+        }
+      ],
+      "note": "공식 개별 모집 원문 대조 완료. 수집기 운영 연결 및 실제 저장 결과 검증 중",
+      "requiredTitle": "2026년도",
+      "noticeTitle": "2026년도 정읍시민장학재단 우수인재 장학금 선발 공고(제2026-6호)"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-15",
+      "title": "충남평생교육진흥원 재능키움장학금",
+      "state": "verified_notice",
+      "sourceId": "skku-chungnam",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138371"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138371",
+          "checkedAt": "2026-09-16T12:54:13.567Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다.",
+      "noticeTitle": "2026년 충남평생교육인재육성진흥원 재능키움 장학사업 2차 선발안내",
+      "requiredTitle": "2026년 충남평생교육인재육성진흥원 재능키움 장학사업 2차 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-16",
+      "title": "화성시인재육성재단 코나아이 장학생",
+      "state": "verified_notice",
+      "sourceId": "skku-hwaseong",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138612"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=138612",
+          "checkedAt": "2026-09-16T13:16:40.399Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 타 대학 공개 공고로 보완하며 학교별 추천 기한·인원·성적·제출처는 기존 한양대 정보를 보존합니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "2026년 화성시인재육성재단 소상공인 장학금 장학생 선발 안내",
+      "requiredTitle": "2026년 화성시인재육성재단 소상공인 장학금 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011884-5",
+      "title": "연재장학재단",
+      "state": "verified_notice",
+      "sourceId": "ewha-yeonjae",
+      "noticeUrls": [
+        "https://www.ewha.ac.kr/ewha/bachelor/scholarship-notice.do?articleNo=366048&mode=view"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.ewha.ac.kr/ewha/bachelor/scholarship-notice.do?articleNo=366048&mode=view",
+          "checkedAt": "2026-09-16T13:16:40.414Z"
+        }
+      ],
+      "note": "공개 원문에서 해당 연도·학기·차수와 모집 내용을 대조했습니다. 타 대학 공개 공고로 보완하며 학교별 추천 기한·인원·성적·제출처는 기존 한양대 정보를 보존합니다. 운영 서버의 실제 수집 성공 여부는 별도 표시합니다.",
+      "noticeTitle": "[학부] 2026학년도 2학기 연재장학재단 장학생 선발 안내",
+      "requiredTitle": "[학부] 2026학년도 2학기 연재장학재단 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011884-6",
+      "title": "미래의동반자재단",
+      "state": "research",
+      "sourceId": null,
+      "noticeUrls": [],
+      "evidence": [],
+      "note": "2026-09-16 재조사: 이화여대 골드만삭스와 강원대 생활비 공고는 같은 재단의 다른 후원 사업일 수 있어 인문상경·7구간·등록금 전액의 한양대 모집과 동일 건으로 확정하지 않았습니다. 해당 공개 원문 또는 공식 포털 연동 필요."
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-19",
+      "title": "총동문회 멘토링 장학금",
+      "state": "research",
+      "sourceId": null,
+      "noticeUrls": [],
+      "evidence": [],
+      "note": "2026-09-16 재조사: 총동문회 공식 공지·장학 안내에서 2026-2 멘토링 2명·350만원 모집 원문 미확보. 로그인 포털 비밀번호·세션을 서버에 저장하지 않습니다. 공식 포털 연동 또는 공개 공고 필요."
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-20",
+      "title": "세종이도장학금(핵심인재)",
+      "state": "verified_notice",
+      "sourceId": "skku-sejong",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=139106"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=139106",
+          "checkedAt": "2026-09-16T12:54:14.633Z"
+        }
+      ],
+      "note": "동일 연도·모집의 대학 공개 원문과 본문을 대조했습니다. 운영기관 직접 게시판의 대체 수집원입니다. 타 대학 추천 기한·인원·제출처는 적용하지 않으며 기존 한양대 포털 일정을 보존합니다. 운영 서버 수집 결과는 별도 표시합니다. 신청 시작 충돌: 포털 2026-08-12, 대체 본문 08-10. 대체 본문은 특기적성 마감 09-30 18시를 명시합니다.",
+      "noticeTitle": "2026년도 세종연구원 \"세종이도인재장학금-핵심인재육성분야(특기적성)\" 장학생 선발안내",
+      "requiredTitle": "2026년도 세종연구원 \"세종이도인재장학금-핵심인재육성분야(특기적성)\" 장학생 선발안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011934-23",
+      "title": "광산장학회",
+      "state": "verified_notice",
+      "sourceId": "skku-gwangsan",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=139287"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.gwangsan.go.kr/boardView.do?pageId=www521&boardId=GW_JH&seq=2031698",
+          "checkedAt": "2026-09-15T15:21:28.617Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=139287",
+          "checkedAt": "2026-09-16T13:48:44.432Z"
+        }
+      ],
+      "note": "운영기관 직접 사이트의 서버 응답 실패로 동일 연도·모집의 성균관대 공개 재게시 공고를 연결했습니다. 운영기관 원문은 근거 목록에 보존합니다. 한양대 포털 일정·조건을 별도로 보존하며 첨부 조건은 별도 검증합니다.",
+      "noticeTitle": "2026년도 (재)광산장학회 장학생 선발 안내",
+      "requiredTitle": "2026년도 (재)광산장학회 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hyin-2026-20-011884-8",
+      "title": "달서인재육성장학재단",
+      "state": "verified_notice",
+      "sourceId": "skku-dalseo",
+      "noticeUrls": [
+        "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=139337"
+      ],
+      "evidence": [
+        {
+          "url": "https://www.dalseoij.org/dalseoij/page.do?mnu_code=MAIN0401&bod_sn=2394&cmd=2",
+          "checkedAt": "2026-09-15T15:21:28.618Z"
+        },
+        {
+          "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do?mode=view&articleNo=139337",
+          "checkedAt": "2026-09-16T13:48:44.553Z"
+        }
+      ],
+      "note": "운영기관 직접 사이트의 서버 응답 실패로 동일 연도·모집의 성균관대 공개 재게시 공고를 연결했습니다. 운영기관 원문은 근거 목록에 보존합니다. 한양대 포털 일정·조건을 별도로 보존하며 첨부 조건은 별도 검증합니다.",
+      "noticeTitle": "2026년도 하반기 (재)달서인재육성장학재단 장학생 선발 안내",
+      "requiredTitle": "2026년도 하반기 (재)달서인재육성장학재단 장학생 선발 안내"
+    },
+    {
+      "recruitmentId": "hanyang-0bce7aa886f58d37",
+      "title": "2026-2학기 교내 가계곤란장학 2차",
+      "state": "verified_notice",
+      "sourceId": "hanyang-policy",
+      "noticeUrls": [
+        "https://hypolicy.hanyang.ac.kr/front/community/notice/notice-view?id=2792"
+      ],
+      "evidence": [
+        {
+          "url": "https://hypolicy.hanyang.ac.kr/front/community/notice/notice-view?id=2792",
+          "checkedAt": "2026-09-22T11:32:16.192Z"
+        }
+      ],
+      "note": "동일 서울캠퍼스 2026-2학기 2차 공고 및 첨부 안내 PDF 대조",
+      "requiredTitle": "2026-2학기 학부 교내가계곤란장학",
+      "noticeTitle": "[장학] 2026-2학기 학부 교내가계곤란장학(사랑의실천/실용인재 장학) 2차 신청 일정안내"
+    },
+    {
+      "recruitmentId": "seongnam-news-notice-23309",
+      "title": "2026년 2학기 성남시 다자녀 대학생 등록금 지원",
+      "state": "verified_notice",
+      "sourceId": "seongnam-news",
+      "noticeUrls": [
+        "https://snvision.seongnam.go.kr/23309"
+      ],
+      "evidence": [
+        {
+          "url": "https://snvision.seongnam.go.kr/23309",
+          "checkedAt": "2026-09-22T11:46:39.265Z"
+        }
+      ],
+      "note": "성남시 공식 시정소식 2026-09-02 발표. 신청 시스템 접근 상태와 모집공고는 별개로 기록.",
+      "requiredTitle": "성남시, 셋째 자녀부터 대학 등록금 지원",
+      "noticeTitle": "성남시, 셋째 자녀부터 대학 등록금 지원…학기당 최대 100만 원"
+    }
+  ]
+}

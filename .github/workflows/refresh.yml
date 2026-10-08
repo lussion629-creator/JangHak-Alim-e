@@ -1,0 +1,55 @@
+# 6시간마다 전체 수집 → 보안 점검 → 데이터 커밋 → GitHub Pages 배포.
+name: refresh-scholarships
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # UTC 기준 6시간마다 (KST 02:17, 08:17, 14:17, 20:17)
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ["web/**", "server/**", "scripts/**", "data/registry/**", "data/imports/**"]
+# 기본 권한은 읽기만. 필요한 작업에서만 권한을 연다.
+permissions:
+  contents: read
+concurrency: { group: refresh, cancel-in-progress: false }
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write   # 데이터 커밋용
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -r requirements.txt
+      - name: 수집 전 보안 점검
+        env: { PII_DENYLIST: "${{ secrets.PII_DENYLIST }}" }
+        run: python scripts/security_check.py
+      - name: 수집
+        env:
+          GOV24_API_KEY: ${{ secrets.GOV24_API_KEY }}
+        run: python -m server.refresh
+      - name: 수집 후 보안 점검 (실패하면 커밋·배포 안 함)
+        env: { PII_DENYLIST: "${{ secrets.PII_DENYLIST }}" }
+        run: python scripts/security_check.py
+      - name: 데이터 커밋
+        run: |
+          git config user.name "scholarship-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/seed data/registry/status.json data/scholarships.db web/data
+          git commit -m "data: 자동 갱신 $(date -u +%Y-%m-%dT%H:%MZ)" || echo "변경 없음"
+          git push
+      - name: 페이지 만들기
+        run: python scripts/build_site.py
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: site }
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4

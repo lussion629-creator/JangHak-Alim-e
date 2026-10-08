@@ -1,0 +1,112 @@
+[
+ {
+  "name": "행정안전부_대한민국 공공서비스(혜택) 정보 (보조금24/정부24 공공서비스 목록)",
+  "provider": "행정안전부 (공공데이터포털 data.go.kr 15113968, odcloud 게이트웨이)",
+  "url": "https://www.data.go.kr/data/15113968/openapi.do  | endpoints: https://api.odcloud.kr/api/gov24/v3/serviceList , /serviceDetail , /supportConditions",
+  "format": "JSON / XML (REST, page/perPage, cond[필드::LIKE] 필터)",
+  "key_required": true,
+  "fields": "serviceList: 서비스ID, 서비스명, 서비스목적요약, 서비스분야, 지원유형, 지원대상, 선정기준, 지원내용, 신청방법, 신청기한, 접수기관, 전화문의, 상세조회URL, 소관기관코드, 소관기관명, 소관기관유형(중앙/광역/기초), 부서명, 사용자구분, 조회수, 등록일시, 수정일시 | serviceDetail: 구비서류, 근거법령, 온라인신청사이트URL, 문의처 등 | supportConditions: 서비스ID별 대상조건 코드(JA0101 성별, JA0110~ 연령, JA020x 소득구간, JA03xx 학생/대학생 등 Y/N 플래그)",
+  "relevance": "최상. 중앙부처뿐 아니라 시도·시군구 소관 장학 서비스(예: 성남시장학회, 부천장학재단, 거제시 장학생 선발, 대전 서구 장학금 등)가 '교육' 분야로 등재됨. 소관기관명/서비스명 '장학' 필터로 지자체 장학금을 구조화된 형태로 일괄 수집 가능. 수정일시로 증분 동기화.",
+  "notes": "data.go.kr 일반 인증키(serviceKey, URL-encoded) 필요, 자동승인. 엔드포인트/필드는 기존 지식 기반이며 이번 세션에서 data.go.kr 페이지는 타임아웃으로 직접 확인 못함(verified:false). studygov.kr 등 블로그가 이 데이터로 지자체 장학 글을 대량 생성하고 있는 정황 확인."
+ },
+ {
+  "name": "온통청년 청년정책 Open API",
+  "provider": "국무조정실 청년정책조정실 / 한국고용정보원 (youthcenter.go.kr)",
+  "url": "https://www.youthcenter.go.kr  (신규 API: https://www.youthcenter.go.kr/go/ythip/getPlcy?apiKeyNm=KEY&pageNum=1&pageSize=100&rtnType=json ; 구 API opi/youthPlcyList.do는 2025 개편으로 대체)",
+  "format": "JSON / XML",
+  "key_required": true,
+  "fields": "plcyNo(정책번호), plcyNm, plcyKywdNm, plcyExplnCn, lclsfNm/mclsfNm(대·중분류: 교육 등), plcySprtCn(지원내용), sprvsnInstCdNm(주관기관), operInstCdNm, aplyYmd/aplyPrdSeCd(신청기간), bizPrdBgngYmd/EndYmd, plcyAplyMthdCn, srngMthdCn, aplyUrlAddr, sbmsnDcmntCn, sprtTrgtMinAge/MaxAge, earnCndSeCd(소득조건), zipCd(지역 법정동코드 다중), schoolCd(학력), plcyMajorCd, jobCd, frstRegDt, lastMdfcnDt",
+  "relevance": "높음. 지자체 청년 장학·학자금이자지원·주거비 장학 등 '교육' 분류 정책을 지역코드(zipCd)와 함께 제공 → 시군구 단위 매칭에 유리.",
+  "notes": "온통청년 사이트에서 회원가입 후 Open API 키 신청(승인제). 2025.1 통합플랫폼 개편 후 신규 스펙(getPlcy) — glama.ai MCP 서버 설명에서 2026-07 기준 실제 키로 검증된 스펙 언급 확인. 파라미터·필드명은 기존 지식 기반이므로 키 발급 후 스펙 문서로 재확인 필요."
+ },
+ {
+  "name": "한국사회보장정보원_지자체복지서비스 (복지로)",
+  "provider": "한국사회보장정보원 (data.go.kr 15108347 추정)",
+  "url": "https://apis.data.go.kr/B554287/LocalGovernmentWelfareInformations/LcgvWelfarelist , /LcgvWelfaredetailed",
+  "format": "XML",
+  "key_required": true,
+  "fields": "servId, servNm, servDgst(요약), ctpvNm(시도), sggNm(시군구), bizChrDeptNm(담당부서), lifeNmArray(생애주기), trgterIndvdlNmArray(대상), intrsThemaNmArray(관심주제: 교육 등), sprtCycNm, srvPvsnNm(제공유형), aplyMtdNm, inqNum, lastModYmd, servDtlLink | 상세: sprtTrgtCn, slctCritCn, alwServCn, aplyMtdCn, 문의처, 근거법령, 서식",
+  "relevance": "중상. 시군구 단위 복지서비스 중 '교육지원/장학' 테마 항목 포함(저소득 자녀 장학금 등). ctpvNm/sggNm 필드로 지역 필터 가능.",
+  "notes": "data.go.kr 인증키. 서울 열린데이터광장이 같은 원천을 'OA-23013/OA-23014 서울시 복지서비스 목록/상세정보(한국사회보장정보원)'로 재배포(2026.10.07 갱신, 공공누리 0유형) — 확인됨."
+ },
+ {
+  "name": "한국사회보장정보원_중앙부처복지서비스 (복지로)",
+  "provider": "한국사회보장정보원 (data.go.kr 15090532 추정)",
+  "url": "https://apis.data.go.kr/B554287/NationalWelfareInformationsV001/NationalWelfarelistV001 , /NationalWelfaredetailedV001",
+  "format": "XML",
+  "key_required": true,
+  "fields": "servId, servNm, jurMnofNm(소관부처), jurOrgNm, servDgst, servDtlLink, lifeArray, trgterIndvdlArray, intrsThemaArray, sprtCycNm, srvPvsnNm, onapPsbltYn, inqNum, svcfrstRegTs",
+  "relevance": "중간. 국가 장학금·교육급여 등 중앙 제도 커버(한국장학재단 데이터와 일부 중복).",
+  "notes": "data.go.kr 인증키. 엔드포인트명은 기존 지식 기반(미검증)."
+ },
+ {
+  "name": "서울시 복지서비스 목록/상세 정보 (한국사회보장정보원)",
+  "provider": "서울 열린데이터광장 (원천: 복지로 지자체복지서비스 API)",
+  "url": "https://data.seoul.go.kr/dataList/OA-23014/S/1/datasetView.do (상세), https://data.seoul.go.kr/dataList/OA-23013/S/1/datasetView.do (목록)",
+  "format": "Open API(열린데이터광장 키) + 시트 미리보기(CSV 파일은 현재 미첨부)",
+  "key_required": true,
+  "fields": "지원대상, 선정기준, 지원내용, 신청방법, 담당기관 (정확한 필드명은 미표기)",
+  "relevance": "중간. 서울시·25개 자치구 장학/교육지원 서비스 서브셋. 복지로 API를 직접 쓰면 불필요.",
+  "notes": "페이지 직접 확인(2026.07.03 공개, 2026.10.07 갱신). 서울 열린데이터광장 API는 data.seoul.go.kr 인증키 필요. 서울미래인재재단 장학금 자체 데이터셋은 검색에서 발견 못함."
+ },
+ {
+  "name": "한국장학재단_학자금지원정보(대학생)",
+  "provider": "한국장학재단 (data.go.kr 15028252)",
+  "url": "https://www.data.go.kr/data/15028252/fileData.do",
+  "format": "File(CSV) + Open API",
+  "key_required": true,
+  "fields": "운영기관명, 상품명, 운영기관구분, 학자금유형, 대학구분, 학년구분, 학과구분, 성적기준, 소득기준, 지원내역, 특정자격, 지역거주여부, 선발방법, 선발인원, 자격제한, 추천필요여부, 제출서류, 모집시작/종료일, 홈페이지주소",
+  "relevance": "최상(이미 확보). 지자체 장학재단 다수가 '운영기관구분=지자체'로 포함되어 local.json 레지스트리와 교차검증용.",
+  "notes": "이미 확보된 소스. 파일데이터는 키 불필요, API는 인증키 필요."
+ },
+ {
+  "name": "한국장학재단_장학금 사업현황 통계",
+  "provider": "한국장학재단 (data.go.kr 3060496)",
+  "url": "https://www.data.go.kr/data/3060496/fileData.do",
+  "format": "File(CSV/XLSX), 연 1회",
+  "key_required": false,
+  "fields": "사업별 장학금 지원 금액 및 건수(인원) — 통계연보",
+  "relevance": "낮음(통계). 공고 수집에는 불필요.",
+  "notes": "검색 결과 메타데이터로 확인."
+ },
+ {
+  "name": "지방공공기관 통합공시 클린아이 (출자·출연기관 목록)",
+  "provider": "행정안전부 / 지방공기업평가원 (cleaneye.go.kr)",
+  "url": "https://www.cleaneye.go.kr",
+  "format": "웹 공시 + 일부 data.go.kr 파일데이터(지방출자출연기관 현황)",
+  "key_required": false,
+  "fields": "기관명, 설립 지자체, 유형(출연기관), 설립목적, 홈페이지, 주소, 연락처",
+  "relevance": "중상(레지스트리 구축용). 지자체 출연 장학재단·인재육성재단·평생교육진흥원 목록과 공식 홈페이지를 망라 → local.json 보강/검증에 최적.",
+  "notes": "이번 세션 미검증. 서울시는 출자출연기관 페이지(news.seoul.go.kr/gov/investment_agency)에서 서울미래인재재단=hissf.or.kr 확인됨. 경기도는 '지방자치단체 출자·출연기관에 대한 출자·출연보고서' PDF 공개."
+ },
+ {
+  "name": "공익법인 공시 (국세청 홈택스 / 교육청 공익법인 현황)",
+  "provider": "국세청, 시도교육청",
+  "url": "https://www.hometax.go.kr (공익법인 공시), 각 시도교육청 '공익법인 현황'",
+  "format": "웹 조회 / 일부 파일데이터",
+  "key_required": false,
+  "fields": "법인명, 소재지, 대표자, 목적사업(장학), 설립일, 결산공시",
+  "relevance": "중간. 민간·지자체 출연 장학회(재단법인 OO장학회)는 대부분 교육청 소관 공익법인으로 등록 → 미확인 시군 장학회 명칭 확정에 활용.",
+  "notes": "미검증(지식 기반). 구조화 API는 없음."
+ },
+ {
+  "name": "경기데이터드림",
+  "provider": "경기도 (data.gg.go.kr)",
+  "url": "https://data.gg.go.kr/portal/data/dataset/searchDatasetPage.do",
+  "format": "Open API(JSON/XML) + File",
+  "key_required": true,
+  "fields": "장학 전용 데이터셋 확인 못함 (검색 결과에 장학 데이터셋 미노출)",
+  "relevance": "낮음. 경기도·시군 장학 공고는 보조금24/복지로 경유 수집이 현실적.",
+  "notes": "포털 존재 확인. '장학' 키워드 데이터셋은 직접 검색 필요(사이트 JS 렌더링)."
+ },
+ {
+  "name": "지자체 고시/공고 게시판 (RSS 일부 제공)",
+  "provider": "각 시도·시군구청",
+  "url": "예: 강남구 보도자료 https://www.gangnam.go.kr/board/B_000031/list.do?mid=ID01 ; 각 청 '고시/공고', '타기관고시/공고'",
+  "format": "HTML (일부 eGov 기반 사이트는 게시판 RSS 제공)",
+  "key_required": false,
+  "fields": "제목, 등록일, 부서, 첨부(hwp/pdf)",
+  "relevance": "높음(자체 홈페이지 없는 시군구 장학회 공고의 1차 채널). 춘천시민장학재단처럼 시청 '타기관고시/공고'에도 동시 게시.",
+  "notes": "통일된 API 없음 → 스크래핑. local.json 다수 항목이 이 방식 권장으로 표기됨."
+ }
+]

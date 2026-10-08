@@ -1,0 +1,26 @@
+# 비밀 값 — 절대 커밋 금지
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+google-services.json
+*service-account*.json
+*-firebase-adminsdk-*.json
+extractor-secrets.json
+# 빌드 산출물·도구
+__pycache__/
+.venv/
+site/
+android/build/
+android/tools/
+*.apk
+*.aab
+# HY-in 동기화 원본 업로드
+data/imports/*.json
+!data/imports/.keep
+*.idsig
+android/SIGNING-KEY*.txt
