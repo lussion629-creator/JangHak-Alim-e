@@ -1,0 +1,1352 @@
+[
+ {
+  "id": "한양대학교서울캠퍼스-c5e6",
+  "name": "한양대학교 서울캠퍼스",
+  "url": "https://www.hanyang.ac.kr/web/www/notice_all",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한양대학교erica캠퍼스-2d5b",
+  "name": "한양대학교 ERICA캠퍼스",
+  "url": "https://esc.hanyang.ac.kr/-20",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "성균관대학교인문사회자연과학-fc72",
+  "name": "성균관대학교 인문사회/자연과학",
+  "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국민대학교-e04c",
+  "name": "국민대학교",
+  "url": "https://biz.kookmin.ac.kr/community/kookmin/scholarship",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "서울대학교관악-bcd7",
+  "name": "서울대학교 관악",
+  "url": "https://student.snu.ac.kr/?page_id=10815&mod=list&category1=장학공지",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "연세대학교신촌-a807",
+  "name": "연세대학교 신촌",
+  "url": "https://www.yonsei.ac.kr/bbs/sc/58/artclList.do?layout=unknown&findClSeq=257",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "고려대학교서울-595b",
+  "name": "고려대학교 서울",
+  "url": "https://scholarship.korea.ac.kr/scholarship/application/notice.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "아주대학교-4571",
+  "name": "아주대학교",
+  "url": "https://www.ajou.ac.kr/kr/ajou/notice_scholarship.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "중앙대학교서울-b2ca",
+  "name": "중앙대학교 서울",
+  "url": "https://www.cau.ac.kr/cms/FR_CON/index.do?MENU_ID=100&CONTENTS_NO=5&P_TAB_NO=5",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "경희대학교서울국제-732a",
+  "name": "경희대학교 서울/국제",
+  "url": "https://www.khu.ac.kr/kor/user/bbs/BMSR00040/list.do?menuNo=200318",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "동국대학교서울-207c",
+  "name": "동국대학교 서울",
+  "url": "https://www.dongguk.edu/article/JANGHAKNOTICE/list",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "건국대학교서울-2e7b",
+  "name": "건국대학교 서울",
+  "url": "https://www.konkuk.ac.kr/konkuk/2239/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "홍익대학교서울-53af",
+  "name": "홍익대학교 서울",
+  "url": "https://www.hongik.ac.kr/kr/education/notice-undergrad.do?mode=list&srCategoryId=24",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "삼육대학교-2977",
+  "name": "삼육대학교",
+  "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "이화여자대학교-6094",
+  "name": "이화여자대학교",
+  "url": "https://www.ewha.ac.kr/ewha/bachelor/scholarship-notice.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "숙명여자대학교-43fc",
+  "name": "숙명여자대학교",
+  "url": "https://www.sookmyung.ac.kr/kr/news/important-notice.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "성신여자대학교-5fa3",
+  "name": "성신여자대학교",
+  "url": "https://www.sungshin.ac.kr/bbs/main_kor/4719/artclList.do?layout=unknown",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "세종대학교-1dd1",
+  "name": "세종대학교",
+  "url": "https://www.sejong.ac.kr/kor/intro/notice7.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "광운대학교-b0d3",
+  "name": "광운대학교",
+  "url": "https://www.kw.ac.kr/ko/life/notice.jsp",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "명지대학교인문자연-8d4a",
+  "name": "명지대학교 인문/자연",
+  "url": "https://www.mju.ac.kr/mjukr/259/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "상명대학교서울-3bfb",
+  "name": "상명대학교 서울",
+  "url": "https://www.smu.ac.kr/kor/life/notice.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한성대학교-704b",
+  "name": "한성대학교",
+  "url": "https://www.hansung.ac.kr/hansung/6172/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "숭실대학교-1489",
+  "name": "숭실대학교",
+  "url": "https://scatch.ssu.ac.kr/%ea%b3%b5%ec%a7%80%ec%82%ac%ed%95%ad/?f&category=%EC%9E%A5%ED%95%99&keyword",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "가톨릭대학교성심-c293",
+  "name": "가톨릭대학교 성심",
+  "url": "https://www.catholic.ac.kr/ko/campuslife/notice.do?mode=list&srCategoryId=21",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "서울과학기술대학교-01c8",
+  "name": "서울과학기술대학교",
+  "url": "https://www.seoultech.ac.kr/service/info/janghak/",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "덕성여자대학교-9972",
+  "name": "덕성여자대학교",
+  "url": "https://www.duksung.ac.kr/bbs/board.do?bsIdx=36&menuId=1059",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "동덕여자대학교-a479",
+  "name": "동덕여자대학교",
+  "url": "https://www.dongduk.ac.kr/www/contents/kor-noti.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "성공회대학교-8941",
+  "name": "성공회대학교",
+  "url": "https://www.skhu.ac.kr/skhu/4197/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국체육대학교-05a0",
+  "name": "한국체육대학교",
+  "url": "https://www.knsu.ac.kr/knsu/unilife/notice.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "인하대학교-e1ab",
+  "name": "인하대학교",
+  "url": "https://www.inha.ac.kr/bbs/kr/8/artclList.do?layout=unknown&bbsClSeq=215",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "단국대학교죽전천안-3787",
+  "name": "단국대학교 죽전/천안",
+  "url": "https://www.dankook.ac.kr/web/kor/-390",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국공학대학교-eea1",
+  "name": "한국공학대학교",
+  "url": "https://www.tukorea.ac.kr/tukorea/1097/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "강남대학교-24a4",
+  "name": "강남대학교",
+  "url": "https://web.kangnam.ac.kr/menu/f19069e6134f8f8aa7f689a4a675e66f.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "용인대학교-9ce3",
+  "name": "용인대학교",
+  "url": "https://www.yongin.ac.kr/cmn/board/SYSTEM_DEFAULT000001/noticeList.do?currentMenuNo=106100000",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "인천대학교-bacb",
+  "name": "인천대학교",
+  "url": "https://www.inu.ac.kr/bbs/inu/249/artclList.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "가천대학교글로벌메디컬-1ae4",
+  "name": "가천대학교 글로벌/메디컬",
+  "url": "https://www.gachon.ac.kr/kor/1146/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.gachon.ac.kr', port=443): Max retries exceeded with url: /kor/1146/subview.do (Caused by SSLError(SSLError(1, '[SSL: SSLV3_ALERT_H"
+ },
+ {
+  "id": "한신대학교-702b",
+  "name": "한신대학교",
+  "url": "https://www.hs.ac.kr/bbs/kor/275/artclList.do?layout=unknown",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "신한대학교-84eb",
+  "name": "신한대학교",
+  "url": "https://www.shinhan.ac.kr/bbs/kr/197/artclList.do?layout=unknown",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "안양대학교-8271",
+  "name": "안양대학교",
+  "url": "https://www.anyang.ac.kr/main/communication/notice.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국외국어대학교서울글로벌-0148",
+  "name": "한국외국어대학교 서울/글로벌",
+  "url": "https://www.hufs.ac.kr/hufs/11283/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "경기대학교수원서울-5d09",
+  "name": "경기대학교 수원/서울",
+  "url": "https://www.kyonggi.ac.kr/scholarship/selectBbsNttList.do?key=8862&bbsNo=1073",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국항공대학교-c4e5",
+  "name": "한국항공대학교",
+  "url": "https://kau.ac.kr/kaulife/scholnoti.php",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "수원대학교-98d5",
+  "name": "수원대학교",
+  "url": "https://www.suwon.ac.kr/index.html?menuno=2041",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.suwon.ac.kr', port=443): Max retries exceeded with url: /index.html?menuno=2041 (Caused by NameResolutionError(\"HTTPSConnection(ho"
+ },
+ {
+  "id": "서강대학교-f910",
+  "name": "서강대학교",
+  "url": "https://www.sogang.ac.kr/ko/scholarship-notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.sogang.ac.kr', port=443): Max retries exceeded with url: /ko/scholarship-notice (Caused by SSLError(SSLCertVerificationError(1, '["
+ },
+ {
+  "id": "서울시립대학교-e9e7",
+  "name": "서울시립대학교",
+  "url": "https://scholarship.uos.ac.kr/scholarship/notice/notice/list.do?brdBbsseq=1",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "서울여자대학교-65bb",
+  "name": "서울여자대학교",
+  "url": "https://www.swu.ac.kr/front/boardlist.do?bbsConfigFK=5",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "서경대학교-1799",
+  "name": "서경대학교",
+  "url": "https://www.skuniv.ac.kr/notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "대진대학교-cfdf",
+  "name": "대진대학교",
+  "url": "https://www.daejin.ac.kr/bbs/daejin/193/artclList.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.daejin.ac.kr', port=443): Max retries exceeded with url: /bbs/daejin/193/artclList.do (Caused by ConnectTimeoutError(<HTTPSConnect"
+ },
+ {
+  "id": "평택대학교-4803",
+  "name": "평택대학교",
+  "url": "https://www.ptu.ac.kr/www/478/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "부산대학교부산-9629",
+  "name": "부산대학교",
+  "url": "https://www.pusan.ac.kr/kor/CMS/Board/Board.do?mCode=MN095",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "경북대학교대구-ee6d",
+  "name": "경북대학교 대구",
+  "url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=1&menu_idx=67",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "충북대학교-2ade",
+  "name": "충북대학교",
+  "url": "https://www.chungbuk.ac.kr/www/selectBbsNttList.do?bbsNo=8&key=815&searchCtgry=학사/장학",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립부경대학교-41ab",
+  "name": "국립부경대학교",
+  "url": "https://www.pknu.ac.kr/main/163",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "전남대학교-e191",
+  "name": "전남대학교",
+  "url": "https://www.jnu.ac.kr/WebApp/web/HOM/COM/Board/board.aspx?boardID=5",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "충남대학교-b926",
+  "name": "충남대학교",
+  "url": "https://plus.cnu.ac.kr/_prog/_board/?code=sub07_0702&site_dvs_cd=kr&menu_dvs_cd=0702",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "제주대학교-3157",
+  "name": "제주대학교",
+  "url": "https://www.jejunu.ac.kr/ara/noticesurvey/degree.htm?category=238",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.jejunu.ac.kr', port=443): Max retries exceeded with url: /ara/noticesurvey/degree.htm?category=238 (Caused by SSLError(SSLCertVeri"
+ },
+ {
+  "id": "경상국립대학교가좌칠암-f9fe",
+  "name": "경상국립대학교 가좌/칠암",
+  "url": "https://www.gnu.ac.kr/main/na/ntt/selectNttList.do?mi=1376&bbsId=1075",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "영남대학교-cc34",
+  "name": "영남대학교",
+  "url": "https://scholar.yu.ac.kr/",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "동아대학교승학부민-ada4",
+  "name": "동아대학교 승학/부민",
+  "url": "https://www.donga.ac.kr/kor/CMS/Board/Board.do?mCode=MN172",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "원광대학교-f0d0",
+  "name": "원광대학교",
+  "url": "https://www.wku.ac.kr/category/notice/scholar-notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "순천향대학교-3bd5",
+  "name": "순천향대학교",
+  "url": "https://home.sch.ac.kr/sch/06/010300.jsp",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "경성대학교-cb6e",
+  "name": "경성대학교",
+  "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "호서대학교아산천안-1939",
+  "name": "호서대학교 아산/천안",
+  "url": "https://www.hoseo.ac.kr/Home/BBSList.mbz?action=MAPP_1708240139&schCategorycode=CTG_17082400011",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "백석대학교-4d46",
+  "name": "백석대학교",
+  "url": "https://www.bu.ac.kr/web/6559/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립한국교통대학교충주-848c",
+  "name": "국립한국교통대학교 충주",
+  "url": "https://www.ut.ac.kr/cop/bbs/BBSMSTR_000000000060/selectBoardList.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국교원대학교-32b9",
+  "name": "한국교원대학교",
+  "url": "https://www.knue.ac.kr/www/selectBbsNttList.do?bbsNo=207&key=1443",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "포항공과대학교postech-aa1e",
+  "name": "포항공과대학교(POSTECH)",
+  "url": "https://www.postech.ac.kr/kor/newscenter/notice.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "신라대학교-1d15",
+  "name": "신라대학교",
+  "url": "https://www.silla.ac.kr/ko/index.php?pCode=scnotice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "동서대학교-0eaa",
+  "name": "동서대학교",
+  "url": "https://www.dongseo.ac.kr/kr/?pCode=MN2000195",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한동대학교-bcd9",
+  "name": "한동대학교",
+  "url": "https://www.handong.edu/kor/square/notice/bbs/college/",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "광주대학교-6af3",
+  "name": "광주대학교",
+  "url": "https://www.gwangju.ac.kr/bbs/?b_id=gwangju_notice_se&site=gwangju&mn=538",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립창원대학교-0298",
+  "name": "국립창원대학교",
+  "url": "https://www.changwon.ac.kr/kor/na/ntt/selectNttList.do?mi=16478&bbsId=5849",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립한국해양대학교-b742",
+  "name": "국립한국해양대학교",
+  "url": "https://www.kmou.ac.kr/kmou/na/ntt/selectNttList.do?mi=5691&bbsId=10004365",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "서울교육대학교-6dbe",
+  "name": "서울교육대학교",
+  "url": "https://www.snue.ac.kr/snue/na/ntt/selectNttList.do?mi=3004&bbsId=1083",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국방송통신대학교-8c87",
+  "name": "한국방송통신대학교",
+  "url": "https://www.knou.ac.kr/knou/561/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국예술종합학교-dbb1",
+  "name": "한국예술종합학교",
+  "url": "https://www.karts.ac.kr/nri/bbs/NuriBbsList.do?bbsId=BBSNURI_001",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립경국대학교구안동대-f6db",
+  "name": "국립경국대학교(구 안동대)",
+  "url": "https://www.gknu.ac.kr/",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한경국립대학교-6304",
+  "name": "한경국립대학교",
+  "url": "https://www.hknu.ac.kr/sites/kor/index.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립한밭대학교-02c5",
+  "name": "국립한밭대학교",
+  "url": "https://www.hanbat.ac.kr/bbs/BBSMSTR_000000001261/list.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "춘천교육대학교-c952",
+  "name": "춘천교육대학교",
+  "url": "https://www.cnue.ac.kr/cnue/news/notice03.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "강원대학교춘천삼척강릉원주-4ebc",
+  "name": "강원대학교 춘천/삼척/강릉/원주",
+  "url": "https://www.kangwon.ac.kr/www/selectBbsNttList.do?bbsNo=37&key=1176",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "전북대학교-e274",
+  "name": "전북대학교",
+  "url": "https://www.jbnu.ac.kr/web/news/notice/sub01.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "차의과학대학교-5a04",
+  "name": "차의과학대학교",
+  "url": "https://www.cha.ac.kr/?page_id=2587",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "경동대학교원주양주메트로폴-1c6f",
+  "name": "경동대학교 원주/양주/메트로폴",
+  "url": "https://www.kduniv.ac.kr/kor/CMS/Board/Board.do?mCode=MN284",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "건양대학교논산대전-aff8",
+  "name": "건양대학교 논산/대전",
+  "url": "https://www.konyang.ac.kr/cop/bbs/BBSMSTR_000000000585/selectBoardList.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "중부대학교충청고양-fd5e",
+  "name": "중부대학교 충청/고양",
+  "url": "https://www.joongbu.ac.kr/menu.es?mid=a10302000000",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "부산가톨릭대학교-df27",
+  "name": "부산가톨릭대학교",
+  "url": "https://www.cup.ac.kr/entrance/home/front/board/List294.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "동명대학교-aaee",
+  "name": "동명대학교",
+  "url": "https://www.tu.ac.kr/tuhome/sub07_01_03.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "영산대학교와이즈유양산부산-21d6",
+  "name": "영산대학교(와이즈유) 양산/부산",
+  "url": "https://www.ysu.ac.kr/kor/CMS/Board/Board.do?mCode=MN016",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "계명대학교-6f81",
+  "name": "계명대학교",
+  "url": "https://newcms.kmu.ac.kr/janghak/981/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='newcms.kmu.ac.kr', port=443): Max retries exceeded with url: /janghak/981/subview.do (Caused by SSLError(SSLCertVerificationError(1, '"
+ },
+ {
+  "id": "대구가톨릭대학교-35dd",
+  "name": "대구가톨릭대학교",
+  "url": "https://www.cu.ac.kr/plaza/notice/scholarship",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "울산대학교-752e",
+  "name": "울산대학교",
+  "url": "https://www.ulsan.ac.kr/kor/CMS/Board/Board.do?mCode=MN113",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "조선대학교-1103",
+  "name": "조선대학교",
+  "url": "https://www3.chosun.ac.kr/scho/2138/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "인제대학교김해-d83d",
+  "name": "인제대학교 김해",
+  "url": "https://www.inje.ac.kr/kor/Template/Bsub_page.asp?Ltype=5&Ltype2=0&Ltype3=0&Tname=S_News&Ldir=board/S_News&div=10&d1n=5&d2n=1&d3n=6&d4n=0",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.inje.ac.kr', port=443): Max retries exceeded with url: /kor/Template/Bsub_page.asp?Ltype=5&Ltype2=0&Ltype3=0&Tname=S_News&Ldir=boa"
+ },
+ {
+  "id": "경남대학교-9e21",
+  "name": "경남대학교",
+  "url": "https://www.kyungnam.ac.kr/ko/8460/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한남대학교-b31a",
+  "name": "한남대학교",
+  "url": "https://janghak.hannam.ac.kr/sub4/menu_1.html",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='janghak.hannam.ac.kr', port=443): Max retries exceeded with url: /sub4/menu_1.html (Caused by ConnectTimeoutError(<HTTPSConnection(hos"
+ },
+ {
+  "id": "배재대학교-2dff",
+  "name": "배재대학교",
+  "url": "https://www.pcu.ac.kr/kor/article/scholarship",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한림대학교-d28d",
+  "name": "한림대학교",
+  "url": "https://www.hallym.ac.kr/hallym/1135/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "목원대학교-d036",
+  "name": "목원대학교",
+  "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.mokwon.ac.kr', port=443): Max retries exceeded with url: /kr/html/sub06/0603.html (Caused by ConnectTimeoutError(<HTTPSConnection("
+ },
+ {
+  "id": "성결대학교-8a4a",
+  "name": "성결대학교",
+  "url": "https://www.sungkyul.ac.kr/bbs/skukr/95/artclList.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "청주대학교-56db",
+  "name": "청주대학교",
+  "url": "https://www.cju.ac.kr/www/selectBbsNttList.do?bbsNo=881&key=4577&searchCtgry=%EC%9E%A5%ED%95%99%E3%86%8D%EB%8C%80%EC%B6%9C",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국기술교육대학교-2a61",
+  "name": "한국기술교육대학교",
+  "url": "https://portal.koreatech.ac.kr/ctt/bb/bulletin?b=15",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='portal.koreatech.ac.kr', port=443): Max retries exceeded with url: /ctt/bb/bulletin?b=15 (Caused by ConnectTimeoutError(<HTTPSConnecti"
+ },
+ {
+  "id": "동의대학교-9e8e",
+  "name": "동의대학교",
+  "url": "https://www.deu.ac.kr/www/deu-scholarship.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "전주대학교-8a0c",
+  "name": "전주대학교",
+  "url": "https://www.jj.ac.kr/jj/community/notice03.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립공주대학교-b430",
+  "name": "국립공주대학교",
+  "url": "https://www.kongju.ac.kr/bbs/KNU/2132/artclList.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.kongju.ac.kr', port=443): Max retries exceeded with url: /bbs/KNU/2132/artclList.do (Caused by SSLError(SSLError(1, '[SSL: SSLV3_A"
+ },
+ {
+  "id": "국립순천대학교-b044",
+  "name": "국립순천대학교",
+  "url": "https://www.scnu.ac.kr/SCNU/na/ntt/selectNttList.do?mi=8692",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립목포대학교-8039",
+  "name": "국립목포대학교",
+  "url": "https://scholarship.mokpo.ac.kr/scholarship/6366/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "국립군산대학교-79c5",
+  "name": "국립군산대학교",
+  "url": "https://www.kunsan.ac.kr/board/list.kunsan?boardId=BBS_0000009",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "세명대학교-7a35",
+  "name": "세명대학교",
+  "url": "https://www.semyung.ac.kr/prog/vwBoard/bbs06/kor/sub08_02_03/list.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "HTTPSConnectionPool(host='www.semyung.ac.kr', port=443): Max retries exceeded with url: /prog/vwBoard/bbs06/kor/sub08_02_03/list.do (Caused by SSLError(SSLError"
+ },
+ {
+  "id": "한서대학교서산태안-d7f0",
+  "name": "한서대학교 서산/태안",
+  "url": "https://www.hanseo.ac.kr/boardCnts/list.do?boardID=301&m=040104&s=hs",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "가톨릭관동대학교-5826",
+  "name": "가톨릭관동대학교",
+  "url": "https://www.cku.ac.kr/cku_kr/5787/subview.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "상지대학교-2c9c",
+  "name": "상지대학교",
+  "url": "https://www.sangji.ac.kr/prog/bbsArticle/BBSMSTR_000000000042/list.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "동신대학교-bb88",
+  "name": "동신대학교",
+  "url": "https://www.dsu.ac.kr/kr/?pCode=notischlr",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "경일대학교-25f8",
+  "name": "경일대학교",
+  "url": "https://janghak.kiu.ac.kr/scholarship/sub/04.htm",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "서울신학대학교-5ac7",
+  "name": "서울신학대학교",
+  "url": "https://www.stu.ac.kr/CmsHome/stu06_03_03.eznic",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "현대차정몽구재단-256b",
+  "name": "현대차정몽구재단",
+  "url": "https://www.cmkfoundation-scholarship.org/Notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "관정이종환교육재단-5c61",
+  "name": "관정이종환교육재단",
+  "url": "https://www.ikef.or.kr/bbs/board.php?bo_table=m31",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국고등교육재단sk-a2cf",
+  "name": "한국고등교육재단(SK)",
+  "url": "https://www.kfas.or.kr/bbs/board.php?bo_table=kfas_whats_new",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "하나금융공익재단-1b85",
+  "name": "하나금융공익재단",
+  "url": "https://www.hanafoundation.or.kr/bbs/board.php?bo_table=notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "롯데장학재단롯데재단-2fa0",
+  "name": "롯데장학재단·롯데재단",
+  "url": "https://www.lottefoundation.or.kr/notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "포스코청암재단-0f3a",
+  "name": "포스코청암재단",
+  "url": "https://www.postf.org/news/notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "두산연강재단-d72f",
+  "name": "두산연강재단",
+  "url": "https://www.yonkang.org/en/news/",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "유한재단-a41a",
+  "name": "유한재단",
+  "url": "https://www.yuhanfoundation.or.kr/news/notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "아산사회복지재단-c59b",
+  "name": "아산사회복지재단",
+  "url": "https://www.asanfoundation.or.kr/af/foundation/notice/afFoundationNoticeList.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "우양재단-36f0",
+  "name": "우양재단",
+  "url": "https://www.wooyang.org/News",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "월드비전-f2d5",
+  "name": "월드비전",
+  "url": "https://www.worldvision.or.kr/informationCenter/news",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "굿네이버스-0574",
+  "name": "굿네이버스",
+  "url": "https://www.goodneighbors.kr/story/notice/1/index.gn",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "사회복지공동모금회사랑의열매-1af9",
+  "name": "사회복지공동모금회(사랑의열매)",
+  "url": "https://chest.or.kr/bbs/1000/initPostList.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "대한적십자사-4905",
+  "name": "대한적십자사",
+  "url": "https://www.redcross.or.kr/main/pt/pst/selectPstList.do?mi=1009&bbsId=1001",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "한국예술인복지재단-5951",
+  "name": "한국예술인복지재단",
+  "url": "https://www.kawf.kr/notice/sub01.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "전북특별자치도평생교육장학진흥원-e371",
+  "name": "전북특별자치도평생교육장학진흥원",
+  "url": "https://www.jbiles.or.kr/content/sub03_08",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "제주평생교육장학진흥원-169b",
+  "name": "제주평생교육장학진흥원",
+  "url": "https://jiles.or.kr/community/notice/notice.htm",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "강남구강남형장학사업-aeea",
+  "name": "강남구 강남형 장학사업",
+  "url": "https://www.gangnam.go.kr/board/B_000031/list.do?mid=ID01",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "파주시행복장학회-ab68",
+  "name": "파주시행복장학회",
+  "url": "https://www.paju.go.kr/edu/user/board/BD_board.list.do?bbsCd=2001&q_ctgCd=1020",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "재과천시애향장학회-cf61",
+  "name": "(재)과천시애향장학회",
+  "url": "https://www.gccity.go.kr/gcsf/bbs/list.do?ptIdx=322&mId=0401000000",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-ilsaf",
+  "name": "익산사랑장학재단",
+  "url": "https://ilsaf.or.kr/community/notice.asp",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-sangah",
+  "name": "상아장학재단",
+  "url": "https://sangahfoundation.or.kr/notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-wolgok",
+  "name": "월곡주얼리산업진흥재단",
+  "url": "https://w-jewel.or.kr/news",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-postf",
+  "name": "포스코청암재단",
+  "url": "https://postf.org/news/notice",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-silla",
+  "name": "신라문화장학재단",
+  "url": "https://www.sillafoundation.com/",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-wooyang",
+  "name": "우양재단",
+  "url": "https://www.wooyang.org/News/",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-sontaehee",
+  "name": "손태희장학재단",
+  "url": "https://sontaehee.co.kr/30",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-sanhak",
+  "name": "산학협동재단",
+  "url": "https://www.sanhakfund.or.kr/client/board/notice_list.asp",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-surim",
+  "name": "수림재단",
+  "url": "https://www.surim.or.kr/kr/news/notice.php",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-rhof",
+  "name": "한국농어촌희망재단",
+  "url": "https://www.rhof.or.kr/sub/sub0401.jsp",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-seoulfuture",
+  "name": "서울미래인재재단",
+  "url": "https://www.seoulfuture.or.kr/home/kor/M025378985/board.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-kosaf-housing",
+  "name": "한국장학재단 주거안정장학금",
+  "url": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000002&ctgrId2=0000000022&naviParam=JH,09,08,00",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-hanyang",
+  "name": "한양대학교 장학/등록",
+  "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-kosaf",
+  "name": "한국장학재단",
+  "url": "https://www.kosaf.go.kr/ko/main.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ },
+ {
+  "id": "legacy-incheon",
+  "name": "인천인재평생교육진흥원",
+  "url": "https://itle.or.kr/user/scholarship/service/list.do",
+  "ok": false,
+  "count": 0,
+  "method": "",
+  "error": "'latin-1' codec can't encode characters in position 45-46: ordinal not in range(256)"
+ }
+]
