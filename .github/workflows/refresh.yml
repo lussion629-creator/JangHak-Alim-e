@@ -36,7 +36,7 @@ jobs:
         run: |
           git config user.name "scholarship-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/seed data/registry/status.json data/scholarships.db web/data
+          git add data/seed data/registry/status.json data/registry/last_run.json data/scholarships.db web/data
           git commit -m "data: 자동 갱신 $(date -u +%Y-%m-%dT%H:%MZ)" || echo "변경 없음"
           git push
       - name: 페이지 만들기

@@ -23,7 +23,7 @@ from ..model import finalize, make_id, norm_date
 
 log = logging.getLogger(__name__)
 ROOT = Path(__file__).resolve().parents[2] / "data"
-UA = "Mozilla/5.0 (compatible; ScholarshipBot/1.0; 공개 장학공고 알림용)"
+UA = "Mozilla/5.0 (compatible; JangakAlimiBot/1.0; +https://github.com/lussion629-creator/JangHak-Alim-e)"
 KEY = re.compile(r"장학|학자금|장학생|인재육성")
 DROP = re.compile(r"(합격자|선발\s*결과|선정\s*결과|결과\s*발표|최종\s*선발자|수혜자\s*명단|지급\s*안내|근로장학생\s*근무)")
 DATE = re.compile(r"(20\d{2})[.\-/년]\s*(\d{1,2})[.\-/월]\s*(\d{1,2})")
