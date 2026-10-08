@@ -1,8 +1,76 @@
 {
- "finishedAt": "2026-10-09T02:38:11+09:00",
- "total": 0,
- "new": 0,
- "changed": 0,
+ "startedAt": "2026-10-08T17:40:19+00:00",
+ "finishedAt": "2026-10-08T17:42:08+00:00",
+ "online": true,
+ "total": 4225,
+ "new": 8,
+ "changed": 526,
+ "sources": [
+  {
+   "source": "kosaf_univ",
+   "label": "한국장학재단 대학생",
+   "ok": true,
+   "count": 1913,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_high",
+   "label": "한국장학재단 고등학생",
+   "ok": true,
+   "count": 1199,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_abroad",
+   "label": "한국장학재단 해외유학",
+   "ok": true,
+   "count": 75,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_creditbank",
+   "label": "한국장학재단 학점은행제",
+   "ok": true,
+   "count": 7,
+   "mode": "online"
+  },
+  {
+   "source": "hyin",
+   "label": "한양대 HY-in 장학캘린더",
+   "ok": true,
+   "count": 241,
+   "mode": "hyin_calendar_full.json",
+   "collectedAt": "2026-10-08T16:24:43.912Z"
+  },
+  {
+   "source": "hanyang",
+   "label": "한양대 공개 공지(장학/등록)",
+   "ok": true,
+   "count": 12,
+   "mode": "seed"
+  },
+  {
+   "source": "board",
+   "label": "대학·재단·지자체 게시판 150곳",
+   "ok": true,
+   "count": 657,
+   "mode": "성공 123 / 실패 27"
+  },
+  {
+   "source": "gov24",
+   "label": "정부24 공공서비스 API",
+   "ok": false,
+   "count": 0,
+   "mode": "키 미설정"
+  },
+  {
+   "source": "legacy",
+   "label": "기존 앱 수집본",
+   "ok": true,
+   "count": 315,
+   "mode": "seed"
+  }
+ ],
  "registry": {
   "total": 551,
   "enabled": 150,
@@ -25,7 +93,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 6
+    "count": 0
    },
    {
     "name": "성균관대학교 인문사회/자연과학",
@@ -35,7 +103,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 9
    },
    {
     "name": "국민대학교",
@@ -55,7 +123,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 0
    },
    {
     "name": "연세대학교 신촌",
@@ -65,7 +133,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 27
+    "count": 23
    },
    {
     "name": "고려대학교 서울",
@@ -85,7 +153,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 34
+    "count": 0
    },
    {
     "name": "중앙대학교 서울",
@@ -105,7 +173,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 7
    },
    {
     "name": "동국대학교 서울",
@@ -115,7 +183,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 22
+    "count": 11
    },
    {
     "name": "건국대학교 서울",
@@ -125,7 +193,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 43
+    "count": 40
    },
    {
     "name": "홍익대학교 서울",
@@ -145,7 +213,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 11
+    "count": 5
    },
    {
     "name": "이화여자대학교",
@@ -155,7 +223,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 26
+    "count": 8
    },
    {
     "name": "숙명여자대학교",
@@ -165,7 +233,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 6
+    "count": 0
    },
    {
     "name": "성신여자대학교",
@@ -185,7 +253,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 0
    },
    {
     "name": "광운대학교",
@@ -195,7 +263,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 5
    },
    {
     "name": "명지대학교 인문/자연",
@@ -205,7 +273,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 39
+    "count": 33
    },
    {
     "name": "상명대학교 서울",
@@ -215,7 +283,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 15
+    "count": 3
    },
    {
     "name": "한성대학교",
@@ -225,7 +293,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 3
    },
    {
     "name": "숭실대학교",
@@ -235,7 +303,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 15
+    "count": 13
    },
    {
     "name": "가톨릭대학교 성심",
@@ -255,7 +323,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 22
+    "count": 18
    },
    {
     "name": "덕성여자대학교",
@@ -285,7 +353,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 5
    },
    {
     "name": "한국체육대학교",
@@ -295,7 +363,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 9
+    "count": 1
    },
    {
     "name": "인하대학교",
@@ -315,7 +383,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 0
    },
    {
     "name": "한국공학대학교",
@@ -325,7 +393,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 11
+    "count": 9
    },
    {
     "name": "강남대학교",
@@ -335,7 +403,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 0
    },
    {
     "name": "용인대학교",
@@ -345,7 +413,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "인천대학교",
@@ -355,7 +423,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 34
+    "count": 32
    },
    {
     "name": "가천대학교 글로벌/메디컬",
@@ -395,7 +463,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "한국외국어대학교 서울/글로벌",
@@ -405,7 +473,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 16
+    "count": 11
    },
    {
     "name": "경기대학교 수원/서울",
@@ -425,7 +493,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 23
+    "count": 17
    },
    {
     "name": "수원대학교",
@@ -475,7 +543,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 2
    },
    {
     "name": "대진대학교",
@@ -495,7 +563,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 0
    },
    {
     "name": "부산대학교",
@@ -505,7 +573,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "경북대학교 대구",
@@ -515,7 +583,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 2
    },
    {
     "name": "충북대학교",
@@ -525,7 +593,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 4
    },
    {
     "name": "국립부경대학교",
@@ -535,7 +603,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "전남대학교",
@@ -545,7 +613,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 0
    },
    {
     "name": "충남대학교",
@@ -585,7 +653,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 0
    },
    {
     "name": "동아대학교 승학/부민",
@@ -595,7 +663,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 24
+    "count": 12
    },
    {
     "name": "원광대학교",
@@ -625,7 +693,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 17
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -635,7 +703,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 0
    },
    {
     "name": "백석대학교",
@@ -645,7 +713,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 16
+    "count": 5
    },
    {
     "name": "국립한국교통대학교 충주",
@@ -655,7 +723,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 0
    },
    {
     "name": "한국교원대학교",
@@ -665,7 +733,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 11
    },
    {
     "name": "포항공과대학교(POSTECH)",
@@ -675,7 +743,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "신라대학교",
@@ -685,7 +753,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 14
+    "count": 10
    },
    {
     "name": "동서대학교",
@@ -695,7 +763,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 28
+    "count": 18
    },
    {
     "name": "한동대학교",
@@ -705,7 +773,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "광주대학교",
@@ -715,7 +783,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 0
    },
    {
     "name": "국립창원대학교",
@@ -755,7 +823,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "한국예술종합학교",
@@ -795,7 +863,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 15
+    "count": 12
    },
    {
     "name": "춘천교육대학교",
@@ -805,7 +873,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 0
    },
    {
     "name": "강원대학교 춘천/삼척/강릉/원주",
@@ -845,7 +913,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 10
    },
    {
     "name": "건양대학교 논산/대전",
@@ -855,7 +923,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 21
+    "count": 0
    },
    {
     "name": "중부대학교 충청/고양",
@@ -865,7 +933,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 11
+    "count": 9
    },
    {
     "name": "부산가톨릭대학교",
@@ -885,7 +953,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 15
+    "count": 10
    },
    {
     "name": "영산대학교(와이즈유) 양산/부산",
@@ -895,7 +963,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 1
    },
    {
     "name": "계명대학교",
@@ -915,7 +983,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 34
+    "count": 22
    },
    {
     "name": "울산대학교",
@@ -925,7 +993,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 1
    },
    {
     "name": "조선대학교",
@@ -935,7 +1003,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 29
+    "count": 11
    },
    {
     "name": "인제대학교 김해",
@@ -965,7 +1033,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 29
+    "count": 20
    },
    {
     "name": "배재대학교",
@@ -975,7 +1043,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 17
+    "count": 8
    },
    {
     "name": "한림대학교",
@@ -985,7 +1053,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 44
+    "count": 37
    },
    {
     "name": "목원대학교",
@@ -995,7 +1063,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 9
    },
    {
     "name": "성결대학교",
@@ -1005,7 +1073,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 46
+    "count": 26
    },
    {
     "name": "청주대학교",
@@ -1015,7 +1083,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 14
+    "count": 9
    },
    {
     "name": "한국기술교육대학교",
@@ -1035,7 +1103,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 9
    },
    {
     "name": "전주대학교",
@@ -1045,7 +1113,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 27
+    "count": 14
    },
    {
     "name": "국립공주대학교",
@@ -1075,7 +1143,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 49
+    "count": 41
    },
    {
     "name": "국립군산대학교",
@@ -1085,7 +1153,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 3
    },
    {
     "name": "세명대학교",
@@ -1105,7 +1173,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 24
+    "count": 13
    },
    {
     "name": "가톨릭관동대학교",
@@ -1125,7 +1193,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 11
    },
    {
     "name": "동신대학교",
@@ -1145,7 +1213,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 16
+    "count": 7
    },
    {
     "name": "서울신학대학교",
@@ -1175,7 +1243,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 4
+    "count": 0
    },
    {
     "name": "관정이종환교육재단",
@@ -1185,7 +1253,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "한국고등교육재단(SK)",
@@ -1285,7 +1353,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "LG연암문화재단",
@@ -1315,7 +1383,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 1
    },
    {
     "name": "두산연강재단",
@@ -1755,7 +1823,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "초록우산(구 어린이재단)",
@@ -1794,7 +1862,7 @@
     "url": "https://chest.or.kr/bbs/1000/initPostList.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -2695,7 +2763,7 @@
     "enabled": false,
     "verified": false,
     "ok": true,
-    "count": 32
+    "count": 0
    },
    {
     "name": "전남인재평생교육진흥원",
@@ -2745,7 +2813,7 @@
     "enabled": false,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 0
    },
    {
     "name": "대전청년내일재단",
@@ -3255,7 +3323,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 32
+    "count": 0
    },
    {
     "name": "전남인재평생교육진흥원",
@@ -3275,7 +3343,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 6
+    "count": 0
    },
    {
     "name": "울산인재평생교육진흥원",
@@ -3585,7 +3653,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "세곡나눔장학회",
@@ -3745,7 +3813,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 0
    },
    {
     "name": "(재)김포시민장학회",
@@ -3895,7 +3963,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "가평군 장학회",
@@ -5215,7 +5283,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 0
    },
    {
     "name": "상아장학재단",
@@ -5225,7 +5293,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 0
    },
    {
     "name": "월곡주얼리산업진흥재단",
@@ -5245,7 +5313,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 1
    },
    {
     "name": "은평구민장학재단",
@@ -5265,7 +5333,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 0
    },
    {
     "name": "앨트웰민초장학재단",
@@ -5305,7 +5373,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "손태희장학재단",
@@ -5315,7 +5383,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 20
+    "count": 0
    },
    {
     "name": "산학협동재단",
@@ -5325,7 +5393,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 1
    },
    {
     "name": "수림재단",
@@ -5345,7 +5413,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 13
+    "count": 8
    },
    {
     "name": "서울미래인재재단",
@@ -5355,7 +5423,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "한국장학재단 주거안정장학금",
@@ -5365,7 +5433,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 96
+    "count": 1
    },
    {
     "name": "한국장학재단 연합생활관",
@@ -5455,7 +5523,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 81
+    "count": 0
    },
    {
     "name": "인천인재평생교육진흥원",
@@ -5465,7 +5533,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "한양여자대학교",
