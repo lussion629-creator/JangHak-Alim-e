@@ -29,6 +29,7 @@
   --ok:#5bd394; --ok-soft:#14301f; --no:#ff8a7d; --no-soft:#3a1e1b; --check:#f2bf55; --check-soft:#33290f;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--font);margin:0;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
 a{color:var(--accent);text-underline-offset:2px}
 button,input,select{font:inherit;color:inherit;letter-spacing:inherit}
@@ -43,6 +44,7 @@ header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-
 .brand h1{font-weight:800;font-size:24px;line-height:1.15;letter-spacing:-.03em;margin:0}
 .brand p{margin:2px 0 0;color:var(--ink-3);font-size:13.5px}
 .stamp{font-size:12.5px;color:var(--ink-3);text-align:right;line-height:1.5}
+@media (max-width:560px){.stamp{text-align:left;padding-left:52px;margin-top:-6px}}
 .stamp b{color:var(--ink-2);font-weight:600}
 
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
@@ -135,10 +137,20 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--ink-2);min-width:0}
 .form .full{grid-column:1/-1}
 .form fieldset{border:1px solid var(--line);border-radius:var(--r-sm);padding:12px 14px}
-.form .chip input{accent-color:var(--accent);margin:0 4px 0 0}
+.form label.chip{flex-direction:row;align-items:center;gap:6px;font-weight:500;color:var(--ink-2)}
+.form .chip input{accent-color:var(--accent);margin:0}
+.form label.chip:has(input:checked){background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:650}
 .note{font-size:13px;color:var(--ink-3);max-width:68ch;margin:0}
 .lead{font-weight:800;font-size:20px;letter-spacing:-.03em;margin:0 0 6px}
 .mfilter{display:none}
+.privacy{display:flex;gap:12px;align-items:flex-start;background:var(--accent-soft);color:var(--ink);border-radius:var(--r);padding:14px 16px;margin:10px 0 18px;font-size:14px;line-height:1.55}
+.privacy svg{flex:none;color:var(--accent);margin-top:2px}
+.privacy b{font-weight:700}
+.sec{border:0;border-top:1px solid var(--line);padding:18px 0 4px;margin:0}
+.sec legend{font-weight:750;font-size:15px;padding:0 10px 0 0;letter-spacing:-.02em}
+.flabel{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
+.callout{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:12px;font-size:13.5px;color:var(--ink-2)}
+.callout b{color:var(--ink)}
 
 @media (max-width:860px){
   .wrap{padding-inline:16px}
@@ -175,7 +187,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <button role="tab" data-tab="find" aria-selected="true">찾기</button>
     <button role="tab" data-tab="cal" aria-selected="false">마감 달력</button>
     <button role="tab" data-tab="fav" aria-selected="false">관심<span class="count" id="favCount"></span></button>
-    <button role="tab" data-tab="me" aria-selected="false">내 조건</button>
+    <button role="tab" data-tab="me" aria-selected="false">내 정보</button>
     <button role="tab" data-tab="src" aria-selected="false">새 소식</button>
   </nav>
 
@@ -186,6 +198,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
         <input type="search" id="q" placeholder="장학금명, 재단, 지역, 조건으로 검색 (예: 성동구, 이공계, 생활비)" aria-label="검색">
         <button class="btn mfilter" id="toggleFilters" type="button" style="padding:13px 16px">필터</button>
       </div>
+      <div class="callout" id="meCallout"><span><b>내 정보</b>를 넣으면 지역·학교·형편에 맞는 장학금만 골라 드립니다. 입력한 정보는 이 기기에만 저장됩니다.</span><button class="btn primary" type="button" id="goMe">내 정보 입력</button></div>
       <div class="toolbar">
         <span id="resultCount"></span>
         <label>정렬 <select id="sort">
@@ -219,25 +232,35 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
   </main>
 
   <main id="view-me" hidden><section class="panel">
-    <p class="lead">내 조건</p>
-    <p class="note">입력한 조건은 이 기기에만 저장됩니다. 목록에 <span class="pill ok">지원 가능</span> <span class="pill check">확인 필요</span> <span class="pill no">지원 불가</span> 표시가 붙고, 상세에서 판단 근거를 볼 수 있습니다. 공고 원문이 최종 기준입니다.</p>
-    <form class="form" id="profile" autocomplete="off" style="margin-top:16px">
-      <label>대상<select id="p_level"><option value="">선택 안 함</option><option>대학생</option><option>대학원생</option><option>고등학생</option></select></label>
-      <label>학교 유형<select id="p_school"><option value="">선택 안 함</option><option value="4y">4년제 대학</option><option value="2y">전문대(2~3년제)</option><option value="grad">대학원</option><option value="cyber">원격·사이버대</option></select></label>
-      <label>학교 이름<input type="text" id="p_schoolName" placeholder="예: 한양대학교"></label>
-      <label>다음 학기 기준 학기<select id="p_sem"><option value="">선택 안 함</option><option value="0">신입생(1학기)</option><option value="2">2학기</option><option value="3">3학기</option><option value="4">4학기</option><option value="5">5학기</option><option value="6">6학기</option><option value="7">7학기</option><option value="8">8학기 이상</option></select></label>
-      <label>계열<select id="p_major"><option value="">선택 안 함</option><option>인문계열</option><option>사회계열</option><option>교육계열</option><option>공학계열</option><option>자연계열</option><option>의약계열</option><option>예체능계열</option></select></label>
-      <label>학자금 지원구간(소득분위)<select id="p_income"><option value="">모름</option><option value="0">기초·차상위</option><option value="1">1구간</option><option value="2">2구간</option><option value="3">3구간</option><option value="4">4구간</option><option value="5">5구간</option><option value="6">6구간</option><option value="7">7구간</option><option value="8">8구간</option><option value="9">9구간</option><option value="10">10구간</option></select></label>
-      <label>직전 학기 평점 (4.5 만점)<input type="number" id="p_gpa" step="0.01" min="0" max="4.5" placeholder="예: 3.8"></label>
-      <label>본인 주민등록 시·도<select id="p_sido"></select></label>
-      <label>본인 시·군·구<input type="text" id="p_gu" placeholder="예: 성동구, 논산시"></label>
-      <label>부모(보호자) 시·도<select id="p_psido"></select></label>
-      <label>부모(보호자) 시·군·구<input type="text" id="p_pgu" placeholder="예: 광산구"></label>
-      <fieldset class="full">
-        <legend class="note">해당하는 항목</legend>
-        <div class="chips" id="p_flags"></div>
-      </fieldset>
-      <div class="full actions"><button class="btn primary" type="submit">저장하고 목록에 적용</button><button class="btn" type="button" id="p_clear">조건 지우기</button><span class="note" id="p_saved" role="status"></span></div>
+    <p class="lead">내 정보</p>
+    <div class="privacy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><div><b>입력한 정보는 이 기기에만 저장됩니다.</b><br>서버로 보내지 않으며, 앱을 만든 사람을 포함해 누구도 볼 수 없습니다. 지원 가능 여부 계산도 이 기기 안에서만 합니다. ‘내 정보 지우기’를 누르면 바로 삭제됩니다.</div></div>
+    <form id="profile" autocomplete="off">
+      <fieldset class="sec"><legend>어디 학생인가요</legend><div class="form">
+        <label>신분<select id="p_status"><option value="">선택 안 함</option><option value="hs">고등학생</option><option value="pre">대학 입학 예정 (고3·신입생)</option><option value="univ">대학생 (재학)</option><option value="leave">대학생 (휴학)</option><option value="grad">대학원생</option></select></label>
+        <label>학교 유형<select id="p_school"><option value="">선택 안 함</option><option value="4y">4년제 대학</option><option value="2y">전문대(2~3년제)</option><option value="grad">대학원</option><option value="cyber">원격·사이버대</option></select></label>
+        <label>학교 이름<input type="text" id="p_schoolName" list="dl_univ" placeholder="예: 한양대학교"></label>
+        <label>학교 소재지 (시·도)<select id="p_ssido"></select></label>
+        <label>다음 학기 기준 학기<select id="p_sem"><option value="">선택 안 함</option><option value="0">신입생(1학기)</option><option value="2">2학기</option><option value="3">3학기</option><option value="4">4학기</option><option value="5">5학기</option><option value="6">6학기</option><option value="7">7학기</option><option value="8">8학기 이상</option></select></label>
+        <label>계열<select id="p_major"><option value="">선택 안 함</option><option>인문계열</option><option>사회계열</option><option>교육계열</option><option>공학계열</option><option>자연계열</option><option>의약계열</option><option>예체능계열</option></select></label>
+      </div></fieldset>
+      <fieldset class="sec"><legend>내 지역</legend><div class="form">
+        <label>내 주민등록 주소 (시·도)<select id="p_sido" data-dl="dl_gu"></select></label>
+        <label>시·군·구<input type="text" id="p_gu" list="dl_gu" placeholder="목록에서 고르거나 입력"></label>
+        <label>출신 고등학교 (시·도)<select id="p_hsido" data-dl="dl_hgu"></select></label>
+        <label>시·군·구<input type="text" id="p_hgu" list="dl_hgu" placeholder="목록에서 고르거나 입력"></label>
+      </div></fieldset>
+      <fieldset class="sec"><legend>부모님(보호자) 지역</legend><div class="form">
+        <label>주민등록 주소 (시·도)<select id="p_psido" data-dl="dl_pgu"></select></label>
+        <label>시·군·구<input type="text" id="p_pgu" list="dl_pgu" placeholder="목록에서 고르거나 입력"></label>
+      </div></fieldset>
+      <fieldset class="sec"><legend>형편·성적·자격</legend><div class="form">
+        <label>학자금 지원구간(소득분위)<select id="p_income"><option value="">모름</option><option value="0">기초·차상위</option><option value="1">1구간</option><option value="2">2구간</option><option value="3">3구간</option><option value="4">4구간</option><option value="5">5구간</option><option value="6">6구간</option><option value="7">7구간</option><option value="8">8구간</option><option value="9">9구간</option><option value="10">10구간</option></select></label>
+        <label>직전 학기 평점 (4.5 만점)<input type="number" id="p_gpa" step="0.01" min="0" max="4.5" placeholder="예: 3.8"></label>
+        <div class="full"><span class="flabel">해당하는 항목</span><div class="chips" id="p_flags"></div></div>
+      </div></fieldset>
+      <datalist id="dl_univ"></datalist><datalist id="dl_gu"></datalist><datalist id="dl_hgu"></datalist><datalist id="dl_pgu"></datalist>
+      <div class="actions"><button class="btn primary" type="submit">저장하고 나에게 맞는 장학금 보기</button><button class="btn" type="button" id="p_clear">내 정보 지우기</button><span class="note" id="p_saved" role="status"></span></div>
+      <p class="note" style="margin-top:12px">목록에 <span class="pill ok">지원 가능</span> <span class="pill check">확인 필요</span> <span class="pill no">지원 불가</span> 표시가 붙고, 장학금을 누르면 판단 근거가 나옵니다. 공고 원문이 최종 기준입니다.</p>
     </form>
   </section></main>
 
@@ -264,6 +287,8 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const safeUrl=u=>{try{const x=new URL(String(u||""),location.href);return /^https?:$/.test(x.protocol)?x.href:""}catch(e){return ""}};
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const store={get(k,d){try{const v=localStorage.getItem("jh:"+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem("jh:"+k,JSON.stringify(v))}catch(e){}}};
+const DIST={"서울": ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"], "부산": ["강서구", "금정구", "기장군", "남구", "동구", "동래구", "부산진구", "북구", "사상구", "사하구", "서구", "수영구", "연제구", "영도구", "중구", "해운대구"], "대구": ["군위군", "남구", "달서구", "달성군", "동구", "북구", "서구", "수성구", "중구"], "인천": ["강화군", "계양구", "남동구", "동구", "미추홀구", "부평구", "서구", "연수구", "옹진군", "중구"], "광주": ["광산구", "남구", "동구", "북구", "서구"], "대전": ["대덕구", "동구", "서구", "유성구", "중구"], "울산": ["남구", "동구", "북구", "울주군", "중구"], "세종": [], "경기": ["가평군", "고양시", "과천시", "광명시", "광주시", "구리시", "군포시", "김포시", "남양주시", "동두천시", "부천시", "성남시", "수원시", "시흥시", "안산시", "안성시", "안양시", "양주시", "양평군", "여주시", "연천군", "오산시", "용인시", "의왕시", "의정부시", "이천시", "파주시", "평택시", "포천시", "하남시", "화성시"], "강원": ["강릉시", "고성군", "동해시", "삼척시", "속초시", "양구군", "양양군", "영월군", "원주시", "인제군", "정선군", "철원군", "춘천시", "태백시", "평창군", "홍천군", "화천군", "횡성군"], "충북": ["괴산군", "단양군", "보은군", "영동군", "옥천군", "음성군", "제천시", "증평군", "진천군", "청주시", "충주시"], "충남": ["계룡시", "공주시", "금산군", "논산시", "당진시", "보령시", "부여군", "서산시", "서천군", "아산시", "예산군", "천안시", "청양군", "태안군", "홍성군"], "전북": ["고창군", "군산시", "김제시", "남원시", "무주군", "부안군", "순창군", "완주군", "익산시", "임실군", "장수군", "전주시", "정읍시", "진안군"], "전남": ["강진군", "고흥군", "곡성군", "광양시", "구례군", "나주시", "담양군", "목포시", "무안군", "보성군", "순천시", "신안군", "여수시", "영광군", "영암군", "완도군", "장성군", "장흥군", "진도군", "함평군", "해남군", "화순군"], "경북": ["경산시", "경주시", "고령군", "구미시", "김천시", "문경시", "봉화군", "상주시", "성주군", "안동시", "영덕군", "영양군", "영주시", "영천시", "예천군", "울릉군", "울진군", "의성군", "청도군", "청송군", "칠곡군", "포항시"], "경남": ["거제시", "거창군", "김해시", "남해군", "밀양시", "사천시", "산청군", "양산시", "의령군", "진주시", "창녕군", "창원시", "통영시", "하동군", "함안군", "함양군", "합천군", "고성군"], "제주": ["서귀포시", "제주시"]};
+const UNIVS=[["가천대학교", "경기"], ["가톨릭관동대학교", "강원"], ["가톨릭대학교", "경기"], ["강남대학교", "경기"], ["강원대학교", "강원"], ["건국대학교", "서울"], ["건양대학교", "충남"], ["경기대학교", "경기"], ["경남대학교", "경남"], ["경동대학교", "강원"], ["경북대학교", "대구"], ["경상국립대학교", "경남"], ["경성대학교", "부산"], ["경일대학교", "경북"], ["경희대학교", "서울"], ["계명대학교", "대구"], ["고려대학교", "서울"], ["광운대학교", "서울"], ["광주대학교", "광주"], ["국립경국대학교(구 안동대)", "경북"], ["국립공주대학교", "충남"], ["국립군산대학교", "전북"], ["국립목포대학교", "전남"], ["국립부경대학교", "부산"], ["국립순천대학교", "전남"], ["국립창원대학교", "경남"], ["국립한국교통대학교", "충북"], ["국립한국해양대학교", "부산"], ["국립한밭대학교", "대전"], ["국민대학교", "서울"], ["단국대학교", "경기"], ["대구가톨릭대학교", "경북"], ["대진대학교", "경기"], ["덕성여자대학교", "서울"], ["동국대학교", "서울"], ["동덕여자대학교", "서울"], ["동명대학교", "부산"], ["동서대학교", "부산"], ["동신대학교", "전남"], ["동아대학교", "부산"], ["동의대학교", "부산"], ["명지대학교", "서울"], ["목원대학교", "대전"], ["배재대학교", "대전"], ["백석대학교", "충남"], ["부산가톨릭대학교", "부산"], ["부산대학교", "부산"], ["삼육대학교", "서울"], ["상명대학교", "서울"], ["상지대학교", "강원"], ["서강대학교", "서울"], ["서경대학교", "서울"], ["서울과학기술대학교", "서울"], ["서울교육대학교", "서울"], ["서울대학교", "서울"], ["서울시립대학교", "서울"], ["서울신학대학교", "경기"], ["서울여자대학교", "서울"], ["성결대학교", "경기"], ["성공회대학교", "서울"], ["성균관대학교", "서울"], ["성신여자대학교", "서울"], ["세명대학교", "충북"], ["세종대학교", "서울"], ["수원대학교", "경기"], ["숙명여자대학교", "서울"], ["순천향대학교", "충남"], ["숭실대학교", "서울"], ["신라대학교", "부산"], ["신한대학교", "경기"], ["아주대학교", "경기"], ["안양대학교", "경기"], ["연세대학교", "서울"], ["영남대학교", "경북"], ["영산대학교(와이즈유)", "경남"], ["용인대학교", "경기"], ["울산대학교", "울산"], ["원광대학교", "전북"], ["이화여자대학교", "서울"], ["인제대학교", "경남"], ["인천대학교", "인천"], ["인하대학교", "인천"], ["전남대학교", "광주"], ["전북대학교", "전북"], ["전주대학교", "전북"], ["제주대학교", "제주"], ["조선대학교", "광주"], ["중부대학교", "충남"], ["중앙대학교", "서울"], ["차의과학대학교", "경기"], ["청주대학교", "충북"], ["춘천교육대학교", "강원"], ["충남대학교", "대전"], ["충북대학교", "충북"], ["평택대학교", "경기"], ["포항공과대학교(POSTECH)", "경북"], ["한경국립대학교", "경기"], ["한국공학대학교", "경기"], ["한국교원대학교", "충북"], ["한국기술교육대학교", "충남"], ["한국방송통신대학교", "서울"], ["한국예술종합학교", "서울"], ["한국외국어대학교", "서울"], ["한국체육대학교", "서울"], ["한국항공대학교", "경기"], ["한남대학교", "대전"], ["한동대학교", "경북"], ["한림대학교", "강원"], ["한서대학교", "충남"], ["한성대학교", "서울"], ["한신대학교", "경기"], ["한양대학교", "경기"], ["한양대학교", "서울"], ["호서대학교", "충남"], ["홍익대학교", "서울"]];
 const SIDO=["서울","부산","대구","인천","광주","대전","울산","세종","경기","강원","충북","충남","전북","전남","경북","경남","제주"];
 const FLAGS=[["multi","다자녀(3자녀 이상)"],["disab","장애"],["multicul","다문화"],["nk","북한이탈"],["vet","국가유공·보훈"],["single","한부모"],["basic","기초생활·차상위"],["farm","농어촌"],["art","예체능 특기"],["sport","체육 특기"]];
 const FLAG_RX={multi:/다자녀|셋째|3자녀|세 자녀/,disab:/장애/,multicul:/다문화/,nk:/북한이탈|탈북/,vet:/국가유공|보훈|유공자/,single:/한부모|조손/,basic:/기초생활|차상위|수급자/,farm:/농어촌|농업인|어업인|농어업/,art:/예술|예체능|음악|미술|무용/,sport:/체육|운동선수|스포츠/};
@@ -286,7 +311,8 @@ function match(r,p){
   // 대상
   if(p.level){
     const lv=r.level||"";
-    if(p.level==="고등학생" && lv && lv!=="고등학생") no("고등학생 대상이 아닙니다");
+    if(p.status==="pre" && lv==="고등학생") chk("고교 재학생 대상일 수 있음 — 공고 확인");
+    else if(p.level==="고등학생" && lv && lv!=="고등학생") no("고등학생 대상이 아닙니다");
     else if(p.level!=="고등학생" && lv==="고등학생") no("고등학생 대상 장학금입니다");
     else if(lv==="해외유학") chk("해외 대학 재학·진학자 대상");
   }
@@ -321,21 +347,29 @@ function match(r,p){
     else if(mj.includes("특정학과")) chk("특정 학과 대상 — 학과 확인");
     else no("계열 불일치 ("+mj.join(", ")+")");
   }
-  // 지역
+  // 지역 — 본인·부모·출신 고교·학교 소재지 중 하나라도 맞으면 인정
   const rg=r.region||"";
-  const homes=[[p.sido,p.gu],[p.psido,p.pgu]].filter(h=>h[0]);
-  if(rg && rg!=="전국" && homes.length){
-    const same=homes.filter(h=>h[0]===rg);
-    if(!same.length) no(rg+" 지역 연고 필요 (주민등록 기준)");
-    else if(r.district){
-      const d=r.district.replace(/(시|군|구)$/,"");
-      const hit=same.some(h=>(h[1]||"").includes(d));
-      const unk=same.some(h=>!h[1]);
-      if(hit) (/\d+\s*(년|개월)/.test(r.residence||"")? chk(r.district+" 거주 — 거주 기간 조건 확인"):ok(r.district+" 거주 조건 일치"));
-      else if(unk) chk(r.district+" 거주자 대상 — 시·군·구 확인");
-      else no(r.district+" 거주자 대상");
-    } else (/\d+\s*(년|개월)/.test(r.residence||"")? chk(rg+" 거주 — 거주 기간 조건 확인"):ok(rg+" 지역 조건 일치"));
-  } else if(rg && rg!=="전국" && !homes.length) chk(rg+" 지역 연고 장학금 — 내 조건에 지역을 입력하세요");
+  const res=(r.residence||"")+" "+(r.special||"");
+  const places=[["내 주소",p.sido,p.gu],["부모님 주소",p.psido,p.pgu],["출신 고교",p.hsido,p.hgu],["학교 소재지",p.ssido,""]].filter(h=>h[1]);
+  const wantHs=/고등학교|고교|졸업/.test(res), wantSchool=/(관내|도내|시내|지역)\s*(소재\s*)?대학|소재\s*대학/.test(res);
+  const usable=places.filter(h=>h[0]==="학교 소재지"?wantSchool:h[0]==="출신 고교"?wantHs||!/주민등록|거주/.test(res):true);
+  if(rg && rg!=="전국"){
+    if(!places.length) chk(rg+" 지역 연고 장학금 — 내 정보에 지역을 입력하세요");
+    else{
+      const same=usable.filter(h=>h[1]===rg);
+      const dur=/\d+\s*(년|개월)/.test(r.residence||"");
+      if(!same.length) no(rg+(r.district?" "+r.district:"")+" 연고 필요");
+      else if(r.district){
+        const d=r.district.replace(/(시|군|구)$/,"");
+        const hit=same.find(h=>(h[2]||"").replace(/(시|군|구)$/,"")===d || (h[2]||"").includes(d));
+        if(hit) dur? chk(hit[0]+" "+r.district+" — 거주 기간 조건 확인") : ok(hit[0]+" 기준 "+r.district+" 조건 충족");
+        else if(same.some(h=>!h[2]&&h[0]!=="학교 소재지")) chk(r.district+" 대상 — 내 정보에 시·군·구를 입력하세요");
+        else no(r.district+" 연고 필요");
+      } else dur? chk(same[0][0]+" 기준 "+rg+" — 거주 기간 조건 확인") : ok(same[0][0]+" 기준 "+rg+" 조건 충족");
+    }
+  }
+  // 휴학생
+  if(p.status==="leave" && /휴학/.test((r.restriction||"")+" "+(r.special||""))) no("휴학생 지원 제한");
   // 소득
   const inc=r.income||"";
   if(inc){
@@ -401,7 +435,7 @@ function buildFilters(){
   const OL={"대학 게시판":"대학 공고","대학(교내)":"교내 장학"};
   $("#filters").innerHTML=
     chipGroup("모집 상태","status",[["모집중","모집중"],["예정","접수 예정"],["마감","마감·내년 예상"],["상시/미정","일정 미정"]])+
-    (profile?chipGroup("내 조건 판정","match",[["ok","지원 가능"],["check","확인 필요"],["no","지원 불가"]]):"")+
+    (profile?chipGroup("나에게 맞는지","match",[["ok","지원 가능"],["check","확인 필요"],["no","지원 불가"]]):"")+
     chipGroup("대상","level",[["대학생","대학생"],["고등학생","고등학생"],["해외유학","해외유학"],["학점은행제","학점은행제"]])+
     `<div class="fgroup"><h3>지역</h3><select id="fRegion"><option value="">전체</option><option value="전국">전국 단위만</option>${SIDO.map(s=>`<option ${F.region===s?"selected":""}>${s}</option>`).join("")}</select></div>`+
     chipGroup("운영 기관","orgType",orgs.map(o=>[o,OL[o]||o]))+
@@ -415,6 +449,7 @@ document.addEventListener("click",e=>{
   if(e.target.id==="fReset"){F.within=0;F.status=new Set(["모집중","예정"]);for(const k of["level","orgType","kind","match","source"])F[k]=new Set();F.region="";buildFilters();apply()}
 });
 document.addEventListener("change",e=>{if(e.target.id==="fRegion"){F.region=e.target.value;apply()}});
+$("#goMe").addEventListener("click",()=>{tab("me");window.scrollTo({top:0})});
 $("#toggleFilters").addEventListener("click",()=>$("#filters").classList.toggle("open"));
 
 /* ---------- 목록 ---------- */
@@ -495,7 +530,7 @@ function openDetail(id){
   $("#drawer").innerHTML=`<button class="close" type="button" id="dClose" aria-label="닫기"><svg width="16" height="16" viewBox="0 0 16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button>
     <div class="pills"><span class="pill ${s.hot?"seal":s.key==="모집중"?"live":""}">${esc(s.label)}</span>${r.region?`<span class="pill">${esc(r.region)}${r.district?" "+esc(r.district):""}</span>`:""}${kindLabel(r)?`<span class="pill">${esc(kindLabel(r))}</span>`:""}</div>
     <h2 id="dTitle">${esc(r.title)}</h2><div class="meta">${r.org&&r.org!==r.title?`<span>${esc(r.org)}</span>`:""}${r.amount_won?`<span class="amt">최대 ${esc(won(r.amount_won))}</span>`:""}</div>
-    ${m?`<div class="reasons ${m.verdict}"><b>${VLABEL[m.verdict]}</b> — 내 조건 기준 자동 판단<ul>${m.why.map(([k,t])=>`<li>${k==="ok"?"✓":k==="no"?"✕":"·"} ${esc(t)}</li>`).join("")||"<li>판단할 조건이 없습니다</li>"}</ul></div>`:`<p class="note" style="margin-top:12px">‘내 조건’을 입력하면 지원 가능 여부를 자동으로 판단해 드립니다.</p>`}
+    ${m?`<div class="reasons ${m.verdict}"><b>${VLABEL[m.verdict]}</b> — 내 정보 기준 자동 판단<ul>${m.why.map(([k,t])=>`<li>${k==="ok"?"✓":k==="no"?"✕":"·"} ${esc(t)}</li>`).join("")||"<li>판단할 조건이 없습니다</li>"}</ul></div>`:`<p class="note" style="margin-top:12px">‘내 정보’를 입력하면 지원 가능 여부를 자동으로 판단해 드립니다.</p>`}
     <div class="actions">${links.join("")}</div>
     <dl class="facts">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
     ${r.summary?`<h3>공고 본문</h3><div class="summary">${esc(r.summary)}</div>`:""}
@@ -551,20 +586,30 @@ function renderFav(){const l=DATA.filter(r=>favs.has(r.id)).sort(sorter()); $("#
 /* ---------- 내 조건 ---------- */
 function fillProfile(){
   const opt='<option value="">선택 안 함</option>'+SIDO.map(s=>`<option>${s}</option>`).join("");
-  $("#p_sido").innerHTML=opt; $("#p_psido").innerHTML=opt;
+  for(const id of["p_sido","p_psido","p_hsido","p_ssido"]) $("#"+id).innerHTML=opt;
+  $("#dl_univ").innerHTML=UNIVS.map(([n])=>`<option value="${esc(n)}">`).join("");
+  const fillDl=sel=>{const dl=sel.dataset.dl; if(dl) $("#"+dl).innerHTML=(DIST[sel.value]||[]).map(g=>`<option value="${g}">`).join("")};
+  $$("#profile select[data-dl]").forEach(sel=>{sel.onchange=()=>fillDl(sel)});
+  $("#p_schoolName").onchange=()=>{const u=UNIVS.find(([n])=>n===$("#p_schoolName").value.trim()); if(u&&u[1]&&!$("#p_ssido").value) $("#p_ssido").value=u[1]};
   $("#p_flags").innerHTML=FLAGS.map(([k,l])=>`<label class="chip"><input type="checkbox" value="${k}" id="pf_${k}"> ${l}</label>`).join("");
   const p=profile||{};
-  for(const k of["level","school","schoolName","sem","major","income","gpa","sido","gu","psido","pgu"]) if($("#p_"+k)) $("#p_"+k).value=p[k]??"";
+  if(!p.status && p.level) p.status={"고등학생":"hs","대학원생":"grad","대학생":"univ"}[p.level]||"";
+  for(const k of ["status","school","schoolName","ssido","sem","major","income","gpa","sido","gu","hsido","hgu","psido","pgu"]) if($("#p_"+k)) $("#p_"+k).value=p[k]??"";
+  $$("#profile select[data-dl]").forEach(sel=>{const dl=sel.dataset.dl; $("#"+dl).innerHTML=(DIST[sel.value]||[]).map(g=>`<option value="${g}">`).join("")});
   (p.flags||[]).forEach(k=>{const c=$("#pf_"+k); if(c) c.checked=true});
 }
 $("#profile").addEventListener("submit",e=>{
   e.preventDefault();
-  const p={}; for(const k of["level","school","schoolName","sem","major","income","gpa","sido","gu","psido","pgu"]) p[k]=$("#p_"+k).value.trim();
+  const p={}; for(const k of ["status","school","schoolName","ssido","sem","major","income","gpa","sido","gu","hsido","hgu","psido","pgu"]) p[k]=$("#p_"+k).value.trim();
+  p.level={hs:"고등학생",pre:"대학생",univ:"대학생",leave:"대학생",grad:"대학원생"}[p.status]||"";
+  if(p.status==="pre"&&p.sem==="") p.sem="0";
+  if(p.status==="grad"&&!p.school) p.school="grad";
   p.flags=$$("#p_flags input:checked").map(c=>c.value);
   profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis();
-  $("#p_saved").textContent="저장했습니다. 찾기 화면에 판정이 붙었습니다.";
+  $("#p_saved").textContent="저장했습니다. 이 기기에만 보관됩니다.";
+  F.match=new Set(["ok","check"]); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
 });
-$("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",null); F.match=new Set(); fillProfile(); cache(); buildFilters(); apply(); renderKpis(); $("#p_saved").textContent="조건을 지웠습니다."});
+$("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",null); F.match=new Set(); fillProfile(); cache(); buildFilters(); apply(); renderKpis(); $("#p_saved").textContent="이 기기에서 내 정보를 지웠습니다."});
 
 /* ---------- 새 소식 ---------- */
 function renderSrc(){
@@ -582,7 +627,8 @@ function renderKpis(){
   const ym=TODAY.slice(0,7), nm=iso(new Date(today.getFullYear(),today.getMonth()+1,1)).slice(0,7);
   const soon=DATA.filter(r=>r._s.key==="예정"||(r.next&&(r.next===ym||r.next===nm)));
   const okc=profile?DATA.filter(r=>r._m&&r._m.verdict!=="no"&&(r._s.key==="모집중"||r._s.key==="예정")).length:null;
-  const k=[["live",live.length,"지금 모집중",""],["week",week.length,"7일 안에 마감","hot"],["soon",soon.length,"이번·다음 달 모집 예상",""],["mine",okc==null?DATA.length:okc,okc==null?"전체 장학금":"내 조건으로 지원 검토 가능",""]];
+  $("#meCallout").hidden=!!profile;
+  const k=[["live",live.length,"지금 모집중",""],["week",week.length,"7일 안에 마감","hot"],["soon",soon.length,"이번·다음 달 모집 예상",""],["mine",okc==null?DATA.length:okc,okc==null?"전체 장학금":"나에게 맞는 장학금",""]];
   $("#kpis").innerHTML=k.map(([id,n,l,c])=>`<button class="kpi ${c}" type="button" data-k="${id}"><div class="n">${n.toLocaleString("ko-KR")}</div><div class="l">${l}</div></button>`).join("");
 }
 $("#kpis").addEventListener("click",e=>{const b=e.target.closest("[data-k]"); if(!b) return; tab("find");
