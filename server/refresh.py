@@ -118,6 +118,8 @@ def export(con: sqlite3.Connection, summary: dict):
     for data, first_seen, changed_at in con.execute("select data, first_seen, changed_at from scholarships where active=1"):
         r = json.loads(data)
         r.pop("hash", None)
+        r.pop("source_name", None)  # 화면에 출처 이름을 노출하지 않는다
+        r["links"] = [{"name": "공고 원문", "url": l["url"]} for l in r.get("links", []) if l.get("url")]
         r["first_seen"], r["changed_at"] = first_seen, changed_at
         r["status"] = status_of(r.get("start"), r.get("end"), today)
         r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
@@ -127,7 +129,9 @@ def export(con: sqlite3.Connection, summary: dict):
     (WEB_DATA / "scholarships.json").write_text(payload)
     (WEB_DATA / "scholarships.json.gz").write_bytes(gzip.compress(payload.encode()))
     changes = [dict(zip(("at", "id", "kind", "title"), c)) for c in con.execute("select at,sid,kind,title from changes order by id desc limit 200")]
-    meta = {**summary, "changes": changes, "registry": _registry_summary()}
+    meta = {k: summary[k] for k in ("finishedAt", "total", "new", "changed")}
+    meta["changes"] = changes
+    (ROOT / "data" / "registry" / "last_run.json").write_text(json.dumps({**summary, "registry": _registry_summary()}, ensure_ascii=False, indent=1))
     (WEB_DATA / "meta.json").write_text(json.dumps(meta, ensure_ascii=False))
 
 
