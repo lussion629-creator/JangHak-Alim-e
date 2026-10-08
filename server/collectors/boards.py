@@ -13,7 +13,7 @@ import re
 import time
 import urllib.robotparser
 from concurrent.futures import ThreadPoolExecutor
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
@@ -25,7 +25,8 @@ log = logging.getLogger(__name__)
 ROOT = Path(__file__).resolve().parents[2] / "data"
 UA = "Mozilla/5.0 (compatible; JangakAlimiBot/1.0; +https://github.com/lussion629-creator/JangHak-Alim-e)"
 KEY = re.compile(r"장학|학자금|장학생|인재육성")
-DROP = re.compile(r"(합격자|선발\s*결과|선정\s*결과|결과\s*발표|최종\s*선발자|수혜자\s*명단|지급\s*안내|근로장학생\s*근무)")
+DROP = re.compile(r"(합격자|선발\s*결과|선정\s*결과|결과\s*발표|최종\s*선발자|선발자|수혜자\s*명단|명단|지급\s*(일정|안내|예정)|근로장학생\s*근무|캠페인|부정수급|포기|반환|기부|수여식|직인|날인|설문|만족도|이수\s*안내|운영\s*안내|유의\s*사항|증명서\s*발급|서류\s*제출\s*안내)")
+RECRUIT = re.compile(r"모집|선발|신청|추천|접수|공모|지원\s*사업|장학생")
 DATE = re.compile(r"(20\d{2})[.\-/년]\s*(\d{1,2})[.\-/월]\s*(\d{1,2})")
 DEADLINE = re.compile(r"[~∼〜]\s*(?:(20\d{2})[.\-/])?\s*(\d{1,2})\s*[./월]\s*(\d{1,2})|(\d{1,2})\s*[./]\s*(\d{1,2})\s*\.?\s*\(?[월화수목금토일]?\)?\s*까지")
 
@@ -155,9 +156,12 @@ def collect_one(src: dict, since: str):
         return [], status
     recs = []
     for it in items:
-        if not KEY.search(it["title"]) or DROP.search(it["title"]):
+        if not KEY.search(it["title"]) or DROP.search(it["title"]) or not RECRUIT.search(it["title"]):
             continue
-        if it["posted"] and it["posted"] < since:
+        dl = deadline_from(it["title"], it["posted"])
+        if not it["posted"] and not dl:
+            continue  # 날짜 없는 링크는 대부분 메뉴(‘신입생장학금’, ‘맞춤형 장학검색’ 등)
+        if (it["posted"] or dl) < since:
             continue
         rec = {
             "id": make_id("board", src["id"], it["url"] or it["title"]),
@@ -203,7 +207,7 @@ def load_sources() -> list[dict]:
 def collect(online: bool = True, since: str | None = None, workers: int = 8):
     if not online:
         return [], [{"source": "board", "ok": False, "count": 0, "mode": "offline"}]
-    since = since or date(date.today().year - 1, date.today().month, 1).isoformat()
+    since = since or (date.today() - timedelta(days=120)).isoformat()
     srcs = [s for s in load_sources() if s.get("enabled") and s.get("notice_url")]
     out, statuses = [], []
     with ThreadPoolExecutor(workers) as ex:

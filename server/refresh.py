@@ -15,7 +15,7 @@ from datetime import date
 from pathlib import Path
 
 from .collectors import boards, gov24, hanyang, hyin, kosaf, legacy
-from .model import expected_next, now_iso, status_of
+from .model import expected_next, now_iso, status_of, support_of
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
@@ -118,10 +118,13 @@ def export(con: sqlite3.Connection, summary: dict):
     for data, first_seen, changed_at in con.execute("select data, first_seen, changed_at from scholarships where active=1"):
         r = json.loads(data)
         r.pop("hash", None)
+        if r.get("source") == "board" and r.get("org") == r.get("source_name") and re.search(r"교외|외부|홍보|재단|장학회", r.get("title", "")) and r.get("org_type") == "대학 게시판":
+            r["org"] = ""  # 공고를 옮겨 실은 대학 이름은 운영기관이 아니므로 숨긴다
         r.pop("source_name", None)  # 화면에 출처 이름을 노출하지 않는다
         r["links"] = [{"name": "공고 원문", "url": l["url"]} for l in r.get("links", []) if l.get("url")]
         r["first_seen"], r["changed_at"] = first_seen, changed_at
-        r["status"] = status_of(r.get("start"), r.get("end"), today)
+        r["status"] = status_of(r.get("start"), r.get("end"), today, r.get("posted", ""))
+        r["support"] = support_of(r)
         r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
         rows.append(r)
     rows.sort(key=lambda r: ({"모집중": 0, "예정": 1, "상시/미정": 2, "마감": 3}[r["status"]], r.get("end") or "9999"))

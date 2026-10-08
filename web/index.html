@@ -11,6 +11,7 @@
   --seal:#d4382c; --seal-soft:#fdeceb;
   --ok:#14804a; --ok-soft:#e5f5ec; --no:#c0392b; --no-soft:#fbe9e7; --check:#9a6400; --check-soft:#fdf3dc;
   --shadow:0 1px 2px rgba(18,24,32,.04),0 6px 20px rgba(18,24,32,.06);
+  --c-tuition:#2459c9; --c-tuition-soft:#e6eefc; --c-living:#c0306b; --c-living-soft:#fce8f0; --c-dorm:#6a43c9; --c-dorm-soft:#efe9fc; --c-loan:#5b6573; --c-loan-soft:#eceef1;
   --font:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
   --r-lg:16px; --r:12px; --r-sm:8px;
 }
@@ -20,14 +21,16 @@
   --accent:#4fc1cb; --accent-ink:#06191b; --accent-soft:#123135;
   --seal:#ff7b6e; --seal-soft:#3a1d1a;
   --ok:#5bd394; --ok-soft:#14301f; --no:#ff8a7d; --no-soft:#3a1e1b; --check:#f2bf55; --check-soft:#33290f;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark}}
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark;
+  --c-tuition:#7aa5ff; --c-tuition-soft:#18243d; --c-living:#ff86b5; --c-living-soft:#3a1828; --c-dorm:#b79bff; --c-dorm-soft:#261d40; --c-loan:#a7b0bc; --c-loan-soft:#232a32;}}
 :root[data-theme="dark"]{
   --bg:#0e1216; --surface:#161b21; --surface-2:#1b2128; --ink:#eef1f4; --ink-2:#b4bcc6; --ink-3:#808a96;
   --line:#262d35; --line-2:#20262d;
   --accent:#4fc1cb; --accent-ink:#06191b; --accent-soft:#123135;
   --seal:#ff7b6e; --seal-soft:#3a1d1a;
   --ok:#5bd394; --ok-soft:#14301f; --no:#ff8a7d; --no-soft:#3a1e1b; --check:#f2bf55; --check-soft:#33290f;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark}
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark;
+  --c-tuition:#7aa5ff; --c-tuition-soft:#18243d; --c-living:#ff86b5; --c-living-soft:#3a1828; --c-dorm:#b79bff; --c-dorm-soft:#261d40; --c-loan:#a7b0bc; --c-loan-soft:#232a32;}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--font);margin:0;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
@@ -54,8 +57,8 @@ header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-
 .kpi .l{font-size:13px;color:var(--ink-2);margin-top:8px}
 .kpi.hot .n{color:var(--seal)}
 
-nav.tabs{display:flex;gap:2px;overflow-x:auto;margin-top:20px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;width:max-content;max-width:100%;position:sticky;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:5;box-shadow:var(--shadow)}
-nav.tabs button{border:0;background:none;padding:8px 16px;border-radius:999px;cursor:pointer;white-space:nowrap;font-weight:600;font-size:14px;color:var(--ink-2)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;margin:22px auto 0;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;width:max-content;max-width:100%;position:sticky;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:5;box-shadow:var(--shadow)}
+nav.tabs button{border:0;background:none;padding:9px 20px;border-radius:999px;cursor:pointer;white-space:nowrap;font-weight:600;font-size:14px;color:var(--ink-2)}
 nav.tabs button:hover{color:var(--ink)}
 nav.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
 nav.tabs .count{font-weight:700;font-size:11.5px;margin-left:5px;background:var(--seal);color:#fff;border-radius:999px;padding:0 6px}
@@ -143,6 +146,20 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .note{font-size:13px;color:var(--ink-3);max-width:68ch;margin:0}
 .lead{font-weight:800;font-size:20px;letter-spacing:-.03em;margin:0 0 6px}
 .mfilter{display:none}
+.cats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:18px 0 0}
+.cat{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 16px;font-weight:650;font-size:14px;cursor:pointer;color:var(--ink-2)}
+.cat i{width:10px;height:10px;border-radius:50%;background:var(--c);display:inline-block}
+.cat .n{font-weight:600;font-size:12px;color:var(--ink-3)}
+.cat:hover{border-color:var(--c)}
+.cat[aria-pressed="true"]{background:var(--cs);border-color:var(--c);color:var(--c)}
+.cat[aria-pressed="true"] .n{color:var(--c)}
+.cat.all{--c:var(--ink);--cs:var(--line-2)}
+.cat.tuition,.pill.tuition{--c:var(--c-tuition);--cs:var(--c-tuition-soft)}
+.cat.living,.pill.living{--c:var(--c-living);--cs:var(--c-living-soft)}
+.cat.dorm,.pill.dorm{--c:var(--c-dorm);--cs:var(--c-dorm-soft)}
+.cat.loan,.pill.loan{--c:var(--c-loan);--cs:var(--c-loan-soft)}
+.pill.tuition,.pill.living,.pill.dorm,.pill.loan{background:var(--cs);color:var(--c)}
+.item.sup-tuition{border-left:3px solid var(--c-tuition)} .item.sup-living{border-left:3px solid var(--c-living)} .item.sup-dorm{border-left:3px solid var(--c-dorm)} .item.sup-loan{border-left:3px solid var(--c-loan)}
 .privacy{display:flex;gap:12px;align-items:flex-start;background:var(--accent-soft);color:var(--ink);border-radius:var(--r);padding:14px 16px;margin:10px 0 18px;font-size:14px;line-height:1.55}
 .privacy svg{flex:none;color:var(--accent);margin-top:2px}
 .privacy b{font-weight:700}
@@ -161,7 +178,8 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .kpi{padding:14px}
   .kpi .n{font-size:24px}
-  nav.tabs{width:100%}
+  nav.tabs{width:100%;justify-content:space-between}
+  nav.tabs button{padding:8px 12px;flex:1}
   .item{grid-template-columns:62px minmax(0,1fr) auto;gap:12px;padding:14px 10px 14px 14px}
   .form{grid-template-columns:minmax(0,1fr)}
   .facts{grid-template-columns:86px minmax(0,1fr)}
@@ -176,7 +194,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
   <header class="top">
     <div class="brand">
       <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2.5 9.2 12 4.5l9.5 4.7L12 13.9z" fill="#fff"/><path d="M6.5 11.4v4.3c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.3L12 14.2z" fill="#fff" opacity=".8"/></svg></span>
-      <div><h1>장학알리미</h1><p>전국 장학금을 한곳에서, 내 조건에 맞게</p></div>
+      <h1>장학알리미</h1>
     </div>
     <div class="stamp" id="stamp">자료를 불러오는 중…</div>
   </header>
@@ -191,6 +209,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <button role="tab" data-tab="src" aria-selected="false">새 소식</button>
   </nav>
 
+  <div class="cats" id="cats" role="group" aria-label="지원 종류"></div>
   <main id="view-find" class="layout">
     <aside class="filters" id="filters" aria-label="필터"></aside>
     <section style="min-width:0">
@@ -307,7 +326,7 @@ function match(r,p){
   if(!p) return null;
   const why=[]; let verdict="ok";
   const no=m=>{why.push(["no",m]);verdict="no"}, chk=m=>{why.push(["check",m]); if(verdict!=="no") verdict="check"}, ok=m=>why.push(["ok",m]);
-  const all=[r.amount,r.income,r.gpa,r.special,r.residence,r.restriction,r.summary].join(" ");
+  const all=[r.amount,r.income,r.gpa,r.special,r.residence,r.restriction,r.target,r.summary].join(" ");
   // 대상
   if(p.level){
     const lv=r.level||"";
@@ -324,7 +343,6 @@ function match(r,p){
     if(need.some(n=>st.includes(n))) ok("학교 유형 일치");
     else if(st.includes("특정대학")){
       if(p.schoolName && all.includes(p.schoolName.replace(/학교$/,""))) ok("대상 학교에 포함");
-      else if(r.source==="hyin"||r.source==="hanyang"){ if(p.schoolName && !/한양/.test(p.schoolName)) no("한양대 재학생 대상"); else ok("한양대 재학생 대상"); }
       else chk(onlySpecific?"특정 대학 대상 — 우리 학교 포함 여부 확인":"특정 대학 포함 — 대상 학교 확인");
     } else no("학교 유형이 맞지 않습니다 ("+st.join(", ")+")");
   }
@@ -414,15 +432,24 @@ function match(r,p){
   return {verdict,why};
 }
 const VLABEL={ok:"지원 가능",check:"확인 필요",no:"지원 불가"};
+const SUP=[["tuition","등록금"],["living","생활비"],["dorm","기숙사·주거"],["loan","학자금 대출·이자"]];
+const SUPL=Object.fromEntries(SUP);
+let CAT=store.get("cat","");
+function renderCats(){
+  const base=DATA.filter(r=>r._s.key==="모집중"||r._s.key==="예정");
+  const n=k=>base.filter(r=>!k||(r.support||[]).includes(k)).length;
+  $("#cats").innerHTML=[["","전체"],...SUP].map(([k,l])=>`<button type="button" class="cat ${k||"all"}" data-cat="${k}" aria-pressed="${CAT===k}"><i></i>${l}<span class="n">${n(k)}</span></button>`).join("");
+}
+$("#cats").addEventListener("click",e=>{const b=e.target.closest("[data-cat]"); if(!b) return; CAT=b.dataset.cat; store.set("cat",CAT); renderCats(); if($("#view-find").hidden) tab("find"); apply()});
 
 /* ---------- 상태 ---------- */
 function stat(r){
-  if(r.status==="모집중"){const d=r.end?days(TODAY,r.end):null; return {key:"모집중",d,label:d==null?"모집중":d===0?"오늘 마감":"D-"+d,hot:d!=null&&d<=7}}
+  if(r.status==="모집중"){const d=r.end?days(TODAY,r.end):null; return {key:"모집중",d,label:d==null?(r.posted&&!r.start?"마감일 확인":"모집중"):d===0?"오늘 마감":"D-"+d,hot:d!=null&&d<=7}}
   if(r.status==="예정") return {key:"예정",d:days(TODAY,r.start),label:"D-"+days(TODAY,r.start)+" 시작"};
   if(r.status==="마감") return {key:"마감",label:r.next?r.next.replace("-",".")+" 예상":"마감"};
   return {key:"상시/미정",label:"일정 확인"};
 }
-function cache(){for(const r of DATA){r._s=stat(r); r._m=match(r,profile); r._q=[r.title,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
+function cache(){for(const r of DATA){r._s=stat(r); r._m=match(r,profile); r._q=[r.title,(r.support||[]).map(k=>SUPL[k]).join(" "),r.target,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
 
 /* ---------- 필터 UI ---------- */
 function chipGroup(title,key,opts){
@@ -454,6 +481,7 @@ $("#toggleFilters").addEventListener("click",()=>$("#filters").classList.toggle(
 
 /* ---------- 목록 ---------- */
 function passes(r,q){
+  if(CAT && !(r.support||[]).includes(CAT)) return false;
   if(F.within && !(r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=F.within)) return false;
   if(F.status.size && !F.status.has(r._s.key)) return false;
   if(F.level.size && !F.level.has(r.level==="대학생"||!r.level?"대학생":r.level)) return false;
@@ -484,15 +512,15 @@ function kindLabel(r){const k=(r.kind||"").replace(/\s*·.*$/,""); return !k||k=
 function mainUrl(r){const pub=(r.links||[]).map(l=>safeUrl(l.url)).find(u=>u&&!/portal\.hanyang\.ac\.kr/.test(u)); const own=safeUrl(r.url); if(own&&!/portal\.hanyang\.ac\.kr/.test(own)) return own; return pub||safeUrl(r.apply_url)||own}
 function card(r){
   const s=r._s, m=r._m;
-  const due=`<div class="due ${s.hot?"hot":""} ${s.key==="마감"?"closed":""}"><span class="d">${esc(s.label)}</span><span>${r.end?esc(r.end.slice(5).replace("-","."))+" 마감":r.start?esc(r.start.slice(5).replace("-","."))+" 시작":""}</span></div>`;
+  const due=`<div class="due ${s.hot?"hot":""} ${s.key==="마감"?"closed":""}"><span class="d">${esc(s.label)}</span><span>${r.end?esc(r.end.slice(5).replace("-","."))+" 마감":r.start?esc(r.start.slice(5).replace("-","."))+" 시작":r.posted?esc(r.posted.slice(5).replace("-","."))+" 공고":""}</span></div>`;
   const amt=won(r.amount_won);
-  const pills=[];
+  const pills=(r.support||[]).map(k=>`<span class="pill ${k}">${SUPL[k]}</span>`);
   if(m) pills.push(`<span class="pill ${m.verdict}">${VLABEL[m.verdict]}</span>`);
   if(s.key==="모집중") pills.push(`<span class="pill live">모집중</span>`);
   if(r.region) pills.push(`<span class="pill">${esc(r.region)}${r.district?" "+esc(r.district):""}</span>`);
   const kd=kindLabel(r); if(kd) pills.push(`<span class="pill">${esc(kd)}</span>`);
   if(r.level && r.level!=="대학생") pills.push(`<span class="pill">${esc(r.level)}</span>`);
-  return `<article class="item" data-id="${r.id}" tabindex="0">${due}<div style="min-width:0"><p class="t">${esc(r.title)}</p><div class="meta">${r.org&&r.org!==r.title?`<span>${esc(r.org)}</span>`:""}${amt?`<span class="amt">${esc(amt)}</span>`:""}</div><div class="pills">${pills.join("")}</div></div><button class="star" type="button" data-star="${r.id}" aria-pressed="${favs.has(r.id)}" aria-label="관심 등록"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></button></article>`;
+  return `<article class="item ${r.support&&r.support[0]?"sup-"+r.support[0]:""}" data-id="${r.id}" tabindex="0">${due}<div style="min-width:0"><p class="t">${esc(r.title)}</p><div class="meta">${r.org&&r.org!==r.title?`<span>${esc(r.org)}</span>`:""}${amt?`<span class="amt">${esc(amt)}</span>`:""}</div><div class="pills">${pills.join("")}</div></div><button class="star" type="button" data-star="${r.id}" aria-pressed="${favs.has(r.id)}" aria-label="관심 등록"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></button></article>`;
 }
 function renderMore(){
   const next=view.slice(shown,shown+60); shown+=next.length;
@@ -520,7 +548,7 @@ function gcal(r){
 function openDetail(id){
   const r=BYID[id]; if(!r) return;
   const m=r._m, s=r._s;
-  const rows=[["운영기관",r.org],["모집 기간",(r.start||"?")+" ~ "+(r.end||"?")+(r.next?"\n다음 모집 예상: "+r.next.replace("-","년 ")+"월 (작년 일정 기준)":"")],["지원 내용",r.amount],["선발 인원",r.quota],["대상 학교",(r.source==="hyin"||r.source==="hanyang")?"한양대학교 재학생":(r.school_types||[]).join(", ")],["학년·학기",(r.grades||[]).join(", ")],["계열",(r.majors||[]).join(", ")],["지역",[r.region,r.district].filter(Boolean).join(" ")],["거주 조건",r.residence],["소득 기준",r.income],["성적 기준",r.gpa],["특정 자격",r.special],["자격 제한",r.restriction],["추천",r.recommend],["선발 방법",r.selection],["제출 서류",r.documents],["첨부파일",(r.files||[]).join("\n")],["처음 등록",(r.posted||r.first_seen||"").slice(0,10)]].filter(x=>x[1]&&String(x[1]).trim());
+  const rows=[["운영기관",r.org],["모집 기간",(r.start||"?")+" ~ "+(r.end||"?")+(r.next?"\n다음 모집 예상: "+r.next.replace("-","년 ")+"월 (작년 일정 기준)":"")],["지원 종류",(r.support||[]).map(k=>SUPL[k]).join(", ")],["지원 내용",r.amount],["선발 인원",r.quota],["지원 대상",r.target||((r.source==="hyin"||r.source==="hanyang")&&(r.images||[]).length?"공고 이미지에 있음 — 아래 ‘공고 이미지’에서 확인":"")],["대상 학교",(r.school_types||[]).join(", ")],["학년·학기",(r.grades||[]).join(", ")],["계열",(r.majors||[]).join(", ")],["지역",[r.region,r.district].filter(Boolean).join(" ")],["거주 조건",r.residence],["소득 기준",r.income],["성적 기준",r.gpa],["특정 자격",r.special],["자격 제한",r.restriction],["추천",r.recommend],["선발 방법",r.selection],["제출 서류",r.documents],["첨부파일",(r.files||[]).join("\n")],["처음 등록",(r.posted||r.first_seen||"").slice(0,10)]].filter(x=>x[1]&&String(x[1]).trim());
   const links=[];
   const mu=mainUrl(r);
   if(mu) links.push(`<a class="btn primary" href="${esc(mu)}" target="_blank" rel="noopener noreferrer">공고 원문 보기</a>`);
@@ -534,7 +562,7 @@ function openDetail(id){
     <div class="actions">${links.join("")}</div>
     <dl class="facts">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
     ${r.summary?`<h3>공고 본문</h3><div class="summary">${esc(r.summary)}</div>`:""}
-    ${(r.images||[]).length?`<p class="note">이미지 공고 ${r.images.length}장: ${r.images.slice(0,4).filter(safeUrl).map((u,i)=>`<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">이미지 ${i+1}</a>`).join(" · ")}</p>`:""}
+    ${(r.images||[]).length?`<h3>공고 이미지</h3><p class="note">${r.images.length}장: ${r.images.slice(0,4).filter(safeUrl).map((u,i)=>`<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">이미지 ${i+1}</a>`).join(" · ")}</p>`:""}
 `;
   $("#drawer").hidden=false; $("#scrim").hidden=false; $("#dClose").focus();
 }
@@ -546,6 +574,7 @@ document.addEventListener("click",e=>{if(e.target.id==="dClose")closeDetail()});
 function tab(name){
   $$("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===name));
   for(const v of["find","cal","fav","me","src"]) $("#view-"+v).hidden=v!==name;
+  $("#cats").hidden=name!=="find";
   if(name==="cal") renderCal(); if(name==="fav") renderFav(); if(name==="src") renderSrc();
   store.set("tab",name);
 }
@@ -609,13 +638,13 @@ $("#profile").addEventListener("submit",e=>{
   $("#p_saved").textContent="저장했습니다. 이 기기에만 보관됩니다.";
   F.match=new Set(["ok","check"]); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
 });
-$("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",null); F.match=new Set(); fillProfile(); cache(); buildFilters(); apply(); renderKpis(); $("#p_saved").textContent="이 기기에서 내 정보를 지웠습니다."});
+$("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",null); F.match=new Set(); fillProfile(); cache(); buildFilters(); apply(); renderKpis(); renderCats(); $("#p_saved").textContent="이 기기에서 내 정보를 지웠습니다."});
 
 /* ---------- 새 소식 ---------- */
 function renderSrc(){
   const when=(META.finishedAt||"").replace("T"," ").slice(0,16);
   $("#srcReport").textContent=`마지막 갱신 ${when} · 전체 ${(META.total||DATA.length).toLocaleString("ko-KR")}건 · 이번에 새로 ${META.new||0}건, 바뀜 ${META.changed||0}건`;
-  const ch=(META.changes||[]).slice(0,40).map(c=>BYID[c.id]).filter(Boolean);
+  const ch=(META.changes||[]).filter(c=>c.kind==="new").slice(0,40).map(c=>BYID[c.id]).filter(Boolean);
   $("#changes").innerHTML=ch.map(card).join("")||`<div class="empty">다음 갱신부터 새로 올라온 장학금이 여기에 쌓입니다.</div>`;
   $("#remoteForm").innerHTML=`<label class="full">갱신 서버 주소<input type="text" id="remoteUrl" placeholder="https://…" value="${esc(store.get("remote",""))}"></label><div class="full actions" style="margin-top:0;align-items:center"><button class="btn primary" type="button" id="remoteSave">저장하고 다시 불러오기</button><span class="note">${esc(SRC)}</span></div><p class="note full">주소를 넣으면 앱을 열 때마다 최신 장학금 목록을 받아 옵니다. 비워 두면 이 기기에 저장된 목록을 씁니다.</p>`;
   $("#remoteSave").onclick=()=>{const v=$("#remoteUrl").value.trim(); if(v && !/^https:\/\/[^\s/]+/.test(v)){$("#remoteUrl").setCustomValidity("https:// 로 시작하는 주소만 쓸 수 있습니다");$("#remoteUrl").reportValidity();return} store.set("remote",v); location.reload()};
@@ -648,7 +677,7 @@ async function boot(){
     DATA=d.items; META=m; DATA.forEach(r=>BYID[r.id]=r);
     const g=new Date(d.generatedAt||Date.now()); $("#stamp").innerHTML=`장학금 <b>${DATA.length.toLocaleString("ko-KR")}</b>건<br>${g.getMonth()+1}월 ${g.getDate()}일 ${String(g.getHours()).padStart(2,"0")}:${String(g.getMinutes()).padStart(2,"0")} 업데이트`;
   }catch(e){ $("#stamp").textContent="자료를 불러오지 못했습니다. 페이지를 새로고침하세요."; return }
-  fillProfile(); cache(); buildFilters(); renderKpis(); apply(); $("#favCount").textContent=favs.size||"";
+  fillProfile(); cache(); buildFilters(); renderKpis(); renderCats(); apply(); $("#favCount").textContent=favs.size||"";
   const t=store.get("tab","find"); if(t!=="find") tab(t);
   // 안드로이드 앱: 관심 장학금 마감 3일 전 알림 (하루 한 번)
   try{ if(window.AndroidBridge && store.get("notified","")!==TODAY){

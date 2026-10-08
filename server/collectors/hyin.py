@@ -10,7 +10,7 @@ import json
 import re
 from pathlib import Path
 
-from ..model import finalize, make_id, norm_date
+from ..model import extract_target, finalize, lines_with, make_id, norm_date
 
 ROOT = Path(__file__).resolve().parents[2] / "data"
 TERM = {"10": "1학기", "20": "2학기", "15": "여름학기", "25": "겨울학기"}
@@ -66,7 +66,10 @@ def collect(online: bool = True):
             "category": "학자금" if "대출" in title else "장학금",
             "kind": f"{kind}장학 · {x['year']} {TERM.get(x['term'], x['term'])}",
             "level": "대학생",
-            "school_types": ["특정대학"],
+            "school_types": [],
+            "target": extract_target(text),
+            "gpa": lines_with(extract_target(text) or text[:1500], r"평점|학점|성적|GPA"),
+            "income": lines_with(extract_target(text) or text[:1500], r"소득|분위|구간|기초생활|차상위|가계곤란"),
             "amount": amount_from(text),
             "selection": f"접수처: {d.get('office')}" if d.get("office") else "",
             "documents": "\n".join("○ " + s for s in d.get("docs", [])),

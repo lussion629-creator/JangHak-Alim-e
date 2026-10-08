@@ -13,7 +13,7 @@ FIELDS = [
     "school_types", "grades", "majors", "region", "district", "amount", "amount_won",
     "income", "gpa", "special", "residence", "selection", "quota", "restriction", "recommend",
     "documents", "url", "apply_url", "start", "end", "posted", "summary", "images", "files",
-    "links", "verified",
+    "links", "verified", "target",
 ]
 
 NA = {"", "해당없음", "-", "없음", "※ 기관확인필요", "기관확인필요"}
@@ -82,8 +82,11 @@ def split_tokens(text: str, tokens) -> list[str]:
     return out
 
 
-def status_of(start: str, end: str, today: str | None = None) -> str:
+def status_of(start: str, end: str, today: str | None = None, posted: str = "") -> str:
     today = today or date.today().isoformat()
+    if not start and not end and posted:
+        from datetime import timedelta
+        return "모집중" if posted >= (date.fromisoformat(today) - timedelta(days=30)).isoformat() else "마감"
     if end and end < today:
         return "마감"
     if start and start > today:
@@ -138,6 +141,59 @@ def finalize(rec: dict) -> dict:
     payload = {k: v for k, v in out.items() if k not in ("id",)}
     out["hash"] = hashlib.sha1(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:12]
     return out
+
+
+_PFX = r"^\s*(?:[0-9]+[.)]|[가-하][.)]|[■□○●▶▷◆◇※\-·•<\[])?\s*"
+_HEADS = [r"(자격\s*요건|신청\s*자격|지원\s*자격|선발\s*자격|자\s*격)", r"(지원\s*대상|선발\s*대상|모집\s*대상|신청\s*대상)", r"(대\s*상)"]
+_NEXT = re.compile(r"^\s*(?:[0-9]+[.)]|[가-하][.)]|[■□▶◆]|\[)\s*(지원\s*(금액|내용|내역|규모)|장학\s*금액|선발\s*(인원|방법|절차|일정)|제출\s*(서류|방법)|신청\s*(방법|기간)|접수|일정|문의|기타|유의|중요)")
+
+
+def extract_target(text: str) -> str:
+    """공고 본문에서 '자격 요건/지원 대상' 부분만 뽑는다. 인원만 적힌 '대상: 총 2명'은 건너뛴다."""
+    if not text:
+        return ""
+    lines = [l.rstrip() for l in text.splitlines()]
+    for head in _HEADS:
+        rx = re.compile(_PFX + head + r"\s*[\]>:)]?\s*:?")
+        for i, l in enumerate(lines):
+            m = rx.match(l)
+            if not m:
+                continue
+            out = []
+            rest = l[m.end():].strip(" :-")
+            if rest:
+                out.append(rest)
+            for l2 in lines[i + 1:]:
+                if _NEXT.match(l2) or (not l2.strip() and len(out) >= 2):
+                    break
+                if l2.strip():
+                    out.append(l2.strip())
+                if len(out) >= 12:
+                    break
+            block = "\n".join(out).strip()
+            if block and not re.fullmatch(r"(총\s*)?\d+\s*명.*", block.split("\n")[0]) or len(out) > 1:
+                return block[:700]
+    return ""
+
+
+def lines_with(text: str, rx: str) -> str:
+    return "\n".join(l.strip() for l in (text or "").splitlines() if re.search(rx, l))[:400]
+
+
+SUPPORT = [
+    ("dorm", r"기숙사|생활관|학사관|주거|숙소|입주|월세|임대주택|공공학사|행복기숙사"),
+    ("tuition", r"등록금|수업료|학비|납입금|입학금|실납입"),
+    ("living", r"생활비|생활\s*지원|생활장학|학업\s*장려|면학|생계|교통비|식비|도서구입"),
+    ("loan", r"대출|이자\s*지원|이자지원|상환"),
+]
+
+
+def support_of(r: dict) -> list:
+    text = " ".join([r.get("title", ""), r.get("amount", ""), r.get("kind", ""), (r.get("summary") or "")[:500]])
+    tags = [k for k, rx in SUPPORT if re.search(rx, text)]
+    if "loan" in tags and len(tags) > 1 and not re.search(r"대출|이자", r.get("title", "")):
+        tags.remove("loan")
+    return tags
 
 
 def now_iso() -> str:

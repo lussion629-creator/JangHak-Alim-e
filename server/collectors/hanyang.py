@@ -67,7 +67,7 @@ def collect(online: bool = True):
             "id": make_id("hanyang", r["id"]), "source": "hanyang", "source_name": "한양대 공지사항(장학/등록)",
             "title": r["title"], "org": "한양대학교" + (" " + r["campus"] if r.get("campus") in ("서울", "ERICA") else ""),
             "org_type": "대학(교내)", "category": "학자금" if "대출" in r["title"] else "장학금", "kind": "공고",
-            "level": "대학생", "school_types": ["특정대학"], "region": "서울" if r.get("campus") != "ERICA" else "경기",
+            "level": "대학생", "region": "서울" if r.get("campus") != "ERICA" else "경기",
             "selection": "담당: " + r.get("dept", ""), "url": VIEW.format(p=PID, id=r["id"]), "posted": r["date"],
             "start": start, "end": end, "files": r.get("files", []), "verified": True,
         }))

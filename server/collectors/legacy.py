@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from ..model import finalize, make_id, norm_date
+from ..model import extract_target, finalize, make_id, norm_date
 
 SEED = Path(__file__).resolve().parents[2] / "data" / "seed"
 
@@ -33,6 +33,7 @@ def _rec(x: dict, src: str) -> dict:
         "links": [s for s in (x.get("sources") or []) if isinstance(s, dict)][:3],
         "region": x.get("region") if x.get("region") not in (None, "", "확인 필요") else "",
         "residence": facts.get("지역 조건", ""),
+        "target": x.get("eligibility") or extract_target(x.get("summary") or ""),
         "verified": bool(x.get("verified")),
     })
 
