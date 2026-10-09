@@ -60,6 +60,38 @@ def _richness(r: dict) -> int:
     return sum(1 for k in FILL if r.get(k)) * 10 - RANK.get(r.get("source"), 5)
 
 
+PROG_COMMON = re.compile(r"^(대학|대학원|일반|지원|사업|지원사업|특별|우수|성적|성적우수|학업|장려|학업장려|프로그램|재학|신입|신입생|재학생|국가|지역|인재|인재육성|육성|희망|미래|청년|연수|국외연수|해외|대상|모집|선발|안내|공고|하반기|상반기|차|년|학기|추가|정기|기타|기명|까지|석사|박사|석박사|학부|과정|대학원생|사전|사전공고|본공고|변경|수정|재공고)$")
+
+
+def _prog_tokens(r: dict) -> set:
+    """같은 기관의 서로 다른 장학 프로그램(예: 우양 '동행' vs '늘품')을 가르는 이름 조각."""
+    org = r.get("org") or ""
+    same = _hangul(org) == _hangul(r.get("title", ""))
+    out = set()
+    t = re.sub(r"^\s*(\([^)]*\)\s*)+", " ", re.sub(r"\[[^\]]*\]", " ", r.get("title", "")))
+    for w in re.findall(r"[가-힣A-Za-z]{2,}", t):
+        if re.search(SUFFIX, w) or w in ("재단법인", "사단법인", "사회복지법인"):
+            continue
+        w = re.sub(STOP, "", w)
+        if len(w) < 2 or PROG_COMMON.match(w) or re.search(r"[시군구도]$", w) and len(w) <= 4 or re.search(r"(특별자치도|특별자치시|광역시|특별시)$", w):
+            continue
+        if not same and org and (w in org or w in re.sub(r"\s", "", org)):
+            continue
+        out.add(w)
+    return out
+
+
+def _prog_overlap(a: set, b: set) -> bool:
+    for x in a:
+        for y in b:
+            if x in y or y in x:
+                return True
+            gx, gy = {x[k:k + 2] for k in range(len(x) - 1)}, {y[k:k + 2] for k in range(len(y) - 1)}
+            if gx and gy and len(gx & gy) / len(gx | gy) >= 0.5:
+                return True
+    return False
+
+
 def merge(rows: list[dict]) -> list[dict]:
     n = len(rows)
     parent = list(range(n))
@@ -105,11 +137,16 @@ def merge(rows: list[dict]) -> list[dict]:
         org_is_title = _hangul(r.get("org", "")) == _hangul(r.get("title", ""))  # HY-in 처럼 제목을 기관명으로 쓴 경우
         anchor = oc if (len(oc) >= 2 and not info[i][2] and not org_is_title and not re.search(r"대학교?$|대$", r.get("org", ""))) else ""
         d = _key_date(r)
-        meta[i] = {"fam": {FAMILY.get(r["source"])} - {None}, "orgs": {anchor} - {""}, "lo": d, "hi": d}
+        meta[i] = {"fam": {FAMILY.get(r["source"])} - {None}, "orgs": {anchor} - {""}, "lo": d, "hi": d, "prog": _prog_tokens(r)}
 
     def compatible(a, b):
         if a["fam"] & b["fam"]:
             return False
+        anchors = a["orgs"] | b["orgs"]
+        pa = {w for w in a["prog"] if not any(w in o or o in w for o in anchors)}
+        pb = {w for w in b["prog"] if not any(w in o or o in w for o in anchors)}
+        if pa and pb and not _prog_overlap(pa, pb):
+            return False  # 같은 기관의 다른 프로그램
         for x in a["orgs"]:
             for y in b["orgs"]:
                 if not (x in y or y in x):
@@ -124,7 +161,7 @@ def merge(rows: list[dict]) -> list[dict]:
             return
         a, b = meta[pi], meta[pj]
         ds = [d for d in (a["lo"], a["hi"], b["lo"], b["hi"]) if d]
-        meta[pi] = {"fam": a["fam"] | b["fam"], "orgs": a["orgs"] | b["orgs"], "lo": min(ds) if ds else None, "hi": max(ds) if ds else None}
+        meta[pi] = {"fam": a["fam"] | b["fam"], "orgs": a["orgs"] | b["orgs"], "lo": min(ds) if ds else None, "hi": max(ds) if ds else None, "prog": a["prog"] | b["prog"]}
         parent[pj] = pi
 
     # 1) 같은 기관 핵심 이름
@@ -253,6 +290,7 @@ def merge(rows: list[dict]) -> list[dict]:
         rep["_alltext"] = " ".join(" ".join(str(m.get(k) or "") for k in ("title", "org", "target", "special", "restriction", "residence", "recommend", "selection"))
                                    + " " + (m.get("summary") or "")[:2500] for m in members)
         rep["dupes"] = len(members) - 1
+        rep["_ids"] = [m.get("id") for m in members]
         out.append(rep)
     return out
 
@@ -306,7 +344,7 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
         hy_named = bool(re.search(r"한양대|한양여대|한양여자대|한양\s*대학교|HYU", text.replace("한양·한여", "")))
         if r.get("level") == "해외유학" and ABROAD_NO.search(r.get("title", "") + " " + (r.get("target") or "")):
             continue
-        if srcs <= {"board", "legacy"} and OWN.search(r.get("title", "")) and not hy_named:
+        if srcs <= {"board", "legacy"} and (OWN.search(r.get("title", "")) or re.search(r"추천자\s*(선발|모집)|추천\s*대상자", r.get("title", ""))) and not hy_named:
             continue  # 다른 대학의 교내·근로·학과 장학
         elig = " ".join(str(r.get(k) or "") for k in ("title", "target", "special", "residence", "restriction"))
         drop = False
@@ -343,6 +381,13 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
             continue  # 공고에 다른 대학 이름만 대상으로 적힌 장학
         neg = NEG.search(text)
         if neg and not hy_named:
+            continue
+        if "dreamspon" in srcs and srcs <= {"dreamspon", "board", "legacy"}:
+            # 전국 대상 장학 모음에 올라온 공고: 산학 협약처럼 특정 대학만 받는 것은 빼고, 학교 조건은 원문 확인으로 표시
+            if re.search(r"산학", r.get("title", "") + " " + (r.get("special") or "")) or not (r.get("_st_all") or r.get("school_types")):
+                continue
+            r["school_check"] = True
+            out.append(r)
             continue
         kosaf = any(x.startswith("kosaf") for x in srcs)
         if kosaf:

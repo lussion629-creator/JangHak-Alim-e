@@ -15,14 +15,14 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
-from .collectors import boards, gov24, hanyang, hyin, kosaf, legacy
+from .collectors import boards, dreamspon, gov24, hanyang, hyin, kosaf, legacy
 from .merge import for_school, merge
 from .model import summarize_body, expected_next, now_iso, status_of, support_of
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
 WEB_DATA = ROOT / "web" / "data"
-COLLECTORS = [("kosaf", kosaf), ("hyin", hyin), ("hanyang", hanyang), ("board", boards), ("gov24", gov24), ("legacy", legacy)]
+COLLECTORS = [("kosaf", kosaf), ("hyin", hyin), ("hanyang", hanyang), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
 log = logging.getLogger("refresh")
 
 
@@ -175,6 +175,18 @@ def export(con: sqlite3.Connection, summary: dict):
                     r["org"] = org
                     break
     rows = merge(rows)  # 같은 장학금이 여러 곳에 올라온 경우 하나만 남긴다
+    # 최근 7일 안에 새로 들어오거나 바뀐 장학금 표시 (합쳐진 공고 중 하나라도 해당하면)
+    from datetime import timedelta
+    since = (date.today() - timedelta(days=7)).isoformat()
+    recent = {}
+    for at, sid, kind in con.execute("select at, sid, kind from changes where at >= ? order by id", (since,)):
+        if kind == "new" or sid not in recent:
+            recent[sid] = (kind, at[:10])
+    for r in rows:
+        hits = [recent[i] for i in r.pop("_ids", []) if i in recent]
+        if hits:
+            kind = "new" if any(k == "new" for k, _ in hits) else "updated"
+            r["fresh"] = {"kind": kind, "at": max(a for _, a in hits)}
     rows = for_school(rows, os.environ.get("TARGET_SCHOOL", "한양대학교,한양여자대학교"))  # 한양대·한양여대 학생이 지원할 수 없는 장학금 제외
     for r in rows:
         r["status"] = status_of(r.get("start"), r.get("end"), today, r.get("posted", ""))

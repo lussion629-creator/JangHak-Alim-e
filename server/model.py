@@ -185,12 +185,15 @@ SUPPORT = [
     ("tuition", r"등록금|수업료|학비|납입금|입학금|실납입"),
     ("living", r"생활비|생활\s*지원|생활장학|학업\s*장려|면학|생계|교통비|식비|도서구입"),
     ("loan", r"대출|이자\s*지원|이자지원|상환"),
+    ("work", r"근로장학|국가근로|교내근로|교외근로|근로학생|장학조교|생활도우미|학생\s*도우미"),
 ]
 
 
 def support_of(r: dict) -> list:
     text = " ".join([r.get("title", ""), r.get("amount", ""), r.get("kind", ""), (r.get("summary") or "")[:500]])
     tags = [k for k, rx in SUPPORT if re.search(rx, text)]
+    if "work" in tags or r.get("kind") in ("교내근로", "교외근로"):
+        return ["work"]  # 근로장학은 근로 칸에만 둔다
     if "loan" in tags and len(tags) > 1 and not re.search(r"대출|이자", r.get("title", "")):
         tags.remove("loan")
     return tags
@@ -212,7 +215,9 @@ _LABELS = [
     ("신청 방법", r"(신청|접수|지원)\s*(방법|처)|접\s*수\s*처|제출\s*방법"),
     ("제출 서류", r"(제출|구비)\s*서류"),
     ("선발 방법", r"선발\s*(방법|과정|절차|일정)|심사\s*방법"),
-    ("문의", r"문\s*의\s*(처)?|담\s*당"),
+    ("하는 일", r"주요\s*업무|업무\s*내용|담당\s*업무|근로\s*내용"),
+    ("근무 조건", r"근무\s*(조건|장소|시간|일시|기간|요일)|급\s*여|시\s*급"),
+    ("문의", r"문\s*의\s*(처|사항)?|담\s*당\s*자?"),
 ]
 _LAB_RX = re.compile(r"^\s*(?:[0-9]{1,2}\s*[.)]|[가-하]\s*[.)]|[■□○●▶▷◆◇❍•·\-]|\[)?\s*(" + "|".join(f"(?P<g{i}>{rx})" for i, (_, rx) in enumerate(_LABELS)) + r")(?![가-힣])\s*[\]:：]?\s*[:：]?\s*(?P<rest>.*)$")
 
@@ -307,6 +312,10 @@ def summarize_body(text: str, title: str = "") -> dict:
             lab = next(_LABELS[i][0] for i in range(len(_LABELS)) if m.group(f"g{i}"))
             cur = lab
             rest = m.group("rest").strip(" :：-")
+            if lab == "근무 조건" and rest:
+                said = re.sub(r"\s+", " ", m.group(f"g{[x[0] for x in _LABELS].index(lab)}"))
+                if not re.search(r"조건", said):
+                    rest = f"{said}: {rest}"
             fields.setdefault(cur, [])
             if rest:
                 fields[cur].append(rest)
