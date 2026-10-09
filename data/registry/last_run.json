@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-09T02:48:49+00:00",
- "finishedAt": "2026-10-09T02:52:34+00:00",
+ "startedAt": "2026-10-09T02:54:34+00:00",
+ "finishedAt": "2026-10-09T03:06:31+00:00",
  "online": true,
- "total": 4196,
- "new": 4,
- "changed": 178,
+ "total": 4214,
+ "new": 10,
+ "changed": 245,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -53,8 +53,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 150곳",
    "ok": true,
-   "count": 618,
-   "mode": "성공 121 / 실패 29"
+   "count": 647,
+   "mode": "성공 122 / 실패 28"
   },
   {
    "source": "gov24",
@@ -523,7 +523,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 12
    },
    {
     "name": "서울여자대학교",
@@ -692,8 +692,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -843,7 +843,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 5
    },
    {
     "name": "한경국립대학교",
