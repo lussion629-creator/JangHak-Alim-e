@@ -9,13 +9,20 @@ jobs:
       - run: |
           set +e; exec > probe.txt 2>&1
           UA="Mozilla/5.0 (scholarship-aggregator)"
-          for u in https://www.sogang.ac.kr/robots.txt https://saint.sogang.ac.kr/robots.txt; do echo "=== $u"; curl -sSL -m 20 -A "$UA" "$u" | head -c 3000; echo; done
-          echo "=== SG LIST"; curl -sSL -m 25 -A "$UA" "https://www.sogang.ac.kr/ko/scholarship-notice" > sg.html; wc -c sg.html
+          # 서강대 서버가 중간 인증서를 보내지 않으므로 인증서의 AIA 주소에서 받아 묶음에 더한다 (검증은 그대로)
+          echo | openssl s_client -connect www.sogang.ac.kr:443 -servername www.sogang.ac.kr -showcerts 2>/dev/null > chain.txt
+          grep -c "BEGIN CERT" chain.txt; openssl x509 -in chain.txt -noout -subject -issuer -ext authorityInfoAccess
+          AIA=$(openssl x509 -in chain.txt -noout -ext authorityInfoAccess | grep -o 'CA Issuers - URI:[^ ]*' | sed 's/CA Issuers - URI://')
+          echo "AIA=$AIA"; curl -sSL -m 20 "$AIA" -o inter.der; openssl x509 -inform der -in inter.der -out inter.pem 2>/dev/null || cp inter.der inter.pem
+          openssl x509 -in inter.pem -noout -subject -issuer
+          cat /etc/ssl/certs/ca-certificates.crt inter.pem > bundle.pem
+          C="curl -sSL -m 25 --cacert bundle.pem -A"
+          for u in https://www.sogang.ac.kr/robots.txt https://saint.sogang.ac.kr/robots.txt; do echo "=== $u"; $C "$UA" "$u" | head -c 3000; echo; done
+          echo "=== SG LIST"; $C "$UA" "https://www.sogang.ac.kr/ko/scholarship-notice" > sg.html; wc -c sg.html
           grep -o '<script[^>]*src="[^"]*"' sg.html | head -20
-          grep -o -i 'api[^"'"'"' ]*' sg.html | sort -u | head -30
-          echo "=== SG JS"; for js in $(grep -o '<script[^>]*src="[^"]*"' sg.html | grep -o 'src="[^"]*"' | cut -d'"' -f2 | head -12); do case $js in http*) u=$js;; *) u="https://www.sogang.ac.kr$js";; esac; curl -sSL -m 20 -A "$UA" "$u" > j.js; echo "-- $u $(wc -c < j.js)"; grep -o -E '"/?api/[^"]{3,80}"|bbsConfigFk[^,;]{0,80}|/api/[A-Za-z0-9_/{}$.-]{3,80}' j.js | sort -u | head -30; done
-          echo "=== SG API TRY"; for u in "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?pageNum=1&pageSize=20&bbsConfigFk=141" "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?bbsConfigFk=141&pageNum=1&pageSize=20&title=&content=&writer="; do echo "-- $u"; curl -sSL -m 20 -A "$UA" "$u" | head -c 1500; echo; done
-          echo "=== SAINT"; curl -sSL -m 20 -A "Mozilla/5.0 (iPhone)" -o saint.html -w "%{url_effective} %{http_code}\n" "https://saint.sogang.ac.kr/"; wc -c saint.html; grep -n -i "<form\|<input\|<button\|captcha\|location\|<script src\|login\|iframe" saint.html | head -60
+          echo "=== SG JS"; for js in $(grep -o '<script[^>]*src="[^"]*"' sg.html | grep -o 'src="[^"]*"' | cut -d'"' -f2 | head -15); do case $js in http*) u=$js;; *) u="https://www.sogang.ac.kr$js";; esac; $C "$UA" "$u" > j.js; echo "-- $u $(wc -c < j.js)"; grep -o -E '"/?api/[^"]{3,80}"|bbsConfigF[kK][^,;]{0,80}|/api/[A-Za-z0-9_/{}$.-]{3,80}' j.js | sort -u | head -30; done
+          echo "=== SG API TRY"; for u in "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?pageNum=1&pageSize=20&bbsConfigFk=141" ; do echo "-- $u"; $C "$UA" "$u" | head -c 2500; echo; done
+          echo "=== SAINT"; $C "Mozilla/5.0 (iPhone)" -o saint.html -w "%{url_effective} %{http_code}\n" "https://saint.sogang.ac.kr/"; wc -c saint.html; grep -n -i "<form\|<input\|<button\|captcha\|location\|<script src\|login\|iframe" saint.html | head -60
       - if: always()
         run: |
           git init -q out && cd out && cp ../*.html ../probe.txt . 2>/dev/null; git checkout -q -b probe-out
