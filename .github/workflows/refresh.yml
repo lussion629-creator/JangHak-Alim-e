@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
   push:
     branches: [main]
-    paths: ["web/**", "server/**", "scripts/**", "data/registry/**", "data/imports/**"]
+    paths: ["web/**", "server/**", "scripts/**", "data/registry/**", "data/imports/**", "data/seed/hanyang_work.json"]
 # 기본 권한은 읽기만. 필요한 작업에서만 권한을 연다.
 permissions:
   contents: read
