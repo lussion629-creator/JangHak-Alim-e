@@ -96,7 +96,8 @@ def _due(title: str, posted: str) -> str:
 
 
 def _load(online, cat, seed, pages):
-    if online:
+    from .boards import allowed
+    if online and allowed(LIST.format(p=PID, page=1, cat=cat)):  # robots.txt 가 막으면 저장된 목록만 쓴다
         try:
             rows = fetch(pages, cat)
             seed.write_text(json.dumps({"records": rows}, ensure_ascii=False))
@@ -109,11 +110,17 @@ def _load(online, cat, seed, pages):
 def collect(online: bool = True):
     rows, mode = _load(online, CAT_SCH, SEED, 8)
     jobs, mode2 = _load(online, CAT_JOB, WORK_SEED, 6)
+    ids = {r["id"] for r in rows}
+    rows += [r for r in jobs if r.get("cat") == CAT_SCH and r["id"] not in ids]
+    jobs = [r for r in jobs if r.get("cat", CAT_JOB) == CAT_JOB]
     jobs = [r for r in jobs if WORK.search(r["title"]) and not NOT_WORK.search(r["title"])]
     bodies = {}
-    if online:
+    if mode2 == "online":
         for r in jobs[:30]:
             bodies[r["id"]] = detail(VIEW.format(p=PID, id=r["id"], cat=CAT_JOB))
+    for r in jobs:
+        if r.get("detail") and r["id"] not in bodies:
+            bodies[r["id"]] = r["detail"]  # 브라우저로 모은 목록에 들어 있는 본문 정보
     out = []
     seen = set()
     for r in rows + jobs:
@@ -141,7 +148,7 @@ def collect(online: bool = True):
             "source_name": "한양대 공지사항(" + ("모집/채용" if cat == CAT_JOB else "장학/등록") + ")",
             "title": r["title"], "org": "한양대학교" + (" " + r["campus"] if r.get("campus") in ("서울", "ERICA") else ""),
             "org_type": "대학(교내)", "category": "근로장학" if work else ("학자금" if "대출" in r["title"] else "장학금"), "kind": kind,
-            "level": "대학원생" if work and re.search(r"대학원|조교", r["title"]) and "학부" not in r["title"] else "대학생",
+            "level": "대학원생" if work and "대학원" in r["title"] else "대학생",
             "region": "서울" if r.get("campus") != "ERICA" else "경기",
             "selection": "담당: " + r.get("dept", ""), "url": VIEW.format(p=PID, id=r["id"], cat=cat), "posted": r["date"],
             "start": start, "end": end, "files": det.get("files") or r.get("files", []), "verified": True,

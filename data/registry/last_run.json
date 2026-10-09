@@ -1,84 +1,8 @@
 {
- "startedAt": "2026-10-09T04:34:58+00:00",
  "finishedAt": "2026-10-09T04:50:32+00:00",
- "online": true,
  "total": 4210,
  "new": 25,
- "changed": 170,
- "sources": [
-  {
-   "source": "kosaf_univ",
-   "label": "한국장학재단 대학생",
-   "ok": true,
-   "count": 1913,
-   "mode": "online"
-  },
-  {
-   "source": "kosaf_high",
-   "label": "한국장학재단 고등학생",
-   "ok": true,
-   "count": 1199,
-   "mode": "online"
-  },
-  {
-   "source": "kosaf_abroad",
-   "label": "한국장학재단 해외유학",
-   "ok": true,
-   "count": 75,
-   "mode": "online"
-  },
-  {
-   "source": "kosaf_creditbank",
-   "label": "한국장학재단 학점은행제",
-   "ok": true,
-   "count": 7,
-   "mode": "online"
-  },
-  {
-   "source": "hyin",
-   "label": "한양대 HY-in 장학캘린더",
-   "ok": true,
-   "count": 241,
-   "mode": "hyin_calendar_full.json",
-   "collectedAt": "2026-10-08T16:24:43.912Z"
-  },
-  {
-   "source": "hanyang",
-   "label": "한양대 공개 공지(장학/등록·근로 모집)",
-   "ok": true,
-   "count": 13,
-   "work": 1,
-   "mode": "seed/seed"
-  },
-  {
-   "source": "board",
-   "label": "대학·재단·지자체 게시판 150곳",
-   "ok": true,
-   "count": 605,
-   "mode": "성공 116 / 실패 34"
-  },
-  {
-   "source": "gov24",
-   "label": "정부24 공공서비스 API",
-   "ok": false,
-   "count": 0,
-   "mode": "키 미설정"
-  },
-  {
-   "source": "legacy",
-   "label": "기존 앱 수집본",
-   "ok": true,
-   "count": 315,
-   "mode": "seed"
-  },
-  {
-   "source": "dreamspon",
-   "label": "드림스폰 공개 목록(원본 링크로 연결)",
-   "ok": true,
-   "count": 20,
-   "mode": "online"
-  }
- ],
+ "changed": 0,
  "registry": {
   "total": 551,
   "enabled": 150,

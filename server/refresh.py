@@ -117,9 +117,14 @@ def export(con: sqlite3.Connection, summary: dict):
     WEB_DATA.mkdir(parents=True, exist_ok=True)
     today = date.today().isoformat()
     rows = []
+    hy_titles = {json.loads(d).get("title") for (d,) in con.execute("select data from scholarships where active=1 and source='hanyang'")}
     for data, first_seen, changed_at in con.execute("select data, first_seen, changed_at from scholarships where active=1"):
         r = json.loads(data)
         r.pop("hash", None)
+        if r.get("source") == "legacy":
+            if r.get("title") in hy_titles:
+                continue  # 한양대 공지에서 직접 가져온 같은 글이 있다
+            r["posted"] = ""  # 기존 수집본의 '등록일'은 실제 공고일이 아니라 옮겨 담은 날짜
         if r.get("source") == "board":
             t = re.sub(r"\s*(Attachment|첨부파일|새글|NEW|N)\s*$|[}\]]+$|\.hwpx?\"\s*/?>.*$", "", r.get("title", ""))
             t = re.sub(r"\s+(학생지원팀|장학팀|학생복지팀|장학복지팀)\s+20\d\d-\d\d-\d\d\s+\d+$", "", t).strip()
