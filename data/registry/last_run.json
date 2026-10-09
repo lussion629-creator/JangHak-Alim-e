@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-09T00:43:56+00:00",
- "finishedAt": "2026-10-09T00:45:59+00:00",
+ "startedAt": "2026-10-09T02:21:39+00:00",
+ "finishedAt": "2026-10-09T02:24:02+00:00",
  "online": true,
- "total": 4210,
- "new": 4,
- "changed": 14,
+ "total": 4208,
+ "new": 8,
+ "changed": 509,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -53,8 +53,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 150곳",
    "ok": true,
-   "count": 633,
-   "mode": "성공 121 / 실패 29"
+   "count": 628,
+   "mode": "성공 122 / 실패 28"
   },
   {
    "source": "gov24",
@@ -193,7 +193,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 40
+    "count": 38
    },
    {
     "name": "홍익대학교 서울",
@@ -273,7 +273,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 33
+    "count": 32
    },
    {
     "name": "상명대학교 서울",
@@ -283,7 +283,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "한성대학교",
@@ -323,7 +323,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 18
+    "count": 17
    },
    {
     "name": "덕성여자대학교",
@@ -353,7 +353,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 4
    },
    {
     "name": "한국체육대학교",
@@ -423,7 +423,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 32
+    "count": 31
    },
    {
     "name": "가천대학교 글로벌/메디컬",
@@ -663,7 +663,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 11
    },
    {
     "name": "원광대학교",
@@ -692,8 +692,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -913,7 +913,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 9
    },
    {
     "name": "건양대학교 논산/대전",
@@ -953,7 +953,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 9
    },
    {
     "name": "영산대학교(와이즈유) 양산/부산",
@@ -1003,7 +1003,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 10
    },
    {
     "name": "인제대학교 김해",
@@ -1033,7 +1033,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 20
+    "count": 19
    },
    {
     "name": "배재대학교",
@@ -1053,7 +1053,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 37
+    "count": 36
    },
    {
     "name": "목원대학교",
@@ -1103,7 +1103,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "전주대학교",
@@ -1183,7 +1183,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 0
    },
    {
     "name": "상지대학교",
@@ -5393,7 +5393,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "수림재단",
