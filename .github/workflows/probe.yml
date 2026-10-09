@@ -1,12 +1,13 @@
 # 일회용: 강원대 공개 페이지 구조 확인 (robots.txt, 게시판 목록·상세, K-Cloud 로그인 화면)
 name: probe-kangwon
 on: { workflow_dispatch: {} }
-permissions: { contents: read }
+permissions: { contents: write }
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
       - run: |
+          exec > probe.txt 2>&1
           UA="Mozilla/5.0 (scholarship-aggregator)"
           for u in https://www.kangwon.ac.kr/robots.txt https://kangwon.ac.kr/robots.txt https://kcloud.kangwon.ac.kr/robots.txt https://dormitory.kangwon.ac.kr/robots.txt; do echo "=== $u"; curl -sSL -m 20 -A "$UA" "$u" | head -c 3000; echo; done
           echo "=== LIST"; curl -sSL -m 20 -A "$UA" "https://www.kangwon.ac.kr/ko/bbs/750/list.do" > l.html; wc -c l.html
@@ -27,3 +28,7 @@ jobs:
           echo "=== KCLOUD"; curl -sSL -m 20 -A "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148" -c c.txt "https://kcloud.kangwon.ac.kr/login" > k.html; wc -c k.html
           grep -n -i "<form\|<input\|<button\|captcha\|keypad\|nprotect\|transkey\|onclick\|<script src\|login" k.html | head -80
           echo "=== KMOBILE"; curl -sSL -m 20 -A "Mozilla/5.0 (iPhone)" "https://kmobile.kangwon.ac.kr/" | grep -n -i "<form\|<input\|login\|<script src\|location" | head -40
+      - run: |
+          git init -q out && cd out && cp ../*.html ../probe.txt . 2>/dev/null; git checkout -q -b probe-out
+          git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -q -m probe
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" probe-out
