@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          exec > probe.txt 2>&1
+          set +e; exec > probe.txt 2>&1
           UA="Mozilla/5.0 (scholarship-aggregator)"
           for u in https://www.sogang.ac.kr/robots.txt https://saint.sogang.ac.kr/robots.txt; do echo "=== $u"; curl -sSL -m 20 -A "$UA" "$u" | head -c 3000; echo; done
           echo "=== SG LIST"; curl -sSL -m 25 -A "$UA" "https://www.sogang.ac.kr/ko/scholarship-notice" > sg.html; wc -c sg.html
@@ -16,7 +16,8 @@ jobs:
           echo "=== SG JS"; for js in $(grep -o '<script[^>]*src="[^"]*"' sg.html | grep -o 'src="[^"]*"' | cut -d'"' -f2 | head -12); do case $js in http*) u=$js;; *) u="https://www.sogang.ac.kr$js";; esac; curl -sSL -m 20 -A "$UA" "$u" > j.js; echo "-- $u $(wc -c < j.js)"; grep -o -E '"/?api/[^"]{3,80}"|bbsConfigFk[^,;]{0,80}|/api/[A-Za-z0-9_/{}$.-]{3,80}' j.js | sort -u | head -30; done
           echo "=== SG API TRY"; for u in "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?pageNum=1&pageSize=20&bbsConfigFk=141" "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?bbsConfigFk=141&pageNum=1&pageSize=20&title=&content=&writer="; do echo "-- $u"; curl -sSL -m 20 -A "$UA" "$u" | head -c 1500; echo; done
           echo "=== SAINT"; curl -sSL -m 20 -A "Mozilla/5.0 (iPhone)" -o saint.html -w "%{url_effective} %{http_code}\n" "https://saint.sogang.ac.kr/"; wc -c saint.html; grep -n -i "<form\|<input\|<button\|captcha\|location\|<script src\|login\|iframe" saint.html | head -60
-      - run: |
+      - if: always()
+        run: |
           git init -q out && cd out && cp ../*.html ../probe.txt . 2>/dev/null; git checkout -q -b probe-out
           git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -q -m probe
           git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" probe-out
