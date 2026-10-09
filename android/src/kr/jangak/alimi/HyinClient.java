@@ -145,6 +145,11 @@ final class HyinClient {
         @JavascriptInterface
         public void fail(final String t) {
             if (!ok()) return;
+            if ("LOGIN".equals(t)) {
+                if (silent) { finish(); ui.post(new Runnable() { @Override public void run() { ln.onLoginNeeded(); } }); }
+                else ui.post(new Runnable() { @Override public void run() { ln.onProgress("한양 포털에 로그인해 주세요. 로그인하면 자동으로 불러옵니다."); } });
+                return;
+            }
             ui.post(new Runnable() { @Override public void run() { ln.onFail(t == null ? "" : t); } });
         }
     }

@@ -27,7 +27,9 @@
   function q(dt) {
     Controller.action = "/haksa/JhccAct/findJanghakCalendarList.do";
     Controller.setParams(null, { cbYearOfYm: dt.slice(0, 6), strYear: dt.slice(0, 4), strCampusCd: "", strApplyGb: "", strJaewonGb: "", strMojipGb: "", strDt: dt });
-    return JCFUtils.getDataList(Controller.submit()) || [];
+    var res = Controller.submit();
+    if (res === null || res === undefined) throw new Error("LOGIN"); // 로그인이 안 된 세션은 빈 응답(null)을 준다
+    return JCFUtils.getDataList(res) || [];
   }
   function det(x) {
     Controller.action = "/haksa/JhccAct/findJanghakGongji.do";
@@ -55,7 +57,7 @@
             if (!all[key]) all[key] = { campus: r.campusNm, name: r.janghakNm, start: r.startDt, end: r.endDt, jaewon: r.jaewonGb, year: r.year, term: r.term, cd: r.janghakCd, seq: r.seq };
           }
         }
-      } catch (e) { return fail("장학캘린더를 읽지 못했어요. 로그인이 끝났는지 확인해 주세요."); }
+      } catch (e) { return fail(String(e && e.message) === "LOGIN" ? "LOGIN" : "장학캘린더를 읽지 못했어요. 로그인이 끝났는지 확인해 주세요."); }
       say("장학캘린더 읽는 중… " + Math.round(i / days.length * 70) + "%");
       if (i < days.length) return setTimeout(stepDays, 0);
       details(Object.keys(all).map(function (k) { return all[k]; }));
@@ -76,6 +78,7 @@
         }
         say("공고 내용 읽는 중… " + (70 + Math.round(j / Math.max(1, list.length) * 30)) + "%");
         if (j < list.length) return setTimeout(stepDet, 0);
+        if (!list.length) return fail("LOGIN"); // 아무것도 못 읽었으면 저장된 자료를 덮어쓰지 않는다
         try { B.done(JSON.stringify({ collectedAt: new Date().toISOString(), records: list })); } catch (e) {}
       }
       stepDet();
