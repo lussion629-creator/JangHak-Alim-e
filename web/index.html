@@ -2,6 +2,11 @@
 <title>장학알리미</title>
 <meta name="description" content="전국 장학금을 한곳에서 찾고 내 조건으로 지원 가능 여부를 확인합니다.">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="장학알리미">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <style>
 /* Layout: 조용한 목록 앱 — 상단 요약 숫자, 왼쪽 조건 레일, 오른쪽 마감순 목록, 상세는 오른쪽 시트.
    Pretendard 한 가족으로 굵기 대비만 쓰고, 색은 청록(행동) 하나와 인주 빨강(마감 임박)만 강조에 쓴다. */
@@ -308,6 +313,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
   <main id="view-fav" hidden style="margin-top:22px">
     <p class="lead">관심 장학금</p>
     <p class="note" style="margin-bottom:14px">별표를 누른 장학금이 이 기기에 저장됩니다.</p>
+    <div class="callout" id="icsBox" hidden><span><b>마감일을 휴대폰 캘린더에 넣기</b> — 관심 장학금의 마감일을 캘린더 파일(.ics)로 받아 아이폰·안드로이드 캘린더에 추가해요. 마감 하루 전 오전 9시에 알림이 울려요.</span><button class="btn" type="button" id="icsBtn">캘린더 파일 받기</button></div>
     <div class="list" id="favList"></div>
   </main>
 
@@ -909,7 +915,19 @@ $("#calNext").addEventListener("click",()=>{calM++; if(calM>11){calM=0;calY++} r
 $("#calNextYear").addEventListener("change",renderCal);
 $("#calFav").addEventListener("change",renderCal);
 
+function icsExport(){
+  const l=DATA.filter(r=>favs.has(r.id)&&r.end&&r.end>=TODAY); if(!l.length) return alert("마감일이 남은 관심 장학금이 없어요.");
+  const esc2=t=>String(t||"").replace(/[\\;,]/g,m=>"\\"+m).replace(/\n/g,"\\n");
+  const d=x=>x.replace(/-/g,""), nx=x=>{const t=new Date(x+"T00:00:00"); t.setDate(t.getDate()+1); return iso(t).replace(/-/g,"")};
+  const stamp=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+Z$/,"Z");
+  const ev=l.map(r=>["BEGIN:VEVENT","UID:"+r.id+"@jangak-alimi","DTSTAMP:"+stamp,"DTSTART;VALUE=DATE:"+d(r.end),"DTEND;VALUE=DATE:"+nx(r.end),
+    "SUMMARY:"+esc2("[마감] "+r.title),"DESCRIPTION:"+esc2((r.org||"")+"\n장학알리미에서 자세히 보기"),
+    "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+esc2("내일 마감 · "+r.title),"TRIGGER:-PT15H","END:VALARM","END:VEVENT"].join("\r\n"));
+  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//jangak-alimi//KO","CALSCALE:GREGORIAN","X-WR-CALNAME:장학 마감",...ev,"END:VCALENDAR"].join("\r\n");
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar;charset=utf-8"})); a.download="jangak-deadlines.ics"; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove()},2000);
+}
 function renderFav(){
+  const ib=$("#icsBox"); if(ib){ ib.hidden=!!window.AndroidBridge||!DATA.some(r=>favs.has(r.id)&&r.end&&r.end>=TODAY); const b=$("#icsBtn"); if(b) b.onclick=icsExport }
   const l=DATA.filter(r=>favs.has(r.id)).sort(sorter());
   if(!l.length){$("#favList").innerHTML=`<div class="empty">아직 관심 장학금이 없습니다. 목록에서 ☆을 누르세요. 장학금 상세에서 ‘신청 상태’를 고르면 준비 중·제출 완료·합격으로 나눠 관리할 수 있습니다.</div>`;return}
   const groups=[["관심",l.filter(r=>!applyState[r.id])],...APPLY.map(a=>[a,l.filter(r=>applyState[r.id]===a)])].filter(g=>g[1].length);
@@ -1079,7 +1097,7 @@ function renderHyin(){
     <div class="actions"><button class="btn primary" type="button" data-portal="1">${when?"다시 불러오기":"포털 로그인하고 불러오기"}</button>${when?`<button class="btn" type="button" id="hyinClear">불러온 자료·로그인 지우기</button>`:""}</div>
     ${window.AndroidBridge.autoLoginState?(()=>{const a=window.AndroidBridge.autoLoginState(); return `<div class="sec" style="margin-top:14px;padding-top:12px"><b style="font-size:14px">하루 한 번 자동 로그인</b>
       <p class="note">${a==="on"?"켜져 있어요. 하루에 한 번 앱이 알아서 포털에 로그인해 장학캘린더를 다시 불러와요.":a==="failed"?`<span style="color:var(--seal)">자동 로그인이 한 번 실패해서 멈췄어요.</span> 2차 인증이 필요하거나 비밀번호가 바뀌었을 수 있어요. 위의 ‘다시 불러오기’로 한 번 로그인하면 다시 켜져요.`:"꺼져 있어요. 켜면 포털 아이디·비밀번호를 이 휴대폰에 암호화해 저장하고, 하루 한 번 앱이 대신 로그인해요."}</p>
-      <p class="note">아이디·비밀번호는 휴대폰의 안전한 저장소(안드로이드 키 저장소)로 암호화되고, 한양 포털 로그인 칸에만 들어가요. 서버로 보내지 않아요. 2차 인증이 필요한 로그인은 자동으로 할 수 없어서 알림으로 알려 드려요.</p>
+      <p class="note">아이디·비밀번호는 휴대폰의 안전한 저장소(${window.AndroidBridge.platform&&window.AndroidBridge.platform()==="ios"?"아이폰 키체인":"안드로이드 키 저장소"})로 암호화되고, 한양 포털 로그인 칸에만 들어가요. 서버로 보내지 않아요. 2차 인증이 필요한 로그인은 자동으로 할 수 없어서 알림으로 알려 드려요.</p>
       <div class="actions"><button class="btn${a==="off"?" primary":""}" type="button" id="alOn">${a==="off"?"자동 로그인 켜기":"아이디·비밀번호 바꾸기"}</button>${a!=="off"?`<button class="btn" type="button" id="alOff">자동 로그인 끄기</button>`:""}</div></div>`})():""}`;
   const on=$("#alOn"); if(on) on.onclick=()=>{try{window.AndroidBridge.autoLoginSetup()}catch(e){}};
   const off=$("#alOff"); if(off) off.onclick=()=>{try{window.AndroidBridge.autoLoginOff()}catch(e){} renderHyin()};

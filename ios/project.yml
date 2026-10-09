@@ -22,11 +22,13 @@ targets:
       path: Info.plist
       properties:
         CFBundleDisplayName: 장학알리미
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleDevelopmentRegion: ko
         LSRequiresIPhoneOS: true
         UILaunchScreen: { UIColorName: "", UIImageRespectsSafeAreaInsets: true }
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
-        UIBackgroundModes: [fetch, processing]
+        UIBackgroundModes: [fetch]
         BGTaskSchedulerPermittedIdentifiers: [kr.jangak.alimi.refresh]
         UIStatusBarStyle: UIStatusBarStyleLightContent
         UIViewControllerBasedStatusBarAppearance: true
