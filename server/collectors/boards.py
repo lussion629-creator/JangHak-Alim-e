@@ -139,7 +139,8 @@ def text_of_html(html: str) -> str:
         t.decompose()
     cands = soup.select(BODY_SEL)
     best = max(cands or [soup.body or soup], key=lambda e: len(e.get_text(" ", strip=True)))
-    return re.sub(r"\n{2,}", "\n", best.get_text("\n", strip=True))[:3000]
+    from ..model import html_block_text
+    return html_block_text(best)[:3000]
 
 
 def fetch_detail(url: str) -> str:

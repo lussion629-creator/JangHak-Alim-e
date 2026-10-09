@@ -198,3 +198,135 @@ def support_of(r: dict) -> list:
 
 def now_iso() -> str:
     return datetime.now().astimezone().isoformat(timespec="seconds")
+
+
+# ---------------- 공고 본문 정리 ----------------
+_END = re.compile(r"^(이전글|다음글|이전 글|다음 글|목록|목록으로|저작권\s*등|개인정보\s*처리방침|Copyright|COPYRIGHT|ⓒ|©|인쇄|글쓰기|수정|삭제|답글|공유하기|SNS 공유)")
+_JUNK = re.compile(r"(File size|Times have been downloaded|KByte|다운로드\s*:?\s*\d+\s*회|미리보기\s*:?\s*\d|\.(pdf|hwpx?|docx?|xlsx?|pptx?|jpe?g|png|gif|zip)\b|조회수?\s*\d|^\d{1,6}$|\*{3,}|^작성자|^등록일|^조회|^첨부파일$|바로가기|오늘 하루 보지|popup|로그인|통합검색|페이스북|트위터|블로그|북마크|^\(?\d+(\.\d+)?\s*[KM]B\)?$|^\s*\(\s*$|^\s*\)\s*$|^[a-z0-9_]{3,20}$)", re.I)
+_PRE_JUNK = re.compile(r"(File size|Times have been downloaded|KByte|다운로드\s*:?\s*\d+\s*회|미리보기\s*:?\s*\d|\.(pdf|hwpx?|docx?|xlsx?|pptx?|jpe?g|png|gif|zip)\b|\*{3,}|바로가기|오늘 하루 보지|popup|로그인|통합검색|페이스북|트위터|블로그|북마크|^\(?\d+(\.\d+)?\s*[KM]B\)?$)", re.I)
+_LABELS = [
+    ("대상", r"(선발|지원|모집|신청)\s*대상(자)?|지원\s*자격|신청\s*자격|자격\s*요건|대\s*상(자)?|자\s*격"),
+    ("지원 내용", r"지원\s*(금액|내용|내역|규모)|장학\s*(금액|혜택)|장학금(?=\s*[:：]|\s*$)|혜\s*택|지급\s*(금액|액)"),
+    ("선발 인원", r"선발\s*(인원|규모)|모집\s*인원|인\s*원"),
+    ("신청 기간", r"(신청|접수|모집|지원)\s*(기간|기한|일정)|기\s*간"),
+    ("신청 방법", r"(신청|접수|지원)\s*(방법|처)|접\s*수\s*처|제출\s*방법"),
+    ("제출 서류", r"(제출|구비)\s*서류"),
+    ("선발 방법", r"선발\s*(방법|과정|절차|일정)|심사\s*방법"),
+    ("문의", r"문\s*의\s*(처)?|담\s*당"),
+]
+_LAB_RX = re.compile(r"^\s*(?:[0-9]{1,2}\s*[.)]|[가-하]\s*[.)]|[■□○●▶▷◆◇❍•·\-]|\[)?\s*(" + "|".join(f"(?P<g{i}>{rx})" for i, (_, rx) in enumerate(_LABELS)) + r")(?![가-힣])\s*[\]:：]?\s*[:：]?\s*(?P<rest>.*)$")
+
+
+BLOCK_TAGS = ["p", "div", "li", "tr", "table", "h1", "h2", "h3", "h4", "h5", "h6", "dt", "dd", "ul", "ol", "section", "article", "blockquote", "pre"]
+
+
+def html_block_text(el) -> str:
+    """블록 태그에서만 줄을 바꾸고, span·strong 같은 글자 꾸밈은 한 줄로 이어 붙인다."""
+    for br in el.find_all("br"):
+        br.replace_with("\n")
+    for tag in el.find_all(["td", "th"]):
+        tag.append(" ")
+    for tag in el.find_all(BLOCK_TAGS):
+        tag.insert_before("\n")
+        tag.append("\n")
+    t = el.get_text("")
+    lines = [re.sub(r"[ \t\u00a0\u200b]+", " ", l).strip() for l in t.splitlines()]
+    return "\n".join(l for l in lines if l)
+
+
+def _html_to_text(t: str) -> str:
+    if re.search(r"<(span|br|p|div|table|td|strong|b|font)\b", t or "", re.I):
+        from bs4 import BeautifulSoup
+        t = html_block_text(BeautifulSoup(t, "html.parser"))
+    return t
+
+
+_MARK = re.compile(r"^(?:[0-9]{1,2}\s*[.)]|[가-하]\s*[.)]|[①-⑳❶-❿➊-➓]|\d\ufe0f?\u20e3|[■□○●▶▷►◆◇❍•·\-※*✅➡ㅇ❑◦▪]|\(\d+\)|\[|<)")
+_TERM = re.compile(r"([.!?。]|다|요|음|함|임|됨|것|[)\]]|까지|바랍니다|니다)\s*$")
+_PART = re.compile(r"^(을|를|은|는|에|의|와|과|로|으로|및|부터|까지|에서|하여|하고|하는|한\s|\)|,|~|：|:)")
+
+
+def _join_fragments(lines: list[str]) -> list[str]:
+    """글자 꾸밈 때문에 잘게 쪼개진 줄을 문장 단위로 다시 붙인다."""
+    out: list[str] = []
+    for l in lines:
+        if out and re.fullmatch(r"\s*(\d{1,2}|[가-하]|[IVX]{1,4})\s*[.)]\s*", out[-1]):
+            out[-1] = out[-1] + " " + l  # 번호만 있는 줄은 다음 줄 제목과 합친다
+            continue
+        if out and re.search(r"\d$", out[-1]) and re.match(r"(년|개월|월|일|세|명|만\s*원|원|학기|회|%|인|순위|시)", l):
+            out[-1] = out[-1] + l  # 숫자와 단위가 갈라진 경우
+            continue
+        if out and not _MARK.match(l) and not _LAB_RX.match(l) and not _TERM.search(out[-1]) and \
+                (_PART.match(l) or len(out[-1]) <= 12 or len(l) <= 8):
+            out[-1] = out[-1] + ("" if _PART.match(l) and not l.startswith(("및", "하여", "하고")) else " ") + l
+        else:
+            out.append(l)
+    return out
+
+
+def summarize_body(text: str, title: str = "") -> dict:
+    """게시판 본문에서 메뉴·꼬리말을 걷어내고 필요한 항목만 정리한다.
+    반환: {"text": 정리된 본문, "fields": {라벨: 값}}"""
+    if not text:
+        return {"text": "", "fields": {}}
+    t = _html_to_text(text)
+    lines = [re.sub(r"\s+", " ", l).strip() for l in t.splitlines()]
+    lines = [l for l in lines if l and not _PRE_JUNK.search(l)]
+    lines = _join_fragments(lines)
+    # 학과·전공 이름만 줄줄이 나열된 메뉴 줄은 버린다
+    lines = [l for l in lines if not (len(re.findall(r"(전공|학과|학부)", l)) >= 2 and not re.search(r"(재학생|이상|지원|신청|선발|대상|우대|제외|하는 자)", l))]
+    core0 = re.sub(r"\[[^\]]*\]|\([^)]*\)", "", title or "").strip()[:8]
+    # 같은 게시판의 다른 글 제목(이전·다음 글, 관련 글 목록)은 버린다
+    lines = [l for l in lines if not (re.search(r"(선발|모집|신청|지원)?\s*(안내|공고)\s*(\(~?[\d.\s~]+\))?$", l) and len(l) > 15 and (not core0 or core0 not in l) and (l.startswith("[") or re.match(r"^20\d\d", l)))]
+    # 시작점: 제목이 나오는 곳 다음 / 없으면 처음 나오는 항목 라벨
+    core = re.sub(r"\[[^\]]*\]|\([^)]*\)", "", title or "").strip()[:14]
+    start = 0
+    for i, l in enumerate(lines):
+        if core and core[:10] and core[:10] in l and i < len(lines) - 2:
+            start = i + 1
+    if start == 0:
+        for i, l in enumerate(lines):
+            if _LAB_RX.match(l):
+                start = max(0, i - 2)
+                break
+    body = []
+    for l in lines[start:]:
+        if _END.match(l):
+            if len(body) >= 4:
+                break
+            continue
+        if _JUNK.search(l) or (len(l) <= 4 and not re.search(r"\d", l)):
+            continue
+        body.append(l)
+    # 항목별로 묶기
+    fields: dict[str, list[str]] = {}
+    cur = None
+    for l in body:
+        m = _LAB_RX.match(l)
+        if m:
+            lab = next(_LABELS[i][0] for i in range(len(_LABELS)) if m.group(f"g{i}"))
+            cur = lab
+            rest = m.group("rest").strip(" :：-")
+            fields.setdefault(cur, [])
+            if rest:
+                fields[cur].append(rest)
+            continue
+        if re.match(r"^(붙임|※\s*자세한|끝\.?$|20\d\d\s*\.\s*\d{1,2}\s*\.\s*\d{1,2})", l) or re.search(r"(처|과|팀|센터|본부)\s*$", l) and len(l) < 16:
+            cur = None
+            continue
+        limit = 2 if cur == "문의" else 8
+        if cur and len(fields.get(cur, [])) < limit and not re.match(r"^\s*[0-9]{1,2}\s*[.)]\s", l):
+            fields[cur].append(l)
+        elif re.match(r"^\s*[0-9]{1,2}\s*[.)]\s", l):
+            cur = None
+    fields = {k: "\n".join(v)[:500] for k, v in fields.items() if v}
+    if len(fields) >= 2:
+        out = "\n".join(f"■ {k}: {v}" if "\n" not in v else f"■ {k}\n{v}" for k, v in fields.items())
+    else:
+        keep = [l for l in body if len(l) >= 15 or re.search(r"\d.*(원|명|일|월)|[:：]", l)]
+        out = "\n".join(keep) if len(keep) >= 2 else ""
+    out = re.sub(r"\(\s+", "(", out)
+    out = re.sub(r"\s+\)", ")", out)
+    out = re.sub(r"(\d)\s+(년|개월|월|일|세|명|만\s*원|원|학기|순위|인당)", r"\1\2", out)
+    out = re.sub(r"(※\s*)?자세한 사항은.{0,30}(참고|참조)[^\n]*", "", out).strip()
+    return {"text": out[:1800], "fields": fields}

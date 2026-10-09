@@ -17,7 +17,7 @@ from pathlib import Path
 
 from .collectors import boards, gov24, hanyang, hyin, kosaf, legacy
 from .merge import for_school, merge
-from .model import expected_next, now_iso, status_of, support_of
+from .model import summarize_body, expected_next, now_iso, status_of, support_of
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
@@ -125,6 +125,10 @@ def export(con: sqlite3.Connection, summary: dict):
             t = re.sub(r"\s+(학생지원팀|장학팀|학생복지팀|장학복지팀)\s+20\d\d-\d\d-\d\d\s+\d+$", "", t).strip()
             t = re.sub(r"^((공지|NOTICE|필독|중요)\s*)+", "", t)
             t = re.sub(r"\s+20\d\d([.\-]\d{1,2}){0,2}\.?$|\s+\d{1,4}$", "", t).strip()
+            if len(t) > 40:  # 제목 뒤에 본문 첫 줄이 붙어 온 경우 잘라낸다
+                t = re.split(r"\s+(?:가\.|1\.|□|○|■|❍)\s", t)[0]
+                m = re.match(r"^(.{8,90}?(?:안내|공고)(?:\s*\([^)]{0,20}\))?)(?=\s|$)", t)
+                t = m.group(1).strip() if m else t[:60]
             r["title"] = t
         if r.get("source") == "board" and r.get("org_type") == "대학 게시판":
             ext = re.search(r"재단|장학회|육영회|협회|구민|시민|군민|도민|공사|공단|진흥원|은행|정부초청|교육청|시청|군청|구청|도청|특별자치|\[교외|교외\]|\[외부|홍보", t) \
@@ -141,6 +145,27 @@ def export(con: sqlite3.Connection, summary: dict):
         r["support"] = support_of(r)
         r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
         rows.append(r)
+    # 게시판 본문: 메뉴·꼬리말을 걷어내고 필요한 항목만 남긴다
+    for r in rows:
+        if r.get("source") in ("board", "legacy", "hanyang") and r.get("summary"):
+            sm = summarize_body(r["summary"], r.get("title", ""))
+            r["summary"] = sm["text"]
+            f = sm["fields"]
+            if f.get("대상") and (not r.get("target") or len(r.get("target", "")) > 700):
+                r["target"] = f["대상"]
+            if f.get("지원 내용") and not r.get("amount"):
+                r["amount"] = f["지원 내용"]
+            if f.get("선발 인원") and not r.get("quota"):
+                r["quota"] = f["선발 인원"]
+            if f.get("제출 서류") and not r.get("documents"):
+                r["documents"] = f["제출 서류"]
+            if f.get("선발 방법") and not r.get("selection"):
+                r["selection"] = f["선발 방법"]
+            if r.get("target") and not sm["text"]:
+                r["target"] = ""  # 메뉴 글자만 있던 본문에서 뽑은 대상은 버린다
+            if not r.get("amount_won") and r.get("amount"):
+                from .model import parse_amount
+                r["amount_won"] = parse_amount(r["amount"])
     ap = ROOT / "data" / "registry" / "aliases.json"
     aliases = {k: v for k, v in (json.loads(ap.read_text()) if ap.exists() else {}).items() if not k.startswith("_")}
     for r in rows:

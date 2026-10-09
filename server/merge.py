@@ -248,6 +248,10 @@ def merge(rows: list[dict]) -> list[dict]:
         schools = {m.get("_relay_school") for m in members if m.get("_relay_school")}
         rep["_relay_schools"] = sorted(schools)
         rep["_relay_text"] = " ".join(((m.get("target") or "") + " " + (m.get("summary") or "")[:1500]) for m in members if m.get("_relay_school"))
+        rep["_srcs"] = sorted({m.get("source") for m in members})
+        rep["_st_all"] = sorted({t for m in members for t in (m.get("school_types") or [])})
+        rep["_alltext"] = " ".join(" ".join(str(m.get(k) or "") for k in ("title", "org", "target", "special", "restriction", "residence", "recommend", "selection"))
+                                   + " " + (m.get("summary") or "")[:2500] for m in members)
         rep["dupes"] = len(members) - 1
         out.append(rep)
     return out
@@ -257,44 +261,102 @@ UNIV_NAME = re.compile(r"([가-힣]{2,10}(?:대학교|대학원대학교|교육�
 OK_SCHOOL = {"4년제(5~6년제포함)", "전문대(2~3년제)", "일반대학원", "전문대학원", "특수대학원", "제한없음", "특정대학"}
 
 
-def for_school(rows: list[dict], school: str = "한양대학교,한양여자대학교") -> list[dict]:
-    """그 학교 학생이 지원할 수 없는 장학금을 뺀다.
+NEG = re.compile(r"(지정|추천|협약|선정|대상|참여|해당|소속|배정)\s*대학(교)?(?!\s*(제한\s*)?(없|무관))|(지정|선정|선발|협약)(한|된|을\s*맺은)\s*(\d+\s*개\s*)?대학|본교|학교별\s*(추천|배정)|대학별\s*(추천|배정|인원)|(추천|배정)\s*인원|우리\s*대학|재단\s*지정|협력\s*대학|장학\s*협약|대학의?\s*추천을\s*받|소속\s*대학\s*(장|총장)\s*추천")
+OPEN = re.compile(r"전국\s*(?:의과|한의과|치의과|약학|의학)?\s*(?:대학|의대|한의대|치대|약대)|전국\s*(의\s*)?(4년제\s*|소재\s*)?(대학|대학생)|국내\s*(소재\s*)?(4년제\s*|정규\s*)*(대학|대학교)\s*(\(원\)\s*)?(에\s*)?재(학|적)|대학\s*(제한|구분)\s*(없|무관)|모든\s*대학|(학교|대학|소속\s*대학)\s*(제한\s*)?무관|대학교?\s*구분\s*없이")
+RES = re.compile(r"주민등록|거주|구민|시민|군민|도민|출신|연고|전입|주소를?\s*두")
+PROV = r"서울|부산|대구|인천|광주|대전|울산|세종|경기|강원|충북|충남|충청|전북|전남|전라|경북|경남|경상|제주|부울경|대경|영남|호남|호서"
+LOCW = (r"(?:(?:[가-힣]{1,8}(?:특별시|광역시|특별자치도|특별자치시|시|도|군|구)|(?:" + PROV + r")|[가-힣]{2,6}\s*지역)\s*(?:지역\s*)?(?:내\s*)?(?:에\s*)?(?:소재|위치|있는|관내|내)(?:하는|한|의)?"
+        r"|도내|관내|시내|군내|구내|지역\s*내|비수도권|지방\s*소재|지방대)")
+SCHOOL_LOC = re.compile(r"(?:" + LOCW + r"|(?:[가-힣]{1,8}(?:특별시|광역시|특별자치도|시|도|군)|(?:" + PROV + r"))\s*지역)(?:\s*지역)?\s*(?:소재\s*|에\s*소재한\s*)?(?:\*\s*)?(?:4년제\s*|전문\s*)?(?:대학|대학교|학\s*(?:재학|학생))")
+GENERIC_UNIV = re.compile(r"(정규|국내|사이버|방송통신|한국방송통신|전문|일반|대학원|관내|명문|우수|외국|지역|해외|4년제|각|해당|소속|타|원격|기술)")
+HOME_OK = re.compile(r"서울|경기|수도권|전국|국내|한국|대한민국|도외|관외|안산|성동")
+ALT_OK = re.compile(r"(?:시|도|군|구|지역)\s*외\s*(?:소재\s*)?대학|도외\s*(?:소재\s*)?대학|관외\s*(?:소재\s*)?대학|타\s*지역\s*(?:소재\s*)?대학|타\s*시[·ㆍ]?도\s*(?:소재\s*)?대학|대학\s*소재지\s*(?:무관|제한\s*없)|조건\s*중\s*(?:하나|1개|한\s*가지)|(?:요건|조건|자격)\s*중\s*어느\s*하나(?:를|에)?\s*(?:만족|충족)")
+BOTH = re.compile(r"(?:본인|학생|시민|도민|군민|구민|주민)\s*(?:또는|이나|혹은)\s*(?:그\s*)?(?:[가-힣]{0,4}\s*)?(?:부모|보호자|자녀|가족|세대주)")
+OTHER_UNIV = re.compile(r"([가-힣]{2,12}(?:대학교|대학원대학교|교육대학교|과학기술원))(?:\s*[가-힣A-Za-z]{0,8}캠퍼스)?")
+OWN = re.compile(r"교내|\[교내|본교|근로장학|국가근로|학과\s*장학|학부\s*장학|대학원\s*(우수|연구)|가족\s*장학|형제자매|동문(회)?\s*장학|발전기금|면학장학|가계곤란|어학우수|성적우수\s*장학|사정관")
+ABROAD_NO = re.compile(r"고등학교|고교|외국인\s*유학생|해외대학\s*입학|입학지원금|교원연수|교수|전문가\s*장학|포스트닥|Postdoc|저널리스트|영어교사|사비\s*외국인")
+HOME_REGIONS = {"서울", "경기"}  # 한양대(서울)·ERICA(경기 안산)·한양여대(서울)
 
-    - 고등학생 대상, 학점은행제 대상, 전문대·원격대 등 다른 학교 유형만 대상인 장학금
-    - 다른 대학 게시판에만 올라온 그 대학 학생 전용 공고 (다른 출처에서도 확인된 공고는 남김)
-    - '특정대학' 대상인데 공고에 다른 대학 이름만 있고 우리 학교가 없는 장학금
+
+def for_school(rows: list[dict], school: str = "한양대학교,한양여자대학교") -> list[dict]:
+    """한양대·한양여대 학생이 실제로 지원할 수 있는 장학금만 남긴다.
+
+    남기는 근거가 있어야만 남긴다.
+      - 한양대 자체 출처(HY-in 장학캘린더, 한양대 공지)에 있는 장학금
+      - 공고에 '한양'이 대상으로 나오는 장학금
+      - 한국장학재단 DB에서 대학 유형이 일반(4년제·전문대·대학원)인 장학금
+      - 다른 곳에서 온 공고는 '전국 대학', '대학 제한 없음' 같은 개방 근거나 거주지 기준(주민등록·구민 등)이 있을 때만
+    빼는 경우
+      - 고등학생·학점은행제 대상, 학교 유형이 맞지 않는 장학금
+      - 지정·추천·협약·참여 대학, '본교', 대학별 추천 인원처럼 특정 대학 학생만 받는 공고 (한양 언급이 없으면)
+      - '도내·관내·OO 소재 대학 재학생'처럼 학교 위치가 서울·경기가 아닌 지역으로 묶인 공고
+      - 근거를 찾을 수 없는 다른 대학 게시판 공고
     """
-    keys = [x.strip().replace("학교", "").replace("여자대학", "여대").replace("대학", "")[:2] for x in school.split(",") if x.strip()]
-    key = keys[0] if keys else "한양"  # '한양' — 한양대·한양여대 모두 포함
+    key = "한양"
     out = []
     for r in rows:
         if r.get("level") in ("고등학생", "학점은행제"):
             continue
-        st = set(r.get("school_types") or [])
+        st = set(r.get("_st_all") or r.get("school_types") or [])
+        st.discard("특정대학") if r.get("source") in ("board",) else None
         if st and not (st & OK_SCHOOL):
             continue
-        if r.pop("_univ_only", False):
+        srcs = set(r.get("_srcs") or [r.get("source")])
+        text = r.get("_alltext") or ""
+        hy_named = bool(re.search(r"한양대|한양여대|한양여자대|한양\s*대학교|HYU", text.replace("한양·한여", "")))
+        if r.get("level") == "해외유학" and ABROAD_NO.search(r.get("title", "") + " " + (r.get("target") or "")):
             continue
-        # 한 대학 게시판에만 올라온 외부 장학: 본문에 그 대학 학생만 대상이라고 적혀 있으면 제외
-        rs = r.get("_relay_schools") or []
-        if r.get("school_check") and len(rs) == 1:
-            short = re.sub(r"\s.*$|학교$", "", rs[0]).replace("대학", "대")  # '건국대학교 서울' → '건국대'
-            body = r.get("_relay_text", "")
-            names = {short, re.sub(r"\s.*$", "", rs[0])}
-            if body and any(n and n in body for n in names) and key not in body:
+        if srcs <= {"board", "legacy"} and OWN.search(r.get("title", "")) and not hy_named:
+            continue  # 다른 대학의 교내·근로·학과 장학
+        elig = " ".join(str(r.get(k) or "") for k in ("title", "target", "special", "residence", "restriction"))
+        drop = False
+        src = elig + " " + text
+        alt = bool(ALT_OK.search(src) or OPEN.search(src))
+        for m in SCHOOL_LOC.finditer(src):
+            g = m.group(0)
+            if hy_named:
+                break
+            if re.search(r"비수도권|지방", g):
+                drop = True
+                break
+            if HOME_OK.search(src[max(0, m.start() - 15): m.end()]) or alt:
                 continue
-            if body and re.search(r"본교\s*(재학|학부|소속)|본교생|우리\s*대학\s*재학", body) and key not in body:
-                continue
-            if len(body.strip()) >= 80:
-                r["school_check"] = False  # 본문을 확인했고 특정 대학 제한이 없음
-        if r.get("school_check") and len(rs) >= 2:
-            r["school_check"] = False  # 여러 대학에 공통으로 온 공고는 학교 제한이 없을 가능성이 높다
-        if "특정대학" in st and r.get("source", "").startswith("kosaf"):
-            text = " ".join(str(r.get(k, "")) for k in ("title", "org", "special", "restriction", "target", "residence", "summary"))
-            names = set(UNIV_NAME.findall(text))
-            if names and not any(key in n for n in names) and key not in text:
-                continue
-        out.append(r)
+            line = re.split(r"[○□◦•\n]", src[max(0, m.start() - 150): m.start()])[-1] + src[m.start(): m.end() + 80].split("\n")[0].split("○")[0]
+            line = BOTH.sub("", line)
+            either = re.search(r"(거주|주소|주민등록|시민|도민|군민|구민)[^○□\n]{0,40}(또는|이거나|혹은|아니더라도)[^○□\n]{0,60}대학", line) or \
+                     re.search(r"대학[^○□\n]{0,30}(또는|이거나|혹은)[^○□\n]{0,60}(거주|주소|주민등록|시민|도민|군민|구민)", line) or \
+                     re.search(r"대학[^○□\n]{0,40}(자를|학생을|학생도|자도)\s*포함", line)
+            if either:
+                continue  # 거주지 또는 학교 위치 중 하나만 맞으면 되는 경우
+            drop = True
+            break
+        if drop:
+            continue  # 학교 위치가 서울·경기 밖으로 묶인 장학
+        if srcs & {"hyin", "hanyang"}:
+            out.append(r)  # 한양대가 직접 안내한 장학
+            continue
+        if re.search(r"외국인\s*(유학생|학생)", r.get("title", "") + " " + (r.get("target") or "")[:200]):
+            continue
+        pos = " ".join(str(r.get(k) or "") for k in ("target", "special", "title"))
+        names = {n for n in OTHER_UNIV.findall(pos) if not GENERIC_UNIV.match(n)}
+        if names and not hy_named and not OPEN.search(pos):
+            continue  # 공고에 다른 대학 이름만 대상으로 적힌 장학
+        neg = NEG.search(text)
+        if neg and not hy_named:
+            continue
+        kosaf = any(x.startswith("kosaf") for x in srcs)
+        if kosaf:
+            kst = set(r.get("_st_all") or [])
+            home_loc = any(HOME_OK.search(src[max(0, m.start() - 15): m.end()]) for m in SCHOOL_LOC.finditer(src))
+            if kst and kst <= {"특정대학"} and not (hy_named or OPEN.search(src) or home_loc):
+                continue  # 한국장학재단 DB에 '특정대학'으로만 등록된 장학
+            out.append(r)
+            continue
+        # 대학 게시판·기존 수집본에서만 온 공고: 열려 있다는 근거가 있어야 남긴다
+        if hy_named or OPEN.search(text) or (RES.search(text) and r.get("region") not in ("",)) or RES.search(text):
+            r["school_check"] = False
+            out.append(r)
+            continue
     for r in out:
         r.pop("_univ_only", None)
         r.pop("_hy", None)
@@ -302,4 +364,6 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
         r.pop("_relay_school", None)
         r.pop("_relay_schools", None)
         r.pop("_relay_text", None)
+        for k in ("_srcs", "_st_all", "_alltext"):
+            r.pop(k, None)
     return out
