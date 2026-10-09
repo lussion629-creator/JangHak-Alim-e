@@ -93,7 +93,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
 .pill{font-size:11.5px;font-weight:600;border-radius:6px;padding:2px 8px;background:var(--line-2);color:var(--ink-2);line-height:1.5}
 .pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.no{background:var(--no-soft);color:var(--no)} .pill.check{background:var(--check-soft);color:var(--check)}
-.pill.live{background:var(--accent-soft);color:var(--accent)} .pill.seal{background:var(--seal-soft);color:var(--seal)}
+.pill.live{background:var(--accent-soft);color:var(--accent)} .pill.field{background:var(--surface-2);color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line)} .pill.state{background:var(--ink);color:var(--bg)} .pill.seal{background:var(--seal-soft);color:var(--seal)}
 .star{border:0;background:none;width:36px;height:36px;border-radius:10px;cursor:pointer;color:var(--ink-3);display:grid;place-items:center;margin:-6px -4px 0 0}
 .star:hover{background:var(--surface-2)}
 .star svg{width:20px;height:20px}
@@ -146,6 +146,17 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .note{font-size:13px;color:var(--ink-3);max-width:68ch;margin:0}
 .lead{font-weight:800;font-size:20px;letter-spacing:-.03em;margin:0 0 6px}
 .mfilter{display:none}
+.track{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px;font-size:13px;color:var(--ink-3)}
+.track>span{margin-right:4px;font-weight:600}
+.seg{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.seg[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.docs{display:flex;flex-direction:column;gap:2px}
+.doc{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:8px;font-size:14px;cursor:pointer}
+.doc:hover{background:var(--surface-2)}
+.doc input{accent-color:var(--accent);margin-top:4px}
+.doc input:checked+span{color:var(--ink-3);text-decoration:line-through}
+.favgroup{margin:18px 0 8px;font-weight:750;font-size:15px;display:flex;gap:8px;align-items:center}
+.favgroup .n{font-size:12px;color:var(--ink-3);font-weight:600}
 .addr{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:10px;font-size:12.5px;color:var(--ink-3)}
 .addr code{font:12.5px/1.4 var(--font);color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line-2);border-radius:6px;padding:4px 8px;min-width:0;overflow-wrap:anywhere;user-select:all;flex:1 1 220px}
 .addr .btn{padding:5px 10px;font-size:12.5px}
@@ -177,7 +188,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
   .layout{grid-template-columns:minmax(0,1fr);gap:0}
   aside.filters{position:static;max-height:none;display:none;margin-bottom:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
   aside.filters.open{display:flex}
-  .mfilter{display:inline-flex}
+  .mfilter{display:inline-flex;white-space:nowrap}
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .kpi{padding:14px}
   .kpi .n{font-size:24px}
@@ -241,7 +252,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <button class="btn" id="calPrev" type="button" aria-label="이전 달">‹</button>
       <h2 id="calTitle"></h2>
       <button class="btn" id="calNext" type="button" aria-label="다음 달">›</button>
-      <label class="chip" style="margin-left:auto"><input type="checkbox" id="calNextYear" style="accent-color:var(--accent);margin:0 4px 0 0"> 작년 일정으로 예상 포함</label>
+      <label class="chip" style="margin-left:auto"><input type="checkbox" id="calFav" style="accent-color:var(--accent);margin:0 4px 0 0"> 관심만</label><label class="chip"><input type="checkbox" id="calNextYear" style="accent-color:var(--accent);margin:0 4px 0 0"> 작년 일정으로 예상 포함</label>
     </div>
     <p class="note" style="margin-bottom:10px">빨간 글씨는 그날 마감, 청록 글씨는 그날 접수 시작입니다. 날짜를 누르면 아래에 목록이 나옵니다.</p>
     <div class="cal" id="cal"></div>
@@ -260,6 +271,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <form id="profile" autocomplete="off">
       <fieldset class="sec"><legend>어디 학생인가요</legend><div class="form">
         <label>신분<select id="p_status"><option value="">선택 안 함</option><option value="hs">고등학생</option><option value="pre">대학 입학 예정 (고3·신입생)</option><option value="univ">대학생 (재학)</option><option value="leave">대학생 (휴학)</option><option value="grad">대학원생</option></select></label>
+        <label>성별 <span class="note" style="display:inline">(여학생 대상 장학 판단용)</span><select id="p_gender"><option value="">선택 안 함</option><option value="f">여성</option><option value="m">남성</option></select></label>
         <label>학교 유형<select id="p_school"><option value="">선택 안 함</option><option value="4y">4년제 대학</option><option value="2y">전문대(2~3년제)</option><option value="grad">대학원</option><option value="cyber">원격·사이버대</option></select></label>
         <label>학교 이름<input type="text" id="p_schoolName" list="dl_univ" placeholder="예: 한양대학교"></label>
         <label>학교 소재지 (시·도)<select id="p_ssido"></select></label>
@@ -323,8 +335,8 @@ function days(a,b){return Math.round((new Date(b+"T00:00:00")-new Date(a+"T00:00
 function won(n){if(n===-1)return"등록금 전액";if(!n)return"";if(n>=1e8)return(n/1e8).toFixed(n%1e8?1:0)+"억원";return Math.round(n/1e4).toLocaleString("ko-KR")+"만원"}
 
 let SRC="", DATA=[], META={}, view=[], shown=0, favs=new Set(store.get("favs",[])), profile=store.get("profile",null);
-const F={within:0,status:new Set(["모집중","예정"]),level:new Set(),region:"",orgType:new Set(),kind:new Set(),match:new Set(),source:new Set()};
-const saved=store.get("filters",null); if(saved){for(const k of["status","level","orgType","kind","match","source"]) if(saved[k]) F[k]=new Set(saved[k]); F.region=saved.region||""}
+const F={within:0,status:new Set(["모집중","예정"]),level:new Set(),region:"",orgType:new Set(),kind:new Set(),match:new Set(),source:new Set(),field:new Set(),note:new Set()};
+const saved=store.get("filters",null); if(saved){for(const k of["status","level","orgType","kind","match","source","field","note"]) if(saved[k]) F[k]=new Set(saved[k]); F.region=saved.region||""}
 
 /* ---------- 매칭 ---------- */
 const INC_MED={0:0,1:30,2:50,3:70,4:90,5:100,6:130,7:150,8:200,9:300,10:999};
@@ -393,6 +405,7 @@ function match(r,p){
       } else dur? chk(same[0][0]+" 기준 "+rg+" — 거주 기간 조건 확인") : ok(same[0][0]+" 기준 "+rg+" 조건 충족");
     }
   }
+  if(WOMEN.test([r.title,r.target,r.special].join(" "))){ if(p.gender==="m") no("여학생 대상"); else if(p.gender==="f") ok("여학생 대상 조건 충족"); else chk("여학생 대상 — 내 정보에 성별을 입력하세요"); }
   // 휴학생
   if(p.status==="leave" && /휴학/.test((r.restriction||"")+" "+(r.special||""))) no("휴학생 지원 제한");
   // 소득
@@ -458,6 +471,35 @@ function majorFit(r,p){
   if(p.major&&hits.includes(p.major)) return {cls:"ok",label:p.major.replace("계열","")+" 계열 대상",rank:0};
   return {cls:"no",label:"다른 계열 대상일 수 있음",rank:3};
 }
+const FIELDS=["인문계열","사회계열","교육계열","공학계열","자연계열","의약계열","예체능계열"];
+const FSHORT=f=>f==="무관"?"전공 무관":f==="특정학과"?"특정 학과":f.replace("계열","");
+function fieldsOf(r){
+  const mj=r.majors||[];
+  if(mj.length){
+    const fs=mj.filter(m=>m.endsWith("계열"));
+    if(mj.includes("제한없음")||fs.length>=6) return ["무관"];
+    return fs.length?fs:(mj.includes("특정학과")?["특정학과"]:["무관"]);
+  }
+  const head=[r.title,r.target,r.special].join(" ");
+  const hits=FIELDS.filter(k=>FIELD_RX[k].test(head));
+  return hits.length&&hits.length<6?hits:["무관"];
+}
+const WOMEN=/여학생|여대생|여성\s*(대학생|인재|과학|공학|리더)|여자\s*대학생/;
+const DUPNO=/타\s*장학(금)?\s*(과\s*)?(중복|수혜자\s*(는\s*)?제외)|중복\s*수혜\s*(불가|제한|금지)|타\s*장학.{0,30}(제외|불가)/;
+function notes(r){
+  const t=[r.title,r.target,r.special,r.restriction,r.selection,r.recommend,(r.summary||"").slice(0,1500)].join(" ");
+  const o=[];
+  if((r.recommend&&!/해당없음|불필요|없음/.test(r.recommend))||/추천서|학교장\s*추천|총장\s*추천|학과장\s*추천|지도교수\s*추천|대학\s*추천/.test(t)) o.push("추천 필요");
+  if(DUPNO.test(t)) o.push("중복 수혜 제한");
+  if(/면접|인터뷰/.test(t)) o.push("면접 있음");
+  if(/자기소개서|에세이|학업계획서|활동계획서/.test(t)) o.push("자기소개서");
+  if(/봉사|멘토링\s*활동|활동\s*의무|의무\s*복무|근무/.test([r.title,r.target,r.special].join(" "))) o.push("활동 조건");
+  if(WOMEN.test(t)) o.push("여학생 대상");
+  if(/(회원|직원|조합원|임직원|종사자|근로자|교직원|선원|군인|경찰|소방)의?\s*(자녀|자제)/.test([r.title,r.target,r.special].join(" "))) o.push("특정 직군 자녀 대상");
+  return o;
+}
+const APPLY=["준비 중","제출 완료","합격","불합격"];
+let applyState=store.get("apply",{});
 const VLABEL={ok:"지원 가능",check:"확인 필요",no:"지원 불가"};
 const SUP=[["tuition","등록금"],["living","생활비"],["dorm","기숙사·주거"],["loan","학자금 대출·이자"]];
 const SUPL=Object.fromEntries(SUP);
@@ -476,7 +518,7 @@ function stat(r){
   if(r.status==="마감") return {key:"마감",label:r.next?r.next.replace("-",".")+" 예상":"마감"};
   return {key:"상시/미정",label:"일정 확인"};
 }
-function cache(){for(const r of DATA){r._s=stat(r); r._m=match(r,profile); r._f=majorFit(r,profile); r._q=[r.title,(r.support||[]).map(k=>SUPL[k]).join(" "),r.target,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
+function cache(){for(const r of DATA){r._s=stat(r); r._fields=fieldsOf(r); r._n=notes(r); r._m=match(r,profile); r._f=majorFit(r,profile); r._q=[r.title,r._fields.map(FSHORT).join(" "),r._n.join(" "),(r.support||[]).map(k=>SUPL[k]).join(" "),r.target,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
 
 /* ---------- 필터 UI ---------- */
 function chipGroup(title,key,opts){
@@ -493,6 +535,8 @@ function buildFilters(){
     chipGroup("대상","level",[["대학생","대학생"],["고등학생","고등학생"],["해외유학","해외유학"],["학점은행제","학점은행제"]])+
     `<div class="fgroup"><h3>지역</h3><select id="fRegion"><option value="">전체</option><option value="전국">전국 단위만</option>${SIDO.map(s=>`<option ${F.region===s?"selected":""}>${s}</option>`).join("")}</select></div>`+
     chipGroup("운영 기관","orgType",orgs.map(o=>[o,OL[o]||o]))+
+    chipGroup("계열"+(profile&&profile.major?` <span style="font-weight:500">· 내 계열: ${FSHORT(profile.major)}</span>`:""),"field",[["무관","전공 무관"],...FIELDS.map(f=>[f,FSHORT(f)]),["특정학과","특정 학과"]])+
+    chipGroup("조건","note",[["no-rec","추천 없이 지원"],["no-dup","중복 수혜 허용"],["no-int","면접 없음"]])+
     chipGroup("유형","kind",kindOpts.map(k=>[k,k==="공고"?"모집 공고":k]))+
     `<button class="btn" type="button" id="fReset">필터 초기화</button>`;
   if($("#fRegion")) $("#fRegion").value=F.region;
@@ -500,7 +544,7 @@ function buildFilters(){
 document.addEventListener("click",e=>{
   const c=e.target.closest(".chip[data-f]");
   if(c){F.within=0;const s=F[c.dataset.f]; s.has(c.dataset.v)?s.delete(c.dataset.v):s.add(c.dataset.v); c.setAttribute("aria-pressed",s.has(c.dataset.v)); apply(); return}
-  if(e.target.id==="fReset"){F.within=0;F.status=new Set(["모집중","예정"]);for(const k of["level","orgType","kind","match","source"])F[k]=new Set();F.region="";buildFilters();apply()}
+  if(e.target.id==="fReset"){F.within=0;F.status=new Set(["모집중","예정"]);for(const k of["level","orgType","kind","match","source","field","note"])F[k]=new Set();F.region="";buildFilters();apply()}
 });
 document.addEventListener("change",e=>{if(e.target.id==="fRegion"){F.region=e.target.value;apply()}});
 $("#goMe").addEventListener("click",()=>{tab("me");window.scrollTo({top:0})});
@@ -517,6 +561,10 @@ function passes(r,q){
   if(F.kind.size && !F.kind.has(r.kind||"기타")) return false;
   if(F.source.size && !F.source.has(r.source.startsWith("kosaf")?"kosaf":r.source)) return false;
   if(F.match.size && r._m && !F.match.has(r._m.verdict)) return false;
+  if(F.field.size && !r._fields.some(f=>F.field.has(f))) return false;
+  if(F.note.has("no-rec") && r._n.includes("추천 필요")) return false;
+  if(F.note.has("no-dup") && r._n.includes("중복 수혜 제한")) return false;
+  if(F.note.has("no-int") && r._n.includes("면접 있음")) return false;
   if(q && !q.every(t=>r._q.includes(t))) return false;
   return true;
 }
@@ -531,7 +579,7 @@ function sorter(){
   return (a,b)=>rank[a._s.key]-rank[b._s.key] || (a._s.key==="마감"?(a.next||"9").localeCompare(b.next||"9"):(a.end||a.start||"9999").localeCompare(b.end||b.start||"9999")) || (b.amount_won||0)-(a.amount_won||0);
 }
 function apply(){
-  store.set("filters",{status:[...F.status],level:[...F.level],region:F.region,orgType:[...F.orgType],kind:[...F.kind],match:[...F.match],source:[...F.source]});
+  store.set("filters",{status:[...F.status],level:[...F.level],region:F.region,orgType:[...F.orgType],kind:[...F.kind],match:[...F.match],source:[...F.source],field:[...F.field],note:[...F.note]});
   const q=$("#q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
   view=DATA.filter(r=>passes(r,q)).sort(sorter());
   shown=0; $("#list").innerHTML=""; $("#resultCount").innerHTML="<b>"+view.length.toLocaleString("ko-KR")+"</b>건";
@@ -546,7 +594,11 @@ function card(r){
   const pills=(r.support||[]).map(k=>`<span class="pill ${k}">${SUPL[k]}</span>`);
   if(m) pills.push(`<span class="pill ${m.verdict}">${VLABEL[m.verdict]}</span>`);
   if(s.key==="모집중") pills.push(`<span class="pill live">모집중</span>`);
-  if(r._f) pills.push(`<span class="pill ${r._f.cls}">${esc(r._f.label)}</span>`);
+  if(r._f&&r._f.label==="내 학과 대상") pills.push(`<span class="pill ok">내 학과 대상</span>`);
+  const mine=profile&&profile.major;
+  pills.push(`<span class="pill ${mine&&r._fields.includes(mine)?"ok":mine&&!r._fields.includes("무관")&&!r._fields.includes("특정학과")?"no":"field"}">${r._fields.map(FSHORT).join("·")}${r._fields[0]==="무관"||r._fields[0]==="특정학과"?"":" 계열"}</span>`);
+  if(applyState[r.id]) pills.unshift(`<span class="pill state">${esc(applyState[r.id])}</span>`);
+  if(r._n.includes("추천 필요")) pills.push(`<span class="pill">추천 필요</span>`);
   if(r.region) pills.push(`<span class="pill">${esc(r.region)}${r.district?" "+esc(r.district):""}</span>`);
   const kd=kindLabel(r); if(kd) pills.push(`<span class="pill">${esc(kd)}</span>`);
   if(r.level && r.level!=="대학생") pills.push(`<span class="pill">${esc(r.level)}</span>`);
@@ -578,7 +630,7 @@ function gcal(r){
 function openDetail(id){
   const r=BYID[id]; if(!r) return;
   const m=r._m, s=r._s;
-  const rows=[["운영기관",r.org],["모집 기간",(r.start||"?")+" ~ "+(r.end||"?")+(r.next?"\n다음 모집 예상: "+r.next.replace("-","년 ")+"월 (작년 일정 기준)":"")],["지원 종류",(r.support||[]).map(k=>SUPL[k]).join(", ")],["지원 내용",r.amount],["선발 인원",r.quota],["지원 대상",r.target||((r.source==="hyin"||r.source==="hanyang")&&(r.images||[]).length?"공고 이미지에 있음 — 아래 ‘공고 이미지’에서 확인":"")],["대상 학교",(r.school_types||[]).join(", ")],["학년·학기",(r.grades||[]).join(", ")],["계열",(r.majors||[]).join(", ")],["지역",[r.region,r.district].filter(Boolean).join(" ")],["거주 조건",r.residence],["소득 기준",r.income],["성적 기준",r.gpa],["특정 자격",r.special],["자격 제한",r.restriction],["추천",r.recommend],["선발 방법",r.selection],["제출 서류",r.documents],["첨부파일",(r.files||[]).join("\n")],["처음 등록",(r.posted||r.first_seen||"").slice(0,10)]].filter(x=>x[1]&&String(x[1]).trim());
+  const rows=[["운영기관",r.org],["모집 기간",(r.start||"?")+" ~ "+(r.end||"?")+(r.next?"\n다음 모집 예상: "+r.next.replace("-","년 ")+"월 (작년 일정 기준)":"")],["지원 종류",(r.support||[]).map(k=>SUPL[k]).join(", ")],["계열",r._fields.map(FSHORT).join(", ")],["알아둘 점",r._n.join(" · ")],["지원 내용",r.amount],["선발 인원",r.quota],["지원 대상",r.target||((r.source==="hyin"||r.source==="hanyang")&&(r.images||[]).length?"공고 이미지에 있음 — 아래 ‘공고 이미지’에서 확인":"")],["대상 학교",(r.school_types||[]).join(", ")],["학년·학기",(r.grades||[]).join(", ")],["지역",[r.region,r.district].filter(Boolean).join(" ")],["거주 조건",r.residence],["소득 기준",r.income],["성적 기준",r.gpa],["특정 자격",r.special],["자격 제한",r.restriction],["추천",r.recommend],["선발 방법",r.selection],["제출 서류",r.documents],["첨부파일",(r.files||[]).join("\n")],["처음 등록",(r.posted||r.first_seen||"").slice(0,10)]].filter(x=>x[1]&&String(x[1]).trim());
   const links=[];
   const mu=mainUrl(r);
   if(mu) links.push(`<a class="btn primary" href="${esc(mu)}" target="_blank" rel="noopener noreferrer">공고 원문 보기</a>`);
@@ -588,21 +640,40 @@ function openDetail(id){
   const gc=gcal(r);
   const addr=mu?`<div class="addr"><span>공고 주소</span><code id="dUrl">${esc(mu)}</code><button class="btn" type="button" id="dCopy">주소 복사</button></div>`:""; if(gc && s.key!=="마감") links.push(`<a class="btn" href="${esc(gc)}" target="_blank" rel="noopener">구글 캘린더에 추가</a>`);
   links.push(`<button class="btn" type="button" data-star="${r.id}" aria-pressed="${favs.has(r.id)}">${favs.has(r.id)?"★ 관심 해제":"☆ 관심 등록"}</button>`);
+  links.push(`<button class="btn" type="button" id="dShare">내용 복사</button>`);
+  const docs=(r.documents||"").split(/\n|○/).map(x=>x.replace(/^[\s\-·•※]+/,"").trim()).filter(x=>x.length>1&&!/자세한 사항|첨부파일 또는/.test(x)).slice(0,14);
+  const checked=new Set(store.get("docs:"+r.id,[]));
+  const tracker=`<div class="track"><span>신청 상태</span>${APPLY.map(a=>`<button type="button" class="seg" data-apply="${a}" aria-pressed="${applyState[r.id]===a}">${a}</button>`).join("")}</div>`;
+  const checklist=docs.length?`<h3>제출 서류 체크리스트 <span class="note" id="docProg">${[...checked].filter(i=>i<docs.length).length}/${docs.length}</span></h3><div class="docs">${docs.map((d,i)=>`<label class="doc"><input type="checkbox" data-doc="${i}" ${checked.has(i)?"checked":""}> <span>${esc(d)}</span></label>`).join("")}</div>`:"";
   $("#drawer").innerHTML=`<button class="close" type="button" id="dClose" aria-label="닫기"><svg width="16" height="16" viewBox="0 0 16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg></button>
     <div class="pills"><span class="pill ${s.hot?"seal":s.key==="모집중"?"live":""}">${esc(s.label)}</span>${r.region?`<span class="pill">${esc(r.region)}${r.district?" "+esc(r.district):""}</span>`:""}${kindLabel(r)?`<span class="pill">${esc(kindLabel(r))}</span>`:""}</div>
     <h2 id="dTitle">${esc(r.title)}</h2><div class="meta">${r.org&&r.org!==r.title?`<span>${esc(r.org)}</span>`:""}${r.amount_won?`<span class="amt">최대 ${esc(won(r.amount_won))}</span>`:""}</div>
     ${m?`<div class="reasons ${m.verdict}"><b>${VLABEL[m.verdict]}</b> — 내 정보 기준 자동 판단<ul>${m.why.map(([k,t])=>`<li>${k==="ok"?"✓":k==="no"?"✕":"·"} ${esc(t)}</li>`).join("")||"<li>판단할 조건이 없습니다</li>"}</ul></div>`:`<p class="note" style="margin-top:12px">‘내 정보’를 입력하면 지원 가능 여부를 자동으로 판단해 드립니다.</p>`}
-    <div class="actions">${links.join("")}</div>${addr}
-    <dl class="facts">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+    <div class="actions">${links.join("")}</div>${addr}${tracker}
+    <dl class="facts">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>${checklist}
     ${r.summary?`<h3>공고 본문</h3><div class="summary">${esc(r.summary)}</div>`:""}
     ${(r.images||[]).length?`<h3>공고 이미지</h3><p class="note">${r.images.length}장: ${r.images.slice(0,4).filter(safeUrl).map((u,i)=>`<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">이미지 ${i+1}</a>`).join(" · ")}</p>`:""}
 `;
   $("#drawer").hidden=false; $("#scrim").hidden=false; $("#dClose").focus();
+  $("#drawer").dataset.id=r.id;
 }
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-apply]"); const id=$("#drawer").dataset.id;
+  if(a&&id){ const v=a.dataset.apply; if(applyState[id]===v) delete applyState[id]; else {applyState[id]=v; if(!favs.has(id)) toggleFav(id)} store.set("applyState",0); store.set("apply",applyState);
+    $$("[data-apply]").forEach(b=>b.setAttribute("aria-pressed",applyState[id]===b.dataset.apply)); refreshCard(id); return }
+  if(e.target.id==="dShare"&&id){ const r=BYID[id]; const t=[r.title,r.org,r.end?"마감 "+r.end:"",r.amount_won?"지원 "+won(r.amount_won):"",mainUrl(r)].filter(Boolean).join("\n");
+    const done=()=>{e.target.textContent="복사했습니다"}; try{navigator.clipboard.writeText(t).then(done,()=>{e.target.textContent="복사가 막혀 있어요"})}catch(err){e.target.textContent="복사가 막혀 있어요"} }
+});
+document.addEventListener("change",e=>{
+  const c=e.target.closest("[data-doc]"); const id=$("#drawer").dataset.id; if(!c||!id) return;
+  const set=new Set(store.get("docs:"+id,[])); const i=+c.dataset.doc; c.checked?set.add(i):set.delete(i); store.set("docs:"+id,[...set]);
+  const n=$$("[data-doc]").length; $("#docProg").textContent=[...set].filter(x=>x<n).length+"/"+n;
+});
+function refreshCard(id){const r=BYID[id]; if(!r) return; $$(`.item[data-id="${id}"]`).forEach(el=>{el.outerHTML=card(r)}); if(!$("#view-fav").hidden) renderFav()}
 function closeDetail(){$("#drawer").hidden=true;$("#scrim").hidden=true}
 $("#scrim").addEventListener("click",closeDetail);
 document.addEventListener("click",e=>{
-  if(e.target.id==="dClose")closeDetail();
+  if(e.target.closest("#dClose"))closeDetail();
   if(e.target.id==="dCopy"){const t=$("#dUrl").textContent; const done=()=>{e.target.textContent="복사했습니다"}; try{navigator.clipboard.writeText(t).then(done,()=>{selectUrl()})}catch(err){selectUrl()}}
 });
 function selectUrl(){const r=document.createRange(); r.selectNodeContents($("#dUrl")); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); $("#dCopy").textContent="선택됨 — 길게 눌러 복사"}
@@ -624,6 +695,7 @@ function calItems(){
   const out=[];
   for(const r of DATA){
     if(profile && r._m && r._m.verdict==="no") continue;
+    if($("#calFav").checked && !favs.has(r.id)) continue;
     if(r.status!=="마감"){ if(r.end) out.push({d:r.end,t:"end",r}); if(r.start&&r.start>=TODAY) out.push({d:r.start,t:"start",r}); }
     else if(useNext && r.next && r.end){ const y=+r.next.slice(0,4), dd=r.end.slice(4); const s=r.start?r.next.slice(0,4)+r.start.slice(4):""; const e=(r.end.slice(5,7)<r.next.slice(5,7)?y+1:y)+dd; out.push({d:e,t:"end",r,guess:1}); if(s) out.push({d:s,t:"start",r,guess:1}) }
   }
@@ -646,8 +718,14 @@ $("#cal").addEventListener("click",e=>{const d=e.target.closest("[data-day]"); i
 $("#calPrev").addEventListener("click",()=>{calM--; if(calM<0){calM=11;calY--} renderCal()});
 $("#calNext").addEventListener("click",()=>{calM++; if(calM>11){calM=0;calY++} renderCal()});
 $("#calNextYear").addEventListener("change",renderCal);
+$("#calFav").addEventListener("change",renderCal);
 
-function renderFav(){const l=DATA.filter(r=>favs.has(r.id)).sort(sorter()); $("#favList").innerHTML=l.map(card).join("")||`<div class="empty">아직 관심 장학금이 없습니다. 목록에서 ☆을 누르세요.</div>`}
+function renderFav(){
+  const l=DATA.filter(r=>favs.has(r.id)).sort(sorter());
+  if(!l.length){$("#favList").innerHTML=`<div class="empty">아직 관심 장학금이 없습니다. 목록에서 ☆을 누르세요. 장학금 상세에서 ‘신청 상태’를 고르면 준비 중·제출 완료·합격으로 나눠 관리할 수 있습니다.</div>`;return}
+  const groups=[["관심",l.filter(r=>!applyState[r.id])],...APPLY.map(a=>[a,l.filter(r=>applyState[r.id]===a)])].filter(g=>g[1].length);
+  $("#favList").innerHTML=groups.map(([g,rs])=>`<div class="favgroup">${g}<span class="n">${rs.length}</span></div>`+rs.map(card).join("")).join("");
+}
 
 /* ---------- 내 조건 ---------- */
 function fillProfile(){
@@ -662,22 +740,22 @@ function fillProfile(){
   $("#p_flags").innerHTML=FLAGS.map(([k,l])=>`<label class="chip"><input type="checkbox" value="${k}" id="pf_${k}"> ${l}</label>`).join("");
   const p=profile||{};
   if(!p.status && p.level) p.status={"고등학생":"hs","대학원생":"grad","대학생":"univ"}[p.level]||"";
-  for(const k of ["status","school","schoolName","ssido","sem","dept","major","income","gpa","sido","gu","hsido","hgu","psido","pgu"]) if($("#p_"+k)) $("#p_"+k).value=p[k]??"";
+  for(const k of ["status","gender","school","schoolName","ssido","sem","dept","major","income","gpa","sido","gu","hsido","hgu","psido","pgu"]) if($("#p_"+k)) $("#p_"+k).value=p[k]??"";
   $$("#profile select[data-dl]").forEach(sel=>{const dl=sel.dataset.dl; $("#"+dl).innerHTML=(DIST[sel.value]||[]).map(g=>`<option value="${g}">`).join("")});
   (p.flags||[]).forEach(k=>{const c=$("#pf_"+k); if(c) c.checked=true});
 }
 $("#profile").addEventListener("submit",e=>{
   e.preventDefault();
-  const p={}; for(const k of ["status","school","schoolName","ssido","sem","dept","major","income","gpa","sido","gu","hsido","hgu","psido","pgu"]) p[k]=$("#p_"+k).value.trim();
+  const p={}; for(const k of ["status","gender","school","schoolName","ssido","sem","dept","major","income","gpa","sido","gu","hsido","hgu","psido","pgu"]) p[k]=$("#p_"+k).value.trim();
   p.level={hs:"고등학생",pre:"대학생",univ:"대학생",leave:"대학생",grad:"대학원생"}[p.status]||"";
   if(p.status==="pre"&&p.sem==="") p.sem="0";
   if(p.status==="grad"&&!p.school) p.school="grad";
   p.flags=$$("#p_flags input:checked").map(c=>c.value);
   profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis();
   $("#p_saved").textContent="저장했습니다. 이 기기에만 보관됩니다.";
-  F.match=new Set(["ok","check"]); $("#sort").value="fit"; store.set("sort","fit"); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
+  F.match=new Set(["ok","check"]); F.field=p.major?new Set([p.major,"무관"]):new Set(); $("#sort").value="fit"; store.set("sort","fit"); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
 });
-$("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",null); F.match=new Set(); fillProfile(); cache(); buildFilters(); apply(); renderKpis(); renderCats(); $("#p_saved").textContent="이 기기에서 내 정보를 지웠습니다."});
+$("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",null); F.match=new Set(); F.field=new Set(); fillProfile(); cache(); buildFilters(); apply(); renderKpis(); renderCats(); $("#p_saved").textContent="이 기기에서 내 정보를 지웠습니다."});
 
 /* ---------- 새 소식 ---------- */
 function renderSrc(){
