@@ -17,12 +17,13 @@ jobs:
           openssl x509 -in inter.pem -noout -subject -issuer
           cat /etc/ssl/certs/ca-certificates.crt inter.pem > bundle.pem
           C="curl -sSL -m 25 --cacert bundle.pem -A"
-          for u in https://www.sogang.ac.kr/robots.txt https://saint.sogang.ac.kr/robots.txt; do echo "=== $u"; $C "$UA" "$u" | head -c 3000; echo; done
-          echo "=== SG LIST"; $C "$UA" "https://www.sogang.ac.kr/ko/scholarship-notice" > sg.html; wc -c sg.html
-          grep -o '<script[^>]*src="[^"]*"' sg.html | head -20
-          echo "=== SG JS"; for js in $(grep -o '<script[^>]*src="[^"]*"' sg.html | grep -o 'src="[^"]*"' | cut -d'"' -f2 | head -15); do case $js in http*) u=$js;; *) u="https://www.sogang.ac.kr$js";; esac; $C "$UA" "$u" > j.js; echo "-- $u $(wc -c < j.js)"; grep -o -E '"/?api/[^"]{3,80}"|bbsConfigF[kK][^,;]{0,80}|/api/[A-Za-z0-9_/{}$.-]{3,80}' j.js | sort -u | head -30; done
-          echo "=== SG API TRY"; for u in "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?pageNum=1&pageSize=20&bbsConfigFk=141" ; do echo "-- $u"; $C "$UA" "$u" | head -c 2500; echo; done
-          echo "=== SAINT"; $C "Mozilla/5.0 (iPhone)" -o saint.html -w "%{url_effective} %{http_code}\n" "https://saint.sogang.ac.kr/"; wc -c saint.html; grep -n -i "<form\|<input\|<button\|captcha\|location\|<script src\|login\|iframe" saint.html | head -60
+          $C "$UA" "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?pageNum=1&pageSize=3&bbsConfigFk=141" > sglist.json
+          python3 -c "import json;d=json.load(open('sglist.json'));print(json.dumps(d['data']['list'][0],ensure_ascii=False)[:3000])"
+          $C "$UA" "https://www.sogang.ac.kr/_nuxt/entry.1599b8d9.js" > e.js
+          for f in $(grep -o '"[^"]*\.js"' e.js | tr -d '"' | grep -v http | sort -u | head -400); do $C "$UA" "https://www.sogang.ac.kr/_nuxt/${f#./}" 2>/dev/null | grep -o -E 'BbsData/[A-Za-z]+[^"`]{0,60}' ; done | sort -u | head -40
+          PK=$(python3 -c "import json;print(json.load(open('sglist.json'))['data']['list'][0]['pkId'])")
+          for path in "BbsData/boardView?pkId=$PK" "BbsData/boardView/$PK" "BbsData/view?pkId=$PK" "BbsData/$PK" "BbsData/boardDetail?pkId=$PK"; do echo "-- $path"; $C "$UA" "https://www.sogang.ac.kr/api/api/v1/mainKo/$path" | head -c 1500; echo; done
+          echo "=== SAINT"; $C "Mozilla/5.0 (iPhone)" -c sc.txt -o saint.html -w "%{url_effective} %{http_code}\n" "https://saint.sogang.ac.kr/irj/portal"; wc -c saint.html; grep -n -i "<form\|<input\|<button\|captcha\|location\|<script src\|login\|iframe\|logon" saint.html | head -60
       - if: always()
         run: |
           git init -q out && cd out && cp ../*.html ../probe.txt . 2>/dev/null; git checkout -q -b probe-out
