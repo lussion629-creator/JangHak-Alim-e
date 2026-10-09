@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-09T16:49:56+00:00",
- "finishedAt": "2026-10-09T17:05:30+00:00",
+ "startedAt": "2026-10-09T17:52:28+00:00",
+ "finishedAt": "2026-10-09T18:12:38+00:00",
  "online": true,
- "total": 4402,
- "new": 4,
- "changed": 186,
+ "total": 4526,
+ "new": 137,
+ "changed": 172,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -65,11 +65,25 @@
    "mode": "online"
   },
   {
-   "source": "board",
-   "label": "대학·재단·지자체 게시판 150곳",
+   "source": "kangwon",
+   "label": "강원대 장학공지(삼척)",
    "ok": true,
-   "count": 622,
-   "mode": "성공 121 / 실패 29"
+   "count": 60,
+   "mode": "online"
+  },
+  {
+   "source": "sogang",
+   "label": "서강대 장학공지",
+   "ok": true,
+   "count": 80,
+   "mode": "online"
+  },
+  {
+   "source": "board",
+   "label": "대학·재단·지자체 게시판 148곳",
+   "ok": true,
+   "count": 624,
+   "mode": "성공 119 / 실패 29"
   },
   {
    "source": "gov24",
@@ -95,7 +109,7 @@
  ],
  "registry": {
   "total": 551,
-  "enabled": 150,
+  "enabled": 148,
   "sources": [
    {
     "name": "한양대학교 서울캠퍼스",
@@ -532,10 +546,10 @@
     "type": "university",
     "region": "서울",
     "url": "https://www.sogang.ac.kr/ko/scholarship-notice",
-    "enabled": true,
+    "enabled": false,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": null,
+    "count": null
    },
    {
     "name": "서울시립대학교",
@@ -724,7 +738,7 @@
     "url": "https://www.hoseo.ac.kr/Home/BBSList.mbz?action=MAPP_1708240139&schCategorycode=CTG_17082400011",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -804,7 +818,7 @@
     "url": "https://www.gwangju.ac.kr/bbs/?b_id=gwangju_notice_se&site=gwangju&mn=538",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -902,10 +916,10 @@
     "type": "university",
     "region": "강원",
     "url": "https://www.kangwon.ac.kr/www/selectBbsNttList.do?bbsNo=37&key=1176",
-    "enabled": true,
+    "enabled": false,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": null,
+    "count": null
    },
    {
     "name": "전북대학교",
@@ -1084,8 +1098,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 9
+    "ok": false,
+    "count": 0
    },
    {
     "name": "성결대학교",
@@ -1244,8 +1258,8 @@
     "url": "https://www.stu.ac.kr/CmsHome/stu06_03_03.eznic",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 11
    },
    {
     "name": "삼성꿈장학재단",
