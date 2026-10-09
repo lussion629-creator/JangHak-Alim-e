@@ -52,6 +52,8 @@ def collect(online: bool = True):
     links = public_links()
     out = []
     for x in data["records"]:
+        if x.get("campus") == "ERICA":
+            continue  # 서울캠퍼스·한양여대 학생용 앱이라 ERICA 캠퍼스 공고는 넣지 않는다
         d = x.get("detail") or {}
         text = d.get("text", "")
         kind = JAEWON.get(x.get("jaewon"), "")

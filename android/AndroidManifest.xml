@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kr.jangak.alimi" android:versionCode="21" android:versionName="1.0.20">
+    package="kr.jangak.alimi" android:versionCode="22" android:versionName="1.0.21">
     <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="35"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
@@ -19,6 +19,8 @@
         <activity android:name=".PortalActivity" android:exported="false"
             android:configChanges="orientation|screenSize|keyboardHidden|uiMode"
             android:windowSoftInputMode="adjustResize"/>
+        <service android:name=".HyinJob" android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".WorkJob" android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
     </application>

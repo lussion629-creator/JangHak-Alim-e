@@ -85,6 +85,7 @@ public class MainActivity extends Activity {
         });
         if (saved != null) web.restoreState(saved); else web.loadUrl(ORIGIN + "index.html");
         try { WorkJob.schedule(this); } catch (Exception ignored) { }
+        try { HyinJob.schedule(this); } catch (Exception ignored) { }
         silentHyin(root);
         if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != 0) {
             requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
@@ -107,8 +108,10 @@ public class MainActivity extends Activity {
 
     /** 전에 로그인한 적이 있고 하루가 지났으면, 남아 있는 포털 로그인으로 조용히 장학캘린더를 다시 읽어 본다. */
     private void silentHyin(final android.widget.FrameLayout root) {
+        if (hidden != null) return;
         java.io.File f = HyinClient.file(this);
-        if (!f.exists() || System.currentTimeMillis() - f.lastModified() < 20L * 60 * 60 * 1000) return;
+        if (!f.exists() && !"on".equals(Cred.state(this))) return;
+        if (f.exists() && System.currentTimeMillis() - f.lastModified() < 20L * 60 * 60 * 1000) return;
         getSharedPreferences("hyin", MODE_PRIVATE).edit().putString("state", "checking").apply();
         hidden = new WebView(this);
         root.addView(hidden, new android.widget.FrameLayout.LayoutParams(1, 1));
@@ -123,6 +126,36 @@ public class MainActivity extends Activity {
         web.postDelayed(new Runnable() { @Override public void run() { if (hidden != null) { setState("login"); dropHidden(); } } }, 120000);
     }
 
+    private void showLoginDialog() {
+        final android.widget.LinearLayout box = new android.widget.LinearLayout(this);
+        box.setOrientation(android.widget.LinearLayout.VERTICAL);
+        int p = Math.round(20 * getResources().getDisplayMetrics().density);
+        box.setPadding(p, p / 2, p, 0);
+        final android.widget.EditText id = new android.widget.EditText(this);
+        id.setHint("포털 아이디"); id.setSingleLine(true);
+        id.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        final android.widget.EditText pw = new android.widget.EditText(this);
+        pw.setHint("비밀번호"); pw.setSingleLine(true);
+        pw.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        android.widget.TextView note = new android.widget.TextView(this);
+        note.setText("아이디·비밀번호는 이 휴대폰의 안전한 저장소에 암호화해 두고, 한양 포털 로그인 칸에만 넣습니다. 서버로 보내지 않습니다. 로그인이 한 번 실패하면 계정이 잠기지 않도록 자동 로그인을 멈춥니다.");
+        note.setTextSize(13);
+        box.addView(id); box.addView(pw); box.addView(note);
+        new android.app.AlertDialog.Builder(this).setTitle("포털 자동 로그인").setView(box)
+            .setPositiveButton("저장", new android.content.DialogInterface.OnClickListener() { @Override public void onClick(android.content.DialogInterface d, int w) {
+                String i = id.getText().toString().trim(), s = pw.getText().toString();
+                if (i.isEmpty() || s.isEmpty()) return;
+                try { Cred.save(MainActivity.this, i, s); } catch (Exception e) { return; }
+                pw.setText("");
+                web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null);
+                // 바로 한 번 확인 (기존 세션이 끝났으면 자동 로그인)
+                java.io.File f = HyinClient.file(MainActivity.this);
+                if (f.exists()) f.setLastModified(0);
+                silentHyin((android.widget.FrameLayout) web.getParent());
+            } })
+            .setNegativeButton("취소", null).show();
+    }
+
     private void setState(String s) { getSharedPreferences("hyin", MODE_PRIVATE).edit().putString("state", s).apply(); }
 
     private void dropHidden() {
@@ -133,7 +166,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int req, int res, Intent data) {
         super.onActivityResult(req, res, data);
-        if (req == REQ_PORTAL && res == RESULT_OK) { setState("ok"); web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null); }
+        if (req == REQ_PORTAL && res == RESULT_OK) { setState("ok"); if ("failed".equals(Cred.state(this))) Cred.setState(this, "on"); web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null); }
     }
 
     @Override
@@ -215,6 +248,18 @@ public class MainActivity extends Activity {
             Alerts.save(MainActivity.this, json);
             new Thread(new Runnable() { @Override public void run() { try { Alerts.check(MainActivity.this); } catch (Exception ignored) { } } }).start();
         }
+
+        /** 자동 로그인: 아이디·비밀번호를 앱의 입력 창(웹 페이지가 아님)에서 받아 암호화해 저장한다. */
+        @JavascriptInterface
+        public void autoLoginSetup() {
+            runOnUiThread(new Runnable() { @Override public void run() { showLoginDialog(); } });
+        }
+
+        @JavascriptInterface
+        public String autoLoginState() { return Cred.state(MainActivity.this); }
+
+        @JavascriptInterface
+        public void autoLoginOff() { Cred.clear(MainActivity.this); }
 
         /** 한양 포털 로그인 화면을 연다 (학생이 직접 로그인). */
         @JavascriptInterface

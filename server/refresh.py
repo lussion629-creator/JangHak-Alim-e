@@ -121,6 +121,8 @@ def export(con: sqlite3.Connection, summary: dict):
     for data, first_seen, changed_at in con.execute("select data, first_seen, changed_at from scholarships where active=1"):
         r = json.loads(data)
         r.pop("hash", None)
+        if r.get("source") in ("hyin", "hanyang", "legacy", "board") and re.search(r"ERICA|에리카", (r.get("title") or "") + " " + (r.get("org") or "")):
+            continue  # ERICA 캠퍼스 공고는 넣지 않는다
         if r.get("source") == "legacy":
             if r.get("title") in hy_titles:
                 continue  # 한양대 공지에서 직접 가져온 같은 글이 있다

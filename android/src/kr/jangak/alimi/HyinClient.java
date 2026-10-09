@@ -39,6 +39,7 @@ final class HyinClient {
     private final Handler ui = new Handler(Looper.getMainLooper());
     private volatile String host = "";
     private boolean finished;
+    private boolean triedLogin;
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     HyinClient(Context ctx, WebView web, boolean silent, Listener ln) {
@@ -80,7 +81,20 @@ final class HyinClient {
                 if (portal && !login) {
                     ln.onProgress("로그인 확인됨 · 장학캘린더를 불러오는 중…");
                     v.evaluateJavascript(script(), null);
+                } else if (silent && portal && login && !triedLogin && "on".equals(Cred.state(ctx))) {
+                    // 저장된 아이디·비밀번호로 한 번만 로그인을 시도한다 (틀리면 계정이 잠기지 않도록 다시 시도하지 않음)
+                    triedLogin = true;
+                    org.json.JSONObject c = Cred.load(ctx);
+                    if (c == null) { finish(); ln.onLoginNeeded(); return; }
+                    ln.onProgress("자동 로그인 중…");
+                    v.evaluateJavascript(loginScript(c.optString("id"), c.optString("pw")), null);
+                    ui.postDelayed(new Runnable() { @Override public void run() {
+                        if (!finished && host.equals("portal.hanyang.ac.kr") && web.getUrl() != null && web.getUrl().contains("lgin")) {
+                            Cred.setState(ctx, "failed"); finish(); ln.onLoginNeeded();
+                        }
+                    } }, 25000);
                 } else if (silent) {
+                    if (triedLogin) Cred.setState(ctx, "failed");
                     finish();
                     ln.onLoginNeeded();
                 } else {
@@ -88,6 +102,16 @@ final class HyinClient {
                 }
             }
         });
+    }
+
+    /** 포털 로그인 칸에 저장된 아이디·비밀번호를 넣고 로그인 버튼을 누른다. (포털 자체의 암호화·로그인 절차를 그대로 쓴다) */
+    private static String loginScript(String id, String pw) {
+        return "(function(){var u=document.getElementById('userId'),p=document.getElementById('password');if(!u||!p)return;"
+                + "var d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value');"
+                + "function s(e,v){d.set.call(e,v);e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}"
+                + "s(u," + org.json.JSONObject.quote(id) + ");s(p," + org.json.JSONObject.quote(pw) + ");"
+                + "var a=Array.prototype.filter.call(document.querySelectorAll('a,button'),function(e){return (e.textContent||'').trim()==='로그인'&&e.offsetParent!==null;})[0];"
+                + "if(a)a.click();})();";
     }
 
     static boolean isHanyang(String h) {

@@ -124,8 +124,8 @@ def collect(online: bool = True):
     out = []
     seen = set()
     for r in rows + jobs:
-        if r["id"] in seen or SKIP.search(r["title"]):
-            continue
+        if r["id"] in seen or SKIP.search(r["title"]) or r.get("campus") == "ERICA" or re.search(r"ERICA|에리카", r["title"]):
+            continue  # ERICA 캠퍼스 공고는 넣지 않는다
         seen.add(r["id"])
         cat = r.get("cat", CAT_SCH)
         work = bool(WORK.search(r["title"]) and re.search(r"근로|장학조교|도우미|튜터|Tutor", r["title"], re.I))

@@ -26,7 +26,7 @@
   }
   function q(dt) {
     Controller.action = "/haksa/JhccAct/findJanghakCalendarList.do";
-    Controller.setParams(null, { cbYearOfYm: dt.slice(0, 6), strYear: dt.slice(0, 4), strCampusCd: "", strApplyGb: "", strJaewonGb: "", strMojipGb: "", strDt: dt });
+    Controller.setParams(null, { cbYearOfYm: dt.slice(0, 6), strYear: dt.slice(0, 4), strCampusCd: "H", strApplyGb: "", strJaewonGb: "", strMojipGb: "", strDt: dt });
     var res = Controller.submit();
     if (res === null || res === undefined) throw new Error("LOGIN"); // 로그인이 안 된 세션은 빈 응답(null)을 준다
     return JCFUtils.getDataList(res) || [];
@@ -56,6 +56,7 @@
           var rows = q(days[i]);
           for (var k = 0; k < rows.length; k++) {
             var r = rows[k], key = [r.year, r.term, r.janghakCd, r.seq, r.campusNm].join("|");
+            if (r.campusNm === "ERICA") continue; // 서울캠퍼스만
             if (!all[key]) all[key] = { campus: r.campusNm, name: r.janghakNm, start: r.startDt, end: r.endDt, jaewon: r.jaewonGb, year: r.year, term: r.term, cd: r.janghakCd, seq: r.seq };
           }
         }

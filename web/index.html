@@ -661,8 +661,7 @@ function schoolOK(r){
   if(own==="hywu") return o.hywu;
   if(!o.hyu) return false;
   const n=(profile&&profile.schoolName)||"";
-  if(/^한양대학교/.test(n)) return !(own==="erica"&&!/ERICA/.test(n))&&!(own==="seoul"&&/ERICA/.test(n));
-  return true;
+  return own!=="erica";
 }
 const OWNL={hywu:"한양여대 전용",erica:"한양대 전용 · ERICA",seoul:"한양대 전용",hyu:"한양대 전용"};
 // 지원 종류: 여러 개를 골라 보고 싶은 것만 본다 (아무것도 안 고르면 전체)
@@ -910,7 +909,7 @@ function fillProfile(){
   const opt='<option value="">선택 안 함</option>'+SIDO.map(s=>`<option>${s}</option>`).join("");
   for(const id of["p_sido","p_psido","p_hsido","p_ssido"]) $("#"+id).innerHTML=opt;
   // 학교: 한양대·한양여대를 맨 위에, 나머지는 가나다순
-  const TOP=[["한양대학교","서울","한양대학교 (서울캠퍼스)"],["한양대학교 ERICA","경기","한양대학교 (ERICA)"],["한양여자대학교","서울","한양여자대학교"]];
+  const TOP=[["한양대학교","서울","한양대학교"],["한양여자대학교","서울","한양여자대학교"]];
   const rest=[...new Map(UNIVS.filter(([n])=>!/^한양/.test(n)).map(u=>[u[0],u])).values()].sort((a,b)=>a[0].localeCompare(b[0],"ko"));
   $("#p_schoolPick").innerHTML=`<option value="">선택 안 함</option><optgroup label="한양">${TOP.map(([v,,l])=>`<option value="${v}">${l}</option>`).join("")}</optgroup><optgroup label="다른 학교">${rest.map(([n])=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup><option value="__other">목록에 없음 (직접 입력)</option>`;
   $("#p_deptPick").innerHTML=`<option value="">선택 안 함</option>`+Object.entries(MAJORS).map(([g,l])=>`<optgroup label="${g}">${l.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup>`).join("")+`<option value="__other">목록에 없음 (직접 입력)</option>`;
@@ -1015,6 +1014,7 @@ function hyinItems(){
   if(!d||!Array.isArray(d.records)) return {items:[],at:0};
   const known=new Set(store.get("hyinKnown",[])||[]), first=!known.size, out=[];
   for(const x of d.records){
+    if(x.campus==="ERICA") continue;
     const key=[x.year,x.term,x.cd,x.seq,x.campus].join("|"); const det=x.detail||{}, text=String(det.text||"");
     const kind=HJW[x.jaewon]||"", name=String(x.name||text.split("\n")[0]||"한양대 장학").slice(0,80);
     const start=nd(x.start), end=nd(x.end);
@@ -1060,8 +1060,14 @@ function renderHyin(){
   const when=at?new Date(at):null, live=items.filter(r=>r.status!=="마감").length;
   box.innerHTML=`<p class="note">${when?`마지막으로 불러온 때: ${when.getMonth()+1}월 ${when.getDate()}일 ${String(when.getHours()).padStart(2,"0")}:${String(when.getMinutes()).padStart(2,"0")} · ${items.length}건 (모집 중·예정 ${live}건)`:"아직 불러오지 않았어요."}</p>
     ${st==="login"?`<p class="note" style="color:var(--seal)">포털 로그인이 끝나서 자동으로 다시 불러오지 못했어요. 한 번 더 로그인해 주세요.</p>`:""}
-    <p class="note">포털 로그인 화면에서 직접 로그인하면(2차 인증 포함) 장학캘린더와 공고 내용을 읽어 이 휴대폰에만 저장합니다. 비밀번호와 본인의 신청·제출 내역은 읽지도 저장하지도 않아요. 로그인이 살아 있는 동안에는 앱을 열 때 하루 한 번 자동으로 다시 불러옵니다.</p>
-    <div class="actions"><button class="btn primary" type="button" data-portal="1">${when?"다시 불러오기":"포털 로그인하고 불러오기"}</button>${when?`<button class="btn" type="button" id="hyinClear">불러온 자료·로그인 지우기</button>`:""}</div>`;
+    <p class="note">포털 로그인 화면에서 직접 로그인하면(2차 인증 포함) 장학캘린더와 공고 내용을 읽어 이 휴대폰에만 저장합니다. 본인의 신청·제출 내역은 읽지도 저장하지도 않아요. 하루 한 번 자동으로 다시 불러옵니다.</p>
+    <div class="actions"><button class="btn primary" type="button" data-portal="1">${when?"다시 불러오기":"포털 로그인하고 불러오기"}</button>${when?`<button class="btn" type="button" id="hyinClear">불러온 자료·로그인 지우기</button>`:""}</div>
+    ${window.AndroidBridge.autoLoginState?(()=>{const a=window.AndroidBridge.autoLoginState(); return `<div class="sec" style="margin-top:14px;padding-top:12px"><b style="font-size:14px">하루 한 번 자동 로그인</b>
+      <p class="note">${a==="on"?"켜져 있어요. 하루에 한 번 앱이 알아서 포털에 로그인해 장학캘린더를 다시 불러와요.":a==="failed"?`<span style="color:var(--seal)">자동 로그인이 한 번 실패해서 멈췄어요.</span> 2차 인증이 필요하거나 비밀번호가 바뀌었을 수 있어요. 위의 ‘다시 불러오기’로 한 번 로그인하면 다시 켜져요.`:"꺼져 있어요. 켜면 포털 아이디·비밀번호를 이 휴대폰에 암호화해 저장하고, 하루 한 번 앱이 대신 로그인해요."}</p>
+      <p class="note">아이디·비밀번호는 휴대폰의 안전한 저장소(안드로이드 키 저장소)로 암호화되고, 한양 포털 로그인 칸에만 들어가요. 서버로 보내지 않아요. 2차 인증이 필요한 로그인은 자동으로 할 수 없어서 알림으로 알려 드려요.</p>
+      <div class="actions"><button class="btn${a==="off"?" primary":""}" type="button" id="alOn">${a==="off"?"자동 로그인 켜기":"아이디·비밀번호 바꾸기"}</button>${a!=="off"?`<button class="btn" type="button" id="alOff">자동 로그인 끄기</button>`:""}</div></div>`})():""}`;
+  const on=$("#alOn"); if(on) on.onclick=()=>{try{window.AndroidBridge.autoLoginSetup()}catch(e){}};
+  const off=$("#alOff"); if(off) off.onclick=()=>{try{window.AndroidBridge.autoLoginOff()}catch(e){} renderHyin()};
   if(call) call.hidden=!!when&&st!=="login";
   const c=$("#hyinClear"); if(c) c.onclick=()=>{try{window.AndroidBridge.hyinClear()}catch(e){} store.set("hyinKnown",[]); location.reload()};
 }
@@ -1104,6 +1110,7 @@ async function hyWorkSync(){
       const m=(a.getAttribute("href")||"").match(/entryId=(\d+)/); if(!m) continue;
       const dt=(it.querySelector(".date")?.textContent||"").replace(/[^\d.\s]/g,"").trim().split(/\.\s*/).filter(Boolean);
       const badges=[...it.querySelectorAll("[data-itemvalue]")].map(b=>b.getAttribute("data-itemvalue"));
+      if(badges[0]==="ERICA"||/ERICA|에리카/.test(t)) continue;
       found.push({id:m[1],title:t,cat,campus:badges[0]||"",dept:([...it.querySelectorAll("p > span:not(.hyu-badge)")][0]?.textContent||"").trim(),date:dt.length===3?`${dt[0]}-${dt[1].padStart(2,"0")}-${dt[2].padStart(2,"0")}`:""});
     }
   }
