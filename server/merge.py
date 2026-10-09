@@ -285,6 +285,8 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
                 continue
             if body and re.search(r"본교\s*(재학|학부|소속)|본교생|우리\s*대학\s*재학", body) and key not in body:
                 continue
+            if len(body.strip()) >= 80:
+                r["school_check"] = False  # 본문을 확인했고 특정 대학 제한이 없음
         if r.get("school_check") and len(rs) >= 2:
             r["school_check"] = False  # 여러 대학에 공통으로 온 공고는 학교 제한이 없을 가능성이 높다
         if "특정대학" in st and r.get("source", "").startswith("kosaf"):
