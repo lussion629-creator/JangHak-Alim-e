@@ -625,7 +625,7 @@ const BYID={};
 function gcal(r){
   const d=(r.end||r.start||"").replace(/-/g,""); if(!d) return "";
   const n=new Date(r.end||r.start); n.setDate(n.getDate()+1);
-  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent("[장학 마감] "+r.title)+"&dates="+d+"/"+iso(n).replace(/-/g,"")+"&details="+encodeURIComponent((r.org||"")+"\n"+(r.url||""));
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent("[장학 마감] "+r.title)+"&dates="+d+"/"+iso(n).replace(/-/g,"")+"&details="+encodeURIComponent((r.org||"")+"\n장학알리미에서 공고 원문 확인");
 }
 function openDetail(id){
   const r=BYID[id]; if(!r) return;
@@ -638,7 +638,7 @@ function openDetail(id){
   links.push(`<a class="btn${mu?"":" primary"}" href="${esc(sq)}" target="_blank" rel="noopener noreferrer">${mu?"최신 공고 검색":"공고 검색하기"}</a>`);
   if(safeUrl(r.apply_url) && safeUrl(r.apply_url)!==mu) links.push(`<a class="btn" href="${esc(safeUrl(r.apply_url))}" target="_blank" rel="noopener noreferrer">신청하러 가기</a>`);
   const gc=gcal(r);
-  const addr=mu?`<div class="addr"><span>공고 주소</span><code id="dUrl">${esc(mu)}</code><button class="btn" type="button" id="dCopy">주소 복사</button></div>`:""; if(gc && s.key!=="마감") links.push(`<a class="btn" href="${esc(gc)}" target="_blank" rel="noopener">구글 캘린더에 추가</a>`);
+  const addr=""; if(gc && s.key!=="마감") links.push(`<a class="btn" href="${esc(gc)}" target="_blank" rel="noopener">구글 캘린더에 추가</a>`);
   links.push(`<button class="btn" type="button" data-star="${r.id}" aria-pressed="${favs.has(r.id)}">${favs.has(r.id)?"★ 관심 해제":"☆ 관심 등록"}</button>`);
   links.push(`<button class="btn" type="button" id="dShare">내용 복사</button>`);
   const docs=(r.documents||"").split(/\n|○/).map(x=>x.replace(/^[\s\-·•※]+/,"").trim()).filter(x=>x.length>1&&!/자세한 사항|첨부파일 또는/.test(x)).slice(0,14);
@@ -661,7 +661,7 @@ document.addEventListener("click",e=>{
   const a=e.target.closest("[data-apply]"); const id=$("#drawer").dataset.id;
   if(a&&id){ const v=a.dataset.apply; if(applyState[id]===v) delete applyState[id]; else {applyState[id]=v; if(!favs.has(id)) toggleFav(id)} store.set("applyState",0); store.set("apply",applyState);
     $$("[data-apply]").forEach(b=>b.setAttribute("aria-pressed",applyState[id]===b.dataset.apply)); refreshCard(id); return }
-  if(e.target.id==="dShare"&&id){ const r=BYID[id]; const t=[r.title,r.org,r.end?"마감 "+r.end:"",r.amount_won?"지원 "+won(r.amount_won):"",mainUrl(r)].filter(Boolean).join("\n");
+  if(e.target.id==="dShare"&&id){ const r=BYID[id]; const t=[r.title,r.org,r.end?"마감 "+r.end:"",r.amount_won?"지원 "+won(r.amount_won):"","장학알리미에서 확인"].filter(Boolean).join("\n");
     const done=()=>{e.target.textContent="복사했습니다"}; try{navigator.clipboard.writeText(t).then(done,()=>{e.target.textContent="복사가 막혀 있어요"})}catch(err){e.target.textContent="복사가 막혀 있어요"} }
 });
 document.addEventListener("change",e=>{
