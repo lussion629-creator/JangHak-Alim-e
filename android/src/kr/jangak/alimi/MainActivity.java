@@ -136,6 +136,12 @@ public class MainActivity extends Activity {
         if (req == REQ_PORTAL && res == RESULT_OK) { setState("ok"); web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null); }
     }
 
+    @Override
+    public void onConfigurationChanged(android.content.res.Configuration c) {
+        super.onConfigurationChanged(c);
+        if (web != null) web.evaluateJavascript("window.__sysTheme&&window.__sysTheme()", null);
+    }
+
     @Override protected void onSaveInstanceState(Bundle out) { super.onSaveInstanceState(out); web.saveState(out); }
 
     @Override
@@ -173,6 +179,21 @@ public class MainActivity extends Activity {
         @JavascriptInterface
         public String platform() { return "android"; }
 
+        /** 휴대폰이 어두운 화면(다크 모드)인지. */
+        @JavascriptInterface
+        public boolean isDark() {
+            return (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        }
+
+        /** 페이지 밝기에 맞춰 상단 상태 표시줄 색을 바꾼다. */
+        @JavascriptInterface
+        public void setDark(final boolean dark) {
+            runOnUiThread(new Runnable() { @Override public void run() {
+                getWindow().setStatusBarColor(Color.parseColor(dark ? "#0e1216" : "#0d5c6e"));
+                if (Build.VERSION.SDK_INT >= 29) web.getSettings().setForceDark(WebSettings.FORCE_DARK_OFF);
+            } });
+        }
+
         /** 한양대 공개 공지 페이지를 휴대폰에서 직접 받아 페이지로 돌려준다 (근로장학 모집 확인용, 한양대 공지 주소만). */
         @JavascriptInterface
         public void fetchHanyang(final String url, final String cb) {
@@ -185,6 +206,14 @@ public class MainActivity extends Activity {
                     web.post(new Runnable() { @Override public void run() { web.evaluateJavascript(js, null); } });
                 }
             }).start();
+        }
+
+        /** 알림 조건 저장(이 기기에만) 후 바로 한 번 확인한다. */
+        @JavascriptInterface
+        public void setAlerts(String json) {
+            try { new JSONObject(json); } catch (Exception e) { return; }
+            Alerts.save(MainActivity.this, json);
+            new Thread(new Runnable() { @Override public void run() { try { Alerts.check(MainActivity.this); } catch (Exception ignored) { } } }).start();
         }
 
         /** 한양 포털 로그인 화면을 연다 (학생이 직접 로그인). */

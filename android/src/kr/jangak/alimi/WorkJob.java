@@ -28,7 +28,7 @@ public class WorkJob extends JobService {
         for (JobInfo j : js.getAllPendingJobs()) if (j.getId() == ID) return;
         js.schedule(new JobInfo.Builder(ID, new ComponentName(ctx, WorkJob.class))
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-                .setPeriodic(6L * 60 * 60 * 1000)
+                .setPeriodic(4L * 60 * 60 * 1000)
                 .setPersisted(true)
                 .build());
     }
@@ -38,6 +38,7 @@ public class WorkJob extends JobService {
         new Thread(new Runnable() {
             @Override public void run() {
                 try { check(WorkJob.this); } catch (Exception ignored) { }
+                try { Alerts.check(WorkJob.this); } catch (Exception ignored) { }
                 jobFinished(params, false);
             }
         }).start();

@@ -34,6 +34,9 @@
   --c-tuition:#7aa5ff; --c-tuition-soft:#18243d; --c-living:#ff86b5; --c-living-soft:#3a1828; --c-dorm:#b79bff; --c-dorm-soft:#261d40; --c-loan:#a7b0bc; --c-loan-soft:#232a32; --c-work:#f3a65a; --c-work-soft:#3a2814;}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
+.topright{display:flex;align-items:center;gap:10px}
+.themebtn{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:5px 10px;font:inherit;font-size:12px;font-weight:650;cursor:pointer;white-space:nowrap}
+.themebtn:hover{border-color:var(--accent);color:var(--ink)}
 body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--font);margin:0;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
 a{color:var(--accent);text-underline-offset:2px}
 button,input,select{font:inherit;color:inherit;letter-spacing:inherit}
@@ -246,7 +249,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2.5 9.2 12 4.5l9.5 4.7L12 13.9z" fill="#fff"/><path d="M6.5 11.4v4.3c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.3L12 14.2z" fill="#fff" opacity=".8"/></svg></span>
       <h1>장학알리미</h1>
     </div>
-    <div class="stamp" id="stamp">자료를 불러오는 중…</div>
+    <div class="topright"><button class="themebtn" type="button" id="themeBtn" aria-label="화면 밝기 바꾸기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></svg><span id="themeLbl">자동</span></button><div class="stamp" id="stamp">자료를 불러오는 중…</div></div>
   </header>
 
   <section class="fresh" id="fresh" aria-label="새로 올라오거나 바뀐 장학금" hidden></section>
@@ -312,28 +315,28 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
         <label>신분<select id="p_status"><option value="">선택 안 함</option><option value="hs">고등학생</option><option value="pre">대학 입학 예정 (고3·신입생)</option><option value="univ">대학생 (재학)</option><option value="leave">대학생 (휴학)</option><option value="grad">대학원생</option></select></label>
         <label>성별 <span class="note" style="display:inline">(여학생 대상 장학 판단용)</span><select id="p_gender"><option value="">선택 안 함</option><option value="f">여성</option><option value="m">남성</option></select></label>
         <label>학교 유형<select id="p_school"><option value="">선택 안 함</option><option value="4y">4년제 대학</option><option value="2y">전문대(2~3년제)</option><option value="grad">대학원</option><option value="cyber">원격·사이버대</option></select></label>
-        <label>학교 이름<input type="text" id="p_schoolName" list="dl_univ" placeholder="예: 한양대학교"></label>
+        <label>학교<select id="p_schoolPick"></select><input type="text" id="p_schoolName" placeholder="학교 이름 직접 입력" hidden></label>
         <label>학교 소재지 (시·도)<select id="p_ssido"></select></label>
         <label>다음 학기 기준 학기<select id="p_sem"><option value="">선택 안 함</option><option value="0">신입생(1학기)</option><option value="2">2학기</option><option value="3">3학기</option><option value="4">4학기</option><option value="5">5학기</option><option value="6">6학기</option><option value="7">7학기</option><option value="8">8학기 이상</option></select></label>
-        <label>학과(전공)<input type="text" id="p_dept" list="dl_dept" placeholder="예: 사학과, 컴퓨터소프트웨어학부"></label>
+        <label>학과(전공)<select id="p_deptPick"></select><input type="text" id="p_dept" placeholder="학과 이름 직접 입력" hidden></label>
         <label>계열<select id="p_major"><option value="">선택 안 함</option><option>인문계열</option><option>사회계열</option><option>교육계열</option><option>공학계열</option><option>자연계열</option><option>의약계열</option><option>예체능계열</option></select></label>
       </div></fieldset>
       <fieldset class="sec"><legend>내 지역</legend><div class="form">
-        <label>내 주민등록 주소 (시·도)<select id="p_sido" data-dl="dl_gu"></select></label>
-        <label>시·군·구<input type="text" id="p_gu" list="dl_gu" placeholder="목록에서 고르거나 입력"></label>
-        <label>출신 고등학교 (시·도)<select id="p_hsido" data-dl="dl_hgu"></select></label>
-        <label>시·군·구<input type="text" id="p_hgu" list="dl_hgu" placeholder="목록에서 고르거나 입력"></label>
+        <label>내 주민등록 주소 (시·도)<select id="p_sido" data-gu="p_gu"></select></label>
+        <label>시·군·구<select id="p_gu"><option value="">시·도를 먼저 고르세요</option></select></label>
+        <label>출신 고등학교 (시·도)<select id="p_hsido" data-gu="p_hgu"></select></label>
+        <label>시·군·구<select id="p_hgu"><option value="">시·도를 먼저 고르세요</option></select></label>
       </div></fieldset>
       <fieldset class="sec"><legend>부모님(보호자) 지역</legend><div class="form">
-        <label>주민등록 주소 (시·도)<select id="p_psido" data-dl="dl_pgu"></select></label>
-        <label>시·군·구<input type="text" id="p_pgu" list="dl_pgu" placeholder="목록에서 고르거나 입력"></label>
+        <label>주민등록 주소 (시·도)<select id="p_psido" data-gu="p_pgu"></select></label>
+        <label>시·군·구<select id="p_pgu"><option value="">시·도를 먼저 고르세요</option></select></label>
       </div></fieldset>
       <fieldset class="sec"><legend>형편·성적·자격</legend><div class="form">
         <label>학자금 지원구간(소득분위)<select id="p_income"><option value="">모름</option><option value="0">기초·차상위</option><option value="1">1구간</option><option value="2">2구간</option><option value="3">3구간</option><option value="4">4구간</option><option value="5">5구간</option><option value="6">6구간</option><option value="7">7구간</option><option value="8">8구간</option><option value="9">9구간</option><option value="10">10구간</option></select></label>
         <label>직전 학기 평점 (4.5 만점)<input type="number" id="p_gpa" step="0.01" min="0" max="4.5" placeholder="예: 3.8"></label>
         <div class="full"><span class="flabel">해당하는 항목</span><div class="chips" id="p_flags"></div></div>
       </div></fieldset>
-      <datalist id="dl_univ"></datalist><datalist id="dl_dept"></datalist><datalist id="dl_gu"></datalist><datalist id="dl_hgu"></datalist><datalist id="dl_pgu"></datalist>
+      
       <div class="actions"><button class="btn primary" type="submit">저장하고 나에게 맞는 장학금 보기</button><button class="btn" type="button" id="p_clear">내 정보 지우기</button><span class="note" id="p_saved" role="status"></span></div>
       <p class="note" style="margin-top:12px">목록에 <span class="pill ok">지원 가능</span> <span class="pill check">확인 필요</span> <span class="pill no">지원 불가</span> 표시가 붙고, 장학금을 누르면 판단 근거가 나옵니다. 공고 원문이 최종 기준입니다.</p>
     </form>
@@ -377,6 +380,10 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <p class="lead">새로 올라오거나 바뀐 장학금</p>
       <p class="note" id="srcReport"></p>
       <div class="list" id="changes" style="margin-top:14px"></div>
+    </section>
+    <section class="panel">
+      <p class="lead">알림 설정</p>
+      <div id="alertBox"></div>
     </section>
     <section class="panel" id="hyinPanel">
       <p class="lead">한양대 포털 장학 캘린더</p>
@@ -595,6 +602,56 @@ let applyState=store.get("apply",{});
 const VLABEL={ok:"지원 가능",check:"확인 필요",no:"지원 불가"};
 const SUP=[["tuition","등록금"],["living","생활비"],["dorm","기숙사·주거"],["loan","학자금 대출·이자"],["work","교내·교외 근로"]];
 const SUPL=Object.fromEntries(SUP);
+const PAGES="https://lussion629-creator.github.io/JangHak-Alim-e";
+/* ---------- 알림 설정 (이 기기에만 저장) ---------- */
+let AL=store.get("alerts",{kw:[],cats:[],before:[3,1]})||{kw:[],cats:[],before:[3,1]};
+function pushAlerts(){
+  try{ if(!(window.AndroidBridge&&window.AndroidBridge.setAlerts)) return;
+    const fav=DATA.filter(r=>favs.has(r.id)&&r.end&&r.end>=TODAY).map(r=>({id:r.id,t:r.title.slice(0,80),e:r.end}));
+    const rv=store.get("remote",null)??PAGES;
+    window.AndroidBridge.setAlerts(JSON.stringify({kw:AL.kw||[],cats:AL.cats||[],before:AL.before||[],fav,remote:/^https:\/\//.test(rv||"")?rv.replace(/\/*$/,"/"):PAGES+"/"}));
+  }catch(e){}
+}
+function alertHit(r){ const t=(r.title+" "+(r.org||"")).toLowerCase(); return (AL.kw||[]).some(w=>w&&t.includes(w.toLowerCase()))||(r.support||[]).some(k=>(AL.cats||[]).includes(k)) }
+function renderAlerts(){
+  const box=$("#alertBox"); if(!box) return; const app=!!(window.AndroidBridge&&window.AndroidBridge.setAlerts);
+  const hits=DATA.filter(r=>(r._s.key==="모집중"||r._s.key==="예정")&&alertHit(r)).length;
+  box.innerHTML=`<p class="note">${app?"조건에 맞는 장학이 새로 올라오면 휴대폰 알림을 보내요(몇 시간마다 확인). 관심 등록한 장학은 마감 전에 알려 드려요.":"알림은 휴대폰 앱에서 받을 수 있어요. 여기서 정한 조건은 이 기기에만 저장돼요."}</p>
+  <div class="form" style="margin-top:10px">
+    <label class="full">키워드 <span class="note" style="display:inline">(쉼표로 구분 · 제목이나 운영기관에 들어 있으면 알림)</span><input type="text" id="al_kw" placeholder="예: 기숙사, 아산, 이공계, 성동구" value="${esc((AL.kw||[]).join(", "))}"></label>
+    <div class="full"><span class="flabel">지원 종류</span><div class="chips">${SUP.map(([k,l])=>`<label class="chip"><input type="checkbox" value="${k}" ${(AL.cats||[]).includes(k)?"checked":""}> ${l}</label>`).join("")}</div></div>
+    <label>관심 장학 마감 알림<select id="al_before"><option value="">끄기</option><option value="3,1" ${String(AL.before)==="3,1"?"selected":""}>3일 전 · 1일 전</option><option value="3" ${String(AL.before)==="3"?"selected":""}>3일 전</option><option value="1" ${String(AL.before)==="1"?"selected":""}>1일 전</option><option value="7,3,1" ${String(AL.before)==="7,3,1"?"selected":""}>7일 · 3일 · 1일 전</option></select></label>
+  </div>
+  <div class="actions"><button class="btn primary" type="button" id="al_save">알림 저장</button><span class="note" id="al_msg" role="status">${(AL.kw||[]).length||(AL.cats||[]).length?`지금 조건에 맞는 모집 중 장학 ${hits}건`:""}</span></div>`;
+  $("#al_save").onclick=()=>{
+    AL={kw:$("#al_kw").value.split(/[,，]/).map(x=>x.trim()).filter(Boolean).slice(0,20),cats:$$("#alertBox .chips input:checked").map(c=>c.value),before:$("#al_before").value?$("#al_before").value.split(",").map(Number):[]};
+    store.set("alerts",AL); pushAlerts(); renderAlerts(); $("#al_msg").textContent="저장했어요. "+$("#al_msg").textContent;
+  };
+}
+// 화면 밝기: 자동(휴대폰 설정 따라감) → 밝게 → 어둡게
+const THEME_L={auto:"자동",light:"밝게",dark:"어둡게"};
+function sysDark(){ try{ if(window.AndroidBridge&&window.AndroidBridge.isDark) return !!window.AndroidBridge.isDark() }catch(e){} return !!(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches) }
+function applyTheme(){ const m=store.get("theme","auto"); const dark=m==="dark"||(m==="auto"&&sysDark());
+  document.documentElement.dataset.theme=dark?"dark":"light"; const l=$("#themeLbl"); if(l) l.textContent=THEME_L[m]||"자동";
+  try{ window.AndroidBridge&&window.AndroidBridge.setDark&&window.AndroidBridge.setDark(dark) }catch(e){} }
+applyTheme();
+try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",applyTheme) }catch(e){}
+$("#themeBtn").addEventListener("click",()=>{const order=["auto","light","dark"]; const m=store.get("theme","auto"); store.set("theme",order[(order.indexOf(m)+1)%3]); applyTheme()});
+window.__sysTheme=applyTheme;
+// 내 학교에 맞지 않는 다른 학교 교내 공고는 숨긴다 (한양대 서울·ERICA / 한양여대)
+function ownSchool(r){
+  const o=String(r.org||"");
+  if(r.source==="hywoman"||(/한양여자대학교/.test(o)&&r.org_type==="대학(교내)")) return "hywu";
+  if(r.org_type==="대학(교내)"&&/^한양대학교/.test(o)) return /ERICA/.test(o)?"erica":/서울/.test(o)?"seoul":"hyu";
+  return "";
+}
+function schoolOK(r){
+  const n=(profile&&profile.schoolName)||""; if(!n) return true;
+  const own=ownSchool(r); if(!own) return true;
+  if(/한양여자/.test(n)) return own==="hywu";
+  if(/^한양대학교/.test(n)) return own!=="hywu"&&!(own==="erica"&&!/ERICA/.test(n))&&!(own==="seoul"&&/ERICA/.test(n));
+  return false; // 다른 학교 학생에게 한양대·한양여대 교내 공고는 보이지 않게
+}
 // 지원 종류: 여러 개를 골라 보고 싶은 것만 본다 (아무것도 안 고르면 전체)
 const CATS=new Set((()=>{const v=store.get("cats",null); if(Array.isArray(v)) return v; const old=store.get("cat",""); return old?[old]:[]})());
 const catOf=r=>(r.support&&r.support.length)?r.support:["etc"];
@@ -650,6 +707,7 @@ $("#toggleFilters").addEventListener("click",()=>$("#filters").classList.toggle(
 /* ---------- 목록 ---------- */
 function passes(r,q){
   if(CATS.size && !catOf(r).some(k=>CATS.has(k))) return false;
+  if(!schoolOK(r)) return false;
   if(F.within && !(r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=F.within)) return false;
   if(F.status.size && !F.status.has(r._s.key)) return false;
   if(F.level.size && !F.level.has(r.level==="대학생"||!r.level?"대학생":r.level)) return false;
@@ -691,6 +749,7 @@ function card(r){
   const pills=(r.support||[]).map(k=>`<span class="pill ${k}">${SUPL[k]}</span>`);
   if(m) pills.push(`<span class="pill ${m.verdict}">${VLABEL[m.verdict]}</span>`);
   if(s.key==="모집중") pills.push(`<span class="pill live">모집중</span>`);
+  {const own=ownSchool(r); if(own) pills.push(`<span class="pill">${own==="hywu"?"한양여대 교내":own==="erica"?"한양대 ERICA 교내":own==="seoul"?"한양대 서울 교내":"한양대 교내"}</span>`)}
   if(r._f&&r._f.label==="내 학과 대상") pills.push(`<span class="pill ok">내 학과 대상</span>`);
   const mine=profile&&profile.major;
   pills.push(`<span class="pill ${mine&&r._fields.includes(mine)?"ok":mine&&!r._fields.includes("무관")&&!r._fields.includes("특정학과")?"no":"field"}">${r._fields.map(FSHORT).join("·")}${r._fields[0]==="무관"||r._fields[0]==="특정학과"?"":" 계열"}</span>`);
@@ -715,7 +774,7 @@ document.addEventListener("click",e=>{
   const it=e.target.closest(".item[data-id]"); if(it) openDetail(it.dataset.id);
 });
 document.addEventListener("keydown",e=>{ if(e.key==="Enter"){const it=e.target.closest&&e.target.closest(".item[data-id]"); if(it) openDetail(it.dataset.id)} if(e.key==="Escape") closeDetail() });
-function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id); store.set("favs",[...favs]); $$(`[data-star="${id}"]`).forEach(b=>{b.setAttribute("aria-pressed",favs.has(id)); if(!b.classList.contains("star")) b.textContent=favs.has(id)?"★ 관심 해제":"☆ 관심 등록"}); $("#favCount").textContent=favs.size||""; if(!$("#view-fav").hidden) renderFav()}
+function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id); store.set("favs",[...favs]); pushAlerts(); $$(`[data-star="${id}"]`).forEach(b=>{b.setAttribute("aria-pressed",favs.has(id)); if(!b.classList.contains("star")) b.textContent=favs.has(id)?"★ 관심 해제":"☆ 관심 등록"}); $("#favCount").textContent=favs.size||""; if(!$("#view-fav").hidden) renderFav()}
 
 /* ---------- 상세 ---------- */
 const BYID={};
@@ -835,17 +894,23 @@ function renderFav(){
 function fillProfile(){
   const opt='<option value="">선택 안 함</option>'+SIDO.map(s=>`<option>${s}</option>`).join("");
   for(const id of["p_sido","p_psido","p_hsido","p_ssido"]) $("#"+id).innerHTML=opt;
-  $("#dl_dept").innerHTML=Object.values(MAJORS).flat().map(n=>`<option value="${n}">`).join("");
-  $("#p_dept").onchange=()=>{const d=$("#p_dept").value.trim(); const k=Object.keys(MAJORS).find(k=>MAJORS[k].includes(d)); if(k) $("#p_major").value=k};
-  $("#dl_univ").innerHTML=UNIVS.map(([n])=>`<option value="${esc(n)}">`).join("");
-  const fillDl=sel=>{const dl=sel.dataset.dl; if(dl) $("#"+dl).innerHTML=(DIST[sel.value]||[]).map(g=>`<option value="${g}">`).join("")};
-  $$("#profile select[data-dl]").forEach(sel=>{sel.onchange=()=>fillDl(sel)});
-  $("#p_schoolName").onchange=()=>{const u=UNIVS.find(([n])=>n===$("#p_schoolName").value.trim()); if(u&&u[1]&&!$("#p_ssido").value) $("#p_ssido").value=u[1]};
+  // 학교: 한양대·한양여대를 맨 위에, 나머지는 가나다순
+  const TOP=[["한양대학교","서울","한양대학교 (서울캠퍼스)"],["한양대학교 ERICA","경기","한양대학교 (ERICA)"],["한양여자대학교","서울","한양여자대학교"]];
+  const rest=[...new Map(UNIVS.filter(([n])=>!/^한양/.test(n)).map(u=>[u[0],u])).values()].sort((a,b)=>a[0].localeCompare(b[0],"ko"));
+  $("#p_schoolPick").innerHTML=`<option value="">선택 안 함</option><optgroup label="한양">${TOP.map(([v,,l])=>`<option value="${v}">${l}</option>`).join("")}</optgroup><optgroup label="다른 학교">${rest.map(([n])=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup><option value="__other">목록에 없음 (직접 입력)</option>`;
+  $("#p_deptPick").innerHTML=`<option value="">선택 안 함</option>`+Object.entries(MAJORS).map(([g,l])=>`<optgroup label="${g}">${l.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup>`).join("")+`<option value="__other">목록에 없음 (직접 입력)</option>`;
+  const syncPick=(pick,input,val)=>{const has=[...$(pick).options].some(o=>o.value===val&&val); $(pick).value=has?val:(val?"__other":""); $(input).hidden=!(val&&!has); $(input).value=val||""};
+  $("#p_schoolPick").onchange=()=>{const v=$("#p_schoolPick").value; $("#p_schoolName").hidden=v!=="__other"; $("#p_schoolName").value=v==="__other"?"":v;
+    const t=[...TOP,...UNIVS].find(u=>u[0]===v); if(t&&t[1]) $("#p_ssido").value=t[1]; if(/한양여자/.test(v)&&!$("#p_school").value) $("#p_school").value="2y"; if(/^한양대학교/.test(v)&&!$("#p_school").value) $("#p_school").value="4y"};
+  $("#p_deptPick").onchange=()=>{const v=$("#p_deptPick").value; $("#p_dept").hidden=v!=="__other"; $("#p_dept").value=v==="__other"?"":v; const k=Object.keys(MAJORS).find(k=>MAJORS[k].includes(v)); if(k) $("#p_major").value=k};
+  const fillGu=(sel,keep)=>{const g=$("#"+sel.dataset.gu), list=DIST[sel.value]||[]; g.innerHTML=sel.value?`<option value="">선택 안 함</option>`+list.map(x=>`<option>${x}</option>`).join(""):`<option value="">시·도를 먼저 고르세요</option>`; if(keep&&list.includes(keep)) g.value=keep};
+  $$("#profile select[data-gu]").forEach(sel=>{sel.onchange=()=>fillGu(sel)});
   $("#p_flags").innerHTML=FLAGS.map(([k,l])=>`<label class="chip"><input type="checkbox" value="${k}" id="pf_${k}"> ${l}</label>`).join("");
   const p=profile||{};
   if(!p.status && p.level) p.status={"고등학생":"hs","대학원생":"grad","대학생":"univ"}[p.level]||"";
-  for(const k of ["status","gender","school","schoolName","ssido","sem","dept","major","income","gpa","sido","gu","hsido","hgu","psido","pgu"]) if($("#p_"+k)) $("#p_"+k).value=p[k]??"";
-  $$("#profile select[data-dl]").forEach(sel=>{const dl=sel.dataset.dl; $("#"+dl).innerHTML=(DIST[sel.value]||[]).map(g=>`<option value="${g}">`).join("")});
+  for(const k of ["status","gender","school","ssido","sem","major","income","gpa","sido","hsido","psido"]) if($("#p_"+k)) $("#p_"+k).value=p[k]??"";
+  syncPick("#p_schoolPick","#p_schoolName",p.schoolName||""); syncPick("#p_deptPick","#p_dept",p.dept||"");
+  fillGu($("#p_sido"),p.gu); fillGu($("#p_hsido"),p.hgu); fillGu($("#p_psido"),p.pgu);
   (p.flags||[]).forEach(k=>{const c=$("#pf_"+k); if(c) c.checked=true});
 }
 $("#profile").addEventListener("submit",e=>{
@@ -863,7 +928,7 @@ $("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",nu
 
 /* ---------- 새 소식 ---------- */
 function renderSrc(){
-  renderHyin();
+  renderHyin(); renderAlerts();
   const when=(META.finishedAt||"").replace("T"," ").slice(0,16);
   $("#srcReport").textContent=`마지막 갱신 ${when} · 전체 ${(META.total||DATA.length).toLocaleString("ko-KR")}건 · 이번에 새로 ${META.new||0}건, 바뀜 ${META.changed||0}건`;
   const ch=freshList(false);
@@ -905,7 +970,8 @@ $("#kpis").addEventListener("click",e=>{const b=e.target.closest("[data-k]"); if
 /* ---------- 시작 ---------- */
 async function boot(){
   try{
-    const remote=/^https:\/\//.test(store.get("remote","")||"")?store.get("remote","").replace(/\/+$/,""):"";
+    const rv=store.get("remote",null)??(window.AndroidBridge?PAGES:"");
+    const remote=/^https:\/\//.test(rv||"")?rv.replace(/\/+$/,""):"";
     const get=(base,t)=>{const c=new AbortController(); const id=setTimeout(()=>c.abort(),t); return Promise.all([fetch(base+"data/scholarships.json",{signal:c.signal,cache:"no-store"}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}),fetch(base+"data/meta.json",{signal:c.signal,cache:"no-store"}).then(r=>r.json()).catch(()=>({}))]).finally(()=>clearTimeout(id))};
     let d,m; SRC="지금: 기기에 저장된 목록";
     if(remote){ try{[d,m]=await get(remote+"/",12000); SRC="지금: 서버의 최신 목록"}catch(e){SRC="서버에 연결하지 못해 저장된 목록을 보여 줍니다"} }
@@ -921,6 +987,7 @@ async function boot(){
     const soon=DATA.filter(r=>favs.has(r.id)&&r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=3).map(r=>({id:r.id,title:r.title,org:r.org,label:r._s.label}));
     if(soon.length) window.AndroidBridge.notifyDeadlines(JSON.stringify(soon)); store.set("notified",TODAY);
   }}catch(e){}
+  pushAlerts();
   hyinMerge().then(n=>{ if(n) cacheAll(); renderHyin() }).catch(()=>{ try{renderHyin()}catch(e){} });
   hyWorkSync().catch(()=>{});
 }

@@ -43,8 +43,10 @@
     return { text: (el.textContent || "").replace(/[ \t ]+/g, " ").replace(/\n\s*\n\s*\n+/g, "\n\n").trim(), imgs: imgs.slice(0, 4) };
   }
   function run() {
-    var from = new Date(); from.setDate(from.getDate() - 45);
-    var to = new Date(); to.setDate(to.getDate() + 200);
+    // 포털에 부담을 주지 않도록: 2주 전 ~ 5개월 뒤 일정만, 조금씩 쉬어 가며 읽는다
+    var from = new Date(); from.setDate(from.getDate() - 14);
+    var to = new Date(); to.setDate(to.getDate() + 150);
+    var known = {}; (window.__hyinKnown || []).forEach(function (k) { known[k] = 1; });
     var days = []; for (var d = new Date(from); d <= to; d.setDate(d.getDate() + 1)) days.push(ymd(d));
     var all = {}, i = 0;
     function stepDays() {
@@ -59,7 +61,7 @@
         }
       } catch (e) { return fail(String(e && e.message) === "LOGIN" ? "LOGIN" : "장학캘린더를 읽지 못했어요. 로그인이 끝났는지 확인해 주세요."); }
       say("장학캘린더 읽는 중… " + Math.round(i / days.length * 70) + "%");
-      if (i < days.length) return setTimeout(stepDays, 0);
+      if (i < days.length) return setTimeout(stepDays, 250);
       details(Object.keys(all).map(function (k) { return all[k]; }));
     }
     function details(list) {
@@ -68,6 +70,7 @@
         var end = Math.min(j + 4, list.length);
         for (; j < end; j++) {
           var x = list[j];
+          if (known[[x.year, x.term, x.cd, x.seq, x.campus].join("|")]) continue; // 전에 읽은 공고는 앱에 있는 내용을 그대로 쓴다
           try {
             var r = det(x); if (!r) continue; var s = strip(r.janghakContents);
             var docs = []; for (var n = 1; n <= 10; n++) if (r["jechulSahang" + n]) docs.push(String(r["jechulSahang" + n]).slice(0, 120));
@@ -77,7 +80,7 @@
           } catch (e) { /* 상세 실패는 건너뜀 */ }
         }
         say("공고 내용 읽는 중… " + (70 + Math.round(j / Math.max(1, list.length) * 30)) + "%");
-        if (j < list.length) return setTimeout(stepDet, 0);
+        if (j < list.length) return setTimeout(stepDet, 250);
         if (!list.length) return fail("LOGIN"); // 아무것도 못 읽었으면 저장된 자료를 덮어쓰지 않는다
         try { B.done(JSON.stringify({ collectedAt: new Date().toISOString(), records: list })); } catch (e) {}
       }

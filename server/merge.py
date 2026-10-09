@@ -12,8 +12,8 @@ from __future__ import annotations
 import re
 from datetime import date
 
-FAMILY = {"kosaf_univ": "kosaf", "kosaf_high": "kosaf", "kosaf_abroad": "kosaf", "kosaf_creditbank": "kosaf", "hyin": "hyin"}
-RANK = {"kosaf_univ": 0, "kosaf_high": 0, "kosaf_abroad": 0, "kosaf_creditbank": 0, "hyin": 1, "legacy": 2, "hanyang": 3, "board": 4}
+FAMILY = {"kosaf_univ": "kosaf", "kosaf_high": "kosaf", "kosaf_abroad": "kosaf", "kosaf_creditbank": "kosaf", "hyin": "hyin", "hywoman": "hywoman", "hanyang": "hanyang"}
+RANK = {"kosaf_univ": 0, "kosaf_high": 0, "kosaf_abroad": 0, "kosaf_creditbank": 0, "hyin": 1, "legacy": 2, "hanyang": 3, "hywoman": 3, "board": 4, "dreamspon": 5}
 STOP = r"(20\d\d|\d+학년도|\d+년도?|\d학기|[1-4]학기|상반기|하반기|신규|정기|추가|재공고|연장|모집|선발|공고|안내|신청|접수|계획|장학생|장학금|장학|학생|대학생|대학원생|교외|교내|외부|홍보|기간|의|및|제\d+기|\d+기)"
 SUFFIX = r"(사회복지재단|복지재단|문화재단|장학재단|육영재단|교육재단|학술재단|인재육성재단|장학문화재단|장학회|육영회|재단|공제회|협회|센터|진흥원)$"
 GENERIC_T = re.compile(r"국가근로|교내근로|근로장학|국가장학금|학자금\s*대출|교내\s*장학|가계곤란|성적우수\s*장학")
@@ -340,8 +340,8 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
     for r in rows:
         if r.get("level") in ("고등학생", "학점은행제"):
             continue
-        if set(r.get("_srcs") or [r.get("source")]) & {"hyin", "hanyang"}:
-            out.append(r)  # 한양대가 직접 학생들에게 안내한 장학은 모두 남긴다
+        if set(r.get("_srcs") or [r.get("source")]) & {"hyin", "hanyang", "hywoman"}:
+            out.append(r)  # 한양대·한양여대가 직접 학생들에게 안내한 장학은 모두 남긴다
             continue
         st = set(r.get("_st_all") or r.get("school_types") or [])
         st.discard("특정대학") if r.get("source") in ("board",) else None
@@ -349,7 +349,7 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
             continue
         srcs = set(r.get("_srcs") or [r.get("source")])
         text = r.get("_alltext") or ""
-        hy_named = bool(re.search(r"한양대|한양여대|한양여자대|한양\s*대학교|HYU", text.replace("한양·한여", "")))
+        hy_named = bool(re.search(r"한양대|한양여대|한양여자대|한양\s*대학교|HYU|HYWU", text.replace("한양·한여", "")))
         if r.get("level") == "해외유학" and ABROAD_NO.search(r.get("title", "") + " " + (r.get("target") or "")):
             continue
         if srcs <= {"board", "legacy"} and (OWN.search(r.get("title", "")) or re.search(r"추천자\s*(선발|모집)|추천\s*대상자", r.get("title", ""))) and not hy_named:

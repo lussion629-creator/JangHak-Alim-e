@@ -15,14 +15,14 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
-from .collectors import boards, dreamspon, gov24, hanyang, hyin, kosaf, legacy
+from .collectors import boards, dreamspon, gov24, hanyang, hywoman, hyin, kosaf, legacy
 from .merge import for_school, merge
 from .model import summarize_body, expected_next, now_iso, status_of, support_of
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
 WEB_DATA = ROOT / "web" / "data"
-COLLECTORS = [("kosaf", kosaf), ("hyin", hyin), ("hanyang", hanyang), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
+COLLECTORS = [("kosaf", kosaf), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
 log = logging.getLogger("refresh")
 
 
@@ -152,7 +152,7 @@ def export(con: sqlite3.Connection, summary: dict):
         rows.append(r)
     # 게시판 본문: 메뉴·꼬리말을 걷어내고 필요한 항목만 남긴다
     for r in rows:
-        if r.get("source") in ("board", "legacy", "hanyang") and r.get("summary"):
+        if r.get("source") in ("board", "legacy", "hanyang", "hywoman") and r.get("summary"):
             sm = summarize_body(r["summary"], r.get("title", ""))
             r["summary"] = sm["text"]
             f = sm["fields"]
@@ -206,6 +206,9 @@ def export(con: sqlite3.Connection, summary: dict):
     (WEB_DATA / "scholarships.json.gz").write_bytes(gzip.compress(payload.encode()))
     changes = [dict(zip(("at", "id", "kind", "title"), c)) for c in con.execute("select at,sid,kind,title from changes order by id desc limit 200")]
     meta = {k: summary[k] for k in ("finishedAt", "total", "new", "changed")}
+    # 휴대폰 앱의 알림 작업용: 지금 모집 중·예정인 장학의 짧은 목록
+    meta["open"] = [{"id": r["id"], "t": r["title"][:80], "o": (r.get("org") or "")[:40], "s": r.get("support") or [], "e": r.get("end") or ""}
+                    for r in rows if r.get("status") in ("모집중", "예정")][:400]
     meta["changes"] = changes
     (ROOT / "data" / "registry" / "last_run.json").write_text(json.dumps({**summary, "registry": _registry_summary()}, ensure_ascii=False, indent=1))
     (WEB_DATA / "meta.json").write_text(json.dumps(meta, ensure_ascii=False))

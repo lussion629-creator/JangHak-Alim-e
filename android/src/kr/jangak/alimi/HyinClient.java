@@ -106,10 +106,35 @@ final class HyinClient {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             byte[] b = new byte[8192]; int n;
             while ((n = in.read(b)) > 0) bo.write(b, 0, n);
-            return bo.toString("UTF-8");
+            return "window.__hyinKnown=" + knownKeys() + ";\n" + bo.toString("UTF-8");
         } catch (Exception e) {
             return "";
         }
+    }
+
+    /** 전에 불러온 공고(본문 포함) 번호. 이번에는 이 공고들의 본문을 다시 읽지 않는다. */
+    private String knownKeys() {
+        try {
+            org.json.JSONArray out = new org.json.JSONArray();
+            org.json.JSONArray rs = new org.json.JSONObject(read(file(ctx))).getJSONArray("records");
+            for (int i = 0; i < rs.length(); i++) {
+                org.json.JSONObject r = rs.getJSONObject(i);
+                if (r.has("detail")) out.put(key(r));
+            }
+            return out.toString();
+        } catch (Exception e) {
+            return "[]";
+        }
+    }
+
+    static String key(org.json.JSONObject r) {
+        return r.optString("year") + "|" + r.optString("term") + "|" + r.optString("cd") + "|" + r.opt("seq") + "|" + r.optString("campus");
+    }
+
+    static String read(File f) throws Exception {
+        byte[] b = new byte[(int) Math.min(f.length(), 6_000_000)];
+        try (java.io.FileInputStream in = new java.io.FileInputStream(f)) { int off = 0, n; while (off < b.length && (n = in.read(b, off, b.length - off)) > 0) off += n; }
+        return new String(b, "UTF-8");
     }
 
     static File file(Context c) { return new File(c.getFilesDir(), "hyin_calendar.json"); }
@@ -129,7 +154,15 @@ final class HyinClient {
             int count = 0;
             try {
                 org.json.JSONObject o = new org.json.JSONObject(json);
-                count = o.getJSONArray("records").length();
+                org.json.JSONArray rs = o.getJSONArray("records");
+                count = rs.length();
+                // 본문을 다시 읽지 않은 공고는 전에 저장한 본문을 이어 붙인다
+                try {
+                    java.util.HashMap<String, Object> old = new java.util.HashMap<>();
+                    org.json.JSONArray prev = new org.json.JSONObject(read(file(ctx))).getJSONArray("records");
+                    for (int i = 0; i < prev.length(); i++) { org.json.JSONObject r = prev.getJSONObject(i); if (r.has("detail")) old.put(key(r), r.get("detail")); }
+                    for (int i = 0; i < rs.length(); i++) { org.json.JSONObject r = rs.getJSONObject(i); if (!r.has("detail") && old.containsKey(key(r))) r.put("detail", old.get(key(r))); }
+                } catch (Exception ignored) { }
                 o.put("savedAt", System.currentTimeMillis());
                 try (FileOutputStream out = new FileOutputStream(file(ctx))) { out.write(o.toString().getBytes(StandardCharsets.UTF_8)); }
             } catch (Exception e) {
