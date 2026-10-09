@@ -206,6 +206,10 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .cat.living,.pill.living{--c:var(--c-living);--cs:var(--c-living-soft)}
 .cat.dorm,.pill.dorm{--c:var(--c-dorm);--cs:var(--c-dorm-soft)}
 .cat.etc{--c:var(--ink-3);--cs:var(--surface-2)}
+.onlybar{flex-basis:100%;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;margin-top:4px}
+.onlybar .chip{font-size:12.5px;padding:4px 10px}
+.onlybar .chip b{font-weight:650;color:var(--ink-3);margin-left:2px}
+.pill.only{background:var(--accent-soft);color:var(--accent);font-weight:700}
 .cats-hint{flex-basis:100%;text-align:center;font-size:12px;color:var(--ink-3);margin:2px 0 0}
 .linkbtn{background:none;border:0;padding:0;color:var(--accent);font:inherit;font-weight:650;cursor:pointer;text-decoration:underline}
 .money.big{font-size:14px;padding:2px 9px;vertical-align:4px}
@@ -645,13 +649,22 @@ function ownSchool(r){
   if(r.org_type==="대학(교내)"&&/^한양대학교/.test(o)) return /ERICA/.test(o)?"erica":/서울/.test(o)?"seoul":"hyu";
   return "";
 }
-function schoolOK(r){
-  const n=(profile&&profile.schoolName)||""; if(!n) return true;
-  const own=ownSchool(r); if(!own) return true;
-  if(/한양여자/.test(n)) return own==="hywu";
-  if(/^한양대학교/.test(n)) return own!=="hywu"&&!(own==="erica"&&!/ERICA/.test(n))&&!(own==="seoul"&&/ERICA/.test(n));
-  return false; // 다른 학교 학생에게 한양대·한양여대 교내 공고는 보이지 않게
+// 한양대 전용·한양여대 전용 공고를 볼지 (직접 고르지 않았으면 내 학교에 맞춰 정함)
+function showOnly(){
+  const v=store.get("only",null); if(v) return v;
+  const n=(profile&&profile.schoolName)||"";
+  return {hyu:!/한양여자/.test(n)||!n, hywu:/한양여자/.test(n)||!n};
 }
+function schoolOK(r){
+  const own=ownSchool(r); if(!own) return true;
+  const o=showOnly();
+  if(own==="hywu") return o.hywu;
+  if(!o.hyu) return false;
+  const n=(profile&&profile.schoolName)||"";
+  if(/^한양대학교/.test(n)) return !(own==="erica"&&!/ERICA/.test(n))&&!(own==="seoul"&&/ERICA/.test(n));
+  return true;
+}
+const OWNL={hywu:"한양여대 전용",erica:"한양대 전용 · ERICA",seoul:"한양대 전용",hyu:"한양대 전용"};
 // 지원 종류: 여러 개를 골라 보고 싶은 것만 본다 (아무것도 안 고르면 전체)
 const CATS=new Set((()=>{const v=store.get("cats",null); if(Array.isArray(v)) return v; const old=store.get("cat",""); return old?[old]:[]})());
 const catOf=r=>(r.support&&r.support.length)?r.support:["etc"];
@@ -659,9 +672,11 @@ function renderCats(){
   const base=DATA.filter(r=>r._s.key==="모집중"||r._s.key==="예정");
   const n=k=>base.filter(r=>!k||catOf(r).includes(k)).length;
   $("#cats").innerHTML=[["","전체"],...SUP,["etc","그 밖의 장학"]].map(([k,l])=>`<button type="button" class="cat ${k||"all"}" data-cat="${k}" aria-pressed="${k?CATS.has(k):!CATS.size}"><i></i>${l}<span class="n">${n(k)}</span></button>`).join("")
+    +`<div class="onlybar">${(()=>{const o=showOnly(), c=k=>DATA.filter(r=>(r._s.key==="모집중"||r._s.key==="예정")&&(k==="hywu"?ownSchool(r)==="hywu":["seoul","erica","hyu"].includes(ownSchool(r)))).length; return `<span class="note">학교 전용 공고</span><button type="button" class="chip" data-only="hyu" aria-pressed="${o.hyu}">한양대 전용 <b>${c("hyu")}</b></button><button type="button" class="chip" data-only="hywu" aria-pressed="${o.hywu}">한양여대 전용 <b>${c("hywu")}</b></button>`})()}</div>`
     +`<p class="cats-hint">${CATS.size?`${[...CATS].map(k=>SUPL[k]||"그 밖의 장학").join(" · ")}만 보는 중 · <button type="button" class="linkbtn" data-cat="">모두 보기</button>`:"보고 싶은 종류를 눌러 고르세요. 여러 개 고를 수 있어요."}</p>`;
 }
-$("#cats").addEventListener("click",e=>{const b=e.target.closest("[data-cat]"); if(!b) return; const k=b.dataset.cat;
+$("#cats").addEventListener("click",e=>{const ob=e.target.closest("[data-only]"); if(ob){const o={...showOnly()}; o[ob.dataset.only]=!o[ob.dataset.only]; store.set("only",o); renderCats(); apply(); return}
+  const b=e.target.closest("[data-cat]"); if(!b) return; const k=b.dataset.cat;
   if(!k) CATS.clear(); else if(CATS.has(k)) CATS.delete(k); else CATS.add(k);
   store.set("cats",[...CATS]); renderCats(); if($("#view-find").hidden) tab("find"); apply()});
 
@@ -749,7 +764,7 @@ function card(r){
   const pills=(r.support||[]).map(k=>`<span class="pill ${k}">${SUPL[k]}</span>`);
   if(m) pills.push(`<span class="pill ${m.verdict}">${VLABEL[m.verdict]}</span>`);
   if(s.key==="모집중") pills.push(`<span class="pill live">모집중</span>`);
-  {const own=ownSchool(r); if(own) pills.push(`<span class="pill">${own==="hywu"?"한양여대 교내":own==="erica"?"한양대 ERICA 교내":own==="seoul"?"한양대 서울 교내":"한양대 교내"}</span>`)}
+  {const own=ownSchool(r); if(own) pills.push(`<span class="pill only">${OWNL[own]}</span>`)}
   if(r._f&&r._f.label==="내 학과 대상") pills.push(`<span class="pill ok">내 학과 대상</span>`);
   const mine=profile&&profile.major;
   pills.push(`<span class="pill ${mine&&r._fields.includes(mine)?"ok":mine&&!r._fields.includes("무관")&&!r._fields.includes("특정학과")?"no":"field"}">${r._fields.map(FSHORT).join("·")}${r._fields[0]==="무관"||r._fields[0]==="특정학과"?"":" 계열"}</span>`);
