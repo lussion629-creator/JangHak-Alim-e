@@ -9,25 +9,13 @@ jobs:
       - run: |
           exec > probe.txt 2>&1
           UA="Mozilla/5.0 (scholarship-aggregator)"
-          for u in https://www.kangwon.ac.kr/robots.txt https://kangwon.ac.kr/robots.txt https://kcloud.kangwon.ac.kr/robots.txt https://dormitory.kangwon.ac.kr/robots.txt; do echo "=== $u"; curl -sSL -m 20 -A "$UA" "$u" | head -c 3000; echo; done
-          echo "=== LIST"; curl -sSL -m 20 -A "$UA" "https://www.kangwon.ac.kr/ko/bbs/750/list.do" > l.html; wc -c l.html
-          grep -n -i "<form\|<input\|<select\|name=\"search\|<option\|rss" l.html | head -60
-          python3 - <<'P'
-          import re
-          s=open('l.html',encoding='utf-8',errors='replace').read()
-          i=s.find('<tbody'); print(s[i:i+4000])
-          j=s.find('pstSn=2503'); print('---CARD', s[j-1500:j+800] if j>0 else 'none')
-          P
-          echo "=== DETAIL"; curl -sSL -m 20 -A "$UA" "https://www.kangwon.ac.kr/ko/bbs/750/detail.do?pstSn=2503" > d.html; wc -c d.html
-          python3 - <<'P'
-          s=open('d.html',encoding='utf-8',errors='replace').read()
-          for k in ('bbs_view','view','내용','첨부','download.do','캠퍼스'):
-              i=s.find(k); print('---',k,i)
-          i=s.find('캠퍼스'); print(s[max(0,i-2500):i+5000])
-          P
-          echo "=== KCLOUD"; curl -sSL -m 20 -A "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148" -c c.txt "https://kcloud.kangwon.ac.kr/login" > k.html; wc -c k.html
-          grep -n -i "<form\|<input\|<button\|captcha\|keypad\|nprotect\|transkey\|onclick\|<script src\|login" k.html | head -80
-          echo "=== KMOBILE"; curl -sSL -m 20 -A "Mozilla/5.0 (iPhone)" "https://kmobile.kangwon.ac.kr/" | grep -n -i "<form\|<input\|login\|<script src\|location" | head -40
+          for u in https://www.sogang.ac.kr/robots.txt https://saint.sogang.ac.kr/robots.txt; do echo "=== $u"; curl -sSL -m 20 -A "$UA" "$u" | head -c 3000; echo; done
+          echo "=== SG LIST"; curl -sSL -m 25 -A "$UA" "https://www.sogang.ac.kr/ko/scholarship-notice" > sg.html; wc -c sg.html
+          grep -o '<script[^>]*src="[^"]*"' sg.html | head -20
+          grep -o -i 'api[^"'"'"' ]*' sg.html | sort -u | head -30
+          echo "=== SG JS"; for js in $(grep -o '<script[^>]*src="[^"]*"' sg.html | grep -o 'src="[^"]*"' | cut -d'"' -f2 | head -12); do case $js in http*) u=$js;; *) u="https://www.sogang.ac.kr$js";; esac; curl -sSL -m 20 -A "$UA" "$u" > j.js; echo "-- $u $(wc -c < j.js)"; grep -o -E '"/?api/[^"]{3,80}"|bbsConfigFk[^,;]{0,80}|/api/[A-Za-z0-9_/{}$.-]{3,80}' j.js | sort -u | head -30; done
+          echo "=== SG API TRY"; for u in "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?pageNum=1&pageSize=20&bbsConfigFk=141" "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?bbsConfigFk=141&pageNum=1&pageSize=20&title=&content=&writer="; do echo "-- $u"; curl -sSL -m 20 -A "$UA" "$u" | head -c 1500; echo; done
+          echo "=== SAINT"; curl -sSL -m 20 -A "Mozilla/5.0 (iPhone)" -o saint.html -w "%{url_effective} %{http_code}\n" "https://saint.sogang.ac.kr/"; wc -c saint.html; grep -n -i "<form\|<input\|<button\|captcha\|location\|<script src\|login\|iframe" saint.html | head -60
       - run: |
           git init -q out && cd out && cp ../*.html ../probe.txt . 2>/dev/null; git checkout -q -b probe-out
           git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -q -m probe
