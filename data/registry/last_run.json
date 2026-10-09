@@ -1,8 +1,76 @@
 {
- "finishedAt": "2026-10-09T03:06:31+00:00",
- "total": 4214,
- "new": 10,
- "changed": 0,
+ "startedAt": "2026-10-09T03:37:35+00:00",
+ "finishedAt": "2026-10-09T03:52:44+00:00",
+ "online": true,
+ "total": 4213,
+ "new": 4,
+ "changed": 194,
+ "sources": [
+  {
+   "source": "kosaf_univ",
+   "label": "한국장학재단 대학생",
+   "ok": true,
+   "count": 1913,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_high",
+   "label": "한국장학재단 고등학생",
+   "ok": true,
+   "count": 1199,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_abroad",
+   "label": "한국장학재단 해외유학",
+   "ok": true,
+   "count": 75,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_creditbank",
+   "label": "한국장학재단 학점은행제",
+   "ok": true,
+   "count": 7,
+   "mode": "online"
+  },
+  {
+   "source": "hyin",
+   "label": "한양대 HY-in 장학캘린더",
+   "ok": true,
+   "count": 241,
+   "mode": "hyin_calendar_full.json",
+   "collectedAt": "2026-10-08T16:24:43.912Z"
+  },
+  {
+   "source": "hanyang",
+   "label": "한양대 공개 공지(장학/등록)",
+   "ok": true,
+   "count": 12,
+   "mode": "seed"
+  },
+  {
+   "source": "board",
+   "label": "대학·재단·지자체 게시판 150곳",
+   "ok": true,
+   "count": 635,
+   "mode": "성공 122 / 실패 28"
+  },
+  {
+   "source": "gov24",
+   "label": "정부24 공공서비스 API",
+   "ok": false,
+   "count": 0,
+   "mode": "키 미설정"
+  },
+  {
+   "source": "legacy",
+   "label": "기존 앱 수집본",
+   "ok": true,
+   "count": 315,
+   "mode": "seed"
+  }
+ ],
  "registry": {
   "total": 551,
   "enabled": 150,
@@ -455,7 +523,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 0
    },
    {
     "name": "서울여자대학교",
