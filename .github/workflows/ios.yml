@@ -1,0 +1,45 @@
+# 아이폰 앱(IPA) 빌드: macOS 에서 XcodeGen 으로 프로젝트를 만들고 서명 없이 빌드한다.
+# 결과 IPA 는 ios-build 브랜치에 올린다 (사이드로딩 도구로 본인 Apple ID 서명 후 설치).
+name: build-ios
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ["ios/**", "web/index.html", "web/tools/**", ".github/workflows/ios.yml"]
+permissions:
+  contents: write
+concurrency: { group: ios, cancel-in-progress: true }
+jobs:
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: 웹앱 묶기
+        run: |
+          pip3 install --break-system-packages -q -r requirements.txt || pip3 install -q -r requirements.txt
+          python3 scripts/build_site.py
+          rm -rf ios/www && cp -R site ios/www && rm -f ios/www/data/*.gz ios/www/.nojekyll
+      - name: Xcode 프로젝트 만들기
+        run: |
+          brew install xcodegen
+          cd ios && xcodegen generate
+      - name: 빌드 (서명 없음)
+        run: |
+          cd ios
+          xcodebuild -project JangakAlimi.xcodeproj -scheme JangakAlimi -configuration Release -sdk iphoneos \
+            -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            SYMROOT=$PWD/build build 2>&1 | tee build.log | grep -E "error:|warning: .*Swift|BUILD (SUCCEEDED|FAILED)" || true
+          test -d build/Release-iphoneos/JangakAlimi.app
+          mkdir -p Payload && cp -R build/Release-iphoneos/JangakAlimi.app Payload/
+          zip -qry jangak-alimi-ios.ipa Payload
+          ls -la jangak-alimi-ios.ipa
+      - name: 빌드 기록 남기기
+        if: always()
+        run: |
+          mkdir -p out && cd out && git init -q && git checkout -q -b ios-build
+          cp ../ios/build.log . 2>/dev/null || echo "no log" > build.log
+          grep -E "error:" build.log | head -50 > errors.txt || true
+          cp ../ios/jangak-alimi-ios.ipa . 2>/dev/null || true
+          git add -A && git -c user.name=bot -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -q -m "iOS build ${{ github.sha }}"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" ios-build

@@ -106,67 +106,88 @@ public class MainActivity extends Activity {
     static final int REQ_PORTAL = 41;
     private WebView hidden;
 
-    /** 전에 로그인한 적이 있고 하루가 지났으면, 남아 있는 포털 로그인으로 조용히 장학캘린더를 다시 읽어 본다. */
+    /** 전에 로그인한 적이 있고 하루가 지났으면, 남아 있는 포털 로그인으로 조용히 장학 정보를 다시 읽어 본다 (포털마다 차례로). */
     private void silentHyin(final android.widget.FrameLayout root) {
         if (hidden != null) return;
-        java.io.File f = HyinClient.file(this);
-        if (!f.exists() && !"on".equals(Cred.state(this))) return;
-        if (f.exists() && System.currentTimeMillis() - f.lastModified() < 20L * 60 * 60 * 1000) return;
-        getSharedPreferences("hyin", MODE_PRIVATE).edit().putString("state", "checking").apply();
-        hidden = new WebView(this);
-        root.addView(hidden, new android.widget.FrameLayout.LayoutParams(1, 1));
-        hidden.setAlpha(0f);
-        final HyinClient c = new HyinClient(this, hidden, true, new HyinClient.Listener() {
-            @Override public void onProgress(String t) { }
-            @Override public void onLoginNeeded() { setState("login"); dropHidden(); }
-            @Override public void onDone(int n) { setState("ok"); dropHidden(); web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null); }
-            @Override public void onFail(String t) { setState("fail"); dropHidden(); }
-        });
-        c.start();
-        web.postDelayed(new Runnable() { @Override public void run() { if (hidden != null) { setState("login"); dropHidden(); } } }, 120000);
+        for (final Portal p : Portal.ALL) {
+            java.io.File f = p.file(this);
+            if (!f.exists() && !"on".equals(Cred.state(this, p.key))) continue;
+            if (f.exists() && System.currentTimeMillis() - f.lastModified() < 20L * 60 * 60 * 1000) continue;
+            setState(p, "checking");
+            hidden = new WebView(this);
+            root.addView(hidden, new android.widget.FrameLayout.LayoutParams(1, 1));
+            hidden.setAlpha(0f);
+            final HyinClient c = new HyinClient(this, hidden, true, p, new HyinClient.Listener() {
+                @Override public void onProgress(String t) { }
+                @Override public void onLoginNeeded() { setState(p, "login"); next(); }
+                @Override public void onDone(int n) { setState(p, "ok"); updated(p); next(); }
+                @Override public void onFail(String t) { if (!"notfound".equals(st(p))) setState(p, "fail"); next(); }
+                private void next() { dropHidden(); web.postDelayed(new Runnable() { @Override public void run() { silentHyin(root); } }, 1500); }
+            });
+            c.start();
+            final WebView mine = hidden;
+            web.postDelayed(new Runnable() { @Override public void run() { if (hidden == mine) { setState(p, "login"); dropHidden(); } } }, 120000);
+            return;
+        }
     }
 
-    private void showLoginDialog() {
+    private void updated(Portal p) {
+        web.evaluateJavascript(p == Portal.HYIN ? "window.__hyinUpdated&&window.__hyinUpdated()" : "window.__portalUpdated&&window.__portalUpdated('" + p.key + "')", null);
+    }
+
+    private String st(Portal p) { return getSharedPreferences(p.prefs(), MODE_PRIVATE).getString("state", ""); }
+
+    private void setState(Portal p, String s) { getSharedPreferences(p.prefs(), MODE_PRIVATE).edit().putString("state", s).apply(); }
+
+    private void showLoginDialog() { showLoginDialog(Portal.HYIN); }
+
+    private void showLoginDialog(final Portal pt) {
         final android.widget.LinearLayout box = new android.widget.LinearLayout(this);
         box.setOrientation(android.widget.LinearLayout.VERTICAL);
         int p = Math.round(20 * getResources().getDisplayMetrics().density);
         box.setPadding(p, p / 2, p, 0);
         final android.widget.EditText id = new android.widget.EditText(this);
-        id.setHint("포털 아이디"); id.setSingleLine(true);
+        id.setHint(pt == Portal.HYIN ? "포털 아이디" : "학번"); id.setSingleLine(true);
         id.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         final android.widget.EditText pw = new android.widget.EditText(this);
         pw.setHint("비밀번호"); pw.setSingleLine(true);
         pw.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
         android.widget.TextView note = new android.widget.TextView(this);
-        note.setText("아이디·비밀번호는 이 휴대폰의 안전한 저장소에 암호화해 두고, 한양 포털 로그인 칸에만 넣습니다. 서버로 보내지 않습니다. 로그인이 한 번 실패하면 계정이 잠기지 않도록 자동 로그인을 멈춥니다.");
+        note.setText("아이디·비밀번호는 이 휴대폰의 안전한 저장소에 암호화해 두고, " + pt.name + " 로그인 칸에만 넣습니다. 서버로 보내지 않습니다. 로그인이 한 번 실패하면 계정이 잠기지 않도록 자동 로그인을 멈춥니다.");
         note.setTextSize(13);
         box.addView(id); box.addView(pw); box.addView(note);
-        new android.app.AlertDialog.Builder(this).setTitle("포털 자동 로그인").setView(box)
+        new android.app.AlertDialog.Builder(this).setTitle(pt.name + " 자동 로그인").setView(box)
             .setPositiveButton("저장", new android.content.DialogInterface.OnClickListener() { @Override public void onClick(android.content.DialogInterface d, int w) {
                 String i = id.getText().toString().trim(), s = pw.getText().toString();
                 if (i.isEmpty() || s.isEmpty()) return;
-                try { Cred.save(MainActivity.this, i, s); } catch (Exception e) { return; }
+                try { Cred.save(MainActivity.this, pt.key, i, s); } catch (Exception e) { return; }
                 pw.setText("");
-                web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null);
+                updated(pt);
                 // 바로 한 번 확인 (기존 세션이 끝났으면 자동 로그인)
-                java.io.File f = HyinClient.file(MainActivity.this);
+                java.io.File f = pt.file(MainActivity.this);
                 if (f.exists()) f.setLastModified(0);
                 silentHyin((android.widget.FrameLayout) web.getParent());
             } })
             .setNegativeButton("취소", null).show();
     }
 
-    private void setState(String s) { getSharedPreferences("hyin", MODE_PRIVATE).edit().putString("state", s).apply(); }
+    private void setState(String s) { setState(Portal.HYIN, s); }
 
     private void dropHidden() {
         final WebView h = hidden; hidden = null;
-        if (h != null) web.post(new Runnable() { @Override public void run() { try { ((android.view.ViewGroup) h.getParent()).removeView(h); h.removeJavascriptInterface("HyinBridge"); h.destroy(); } catch (Exception ignored) { } } });
+        if (h != null) web.post(new Runnable() { @Override public void run() { try { ((android.view.ViewGroup) h.getParent()).removeView(h); h.removeJavascriptInterface("HyinBridge"); h.removeJavascriptInterface("PortalBridge"); h.destroy(); } catch (Exception ignored) { } } });
     }
 
     @Override
     protected void onActivityResult(int req, int res, Intent data) {
         super.onActivityResult(req, res, data);
-        if (req == REQ_PORTAL && res == RESULT_OK) { setState("ok"); if ("failed".equals(Cred.state(this))) Cred.setState(this, "on"); web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null); }
+        if (req == REQ_PORTAL && res == RESULT_OK) {
+            Portal p = Portal.of(data == null ? null : data.getStringExtra("key"));
+            if (p == null) p = Portal.HYIN;
+            setState(p, "ok");
+            if ("failed".equals(Cred.state(this, p.key))) Cred.setState(this, p.key, "on");
+            updated(p);
+        }
     }
 
     @Override
@@ -266,6 +287,48 @@ public class MainActivity extends Activity {
         public void openPortal() {
             runOnUiThread(new Runnable() { @Override public void run() { startActivityForResult(new Intent(MainActivity.this, PortalActivity.class), REQ_PORTAL); } });
         }
+
+        // ---- 학교 포털 공통 (key: hyin = 한양 포털, kcloud = 강원대 K-Cloud) ----
+        @JavascriptInterface
+        public void portalOpen(final String key) {
+            final Portal p = Portal.of(key); if (p == null) return;
+            runOnUiThread(new Runnable() { @Override public void run() { startActivityForResult(new Intent(MainActivity.this, PortalActivity.class).putExtra("key", p.key), REQ_PORTAL); } });
+        }
+
+        @JavascriptInterface
+        public String portalData(String key) {
+            Portal p = Portal.of(key); if (p == null) return "";
+            try { java.io.File f = p.file(MainActivity.this); return f.exists() ? HyinClient.read(f) : ""; } catch (Exception e) { return ""; }
+        }
+
+        @JavascriptInterface
+        public String portalState(String key) { Portal p = Portal.of(key); return p == null ? "" : st(p); }
+
+        @JavascriptInterface
+        public void portalClear(String key) {
+            final Portal p = Portal.of(key); if (p == null) return;
+            try { p.file(MainActivity.this).delete(); } catch (Exception ignored) { }
+            setState(p, "");
+            runOnUiThread(new Runnable() { @Override public void run() {
+                // 그 포털 주소의 쿠키만 지운다
+                android.webkit.CookieManager cm = android.webkit.CookieManager.getInstance();
+                String ck = cm.getCookie("https://" + p.mainHost + "/");
+                if (ck != null) for (String c : ck.split(";")) { String n = c.split("=")[0].trim(); if (!n.isEmpty()) cm.setCookie("https://" + p.mainHost + "/", n + "=; Max-Age=0"); }
+                cm.flush();
+            } });
+        }
+
+        @JavascriptInterface
+        public void portalLoginSetup(String key) {
+            final Portal p = Portal.of(key); if (p == null) return;
+            runOnUiThread(new Runnable() { @Override public void run() { showLoginDialog(p); } });
+        }
+
+        @JavascriptInterface
+        public String portalLoginState(String key) { Portal p = Portal.of(key); return p == null ? "off" : Cred.state(MainActivity.this, p.key); }
+
+        @JavascriptInterface
+        public void portalLoginOff(String key) { Portal p = Portal.of(key); if (p != null) Cred.clear(MainActivity.this, p.key); }
 
         /** 이 기기에 저장된 장학캘린더 자료 (없으면 빈 문자열). */
         @JavascriptInterface

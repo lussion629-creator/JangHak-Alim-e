@@ -85,6 +85,9 @@ final class Alerts {
         for (int i = 0; i < open.length(); i++) {
             JSONObject o = open.getJSONObject(i);
             if (!seen.add(o.optString("id")) || first) continue;
+            JSONArray fo = o.optJSONArray("f");
+            String school = cfg.optString("school", "");
+            if (!school.isEmpty() && fo != null && fo.length() > 0 && !fo.toString().contains("\"" + school + "\"")) continue; // 내 학교 학생은 지원할 수 없는 장학
             String hay = (o.optString("t") + " " + o.optString("o")).toLowerCase(Locale.KOREA);
             boolean hit = false;
             if (kw != null) for (int k = 0; k < kw.length() && !hit; k++) { String w = kw.optString(k).trim().toLowerCase(Locale.KOREA); hit = !w.isEmpty() && hay.contains(w); }

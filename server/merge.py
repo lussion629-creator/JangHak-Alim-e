@@ -413,7 +413,7 @@ def for_school(rows: list[dict], school: str = "hy") -> list[dict]:
             break
         if drop:
             continue  # 학교 위치가 서울·경기 밖으로 묶인 장학
-        if re.search(r"외국인\s*(유학생|학생)", r.get("title", "") + " " + (r.get("target") or "")[:200]):
+        if re.search(r"외국인\s*(유학생|학생|장학생)", r.get("title", "") + " " + (r.get("target") or "")[:200]):
             continue
         pos = " ".join(str(r.get(k) or "") for k in ("target", "special", "title"))
         names = {n for n in OTHER_UNIV.findall(pos) if not GENERIC_UNIV.match(n)}

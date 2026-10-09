@@ -31,7 +31,8 @@ final class HyinClient {
         void onFail(String text);
     }
 
-    static final String START = "https://portal.hanyang.ac.kr/port.do";
+    static final String START = Portal.HYIN.start;
+    private final Portal portal;
     private final Context ctx;
     private final WebView web;
     private final Listener ln;
@@ -42,8 +43,10 @@ final class HyinClient {
     private boolean triedLogin;
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    HyinClient(Context ctx, WebView web, boolean silent, Listener ln) {
-        this.ctx = ctx; this.web = web; this.silent = silent; this.ln = ln;
+    HyinClient(Context ctx, WebView web, boolean silent, Listener ln) { this(ctx, web, silent, Portal.HYIN, ln); }
+
+    HyinClient(Context ctx, WebView web, boolean silent, Portal portal, Listener ln) {
+        this.ctx = ctx; this.web = web; this.silent = silent; this.ln = ln; this.portal = portal;
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);
         s.setDomStorageEnabled(true);
@@ -53,13 +56,15 @@ final class HyinClient {
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
         CookieManager.getInstance().setAcceptCookie(true);
         CookieManager.getInstance().setAcceptThirdPartyCookies(web, true);
-        web.addJavascriptInterface(new Bridge(), "HyinBridge");
+        Bridge br = new Bridge();
+        web.addJavascriptInterface(br, "HyinBridge");
+        web.addJavascriptInterface(br, "PortalBridge");
         web.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView v, WebResourceRequest req) {
                 Uri u = req.getUrl();
                 String sc = u.getScheme() == null ? "" : u.getScheme();
-                if ("https".equals(sc) && isHanyang(u.getHost())) return false;
+                if ("https".equals(sc) && portal.schoolHost(u.getHost())) return false;
                 if (silent) return true;
                 // 2차 인증 앱 호출(intent:) 이나 외부 주소는 휴대폰의 앱·브라우저로 연다
                 try {
@@ -76,29 +81,32 @@ final class HyinClient {
                 host = u.getHost() == null ? "" : u.getHost();
                 CookieManager.getInstance().flush();
                 if (finished) return;
-                boolean portal = "portal.hanyang.ac.kr".equals(host);
-                boolean login = url.contains("lgin") || url.contains("/sso/") || url.contains("login");
-                if (portal && !login) {
-                    ln.onProgress("로그인 확인됨 · 장학캘린더를 불러오는 중…");
+                boolean main = portal.mainHost.equals(host);
+                boolean login = portal.isLogin(url);
+                if (main && !login) {
+                    if (portal == Portal.KCLOUD && !url.contains("/websquare/")) return; // 넘어가는 중인 중간 화면
+                    ln.onProgress("로그인 확인됨 · 장학 정보를 불러오는 중…");
                     v.evaluateJavascript(script(), null);
-                } else if (silent && portal && login && !triedLogin && "on".equals(Cred.state(ctx))) {
+                } else if (silent && main && login && !triedLogin && "on".equals(Cred.state(ctx, portal.key))) {
                     // 저장된 아이디·비밀번호로 한 번만 로그인을 시도한다 (틀리면 계정이 잠기지 않도록 다시 시도하지 않음)
                     triedLogin = true;
-                    org.json.JSONObject c = Cred.load(ctx);
+                    org.json.JSONObject c = Cred.load(ctx, portal.key);
                     if (c == null) { finish(); ln.onLoginNeeded(); return; }
                     ln.onProgress("자동 로그인 중…");
-                    v.evaluateJavascript(loginScript(c.optString("id"), c.optString("pw")), null);
+                    v.evaluateJavascript(portal.loginScript(c.optString("id"), c.optString("pw")), null);
                     ui.postDelayed(new Runnable() { @Override public void run() {
-                        if (!finished && host.equals("portal.hanyang.ac.kr") && web.getUrl() != null && web.getUrl().contains("lgin")) {
-                            Cred.setState(ctx, "failed"); finish(); ln.onLoginNeeded();
+                        if (!finished && host.equals(portal.mainHost) && web.getUrl() != null && portal.isLogin(web.getUrl())) {
+                            Cred.setState(ctx, portal.key, "failed"); finish(); ln.onLoginNeeded();
                         }
                     } }, 25000);
+                } else if (silent && triedLogin && main && login) {
+                    // 자동 로그인 뒤 로그인 화면 안에서 다음 단계(추가 인증 등)로 넘어가는 중: 위의 시간 제한이 판단한다
                 } else if (silent) {
-                    if (triedLogin) Cred.setState(ctx, "failed");
+                    if (triedLogin) Cred.setState(ctx, portal.key, "failed");
                     finish();
                     ln.onLoginNeeded();
                 } else {
-                    ln.onProgress("한양 포털에 로그인해 주세요. 비밀번호는 앱에 저장되지 않습니다.");
+                    ln.onProgress(portal.name + "에 로그인해 주세요. 비밀번호는 앱에 저장되지 않습니다.");
                 }
             }
         });
@@ -118,7 +126,7 @@ final class HyinClient {
         return h != null && (h.equals("hanyang.ac.kr") || h.endsWith(".hanyang.ac.kr"));
     }
 
-    void start() { web.loadUrl(START); }
+    void start() { web.loadUrl(portal.start); }
 
     private void finish() {
         finished = true;
@@ -126,11 +134,11 @@ final class HyinClient {
     }
 
     private String script() {
-        try (InputStream in = ctx.getAssets().open("www/tools/hyin-app.js")) {
+        try (InputStream in = ctx.getAssets().open(portal.asset)) {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             byte[] b = new byte[8192]; int n;
             while ((n = in.read(b)) > 0) bo.write(b, 0, n);
-            return "window.__hyinKnown=" + knownKeys() + ";\n" + bo.toString("UTF-8");
+            return "window.__portalSilent=" + silent + ";window.__hyinKnown=" + (portal == Portal.HYIN ? knownKeys() : "[]") + ";\n" + bo.toString("UTF-8");
         } catch (Exception e) {
             return "";
         }
@@ -140,7 +148,7 @@ final class HyinClient {
     private String knownKeys() {
         try {
             org.json.JSONArray out = new org.json.JSONArray();
-            org.json.JSONArray rs = new org.json.JSONObject(read(file(ctx))).getJSONArray("records");
+            org.json.JSONArray rs = new org.json.JSONObject(read(portal.file(ctx))).getJSONArray("records");
             for (int i = 0; i < rs.length(); i++) {
                 org.json.JSONObject r = rs.getJSONObject(i);
                 if (r.has("detail")) out.put(key(r));
@@ -164,7 +172,7 @@ final class HyinClient {
     static File file(Context c) { return new File(c.getFilesDir(), "hyin_calendar.json"); }
 
     class Bridge {
-        private boolean ok() { return "portal.hanyang.ac.kr".equals(host) && !finished; }
+        private boolean ok() { return portal.mainHost.equals(host) && !finished; }
 
         @JavascriptInterface
         public void progress(final String t) {
@@ -180,15 +188,15 @@ final class HyinClient {
                 org.json.JSONObject o = new org.json.JSONObject(json);
                 org.json.JSONArray rs = o.getJSONArray("records");
                 count = rs.length();
-                // 본문을 다시 읽지 않은 공고는 전에 저장한 본문을 이어 붙인다
-                try {
+                // 본문을 다시 읽지 않은 공고는 전에 저장한 본문을 이어 붙인다 (한양 포털)
+                if (portal == Portal.HYIN) try {
                     java.util.HashMap<String, Object> old = new java.util.HashMap<>();
-                    org.json.JSONArray prev = new org.json.JSONObject(read(file(ctx))).getJSONArray("records");
+                    org.json.JSONArray prev = new org.json.JSONObject(read(portal.file(ctx))).getJSONArray("records");
                     for (int i = 0; i < prev.length(); i++) { org.json.JSONObject r = prev.getJSONObject(i); if (r.has("detail")) old.put(key(r), r.get("detail")); }
                     for (int i = 0; i < rs.length(); i++) { org.json.JSONObject r = rs.getJSONObject(i); if (!r.has("detail") && old.containsKey(key(r))) r.put("detail", old.get(key(r))); }
                 } catch (Exception ignored) { }
                 o.put("savedAt", System.currentTimeMillis());
-                try (FileOutputStream out = new FileOutputStream(file(ctx))) { out.write(o.toString().getBytes(StandardCharsets.UTF_8)); }
+                try (FileOutputStream out = new FileOutputStream(portal.file(ctx))) { out.write(o.toString().getBytes(StandardCharsets.UTF_8)); }
             } catch (Exception e) {
                 final String msg = "불러온 자료를 저장하지 못했어요.";
                 ui.post(new Runnable() { @Override public void run() { ln.onFail(msg); } });
@@ -204,8 +212,12 @@ final class HyinClient {
             if (!ok()) return;
             if ("LOGIN".equals(t)) {
                 if (silent) { finish(); ui.post(new Runnable() { @Override public void run() { ln.onLoginNeeded(); } }); }
-                else ui.post(new Runnable() { @Override public void run() { ln.onProgress("한양 포털에 로그인해 주세요. 로그인하면 자동으로 불러옵니다."); } });
+                else ui.post(new Runnable() { @Override public void run() { ln.onProgress(portal.name + "에 로그인해 주세요. 로그인하면 자동으로 불러옵니다."); } });
                 return;
+            }
+            if ("NOTFOUND".equals(t)) {
+                ctx.getSharedPreferences(portal.prefs(), Context.MODE_PRIVATE).edit().putString("state", "notfound").apply();
+                finish();
             }
             ui.post(new Runnable() { @Override public void run() { ln.onFail(t == null ? "" : t); } });
         }

@@ -48,6 +48,10 @@ public class WorkJob extends JobService {
     @Override public boolean onStopJob(JobParameters params) { return true; }
 
     static void check(Context ctx) throws Exception {
+        try { // 한양대 학생이거나 학교를 고르지 않은 경우만 한양대 근로 모집을 확인한다
+            String sc = new org.json.JSONObject(ctx.getSharedPreferences("alerts", MODE_PRIVATE).getString("cfg", "{}")).optString("school", "");
+            if (!sc.isEmpty() && !"hy".equals(sc)) return;
+        } catch (Exception ignored) { }
         List<String[]> posts = HyWork.workPosts();
         SharedPreferences sp = ctx.getSharedPreferences("hywork", MODE_PRIVATE);
         Set<String> seen = new HashSet<>(sp.getStringSet("seen", new HashSet<String>()));

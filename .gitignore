@@ -24,3 +24,8 @@ data/imports/*.json
 !data/imports/.keep
 *.idsig
 android/SIGNING-KEY*.txt
+ios/www/
+ios/build/
+ios/*.xcodeproj/
+ios/Payload/
+*.ipa

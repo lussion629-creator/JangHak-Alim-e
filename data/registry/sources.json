@@ -568,8 +568,8 @@
   "notice_url": "https://www.sogang.ac.kr/ko/scholarship-notice",
   "rss": "",
   "verified": false,
-  "enabled": true,
-  "notes": "장학공지 (bbsConfigFk=141); posts [교외]/[발전기금]; detail /ko/detail/{id}. TLS cert issue blocked fetch; found via site search. Legacy /front/boardview.do?bbsConfigFK=141"
+  "enabled": false,
+  "notes": "장학공지 (bbsConfigFk=141); posts [교외]/[발전기금]; detail /ko/detail/{id}. TLS cert issue blocked fetch; found via site search. Legacy /front/boardview.do?bbsConfigFK=141 · 전용 수집기(server/collectors/sogang.py)로 대체"
  },
  {
   "id": "서울시립대학교-e9e7",
@@ -1049,8 +1049,8 @@
   "notice_url": "https://www.kangwon.ac.kr/www/selectBbsNttList.do?bbsNo=37&key=1176",
   "rss": "",
   "verified": false,
-  "enabled": true,
-  "notes": "거점국립 (2024 강릉원주대 통합; gwnu.ac.kr shows 'KNU site move'); robots.txt disallows fetch; URL is an unverified guess. Dept sites use *.do?mode=view&articleNo= with community/scholarship.do boards"
+  "enabled": false,
+  "notes": "거점국립 (2024 강릉원주대 통합; gwnu.ac.kr shows 'KNU site move'); robots.txt disallows fetch; URL is an unverified guess. Dept sites use *.do?mode=view&articleNo= with community/scholarship.do boards · 전용 수집기(server/collectors/kangwon.py)로 대체"
  },
  {
   "id": "전북대학교-e274",

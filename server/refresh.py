@@ -209,7 +209,7 @@ def export(con: sqlite3.Connection, summary: dict):
     changes = [dict(zip(("at", "id", "kind", "title"), c)) for c in con.execute("select at,sid,kind,title from changes order by id desc limit 200")]
     meta = {k: summary[k] for k in ("finishedAt", "total", "new", "changed")}
     # 휴대폰 앱의 알림 작업용: 지금 모집 중·예정인 장학의 짧은 목록
-    meta["open"] = [{"id": r["id"], "t": r["title"][:80], "o": (r.get("org") or "")[:40], "s": r.get("support") or [], "e": r.get("end") or ""}
+    meta["open"] = [{"id": r["id"], "t": r["title"][:80], "o": (r.get("org") or "")[:40], "s": r.get("support") or [], "e": r.get("end") or "", "f": r.get("for") or []}
                     for r in rows if r.get("status") in ("모집중", "예정")][:400]
     meta["changes"] = changes
     (ROOT / "data" / "registry" / "last_run.json").write_text(json.dumps({**summary, "registry": _registry_summary()}, ensure_ascii=False, indent=1))

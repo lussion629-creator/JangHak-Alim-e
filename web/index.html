@@ -393,6 +393,10 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <p class="lead">한양대 포털 장학 캘린더</p>
       <div id="hyinBox"></div>
     </section>
+    <section class="panel" id="kcloudPanel" hidden>
+      <p class="lead">강원대 K-Cloud 장학 신청 목록</p>
+      <div id="kcloudBox"></div>
+    </section>
     <section class="panel">
       <p class="lead">자동 갱신</p>
       <div class="form" id="remoteForm"></div>
@@ -613,7 +617,7 @@ function pushAlerts(){
   try{ if(!(window.AndroidBridge&&window.AndroidBridge.setAlerts)) return;
     const fav=DATA.filter(r=>favs.has(r.id)&&r.end&&r.end>=TODAY).map(r=>({id:r.id,t:r.title.slice(0,80),e:r.end}));
     const rv=store.get("remote",null)??PAGES;
-    window.AndroidBridge.setAlerts(JSON.stringify({kw:AL.kw||[],cats:AL.cats||[],before:AL.before||[],fav,remote:/^https:\/\//.test(rv||"")?rv.replace(/\/*$/,"/"):PAGES+"/"}));
+    window.AndroidBridge.setAlerts(JSON.stringify({kw:AL.kw||[],cats:AL.cats||[],before:AL.before||[],fav,school:myGroup(),remote:/^https:\/\//.test(rv||"")?rv.replace(/\/*$/,"/"):PAGES+"/"}));
   }catch(e){}
 }
 function alertHit(r){ const t=(r.title+" "+(r.org||"")).toLowerCase(); return (AL.kw||[]).some(w=>w&&t.includes(w.toLowerCase()))||(r.support||[]).some(k=>(AL.cats||[]).includes(k)) }
@@ -643,12 +647,14 @@ try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",applyT
 $("#themeBtn").addEventListener("click",()=>{const order=["auto","light","dark"]; const m=store.get("theme","auto"); store.set("theme",order[(order.indexOf(m)+1)%3]); applyTheme()});
 window.__sysTheme=applyTheme;
 // 학교 전용 공고: 그 학교 학생만 지원할 수 있는 공고. 학교별로 켜고 끈다.
-const SCHOOLS=[["hyu","한양대",/^한양대학교/],["hywu","한양여대",/^한양여자대학교/],["kwsc","강원대 삼척",/^강원대학교/]];
+const SCHOOLS=[["hyu","한양대",/^한양대학교/],["hywu","한양여대",/^한양여자대학교/],["kwsc","강원대 삼척",/^강원대학교/],["sg","서강대",/^서강대학교/]];
+const GROUP={hyu:"hy",hywu:"hy",kwsc:"kw",sg:"sg"};
 function ownSchool(r){
   if(Array.isArray(r.only)&&r.only.length===1) return r.only[0];
   const o=String(r.org||"");
   if(r.source==="hywoman"||(/한양여자대학교/.test(o)&&r.org_type==="대학(교내)")) return "hywu";
-  if(r.source==="kangwon"||(r.org_type==="대학(교내)"&&/^강원대학교/.test(o))) return "kwsc";
+  if(r.source==="kangwon"||r.source==="kcloud"||(r.org_type==="대학(교내)"&&/^강원대학교/.test(o))) return "kwsc";
+  if(r.source==="sogang"||(r.org_type==="대학(교내)"&&/^서강대학교/.test(o))) return "sg";
   if(r.org_type==="대학(교내)"&&/^한양대학교/.test(o)) return /ERICA/.test(o)?"erica":"hyu";
   return "";
 }
@@ -658,12 +664,14 @@ function showOnly(){
   const v=store.get("only",null), me=mySchool();
   const o={}; SCHOOLS.forEach(([k])=>o[k]=v&&k in v?!!v[k]:(!me||k===me)); return o;
 }
+function myGroup(){return GROUP[mySchool()]||""}
 function schoolOK(r){
+  const g=myGroup(); if(g&&Array.isArray(r.for)&&r.for.length&&!r.for.includes(g)) return false; // 내 학교 학생은 지원할 수 없는 장학
   const own=ownSchool(r); if(!own) return true;
   if(own==="erica") return false;
   return showOnly()[own]!==false;
 }
-const OWNL={hywu:"한양여대 전용",erica:"한양대 전용 · ERICA",hyu:"한양대 전용",kwsc:"강원대 삼척 전용"};
+const OWNL={hywu:"한양여대 전용",erica:"한양대 전용 · ERICA",hyu:"한양대 전용",kwsc:"강원대 삼척 전용",sg:"서강대 전용"};
 // 지원 종류: 여러 개를 골라 보고 싶은 것만 본다 (아무것도 안 고르면 전체)
 const CATS=new Set((()=>{const v=store.get("cats",null); if(Array.isArray(v)) return v; const old=store.get("cat",""); return old?[old]:[]})());
 const catOf=r=>(r.support&&r.support.length)?r.support:["etc"];
@@ -677,8 +685,8 @@ function renderCats(){
         +(me?`<button type="button" class="chip" data-only-others="${anyOther?"off":"on"}">${anyOther?"다른 학교 것 모두 끄기":"다른 학교 것 다시 보기"}</button>`:"")})()}</div>`
     +`<p class="cats-hint">${CATS.size?`${[...CATS].map(k=>SUPL[k]||"그 밖의 장학").join(" · ")}만 보는 중 · <button type="button" class="linkbtn" data-cat="">모두 보기</button>`:"보고 싶은 종류를 눌러 고르세요. 여러 개 고를 수 있어요."}</p>`;
 }
-$("#cats").addEventListener("click",e=>{const oo=e.target.closest("[data-only-others]"); if(oo){const me=mySchool(), on=oo.dataset.onlyOthers==="on", o={}; SCHOOLS.forEach(([k])=>o[k]=k===me||on); store.set("only",o); renderCats(); apply(); return}
-  const ob=e.target.closest("[data-only]"); if(ob){const o={...showOnly()}; o[ob.dataset.only]=!o[ob.dataset.only]; store.set("only",o); renderCats(); apply(); return}
+$("#cats").addEventListener("click",e=>{const oo=e.target.closest("[data-only-others]"); if(oo){const me=mySchool(), on=oo.dataset.onlyOthers==="on", o={}; SCHOOLS.forEach(([k])=>o[k]=k===me||on); store.set("only",o); renderCats(); renderKpis(); apply(); return}
+  const ob=e.target.closest("[data-only]"); if(ob){const o={...showOnly()}; o[ob.dataset.only]=!o[ob.dataset.only]; store.set("only",o); renderCats(); renderKpis(); apply(); return}
   const b=e.target.closest("[data-cat]"); if(!b) return; const k=b.dataset.cat;
   if(!k) CATS.clear(); else if(CATS.has(k)) CATS.delete(k); else CATS.add(k);
   store.set("cats",[...CATS]); renderCats(); if($("#view-find").hidden) tab("find"); apply()});
@@ -913,13 +921,13 @@ function fillProfile(){
   const opt='<option value="">선택 안 함</option>'+SIDO.map(s=>`<option>${s}</option>`).join("");
   for(const id of["p_sido","p_psido","p_hsido","p_ssido"]) $("#"+id).innerHTML=opt;
   // 학교: 한양대·한양여대를 맨 위에, 나머지는 가나다순
-  const TOP=[["한양대학교","서울","한양대학교"],["한양여자대학교","서울","한양여자대학교"],["강원대학교 삼척캠퍼스","강원","강원대학교 삼척캠퍼스"]];
+  const TOP=[["한양대학교","서울","한양대학교"],["한양여자대학교","서울","한양여자대학교"],["강원대학교 삼척캠퍼스","강원","강원대학교 삼척캠퍼스"],["서강대학교","서울","서강대학교"]];
   const rest=[...new Map(UNIVS.filter(([n])=>!/^한양/.test(n)).map(u=>[u[0],u])).values()].sort((a,b)=>a[0].localeCompare(b[0],"ko"));
   $("#p_schoolPick").innerHTML=`<option value="">선택 안 함</option><optgroup label="이 앱이 지원하는 학교">${TOP.map(([v,,l])=>`<option value="${v}">${l}</option>`).join("")}</optgroup><optgroup label="다른 학교">${rest.map(([n])=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup><option value="__other">목록에 없음 (직접 입력)</option>`;
   $("#p_deptPick").innerHTML=`<option value="">선택 안 함</option>`+Object.entries(MAJORS).map(([g,l])=>`<optgroup label="${g}">${l.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup>`).join("")+`<option value="__other">목록에 없음 (직접 입력)</option>`;
   const syncPick=(pick,input,val)=>{const has=[...$(pick).options].some(o=>o.value===val&&val); $(pick).value=has?val:(val?"__other":""); $(input).hidden=!(val&&!has); $(input).value=val||""};
   $("#p_schoolPick").onchange=()=>{const v=$("#p_schoolPick").value; $("#p_schoolName").hidden=v!=="__other"; $("#p_schoolName").value=v==="__other"?"":v;
-    const t=[...TOP,...UNIVS].find(u=>u[0]===v); if(t&&t[1]) $("#p_ssido").value=t[1]; if(/한양여자/.test(v)&&!$("#p_school").value) $("#p_school").value="2y"; if(/^(한양대학교|강원대학교)/.test(v)&&!$("#p_school").value) $("#p_school").value="4y"};
+    const t=[...TOP,...UNIVS].find(u=>u[0]===v); if(t&&t[1]) $("#p_ssido").value=t[1]; if(/한양여자/.test(v)&&!$("#p_school").value) $("#p_school").value="2y"; if(/^(한양대학교|강원대학교|서강대학교)/.test(v)&&!$("#p_school").value) $("#p_school").value="4y"};
   $("#p_deptPick").onchange=()=>{const v=$("#p_deptPick").value; $("#p_dept").hidden=v!=="__other"; $("#p_dept").value=v==="__other"?"":v; const k=Object.keys(MAJORS).find(k=>MAJORS[k].includes(v)); if(k) $("#p_major").value=k};
   const fillGu=(sel,keep)=>{const g=$("#"+sel.dataset.gu), list=DIST[sel.value]||[]; g.innerHTML=sel.value?`<option value="">선택 안 함</option>`+list.map(x=>`<option>${x}</option>`).join(""):`<option value="">시·도를 먼저 고르세요</option>`; if(keep&&list.includes(keep)) g.value=keep};
   $$("#profile select[data-gu]").forEach(sel=>{sel.onchange=()=>fillGu(sel)});
@@ -939,7 +947,7 @@ $("#profile").addEventListener("submit",e=>{
   if(p.status==="grad"&&!p.school) p.school="grad";
   p.flags=$$("#p_flags input:checked").map(c=>c.value);
   if(((profile&&profile.schoolName)||"")!==(p.schoolName||"")) store.set("only",null); // 학교를 바꾸면 전용 공고 보기도 새 학교에 맞춤
-  profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis(); renderCats();
+  profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis(); renderCats(); renderPortals(); pushAlerts();
   $("#p_saved").textContent="저장했습니다. 이 기기에만 보관됩니다.";
   F.match=new Set(["ok","check"]); F.field=new Set(); $("#sort").value="fit"; store.set("sort","fit"); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
 });
@@ -947,7 +955,7 @@ $("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",nu
 
 /* ---------- 새 소식 ---------- */
 function renderSrc(){
-  renderHyin(); renderAlerts();
+  renderHyin(); renderPortals(); renderAlerts();
   const when=(META.finishedAt||"").replace("T"," ").slice(0,16);
   $("#srcReport").textContent=`마지막 갱신 ${when} · 전체 ${(META.total||DATA.length).toLocaleString("ko-KR")}건 · 이번에 새로 ${META.new||0}건, 바뀜 ${META.changed||0}건`;
   const ch=freshList(false);
@@ -958,12 +966,13 @@ function renderSrc(){
 
 /* ---------- KPI ---------- */
 function renderKpis(){
-  const live=DATA.filter(r=>r._s.key==="모집중"), week=live.filter(r=>r._s.d!=null&&r._s.d<=7);
+  const D=DATA.filter(schoolOK); // 내 학교 학생이 지원할 수 없는 장학·끈 학교 전용 공고는 세지 않는다
+  const live=D.filter(r=>r._s.key==="모집중"), week=live.filter(r=>r._s.d!=null&&r._s.d<=7);
   const ym=TODAY.slice(0,7), nm=iso(new Date(today.getFullYear(),today.getMonth()+1,1)).slice(0,7);
-  const soon=DATA.filter(r=>r._s.key==="예정"||(r.next&&(r.next===ym||r.next===nm)));
-  const okc=profile?DATA.filter(r=>r._m&&r._m.verdict!=="no"&&(r._s.key==="모집중"||r._s.key==="예정")).length:null;
+  const soon=D.filter(r=>r._s.key==="예정"||(r.next&&(r.next===ym||r.next===nm)));
+  const okc=profile?D.filter(r=>r._m&&r._m.verdict!=="no"&&(r._s.key==="모집중"||r._s.key==="예정")).length:null;
   $("#meCallout").hidden=!!profile;
-  const k=[["live",live.length,"지금 모집중",""],["week",week.length,"7일 안에 마감","hot"],["soon",soon.length,"이번·다음 달 모집 예상",""],["mine",okc==null?DATA.length:okc,okc==null?"전체 장학금":"나에게 맞는 장학금",""]];
+  const k=[["live",live.length,"지금 모집중",""],["week",week.length,"7일 안에 마감","hot"],["soon",soon.length,"이번·다음 달 모집 예상",""],["mine",okc==null?D.length:okc,okc==null?"전체 장학금":"나에게 맞는 장학금",""]];
   $("#kpis").innerHTML=k.map(([id,n,l,c])=>`<button class="kpi ${c}" type="button" data-k="${id}"><span class="n">${n.toLocaleString("ko-KR")}</span><span class="l">${l}</span></button>`).join("");
   renderFresh();
 }
@@ -1007,8 +1016,9 @@ async function boot(){
     if(soon.length) window.AndroidBridge.notifyDeadlines(JSON.stringify(soon)); store.set("notified",TODAY);
   }}catch(e){}
   pushAlerts();
-  hyinMerge().then(n=>{ if(n) cacheAll(); renderHyin() }).catch(()=>{ try{renderHyin()}catch(e){} });
-  hyWorkSync().catch(()=>{});
+  hyinMerge().then(n=>{ if(n) cacheAll(); renderHyin(); renderPortals() }).catch(()=>{ try{renderHyin()}catch(e){} });
+  try{ let n=0; for(const k in PORTALS) n+=portalMerge(k); if(n) cacheAll() }catch(e){}
+  if(!myGroup()||myGroup()==="hy") hyWorkSync().catch(()=>{});
 }
 /* ---------- 휴대폰 앱: 한양 포털 장학캘린더 (학생이 직접 로그인) ---------- */
 const HYIN_APP=()=>!!(window.AndroidBridge&&window.AndroidBridge.openPortal);
@@ -1078,6 +1088,53 @@ function renderHyin(){
 }
 document.addEventListener("click",e=>{ if(e.target.closest("[data-portal]")){ try{window.AndroidBridge.openPortal()}catch(err){} } });
 window.__hyinUpdated=function(){ hyinMerge().then(()=>{ cacheAll(); renderHyin(); renderFresh() }) };
+
+/* ---------- 학교 포털(강원대 K-Cloud 등): 휴대폰 앱이 이 기기에만 저장한 장학 신청 목록 ---------- */
+const PB=(m,...a)=>{try{const b=window.AndroidBridge; return b&&typeof b[m]==="function"?b[m](...a):undefined}catch(e){return undefined}};
+const PORTALS={kcloud:{name:"K-Cloud",school:"강원대학교 삼척캠퍼스",url:"https://kcloud.kangwon.ac.kr/",group:"kw",box:"#kcloudBox",panel:"#kcloudPanel",
+  path:"K-Cloud → 학부생서비스 → 교과 → 장학 → 장학신청"}};
+function portalItems(key){
+  const P=PORTALS[key]; let d=null; try{const t=PB("portalData",key); d=t?JSON.parse(t):null}catch(e){}
+  if(!d||!Array.isArray(d.records)) return {items:[],at:0};
+  const out=d.records.map(x=>{
+    const start=nd(x.start), end=nd(x.end), name=String(x.name||"").slice(0,80)||P.school+" 장학";
+    const status=start&&start>TODAY?"예정":end?(end>=TODAY?"모집중":"마감"):"상시/미정";
+    const extra=Object.entries(x.cols||{}).map(([k,v])=>k+": "+v).join("\n");
+    const all=name+" "+extra, sup=[]; if(/근로/.test(all)) sup.push("work"); else { if(/등록금|수업료/.test(all)) sup.push("tuition"); if(/생활비|SOS|학업\s*장려/.test(all)) sup.push("living"); if(/생활관|기숙사|주거/.test(all)) sup.push("dorm") }
+    return {id:key+"-"+(x.key||name+start).replace(/[^\w가-힣-]/g,"").slice(0,60),source:key,title:name,org:P.school,org_type:"대학(교내)",kind:x.kind||"",level:"대학생",region:"강원",district:"삼척",
+      support:sup,status,start,end,posted:"",summary:extra,url:P.url,links:[{name:P.name,url:P.url}],school_types:[],majors:[],grades:[],files:[],images:[],for:[P.group],selection:"신청: "+P.path};
+  });
+  return {items:out,at:d.savedAt||0};
+}
+function portalMerge(key){
+  let n=0; const norm=t=>String(t||"").replace(/[\s()\[\]·ㆍ.,-]/g,"");
+  for(const r of portalItems(key).items){ if(BYID[r.id]) continue; const nt=norm(r.title); if(DATA.some(x=>norm(x.title).includes(nt)&&(!r.end||!x.end||x.end===r.end))) continue; DATA.push(r); BYID[r.id]=r; n++ }
+  return n;
+}
+function renderPortal(key){
+  const P=PORTALS[key], box=$(P.box), panel=$(P.panel); if(!box) return;
+  const g=myGroup(); if(panel) panel.hidden=!!g&&g!==P.group;
+  if(!PB("portalOpen")&&!(window.AndroidBridge&&window.AndroidBridge.portalOpen)){ box.innerHTML=`<p class="note">휴대폰 앱에서 쓸 수 있어요. 앱에서 ${P.name}에 한 번 로그인하면 ${P.name}의 장학 신청 목록까지 함께 보여 줍니다.</p>`; return }
+  const {items,at}=portalItems(key), st=PB("portalState",key)||"", a=PB("portalLoginState",key)||"off";
+  const when=at?new Date(at):null, live=items.filter(r=>r.status!=="마감").length;
+  box.innerHTML=`<p class="note">${when?`마지막으로 불러온 때: ${when.getMonth()+1}월 ${when.getDate()}일 ${String(when.getHours()).padStart(2,"0")}:${String(when.getMinutes()).padStart(2,"0")} · ${items.length}건 (모집 중·예정 ${live}건)`:"아직 불러오지 않았어요."}</p>
+    ${st==="login"?`<p class="note" style="color:var(--seal)">로그인이 끝나서 자동으로 다시 불러오지 못했어요. 한 번 더 로그인해 주세요.</p>`:st==="notfound"?`<p class="note" style="color:var(--seal)">장학 신청 화면을 찾지 못했어요. ‘${P.name} 열기’를 누르고 로그인한 뒤 ${esc(P.path)} 화면을 열면, 그 화면의 목록을 읽어 와요.</p>`:""}
+    <p class="note">${P.name} 로그인 화면에서 직접 로그인하면 장학 신청 화면의 장학 목록(장학명·신청 기간)만 읽어 이 휴대폰에만 저장합니다. 신청 여부·결과·지급액 같은 본인 기록은 읽지 않아요.</p>
+    <div class="actions"><button class="btn primary" type="button" data-portal-open="${key}">${when?"다시 불러오기":P.name+" 로그인하고 불러오기"}</button>${when?`<button class="btn" type="button" data-portal-clear="${key}">불러온 자료·로그인 지우기</button>`:""}</div>
+    <div class="sec" style="margin-top:14px;padding-top:12px"><b style="font-size:14px">하루 한 번 자동 로그인</b>
+      <p class="note">${a==="on"?"켜져 있어요. 하루에 한 번 앱이 알아서 로그인해 장학 목록을 다시 불러와요.":a==="failed"?`<span style="color:var(--seal)">자동 로그인이 한 번 실패해서 멈췄어요.</span> 문자·메일 추가 인증이 켜져 있거나 비밀번호가 바뀌었을 수 있어요. 위에서 한 번 직접 로그인하면 다시 켜져요.`:"꺼져 있어요. 켜면 학번·비밀번호를 이 휴대폰에 암호화해 저장하고, 하루 한 번 ‘아이디 로그인’ 칸에 넣어 로그인해요."}</p>
+      <p class="note">학번·비밀번호는 휴대폰의 안전한 저장소에 암호화되고 ${P.name} 로그인 칸에만 들어가요. 서버로 보내지 않아요. 로그인이 한 번이라도 실패하면 계정이 잠기지 않도록 바로 멈춰요.</p>
+      <div class="actions"><button class="btn${a==="off"?" primary":""}" type="button" data-portal-al-on="${key}">${a==="off"?"자동 로그인 켜기":"학번·비밀번호 바꾸기"}</button>${a!=="off"?`<button class="btn" type="button" data-portal-al-off="${key}">자동 로그인 끄기</button>`:""}</div></div>`;
+}
+function renderPortals(){ for(const k in PORTALS) try{renderPortal(k)}catch(e){}
+  const g=myGroup(), hp=$("#hyinPanel"); if(hp) hp.hidden=!!g&&g!=="hy"; const hc=$("#hyinCallout"); if(hc&&g&&g!=="hy") hc.hidden=true }
+document.addEventListener("click",e=>{
+  const o=e.target.closest("[data-portal-open]"); if(o){PB("portalOpen",o.dataset.portalOpen); return}
+  const c=e.target.closest("[data-portal-clear]"); if(c){PB("portalClear",c.dataset.portalClear); location.reload(); return}
+  const on=e.target.closest("[data-portal-al-on]"); if(on){PB("portalLoginSetup",on.dataset.portalAlOn); return}
+  const off=e.target.closest("[data-portal-al-off]"); if(off){PB("portalLoginOff",off.dataset.portalAlOff); renderPortal(off.dataset.portalAlOff)}
+});
+window.__portalUpdated=function(key){ if(key==="hyin") return window.__hyinUpdated(); if(PORTALS[key]&&portalMerge(key)) cacheAll(); try{renderPortal(key); renderFresh()}catch(e){} };
 
 /* ---------- 휴대폰 앱: 한양대 근로장학 모집 글을 직접 확인 ---------- */
 const HYP="kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet";
