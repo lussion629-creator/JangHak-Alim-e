@@ -82,6 +82,7 @@ public class MainActivity extends Activity {
             }
         });
         if (saved != null) web.restoreState(saved); else web.loadUrl(ORIGIN + "index.html");
+        try { WorkJob.schedule(this); } catch (Exception ignored) { }
         if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != 0) {
             requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
         }
@@ -134,5 +135,31 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public String platform() { return "android"; }
+
+        /** 한양대 공개 공지 페이지를 휴대폰에서 직접 받아 페이지로 돌려준다 (근로장학 모집 확인용, 한양대 공지 주소만). */
+        @JavascriptInterface
+        public void fetchHanyang(final String url, final String cb) {
+            if (!HyWork.allowed(url) || !cb.matches("[A-Za-z0-9_]{1,40}")) return;
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    String body;
+                    try { body = JSONObject.quote(HyWork.fetch(url)); } catch (Exception e) { body = "null"; }
+                    final String js = "window.__hyCb&&window.__hyCb('" + cb + "'," + body + ")";
+                    web.post(new Runnable() { @Override public void run() { web.evaluateJavascript(js, null); } });
+                }
+            }).start();
+        }
+
+        /** 앱에서 본 근로 모집 글 번호를 알림 작업과 공유해, 이미 본 글로 다시 알리지 않게 한다. */
+        @JavascriptInterface
+        public void markWorkSeen(String json) {
+            try {
+                JSONArray arr = new JSONArray(json);
+                android.content.SharedPreferences sp = getSharedPreferences("hywork", MODE_PRIVATE);
+                java.util.Set<String> seen = new java.util.HashSet<>(sp.getStringSet("seen", new java.util.HashSet<String>()));
+                for (int i = 0; i < arr.length(); i++) seen.add(arr.getString(i));
+                sp.edit().putStringSet("seen", seen).apply();
+            } catch (Exception ignored) { }
+        }
     }
 }

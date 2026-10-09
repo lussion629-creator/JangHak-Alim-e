@@ -840,7 +840,68 @@ async function boot(){
     const soon=DATA.filter(r=>favs.has(r.id)&&r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=3).map(r=>({id:r.id,title:r.title,org:r.org,label:r._s.label}));
     if(soon.length) window.AndroidBridge.notifyDeadlines(JSON.stringify(soon)); store.set("notified",TODAY);
   }}catch(e){}
+  hyWorkSync().catch(()=>{});
 }
+/* ---------- 휴대폰 앱: 한양대 근로장학 모집 글을 직접 확인 ---------- */
+const HYP="kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet";
+const hyList=cat=>`https://www.hanyang.ac.kr/notice_all?p_p_id=${HYP}&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_${HYP}_action=view&_${HYP}_sCategoryId=${cat}&_${HYP}_cur=1`;
+const hyView=(cat,id)=>`https://www.hanyang.ac.kr/notice_all?p_p_id=${HYP}&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_${HYP}_action=view_message&_${HYP}_sCategoryId=${cat}&_${HYP}_entryId=${id}`;
+const HYCB={}; let hySeq=0;
+window.__hyCb=(id,body)=>{const f=HYCB[id]; delete HYCB[id]; if(f) f(body)};
+function hyGet(url){return new Promise(res=>{const id="h"+(++hySeq); HYCB[id]=res; setTimeout(()=>{if(HYCB[id]){delete HYCB[id];res(null)}},25000); try{window.AndroidBridge.fetchHanyang(url,id)}catch(e){delete HYCB[id];res(null)}})}
+const HYWORK=/근로|장학조교|학생\s*조교|도우미|튜터|Tutor/i, HYNOT=/계약직|직원\s*(채용|모집)|강사|교수|초빙|연구원|연구조교|연구병|인력풀/;
+function hyItem(p){
+  const t=p.title, closed=/\((완료|마감|모집\s*완료)\)|조기\s*마감/.test(t);
+  let end=p.end||"";
+  if(!end){const m=t.match(/~\s*(?:(20\d\d)\s*[./-]\s*)?(\d{1,2})\s*[./월]\s*(\d{1,2})/); if(m&&p.date){let y=+(m[1]||p.date.slice(0,4)); if(!m[1]&&+m[2]<+p.date.slice(5,7)-6) y++; end=`${y}-${m[2].padStart(2,"0")}-${m[3].padStart(2,"0")}`}}
+  if(closed) end=p.date||end;
+  let status;
+  if(end) status=p.start&&p.start>TODAY?"예정":end>=TODAY?"모집중":"마감";
+  else status=p.date&&days(p.date,TODAY)<=30?"모집중":"마감";
+  const pay=(p.text||"").match(/시\s*급\s*[:：]?\s*([\d,]{4,})\s*원/);
+  return {id:"hyw-"+p.id,source:"hanyang",title:t,org:"한양대학교"+(p.campus==="서울"||p.campus==="ERICA"?" "+p.campus:""),org_type:"대학(교내)",category:"근로장학",kind:/교외/.test(t)?"교외근로":"교내근로",
+    level:/대학원/.test(t)?"대학원생":"대학생",region:p.campus==="ERICA"?"경기":"서울",support:["work"],status,start:p.start||"",end,posted:p.date||"",amount:pay?`시급 ${pay[1]}원`:"",
+    summary:p.text||"",selection:p.dept?"담당: "+p.dept:"",links:[{name:"공고 원문",url:hyView(p.cat,p.id)}],url:hyView(p.cat,p.id),school_types:[],majors:[],grades:[],files:p.files||[],fresh:p.isNew?{kind:"new",at:TODAY}:undefined};
+}
+async function hyWorkSync(){
+  if(!(window.AndroidBridge&&window.AndroidBridge.fetchHanyang)) return;
+  const hc=store.get("hywork",{})||{}, last=store.get("hyworkAt",0)||0;
+  const add=()=>{let n=0; for(const p of Object.values(hc)){const r=hyItem(p); if(BYID[r.id]||DATA.some(x=>x.title===r.title&&x.source==="hanyang")) continue; DATA.push(r); BYID[r.id]=r; n++} return n};
+  const added=add();
+  if(Date.now()-last<2*3600e3){ if(added) cacheAll(); return }
+  const found=[];
+  for(const cat of ["224311302","224311300"]){
+    const html=await hyGet(hyList(cat)); if(!html){ if(added) cacheAll(); return }
+    const d=new DOMParser().parseFromString(html,"text/html");
+    for(const it of d.querySelectorAll(".hyu-list-body-item")){
+      const a=it.querySelector("h4 a"); if(!a) continue; const t=a.textContent.trim(); if(!HYWORK.test(t)||HYNOT.test(t)) continue;
+      const m=(a.getAttribute("href")||"").match(/entryId=(\d+)/); if(!m) continue;
+      const dt=(it.querySelector(".date")?.textContent||"").replace(/[^\d.\s]/g,"").trim().split(/\.\s*/).filter(Boolean);
+      const badges=[...it.querySelectorAll("[data-itemvalue]")].map(b=>b.getAttribute("data-itemvalue"));
+      found.push({id:m[1],title:t,cat,campus:badges[0]||"",dept:([...it.querySelectorAll("p > span:not(.hyu-badge)")][0]?.textContent||"").trim(),date:dt.length===3?`${dt[0]}-${dt[1].padStart(2,"0")}-${dt[2].padStart(2,"0")}`:""});
+    }
+  }
+  const known=new Set(DATA.filter(r=>r.source==="hanyang").map(r=>r.title));
+  let fetched=0;
+  for(const p of found){
+    if(hc[p.id]||known.has(p.title)) continue;
+    p.isNew=Object.keys(hc).length>0||store.get("hyworkAt",0)>0;
+    if(fetched<6){ // 새 글은 본문의 기간·내용까지 읽는다
+      const html=await hyGet(hyView(p.cat,p.id)); fetched++;
+      if(html){const d=new DOMParser().parseFromString(html,"text/html");
+        d.querySelectorAll(".hyu-meta-item").forEach(mi=>{const sp=[...mi.children].filter(c=>c.tagName==="SPAN").map(x=>x.textContent.trim()); if(sp[0]==="공지기간"){const mm=[...sp[1].matchAll(/(20\d\d)\.\s*(\d{1,2})\.\s*(\d{1,2})/g)].map(x=>`${x[1]}-${x[2].padStart(2,"0")}-${x[3].padStart(2,"0")}`); if(mm.length===2){p.start=mm[0];p.end=mm[1]}}});
+        const b=d.querySelector(".entry-content"); if(b){b.querySelectorAll("br").forEach(x=>x.replaceWith("\n")); b.querySelectorAll("p,div,li,tr,h1,h2,h3,h4,table").forEach(x=>{x.prepend("\n");x.append("\n")}); p.text=b.textContent.split("\n").map(l=>l.replace(/[\s ]+/g," ").trim()).filter(Boolean).join("\n").slice(0,1500)}
+        p.files=[...d.querySelectorAll(".file-download a")].map(x=>x.textContent.trim()).slice(0,2);
+      }
+    }
+    hc[p.id]=p;
+  }
+  const ids=Object.keys(hc); if(ids.length>80) ids.sort((a,b)=>a-b).slice(0,ids.length-80).forEach(k=>delete hc[k]);
+  store.set("hywork",hc); store.set("hyworkAt",Date.now());
+  try{window.AndroidBridge.markWorkSeen&&window.AndroidBridge.markWorkSeen(JSON.stringify(found.map(p=>p.id)))}catch(e){}
+  add(); cacheAll();
+}
+function cacheAll(){cache(); buildFilters(); renderKpis(); renderCats(); apply()}
 window.__back=function(){ if(!$("#drawer").hidden){closeDetail();return true} if($("#view-find").hidden){tab("find");return true} return false };
 try{ if(window.FontFace) fetch("fonts/pretendard.woff2").then(r=>r.ok?r.arrayBuffer():Promise.reject()).then(b=>new FontFace("Pretendard",b,{weight:"100 900",display:"swap"}).load()).then(f=>document.fonts.add(f)).catch(()=>{}) }catch(e){}
 boot();

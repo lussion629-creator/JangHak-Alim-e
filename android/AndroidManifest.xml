@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kr.jangak.alimi" android:versionCode="13" android:versionName="1.0.12">
+    package="kr.jangak.alimi" android:versionCode="14" android:versionName="1.0.13">
     <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="35"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <application android:label="@string/app_name" android:icon="@mipmap/ic_launcher"
         android:allowBackup="false" android:hardwareAccelerated="true" android:usesCleartextTraffic="false"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
@@ -15,5 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service android:name=".WorkJob" android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
     </application>
 </manifest>
