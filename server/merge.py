@@ -295,6 +295,7 @@ def merge(rows: list[dict]) -> list[dict]:
                                    + " " + (m.get("summary") or "")[:2500] for m in members)
         rep["dupes"] = len(members) - 1
         rep["_ids"] = [m.get("id") for m in members]
+        rep["_hyids"] = [m.get("id") for m in members if m.get("source") == "hyin"]
         out.append(rep)
     return out
 

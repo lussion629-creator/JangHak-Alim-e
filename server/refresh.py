@@ -188,6 +188,9 @@ def export(con: sqlite3.Connection, summary: dict):
         if kind == "new" or sid not in recent:
             recent[sid] = (kind, at[:10])
     for r in rows:
+        hy = r.pop("_hyids", None)
+        if hy:
+            r["hy"] = hy  # 휴대폰 앱이 직접 불러온 포털 캘린더와 같은 공고인지 맞춰 보는 번호
         hits = [recent[i] for i in r.pop("_ids", []) if i in recent]
         if hits:
             kind = "new" if any(k == "new" for k, _ in hits) else "updated"

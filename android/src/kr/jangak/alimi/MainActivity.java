@@ -36,7 +36,9 @@ public class MainActivity extends Activity {
         super.onCreate(saved);
         getWindow().setStatusBarColor(Color.parseColor("#0d5c6e"));
         web = new WebView(this);
-        setContentView(web);
+        android.widget.FrameLayout root = new android.widget.FrameLayout(this);
+        root.addView(web, new android.widget.FrameLayout.LayoutParams(-1, -1));
+        setContentView(root);
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);
         s.setDomStorageEnabled(true);
@@ -83,6 +85,7 @@ public class MainActivity extends Activity {
         });
         if (saved != null) web.restoreState(saved); else web.loadUrl(ORIGIN + "index.html");
         try { WorkJob.schedule(this); } catch (Exception ignored) { }
+        silentHyin(root);
         if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != 0) {
             requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
         }
@@ -97,6 +100,40 @@ public class MainActivity extends Activity {
         if (p.endsWith(".png")) return "image/png";
         if (p.endsWith(".webmanifest")) return "application/manifest+json";
         return "application/octet-stream";
+    }
+
+    static final int REQ_PORTAL = 41;
+    private WebView hidden;
+
+    /** 전에 로그인한 적이 있고 하루가 지났으면, 남아 있는 포털 로그인으로 조용히 장학캘린더를 다시 읽어 본다. */
+    private void silentHyin(final android.widget.FrameLayout root) {
+        java.io.File f = HyinClient.file(this);
+        if (!f.exists() || System.currentTimeMillis() - f.lastModified() < 20L * 60 * 60 * 1000) return;
+        getSharedPreferences("hyin", MODE_PRIVATE).edit().putString("state", "checking").apply();
+        hidden = new WebView(this);
+        root.addView(hidden, new android.widget.FrameLayout.LayoutParams(1, 1));
+        hidden.setAlpha(0f);
+        final HyinClient c = new HyinClient(this, hidden, true, new HyinClient.Listener() {
+            @Override public void onProgress(String t) { }
+            @Override public void onLoginNeeded() { setState("login"); dropHidden(); }
+            @Override public void onDone(int n) { setState("ok"); dropHidden(); web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null); }
+            @Override public void onFail(String t) { setState("fail"); dropHidden(); }
+        });
+        c.start();
+        web.postDelayed(new Runnable() { @Override public void run() { if (hidden != null) { setState("login"); dropHidden(); } } }, 120000);
+    }
+
+    private void setState(String s) { getSharedPreferences("hyin", MODE_PRIVATE).edit().putString("state", s).apply(); }
+
+    private void dropHidden() {
+        final WebView h = hidden; hidden = null;
+        if (h != null) web.post(new Runnable() { @Override public void run() { try { ((android.view.ViewGroup) h.getParent()).removeView(h); h.removeJavascriptInterface("HyinBridge"); h.destroy(); } catch (Exception ignored) { } } });
+    }
+
+    @Override
+    protected void onActivityResult(int req, int res, Intent data) {
+        super.onActivityResult(req, res, data);
+        if (req == REQ_PORTAL && res == RESULT_OK) { setState("ok"); web.evaluateJavascript("window.__hyinUpdated&&window.__hyinUpdated()", null); }
     }
 
     @Override protected void onSaveInstanceState(Bundle out) { super.onSaveInstanceState(out); web.saveState(out); }
@@ -148,6 +185,35 @@ public class MainActivity extends Activity {
                     web.post(new Runnable() { @Override public void run() { web.evaluateJavascript(js, null); } });
                 }
             }).start();
+        }
+
+        /** 한양 포털 로그인 화면을 연다 (학생이 직접 로그인). */
+        @JavascriptInterface
+        public void openPortal() {
+            runOnUiThread(new Runnable() { @Override public void run() { startActivityForResult(new Intent(MainActivity.this, PortalActivity.class), REQ_PORTAL); } });
+        }
+
+        /** 이 기기에 저장된 장학캘린더 자료 (없으면 빈 문자열). */
+        @JavascriptInterface
+        public String hyinData() {
+            try {
+                java.io.File f = HyinClient.file(MainActivity.this);
+                if (!f.exists()) return "";
+                byte[] b = new byte[(int) Math.min(f.length(), 6_000_000)];
+                try (java.io.FileInputStream in = new java.io.FileInputStream(f)) { int off = 0, n; while (off < b.length && (n = in.read(b, off, b.length - off)) > 0) off += n; }
+                return new String(b, "UTF-8");
+            } catch (Exception e) { return ""; }
+        }
+
+        @JavascriptInterface
+        public String hyinState() { return getSharedPreferences("hyin", MODE_PRIVATE).getString("state", ""); }
+
+        /** 장학캘린더 자료와 포털 로그인 기록을 이 기기에서 지운다. */
+        @JavascriptInterface
+        public void hyinClear() {
+            try { HyinClient.file(MainActivity.this).delete(); } catch (Exception ignored) { }
+            setState("");
+            runOnUiThread(new Runnable() { @Override public void run() { android.webkit.CookieManager.getInstance().removeAllCookies(null); } });
         }
 
         /** 앱에서 본 근로 모집 글 번호를 알림 작업과 공유해, 이미 본 글로 다시 알리지 않게 한다. */

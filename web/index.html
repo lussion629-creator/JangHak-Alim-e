@@ -269,6 +269,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
         <input type="search" id="q" placeholder="장학금명, 재단, 지역, 조건으로 검색 (예: 성동구, 이공계, 생활비)" aria-label="검색">
         <button class="btn mfilter" id="toggleFilters" type="button" style="padding:13px 16px">필터</button>
       </div>
+      <div class="callout" id="hyinCallout" hidden><span><b>한양대 포털 장학 캘린더</b>를 불러오면 포털에만 올라온 장학금까지 함께 볼 수 있어요. 로그인은 포털 화면에서 직접 하고, 비밀번호는 앱에 저장되지 않아요.</span><button class="btn primary" type="button" data-portal="1">포털 로그인하고 불러오기</button></div>
       <div class="callout" id="meCallout"><span><b>내 정보</b>를 넣으면 지역·학교·형편에 맞는 장학금만 골라 드립니다. 입력한 정보는 이 기기에만 저장됩니다.</span><button class="btn primary" type="button" id="goMe">내 정보 입력</button></div>
       <div class="toolbar">
         <span id="resultCount"></span>
@@ -386,6 +387,10 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <p class="lead">새로 올라오거나 바뀐 장학금</p>
       <p class="note" id="srcReport"></p>
       <div class="list" id="changes" style="margin-top:14px"></div>
+    </section>
+    <section class="panel" id="hyinPanel">
+      <p class="lead">한양대 포털 장학 캘린더</p>
+      <div id="hyinBox"></div>
     </section>
     <section class="panel">
       <p class="lead">자동 갱신</p>
@@ -868,6 +873,7 @@ $("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",nu
 
 /* ---------- 새 소식 ---------- */
 function renderSrc(){
+  renderHyin();
   const when=(META.finishedAt||"").replace("T"," ").slice(0,16);
   $("#srcReport").textContent=`마지막 갱신 ${when} · 전체 ${(META.total||DATA.length).toLocaleString("ko-KR")}건 · 이번에 새로 ${META.new||0}건, 바뀜 ${META.changed||0}건`;
   const ch=freshList(false);
@@ -925,8 +931,71 @@ async function boot(){
     const soon=DATA.filter(r=>favs.has(r.id)&&r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=3).map(r=>({id:r.id,title:r.title,org:r.org,label:r._s.label}));
     if(soon.length) window.AndroidBridge.notifyDeadlines(JSON.stringify(soon)); store.set("notified",TODAY);
   }}catch(e){}
+  hyinMerge().then(n=>{ if(n) cacheAll(); renderHyin() }).catch(()=>{ try{renderHyin()}catch(e){} });
   hyWorkSync().catch(()=>{});
 }
+/* ---------- 휴대폰 앱: 한양 포털 장학캘린더 (학생이 직접 로그인) ---------- */
+const HYIN_APP=()=>!!(window.AndroidBridge&&window.AndroidBridge.openPortal);
+const HTERM={"10":"1학기","20":"2학기","15":"여름학기","25":"겨울학기"}, HJW={O:"교외",N:"국가",I:"교내"};
+const nd=v=>{const m=String(v||"").match(/(20\d\d)[.\-/]?\s*(\d{1,2})[.\-/]?\s*(\d{1,2})/); return m?`${m[1]}-${m[2].padStart(2,"0")}-${m[3].padStart(2,"0")}`:""};
+function hyinItems(){
+  let d=null; try{ const t=window.AndroidBridge.hyinData(); d=t?JSON.parse(t):null }catch(e){}
+  if(!d||!Array.isArray(d.records)) return {items:[],at:0};
+  const known=new Set(store.get("hyinKnown",[])||[]), first=!known.size, out=[];
+  for(const x of d.records){
+    const key=[x.year,x.term,x.cd,x.seq,x.campus].join("|"); const det=x.detail||{}, text=String(det.text||"");
+    const kind=HJW[x.jaewon]||"", name=String(x.name||text.split("\n")[0]||"한양대 장학").slice(0,80);
+    const start=nd(x.start), end=nd(x.end);
+    const status=start&&start>TODAY?"예정":end?(end>=TODAY?"모집중":"마감"):"상시/미정";
+    const tl=text.split("\n").map(l=>l.trim()).filter(Boolean);
+    const pick=re=>tl.filter(l=>re.test(l)).slice(0,4).join("\n");
+    const tgtIdx=tl.findIndex(l=>/(지원|신청|선발)\s*(대상|자격)|자격\s*요건|^\W*대\s*상/.test(l));
+    const target=tgtIdx>=0?tl.slice(tgtIdx,tgtIdx+5).join("\n"):"";
+    const amount=(tl.find(l=>/(지원\s*금액|장학\s*금액|지원\s*내용|금\s*액)/.test(l)&&/\d/.test(l))||(text.match(/[^\n]{0,30}\d[\d,.]*\s*(만|천만|백만)\s*원[^\n]{0,30}/)||[""])[0]).slice(0,160);
+    const all=name+" "+text.slice(0,600);
+    const sup=[]; if(/기숙사|생활관|학사관|주거|월세|입사/.test(all)) sup.push("dorm"); if(/등록금|수업료|학비/.test(all)) sup.push("tuition"); if(/생활비|생활\s*지원|학업\s*장려/.test(all)) sup.push("living"); if(/대출|이자\s*지원/.test(name)) sup.push("loan"); if(/근로/.test(name)) sup.splice(0,sup.length,"work");
+    out.push({id:"hyin-dev-"+key.replace(/[^\w가-힣|-]/g,""),source:"hyin",title:name,org:kind==="교외"?name:"한양대학교"+(x.campus?" "+x.campus:""),org_type:kind==="교외"?"민간·기업·대학":kind==="국가"?"한국장학재단":"대학(교내)",
+      kind:(kind?kind+"장학 · ":"")+x.year+" "+(HTERM[x.term]||x.term||""),level:"대학생",region:x.campus==="ERICA"?"경기":"서울",support:sup,status,start,end,posted:"",
+      target,gpa:pick(/평점|학점|성적|GPA/),income:pick(/소득|분위|구간|기초생활|차상위|가계곤란/),amount,amount_won:0,documents:(det.docs||[]).map(x=>"○ "+x).join("\n"),
+      selection:det.office?"접수처: "+det.office:"",summary:text.slice(0,3000),apply_url:det.applyUrl||"",url:"https://portal.hanyang.ac.kr/",links:[{name:"한양 포털",url:"https://portal.hanyang.ac.kr/"}],
+      images:(det.imgs||[]).filter(u=>/^https:\/\/portal\.hanyang\.ac\.kr\//.test(u)),school_types:[],majors:[],grades:[],files:det.files||[],
+      fresh:(!first&&!known.has(key)&&status!=="마감")?{kind:"new",at:TODAY}:undefined,_key:key});
+  }
+  return {items:out,at:d.savedAt||0};
+}
+async function sha16(t){const b=await crypto.subtle.digest("SHA-1",new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("").slice(0,16)}
+async function hyinMerge(){
+  if(!HYIN_APP()) return 0;
+  const {items}=hyinItems(); let n=0;
+  const norm=t=>String(t||"").replace(/[\s()\[\]·ㆍ.,-]/g,"");
+  const have=new Set(); for(const x of DATA){ have.add(x.id); (x.hy||[]).forEach(i=>have.add(i)) }
+  for(const r of items){
+    if(BYID[r.id]) continue;
+    try{ const k=r._key.split("|"); if(have.has(await sha16(["hyin",...k].join("|")))) continue }catch(e){}
+    const nt=norm(r.title);
+    const dup=DATA.find(x=>(norm(x.title)===nt||norm(x.org)===nt)&&(!r.end||!x.end||x.end===r.end));
+    if(dup){ if(dup.source!=="hyin"&&!dup._hyinSeen&&r.end&&r.end>=TODAY&&(!dup.end||dup.end<TODAY)){dup.start=r.start;dup.end=r.end;dup.status=r.status} continue }
+    DATA.push(r); BYID[r.id]=r; n++;
+  }
+  store.set("hyinKnown",items.map(r=>r._key));
+  return n;
+}
+function renderHyin(){
+  const box=$("#hyinBox"); if(!box) return;
+  const call=$("#hyinCallout");
+  if(!HYIN_APP()){ box.innerHTML=`<p class="note">휴대폰 앱에서 쓸 수 있어요. 앱에서 한 번 로그인하면 포털에만 올라온 장학금까지 함께 보여 줍니다.</p>`; if(call) call.hidden=true; return }
+  const {items,at}=hyinItems(); let st=""; try{st=window.AndroidBridge.hyinState()}catch(e){}
+  const when=at?new Date(at):null, live=items.filter(r=>r.status!=="마감").length;
+  box.innerHTML=`<p class="note">${when?`마지막으로 불러온 때: ${when.getMonth()+1}월 ${when.getDate()}일 ${String(when.getHours()).padStart(2,"0")}:${String(when.getMinutes()).padStart(2,"0")} · ${items.length}건 (모집 중·예정 ${live}건)`:"아직 불러오지 않았어요."}</p>
+    ${st==="login"?`<p class="note" style="color:var(--seal)">포털 로그인이 끝나서 자동으로 다시 불러오지 못했어요. 한 번 더 로그인해 주세요.</p>`:""}
+    <p class="note">포털 로그인 화면에서 직접 로그인하면(2차 인증 포함) 장학캘린더와 공고 내용을 읽어 이 휴대폰에만 저장합니다. 비밀번호와 본인의 신청·제출 내역은 읽지도 저장하지도 않아요. 로그인이 살아 있는 동안에는 앱을 열 때 하루 한 번 자동으로 다시 불러옵니다.</p>
+    <div class="actions"><button class="btn primary" type="button" data-portal="1">${when?"다시 불러오기":"포털 로그인하고 불러오기"}</button>${when?`<button class="btn" type="button" id="hyinClear">불러온 자료·로그인 지우기</button>`:""}</div>`;
+  if(call) call.hidden=!!when&&st!=="login";
+  const c=$("#hyinClear"); if(c) c.onclick=()=>{try{window.AndroidBridge.hyinClear()}catch(e){} store.set("hyinKnown",[]); location.reload()};
+}
+document.addEventListener("click",e=>{ if(e.target.closest("[data-portal]")){ try{window.AndroidBridge.openPortal()}catch(err){} } });
+window.__hyinUpdated=function(){ hyinMerge().then(()=>{ cacheAll(); renderHyin(); renderFresh() }) };
+
 /* ---------- 휴대폰 앱: 한양대 근로장학 모집 글을 직접 확인 ---------- */
 const HYP="kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet";
 const hyList=cat=>`https://www.hanyang.ac.kr/notice_all?p_p_id=${HYP}&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_${HYP}_action=view&_${HYP}_sCategoryId=${cat}&_${HYP}_cur=1`;
