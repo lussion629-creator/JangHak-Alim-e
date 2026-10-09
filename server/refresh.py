@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
+import os
 import logging
 import re
 import sqlite3
@@ -15,6 +16,7 @@ from datetime import date
 from pathlib import Path
 
 from .collectors import boards, gov24, hanyang, hyin, kosaf, legacy
+from .merge import for_school, merge
 from .model import expected_next, now_iso, status_of, support_of
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,8 +120,17 @@ def export(con: sqlite3.Connection, summary: dict):
     for data, first_seen, changed_at in con.execute("select data, first_seen, changed_at from scholarships where active=1"):
         r = json.loads(data)
         r.pop("hash", None)
-        if r.get("source") == "board" and r.get("org") == r.get("source_name") and re.search(r"교외|외부|홍보|재단|장학회", r.get("title", "")) and r.get("org_type") == "대학 게시판":
-            r["org"] = ""  # 공고를 옮겨 실은 대학 이름은 운영기관이 아니므로 숨긴다
+        if r.get("source") == "board":
+            t = re.sub(r"\s*(Attachment|첨부파일|새글|NEW|N)\s*$|[}\]]+$|\.hwpx?\"\s*/?>.*$", "", r.get("title", ""))
+            t = re.sub(r"\s+(학생지원팀|장학팀|학생복지팀|장학복지팀)\s+20\d\d-\d\d-\d\d\s+\d+$", "", t).strip()
+            r["title"] = t
+        if r.get("source") == "board" and r.get("org_type") == "대학 게시판":
+            ext = re.search(r"재단|장학회|육영회|협회|구민|시민|군민|도민|공사|공단|진흥원|은행|정부초청|교육청|시청|군청|구청|도청|특별자치|\[교외|교외\]|\[외부|홍보", t) \
+                and not re.search(r"교내|근로|본교|동문|발전기금|면학|가계곤란|신입생|사정관|가족|학과|학부|대학원|어학우수|우수연구|자체선발", t)
+            r["_relay_ok"] = bool(ext)
+            if ext and r.get("org") == r.get("source_name"):
+                r["org"] = ""  # 공고를 옮겨 실은 대학 이름은 운영기관이 아니므로 숨긴다
+        r["_hy"] = "한양대" in (r.get("source_name") or "") or r.get("source") in ("hyin", "hanyang")
         r.pop("source_name", None)  # 화면에 출처 이름을 노출하지 않는다
         r["links"] = [{"name": "공고 원문", "url": l["url"]} for l in r.get("links", []) if l.get("url")]
         r["first_seen"], r["changed_at"] = first_seen, changed_at
@@ -127,6 +138,12 @@ def export(con: sqlite3.Connection, summary: dict):
         r["support"] = support_of(r)
         r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
         rows.append(r)
+    rows = merge(rows)  # 같은 장학금이 여러 곳에 올라온 경우 하나만 남긴다
+    rows = for_school(rows, os.environ.get("TARGET_SCHOOL", "한양대학교,한양여자대학교"))  # 한양대·한양여대 학생이 지원할 수 없는 장학금 제외
+    for r in rows:
+        r["status"] = status_of(r.get("start"), r.get("end"), today, r.get("posted", ""))
+        r["support"] = support_of(r)
+        r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
     rows.sort(key=lambda r: ({"모집중": 0, "예정": 1, "상시/미정": 2, "마감": 3}[r["status"]], r.get("end") or "9999"))
     payload = json.dumps({"generatedAt": summary["finishedAt"], "count": len(rows), "items": rows}, ensure_ascii=False, separators=(",", ":"))
     (WEB_DATA / "scholarships.json").write_text(payload)
