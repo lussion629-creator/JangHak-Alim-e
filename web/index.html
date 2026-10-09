@@ -85,6 +85,20 @@ aside.filters{display:flex;flex-direction:column;gap:18px;align-self:start;posit
 .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500;cursor:pointer;color:var(--ink-2);transition:background .12s,border-color .12s}
 .chip:hover{border-color:var(--ink-3)}
 .chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:650}
+textarea{width:100%;min-height:84px;resize:vertical;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-sm);padding:9px 12px;font:inherit;line-height:1.55;color:var(--ink)}
+.tips{margin:6px 0 4px;padding:0;list-style:none;counter-reset:t}
+.tips li{counter-increment:t;position:relative;padding:10px 0 10px 34px;border-top:1px solid var(--line);font-size:14px;line-height:1.6}
+.tips li:first-child{border-top:0}
+.tips li::before{content:counter(t);position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:750;display:grid;place-items:center}
+.tips b{color:var(--ink)}
+.sch-box{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:13.5px;line-height:1.6;white-space:pre-wrap;color:var(--ink-2)}
+.out{border:1px solid var(--line);border-radius:var(--r);margin-top:14px;overflow:hidden;background:var(--surface)}
+.out header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.out h3{margin:0;font-size:15px;font-weight:750;letter-spacing:-.02em}
+.out h3 small{display:block;font-weight:500;color:var(--ink-3);font-size:12.5px;margin-top:2px}
+.out .acts{display:flex;flex-wrap:wrap;gap:6px}
+.out .acts .btn{padding:7px 12px;font-size:13px}
+.out pre{margin:0;padding:12px 14px;max-height:260px;overflow:auto;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:13px;line-height:1.6;background:var(--surface-2)}
 select,input[type=text],input[type=search],input[type=number]{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-sm);padding:9px 12px;transition:border-color .12s}
 select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
 
@@ -215,7 +229,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
   .kpi{padding:2px 7px;font-size:11px}
   .kpi .n{font-size:11px}
   nav.tabs{width:100%;justify-content:space-between}
-  nav.tabs button{padding:8px 12px;flex:1}
+  nav.tabs button{padding:8px 6px;flex:1;font-size:13px}
   .item{grid-template-columns:62px minmax(0,1fr) auto;gap:12px;padding:14px 10px 14px 14px}
   .form{grid-template-columns:minmax(0,1fr)}
   .facts{grid-template-columns:86px minmax(0,1fr)}
@@ -243,6 +257,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <button role="tab" data-tab="cal" aria-selected="false">마감 달력</button>
     <button role="tab" data-tab="fav" aria-selected="false">관심<span class="count" id="favCount"></span></button>
     <button role="tab" data-tab="me" aria-selected="false">내 정보</button>
+    <button role="tab" data-tab="doc" aria-selected="false">서류 쓰기</button>
     <button role="tab" data-tab="src" aria-selected="false">새 소식</button>
   </nav>
 
@@ -323,6 +338,49 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     </form>
   </section></main>
 
+  <main id="view-doc" hidden>
+    <section class="panel">
+      <p class="lead">추천서·자기소개서 쓰기</p>
+      <p class="note">장학금을 고르고 내 정보를 채우면 ① 교수님께 보낼 부탁 메일 ② 추천서 초안 만들기 ③ 자기소개서 만들기 글이 완성됩니다. ②·③은 복사해서 Claude나 ChatGPT에 붙여 넣으면 초안을 써 줍니다.</p>
+      <div class="privacy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><div><b>여기 적은 내용도 이 기기에만 저장됩니다.</b><br>AI에 붙여 넣기 전에 주민등록번호·학번·전화번호처럼 민감한 정보는 넣지 마세요.</div></div>
+      <form id="docForm" autocomplete="off">
+        <fieldset class="sec"><legend>어떤 장학금인가요</legend><div class="form">
+          <label class="full">장학금 고르기<select id="w_sch"></select></label>
+          <div class="full sch-box" id="w_schInfo">관심 등록한 장학금과 지금 모집 중인 장학금 중에서 고를 수 있어요. 장학금 상세의 ‘추천서·자소서 쓰기’ 버튼으로도 바로 올 수 있어요.</div>
+        </div></fieldset>
+        <fieldset class="sec"><legend>나에 대해</legend><div class="form">
+          <label>이름<input type="text" id="w_name" placeholder="예: 김한양"></label>
+          <label>학교·학과·학년<input type="text" id="w_affil" placeholder="예: 한양대학교 기계공학부 3학년"></label>
+          <label>성적<input type="text" id="w_gpa" placeholder="예: 직전 학기 4.1 / 전체 3.9 (4.5 만점)"></label>
+          <label>장학금이 필요한 이유 <span class="note" style="display:inline">(선택)</span><input type="text" id="w_need" placeholder="예: 등록금과 생활비를 아르바이트로 충당"></label>
+          <label class="full">나의 강점과 경험 <span class="note" style="display:inline">— 한 줄에 하나, ‘무엇을 · 어떻게 · 결과(숫자)’</span><textarea id="w_exp" rows="4" placeholder="예: 유체역학 수업 팀 프로젝트 팀장, 실험 설계를 맡아 학과 발표회 1위&#10;학과 학습 멘토링 2학기 운영, 멘티 12명 평균 성적 0.4점 상승&#10;주 15시간 아르바이트하며 장학 성적 유지"></textarea></label>
+          <label class="full">진로·학업 계획<textarea id="w_plan" rows="2" placeholder="예: 대학원에서 배터리 열관리를 연구해 친환경 모빌리티 분야 연구자로 일하고 싶다"></textarea></label>
+        </div></fieldset>
+        <fieldset class="sec"><legend>추천해 주실 교수님</legend><div class="form">
+          <label>교수님 성함<input type="text" id="w_prof" placeholder="예: 이OO"></label>
+          <label>교수님과의 인연<input type="text" id="w_rel" placeholder="예: 2025-2학기 ‘열역학’ 수강(A+), 학부연구생 6개월"></label>
+        </div></fieldset>
+        <fieldset class="sec"><legend>자기소개서</legend><div class="form">
+          <label class="full">공고의 자기소개서 문항 <span class="note" style="display:inline">(없으면 비워 두세요)</span><textarea id="w_q" rows="3" placeholder="공고에 있는 문항을 그대로 붙여 넣으세요"></textarea></label>
+          <label>문항별 글자 수<input type="number" id="w_len" min="100" step="100" placeholder="예: 800"></label>
+          <label>말투·추가 요청 <span class="note" style="display:inline">(선택)</span><input type="text" id="w_tone" placeholder="예: 담백하게, 과장 없이"></label>
+        </div></fieldset>
+        <div class="actions"><button class="btn" type="button" id="w_fill">내 정보에서 가져오기</button><button class="btn" type="button" id="w_clear">이 화면 지우기</button><span class="note" id="w_saved" role="status"></span></div>
+      </form>
+      <div id="w_out"></div>
+    </section>
+    <section class="panel">
+      <p class="lead">꿀팁 · 교수님께 추천서 부탁하는 법</p>
+      <ol class="tips">
+        <li><b>마감 2~3주 전에 먼저 메일로 여쭙기.</b> 아래 ① 부탁 메일에 내 정보가 채워져 있어요. 복사해서 교수님께 보내세요.</li>
+        <li><b>승낙하시면 자료를 한 번에 정리해 드리기.</b> 공고 링크, 지원 자격, 마감일, 제출 방법(교수님이 직접 제출인지, 내가 받아서 내는지), 성적표, 활동 요약을 함께 보내면 교수님 시간이 크게 줄어요.</li>
+        <li><b>추천서 초안을 ‘참고 자료’로 함께 드리기.</b> ② 추천서 프롬프트를 Claude나 ChatGPT에 넣으면 교수님이 고쳐 쓰기 쉬운 초안이 나와요. 다만 추천서는 교수님 이름으로 나가는 글이라 교수님이 직접 검토·수정·서명하셔야 하고, 학생이 쓴 추천서를 금지하는 장학도 있으니 공고를 꼭 확인하세요.</li>
+        <li><b>마감 3~4일 전 정중히 한 번만 다시 여쭙기.</b> 제출이 끝나면 감사 인사를 드리고, 결과가 나오면 꼭 알려 드리세요.</li>
+        <li><b>AI 글은 그대로 내지 않기.</b> 없는 경험이나 숫자가 들어가지 않았는지 확인하고, 내 말투로 고쳐 쓰세요.</li>
+      </ol>
+    </section>
+  </main>
+
   <main id="view-src" hidden>
     <section class="panel">
       <p class="lead">새로 올라오거나 바뀐 장학금</p>
@@ -375,7 +433,7 @@ function won(n){if(n===-1)return"등록금 전액";if(!n)return"";if(n>=1e8)retu
 
 let SRC="", DATA=[], META={}, view=[], shown=0, favs=new Set(store.get("favs",[])), profile=store.get("profile",null);
 const F={within:0,status:new Set(["모집중","예정"]),level:new Set(),region:"",orgType:new Set(),kind:new Set(),match:new Set(),source:new Set(),field:new Set(),note:new Set()};
-const saved=store.get("filters",null); if(saved){for(const k of["status","level","orgType","kind","match","source","field","note"]) if(saved[k]) F[k]=new Set(saved[k]); F.region=saved.region||""}
+const saved=store.get("filters",null); if(saved&&!store.get("mig_field",0)){saved.field=[]; store.set("mig_field",1)} if(saved){for(const k of["status","level","orgType","kind","match","source","field","note"]) if(saved[k]) F[k]=new Set(saved[k]); F.region=saved.region||""}
 
 /* ---------- 매칭 ---------- */
 const INC_MED={0:0,1:30,2:50,3:70,4:90,5:100,6:130,7:150,8:200,9:300,10:999};
@@ -685,6 +743,7 @@ function openDetail(id){
   const addr=""; if(gc && s.key!=="마감") links.push(`<a class="btn" href="${esc(gc)}" target="_blank" rel="noopener">구글 캘린더에 추가</a>`);
   links.push(`<button class="btn" type="button" data-star="${r.id}" aria-pressed="${favs.has(r.id)}">${favs.has(r.id)?"★ 관심 해제":"☆ 관심 등록"}</button>`);
   links.push(`<button class="btn" type="button" id="dShare">내용 복사</button>`);
+  if(s.key!=="마감") links.push(`<button class="btn" type="button" data-write="${r.id}">추천서·자소서 쓰기</button>`);
   const docs=(r.documents||"").split(/\n|○/).map(x=>x.replace(/^[\s\-·•※]+/,"").trim()).filter(x=>x.length>1&&!/자세한 사항|첨부파일 또는/.test(x)).slice(0,14);
   const checked=new Set(store.get("docs:"+r.id,[]));
   const tracker=`<div class="track"><span>신청 상태</span>${APPLY.map(a=>`<button type="button" class="seg" data-apply="${a}" aria-pressed="${applyState[r.id]===a}">${a}</button>`).join("")}</div>`;
@@ -725,9 +784,9 @@ function selectUrl(){const r=document.createRange(); r.selectNodeContents($("#dU
 /* ---------- 탭 ---------- */
 function tab(name){
   $$("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===name));
-  for(const v of["find","cal","fav","me","src"]) $("#view-"+v).hidden=v!==name;
+  for(const v of["find","cal","fav","me","doc","src"]) $("#view-"+v).hidden=v!==name;
   $("#cats").hidden=name!=="find";
-  if(name==="cal") renderCal(); if(name==="fav") renderFav(); if(name==="src") renderSrc();
+  if(name==="cal") renderCal(); if(name==="fav") renderFav(); if(name==="src") renderSrc(); if(name==="doc") renderDoc();
   store.set("tab",name);
 }
 $$("nav.tabs button").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.tab)));
@@ -803,7 +862,7 @@ $("#profile").addEventListener("submit",e=>{
   p.flags=$$("#p_flags input:checked").map(c=>c.value);
   profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis();
   $("#p_saved").textContent="저장했습니다. 이 기기에만 보관됩니다.";
-  F.match=new Set(["ok","check"]); F.field=p.major?new Set([p.major,"무관"]):new Set(); $("#sort").value="fit"; store.set("sort","fit"); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
+  F.match=new Set(["ok","check"]); F.field=new Set(); $("#sort").value="fit"; store.set("sort","fit"); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
 });
 $("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",null); F.match=new Set(); F.field=new Set(); fillProfile(); cache(); buildFilters(); apply(); renderKpis(); renderCats(); $("#p_saved").textContent="이 기기에서 내 정보를 지웠습니다."});
 
@@ -928,6 +987,104 @@ async function hyWorkSync(){
   add(); cacheAll();
 }
 function cacheAll(){cache(); buildFilters(); renderKpis(); renderCats(); apply()}
+/* ---------- 서류 쓰기: 추천서 부탁 메일 · 추천서/자소서 프롬프트 ---------- */
+const WF=["sch","name","affil","gpa","need","exp","plan","prof","rel","q","len","tone"];
+let W=store.get("writer",{})||{};
+const clip=t=>String(t||"").replace(/\s+/g," ").trim();
+function schFacts(r){
+  if(!r) return null;
+  const cut=(t,n)=>{t=String(t||"").replace(/[ \t]+/g," ").trim(); return t.length>n?t.slice(0,n)+"…":t};
+  let nm=r.title.replace(/^(\s*(\[[^\]]*\]|\([^)]*\)|공통|장학|홍보)\s*)+/,"").replace(/^20\d\d\s*(학년도|년도|년)?\s*/,"").replace(/\s*(\(~?[^)]*\)|\})\s*$/,"").replace(/\s*(선발|모집)?\s*(안내|공고|알림)\s*$/,"").trim()||r.title;
+  const org=r.org&&r.org!==r.title&&!nm.includes(String(r.org).replace(/\(.*$/,"").replace(/^(재단법인|\(재\)|\(재단법인\))\s*/,"").slice(0,4))?r.org:"";
+  return {name:nm,org,money:moneyOf(r)||cut(r.amount,80),due:r.end?r.end.replace(/-/g,".")+" 마감":"",
+    target:cut([r.target,r.special,r.residence].filter(Boolean).join("\n"),420),gpa:cut(r.gpa,120),income:cut(r.income,120),
+    sel:cut(r.selection,200),docs:cut(r.documents,200),rec:cut(r.recommend,120)};
+}
+function renderDoc(){
+  const opts=DATA.filter(r=>favs.has(r.id)||r._s.key==="모집중"||r._s.key==="예정"||r.id===W.sch)
+    .sort((a,b)=>(favs.has(b.id)-favs.has(a.id))||((a.end||"9")>(b.end||"9")?1:-1));
+  $("#w_sch").innerHTML=`<option value="">장학금을 고르세요</option>`+opts.map(r=>`<option value="${r.id}" ${r.id===W.sch?"selected":""}>${favs.has(r.id)?"★ ":""}${esc(r.title.slice(0,60))}${r.end?" · "+r.end.slice(5).replace("-",".")+" 마감":""}</option>`).join("");
+  for(const k of WF) if(k!=="sch"&&$("#w_"+k)) $("#w_"+k).value=W[k]||"";
+  buildDoc();
+}
+function readDoc(){ for(const k of WF) W[k]=($("#w_"+k).value||"").trim(); store.set("writer",W) }
+function buildDoc(){
+  const r=BYID[W.sch], f=schFacts(r);
+  $("#w_schInfo").textContent=f?[f.name,f.org&&"운영기관: "+f.org,f.money&&"지원 내용: "+f.money,f.due,f.target&&"대상·자격: "+f.target].filter(Boolean).join("\n"):"관심 등록한 장학금과 지금 모집 중인 장학금 중에서 고를 수 있어요. 장학금 상세의 ‘추천서·자소서 쓰기’ 버튼으로도 바로 올 수 있어요.";
+  const v=k=>W[k]||"", or=(k,ph)=>v(k)||`[${ph}]`;
+  const name=or("name","이름"), affil=or("affil","학교·학과·학년"), prof=or("prof","교수님 성함");
+  const sname=f?f.name:"[장학금 이름]", exps=v("exp").split("\n").map(x=>x.trim()).filter(Boolean);
+  const schBlock=f?[`- 장학금: ${f.name}`,f.org&&`- 운영기관: ${f.org}`,f.money&&`- 지원 내용: ${f.money}`,f.due&&`- 마감: ${f.due}`,f.target&&`- 대상·자격:\n${f.target.split("\n").map(x=>"  "+x).join("\n")}`,f.gpa&&`- 성적 기준: ${clip(f.gpa)}`,f.income&&`- 소득 기준: ${clip(f.income)}`,f.sel&&`- 선발 방법: ${clip(f.sel)}`,f.docs&&`- 제출 서류: ${clip(f.docs)}`].filter(Boolean).join("\n"):"- 장학금: [장학금 이름]\n- 운영기관·지원 내용·자격: [공고에서 복사해 넣기]";
+  const meBlock=[`- 이름: ${name}`,`- 소속: ${affil}`,`- 성적: ${or("gpa","성적")}`,`- 추천인과의 관계: ${prof} 교수님 / ${or("rel","수업·연구실 등 인연")}`,`- 강점과 경험:\n${exps.length?exps.map(x=>"  · "+x).join("\n"):"  · [경험 1: 무엇을·어떻게·결과]\n  · [경험 2]"}`,`- 진로·학업 계획: ${or("plan","진로 계획")}`,v("need")&&`- 장학금이 필요한 이유: ${v("need")}`].filter(Boolean).join("\n");
+  const mail=`제목: [${f?f.name:"장학금 이름"}] 추천서를 부탁드리고 싶습니다 – ${affil} ${name}
+
+${prof} 교수님, 안녕하세요.
+${affil} ${name}입니다. ${v("rel")?v("rel")+"에서 지도해 주셔서 늘 감사드립니다.":"[교수님과의 인연]에서 지도해 주셔서 늘 감사드립니다."}
+
+이번에 ${f&&f.org?f.org+"의 ":""}‘${sname}’에 지원하려고 하는데, 교수님께 추천서를 부탁드려도 될지 여쭙고자 연락드립니다.
+
+- 장학금: ${sname}${f&&f.money?" ("+f.money+")":""}
+- 마감: ${f&&f.due?f.due:"[마감일]"} / 추천서 제출 방법: [공고 확인 후 적기]
+- 제가 이 장학금에 지원하는 이유: ${v("plan")?clip(v("plan")):"[한두 문장]"}
+
+허락해 주시면 교수님께서 편하게 쓰실 수 있도록 공고문, 성적표, 활동 요약과 참고용 추천서 초안을 정리해서 보내 드리겠습니다.
+바쁘신 중에 부탁드려 죄송합니다. 읽어 주셔서 감사합니다.
+
+${name} 올림
+연락처: [전화번호 또는 이메일]`;
+  const len=+v("len")||0;
+  const rec=`너는 한국 대학 교수님의 장학금 추천서 작성을 돕는 조수야. 아래 장학금 정보와 학생 정보를 바탕으로, 교수님이 검토하고 고쳐 쓰실 수 있는 추천서 초안을 써 줘.
+
+[장학금 정보]
+${schBlock}
+
+[학생 정보]
+${meBlock}
+
+[작성 조건]
+1. 추천인(${prof} 교수님)의 1인칭 시점으로, 격식 있는 한국어 추천서 문체로 써.
+2. 구성: ① 추천인 소개와 학생과의 관계 ② 학업 역량(구체적 근거) ③ 성실성·인성 ④ 이 장학금의 취지와 학생이 맞는 이유 ⑤ 추천 맺음말.
+3. 위에 적힌 사실만 써. 없는 경험·수치·수상은 절대 만들지 말고, 근거가 부족한 곳은 [교수님 확인: …]으로 남겨 둬.
+4. 분량은 공백 포함 1,200~1,500자(A4 한 쪽 안팎).
+5. 초안 뒤에 ‘교수님께 드릴 참고 자료’로 학생 핵심 정보 5줄 요약을 따로 붙여 줘.
+6. 마지막에 초안을 더 좋게 만들려면 내가 보충해야 할 정보를 질문 3개로 물어봐.`;
+  const qs=v("q")||"1) 성장 과정과 가치관\n2) 학업·활동 경험과 성과\n3) 장학금이 필요한 이유와 활용 계획\n4) 졸업 후 진로와 사회 기여 계획";
+  const sop=`너는 장학금 자기소개서 코치야. 아래 정보로 ‘${sname}’ 지원용 자기소개서 초안을 써 줘.
+
+[장학금 정보]
+${schBlock}
+
+[자기소개서 문항]
+${qs}
+
+[내 정보]
+${meBlock}
+
+[작성 조건]
+1. 문항별로 나눠서 쓰고, 각 문항은 ${len?`공백 포함 ${len}자 이내`:"공백 포함 700~900자"}로 맞춰. 문항 끝에 글자 수를 적어 줘.
+2. 두괄식으로, 경험은 ‘상황 → 내가 한 행동 → 결과(숫자)’ 순서로 구체적으로 써.
+3. 장학금 취지와 대상 요건에 내 경험과 계획을 자연스럽게 연결해.
+4. 내가 적은 사실만 써. 없는 경험이나 수치는 만들지 말고, 부족한 곳은 [보충 필요: …]으로 표시해.
+5. ${v("tone")?v("tone")+".":"과장 없이 진솔하고 담백한 문체로 써."}
+6. 마지막에 글을 더 좋게 만들 질문 3개를 해 줘.`;
+  const card=(id,title,sub,text,ai)=>`<div class="out"><header><h3>${title}<small>${sub}</small></h3><div class="acts"><button class="btn primary" type="button" data-copy="${id}">복사</button>${ai?`<a class="btn" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Claude 열기</a><a class="btn" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT 열기</a>`:""}</div></header><pre id="${id}">${esc(text)}</pre></div>`;
+  $("#w_out").innerHTML=(f?"":`<p class="note" style="margin-top:14px">장학금을 고르면 공고 정보가 자동으로 들어갑니다. 지금은 [ ] 자리를 직접 채워 쓰면 돼요.</p>`)+
+    card("o_mail","① 교수님께 보낼 추천서 부탁 메일","그대로 복사해서 메일로 보내세요. [ ] 부분만 채우면 됩니다.",mail,false)+
+    card("o_rec","② 추천서 초안 만들기 (AI에 붙여 넣기)","복사 → Claude나 ChatGPT 열기 → 붙여 넣기. 나온 초안은 교수님께 ‘참고 자료’로 드리세요.",rec,true)+
+    card("o_sop","③ 자기소개서 초안 만들기 (AI에 붙여 넣기)","복사 → Claude나 ChatGPT에 붙여 넣기. 초안은 꼭 내 말로 고쳐 쓰세요.",sop,true);
+}
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); return true }catch(e){}
+  try{ const ta=document.createElement("textarea"); ta.value=t; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); const ok=document.execCommand("copy"); ta.remove(); return ok }catch(e){ return false }
+}
+$("#docForm").addEventListener("input",()=>{readDoc(); buildDoc(); $("#w_saved").textContent="이 기기에 저장됨"});
+$("#docForm").addEventListener("change",()=>{readDoc(); buildDoc()});
+$("#w_out").addEventListener("click",async e=>{const b=e.target.closest("[data-copy]"); if(!b) return; const ok=await copyText($("#"+b.dataset.copy).textContent); b.textContent=ok?"복사됨 ✓":"길게 눌러 복사하세요"; setTimeout(()=>b.textContent="복사",1800)});
+$("#w_fill").addEventListener("click",()=>{const p=profile||{}; const sem=+p.sem; const yr=p.sem===""||p.sem==null?"":(sem===0?"1학년":Math.min(4,Math.ceil(sem/2))+"학년");
+  if(!W.affil) W.affil=[p.schoolName,p.dept,yr].filter(Boolean).join(" "); if(!W.gpa&&p.gpa) W.gpa=`직전 학기 ${p.gpa} (4.5 만점)`;
+  store.set("writer",W); renderDoc(); $("#w_saved").textContent=profile?"내 정보에서 학교·학과·성적을 가져왔어요":"먼저 ‘내 정보’를 저장해 주세요"});
+$("#w_clear").addEventListener("click",()=>{W={}; store.set("writer",W); renderDoc(); $("#w_saved").textContent="지웠어요"});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-write]"); if(!b) return; W.sch=b.dataset.write; store.set("writer",W); closeDetail(); tab("doc"); window.scrollTo({top:0})});
 window.__back=function(){ if(!$("#drawer").hidden){closeDetail();return true} if($("#view-find").hidden){tab("find");return true} return false };
 try{ if(window.FontFace) fetch("fonts/pretendard.woff2").then(r=>r.ok?r.arrayBuffer():Promise.reject()).then(b=>new FontFace("Pretendard",b,{weight:"100 900",display:"swap"}).load()).then(f=>document.fonts.add(f)).catch(()=>{}) }catch(e){}
 boot();

@@ -161,7 +161,11 @@ def merge(rows: list[dict]) -> list[dict]:
             return
         a, b = meta[pi], meta[pj]
         ds = [d for d in (a["lo"], a["hi"], b["lo"], b["hi"]) if d]
-        meta[pi] = {"fam": a["fam"] | b["fam"], "orgs": a["orgs"] | b["orgs"], "lo": min(ds) if ds else None, "hi": max(ds) if ds else None, "prog": a["prog"] | b["prog"]}
+        if a["prog"] and b["prog"]:
+            prog = {x for x in a["prog"] if _prog_overlap({x}, b["prog"])} or (a["prog"] | b["prog"])
+        else:
+            prog = a["prog"] or b["prog"]
+        meta[pi] = {"fam": a["fam"] | b["fam"], "orgs": a["orgs"] | b["orgs"], "lo": min(ds) if ds else None, "hi": max(ds) if ds else None, "prog": prog}
         parent[pj] = pi
 
     # 1) 같은 기관 핵심 이름
@@ -335,6 +339,9 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
     for r in rows:
         if r.get("level") in ("고등학생", "학점은행제"):
             continue
+        if set(r.get("_srcs") or [r.get("source")]) & {"hyin", "hanyang"}:
+            out.append(r)  # 한양대가 직접 학생들에게 안내한 장학은 모두 남긴다
+            continue
         st = set(r.get("_st_all") or r.get("school_types") or [])
         st.discard("특정대학") if r.get("source") in ("board",) else None
         if st and not (st & OK_SCHOOL):
@@ -370,9 +377,6 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
             break
         if drop:
             continue  # 학교 위치가 서울·경기 밖으로 묶인 장학
-        if srcs & {"hyin", "hanyang"}:
-            out.append(r)  # 한양대가 직접 안내한 장학
-            continue
         if re.search(r"외국인\s*(유학생|학생)", r.get("title", "") + " " + (r.get("target") or "")[:200]):
             continue
         pos = " ".join(str(r.get(k) or "") for k in ("target", "special", "title"))
