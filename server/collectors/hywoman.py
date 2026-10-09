@@ -49,13 +49,20 @@ def text_of(escaped: str) -> str:
 
 
 def _range(title: str, posted: str):
-    m = re.search(r"~\s*(?:(20\d\d)\s*[./-]\s*)?(\d{1,2})\s*[./]\s*(\d{1,2})", title)
+    """제목의 '(~9.9까지)', '(~25. 1. 13.)', '(25. 12. 22.~26. 1. 8.)' 에서 마감일을 읽는다."""
+    m = re.search(r"~\s*(?:(\d{2,4})\s*[./-]\s*)?(\d{1,2})\s*[./]\s*(\d{1,2})", title)
     if not m or not posted:
         return ""
-    y = int(m.group(1) or posted[:4])
-    if not m.group(1) and int(m.group(2)) < int(posted[5:7]) - 6:
-        y += 1
-    return f"{y}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+    mo, d = int(m.group(2)), int(m.group(3))
+    if not (1 <= mo <= 12 and 1 <= d <= 31):
+        return ""
+    if m.group(1):
+        y = int(m.group(1)); y = y + 2000 if y < 100 else y
+    else:
+        y = int(posted[:4])
+        if mo < int(posted[5:7]) - 6:
+            y += 1
+    return f"{y}-{mo:02d}-{d:02d}"
 
 
 def collect(online: bool = True):
