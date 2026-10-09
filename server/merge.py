@@ -293,6 +293,10 @@ def merge(rows: list[dict]) -> list[dict]:
         rep["_st_all"] = sorted({t for m in members for t in (m.get("school_types") or [])})
         rep["_alltext"] = " ".join(" ".join(str(m.get(k) or "") for k in ("title", "org", "target", "special", "restriction", "residence", "recommend", "selection"))
                                    + " " + (m.get("summary") or "")[:2500] for m in members)
+        tb: dict = {}
+        for m in members:
+            tb[m.get("source")] = tb.get(m.get("source"), "") + " " + " ".join(str(m.get(k) or "") for k in ("title", "org", "target", "special", "restriction", "residence", "recommend", "selection")) + " " + (m.get("summary") or "")[:2500]
+        rep["_textby"] = tb  # 출처별 본문 (다른 학교 공지의 '본교' 같은 말이 이 학교 판정에 섞이지 않게)
         rep["dupes"] = len(members) - 1
         rep["_ids"] = [m.get("id") for m in members]
         rep["_hyids"] = [m.get("id") for m in members if m.get("source") == "hyin"]
@@ -380,7 +384,9 @@ def for_school(rows: list[dict], school: str = "hy") -> list[dict]:
         if st and not (st & OK_SCHOOL):
             continue
         srcs = set(r.get("_srcs") or [r.get("source")])
-        text = r.get("_alltext") or ""
+        tb = r.get("_textby") or {}
+        mine = [v for k, v in tb.items() if k not in other_own]
+        text = " ".join(mine) if mine else (r.get("_alltext") or "")  # 다른 학교 공지 글은 빼고 판단 (그 공지만 있으면 그대로)
         hy_named = bool(name_rx.search(text.replace("한양·한여", "")))
         if r.get("level") == "해외유학" and ABROAD_NO.search(r.get("title", "") + " " + (r.get("target") or "")):
             continue
@@ -449,6 +455,6 @@ def for_school(rows: list[dict], school: str = "hy") -> list[dict]:
         r.pop("_relay_school", None)
         r.pop("_relay_schools", None)
         r.pop("_relay_text", None)
-        for k in ("_srcs", "_st_all", "_alltext"):
+        for k in ("_srcs", "_st_all", "_alltext", "_textby"):
             r.pop(k, None)
     return out

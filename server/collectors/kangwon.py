@@ -133,7 +133,10 @@ def collect(online: bool = True):
         start, end = period_from(t, body, r.get("date", ""))
         work = bool(WORK.search(t))
         ext = _org_from_title(t, "강원대학교", body)
-        inside = ext == "강원대학교" or bool(INSIDE.search(t) and not re.search(r"재단|장학회|진흥원", t))
+        relay = bool(re.search(r"구민|시민|군민|도민|재단|장학회|육영회|협회|진흥원|공사|공단|은행|그룹|교육청|시청|군청|구청|도청|신문|방송|[A-Za-z]{2,}", t))
+        inside = bool(INSIDE.search(t)) and not re.search(r"재단|장학회|진흥원", t) or (ext == "강원대학교" and not relay)
+        if not inside and ext == "강원대학교":
+            ext = ""  # 운영기관 이름을 찾지 못한 교외 장학
         dogye = "도계" in t
         out.append(finalize({
             "id": make_id("kangwon", r["bbs"], r["sn"]), "source": "kangwon", "source_name": "강원대 장학공지",
