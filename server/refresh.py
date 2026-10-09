@@ -123,11 +123,14 @@ def export(con: sqlite3.Connection, summary: dict):
         if r.get("source") == "board":
             t = re.sub(r"\s*(Attachment|첨부파일|새글|NEW|N)\s*$|[}\]]+$|\.hwpx?\"\s*/?>.*$", "", r.get("title", ""))
             t = re.sub(r"\s+(학생지원팀|장학팀|학생복지팀|장학복지팀)\s+20\d\d-\d\d-\d\d\s+\d+$", "", t).strip()
+            t = re.sub(r"^((공지|NOTICE|필독|중요)\s*)+", "", t)
+            t = re.sub(r"\s+20\d\d([.\-]\d{1,2}){0,2}\.?$|\s+\d{1,4}$", "", t).strip()
             r["title"] = t
         if r.get("source") == "board" and r.get("org_type") == "대학 게시판":
             ext = re.search(r"재단|장학회|육영회|협회|구민|시민|군민|도민|공사|공단|진흥원|은행|정부초청|교육청|시청|군청|구청|도청|특별자치|\[교외|교외\]|\[외부|홍보", t) \
                 and not re.search(r"교내|근로|본교|동문|발전기금|면학|가계곤란|신입생|사정관|가족|학과|학부|대학원|어학우수|우수연구|자체선발", t)
             r["_relay_ok"] = bool(ext)
+            r["_relay_school"] = r.get("source_name") or ""
             if ext and r.get("org") == r.get("source_name"):
                 r["org"] = ""  # 공고를 옮겨 실은 대학 이름은 운영기관이 아니므로 숨긴다
         r["_hy"] = "한양대" in (r.get("source_name") or "") or r.get("source") in ("hyin", "hanyang")

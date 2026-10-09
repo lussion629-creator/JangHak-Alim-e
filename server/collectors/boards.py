@@ -19,7 +19,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 
-from ..model import finalize, make_id, norm_date
+from ..model import extract_target, finalize, make_id, norm_date
 
 log = logging.getLogger(__name__)
 ROOT = Path(__file__).resolve().parents[2] / "data"
@@ -128,6 +128,24 @@ def deadline_from(title: str, posted: str) -> str:
     return dl.isoformat()
 
 
+def fetch_detail(url: str) -> str:
+    """공고 본문 텍스트(최대 3000자). 본문 영역 후보 중 글자가 가장 많은 블록을 쓴다."""
+    from bs4 import BeautifulSoup
+    if not url or not allowed(url):
+        return ""
+    try:
+        soup = BeautifulSoup(get(url, timeout=15).text, "html.parser")
+    except Exception:  # noqa: BLE001
+        return ""
+    for t in soup(["script", "style", "nav", "header", "footer", "noscript", "form"]):
+        t.decompose()
+    cands = soup.select(".view-con, .view_con, .artclView, .bbs_view, .board-view, .view-content, .view_content, .bv_content, "
+                        ".content-view, .board_view, .viewContent, .txt, .cont, article, #content, .content, td.content, .fr-view")
+    best = max(cands or [soup.body or soup], key=lambda e: len(e.get_text(" ", strip=True)))
+    text = best.get_text("\n", strip=True)
+    return re.sub(r"\n{2,}", "\n", text)[:3000]
+
+
 def collect_one(src: dict, since: str):
     t0 = time.time()
     status = {"id": src["id"], "name": src["name"], "url": src.get("notice_url"), "ok": False, "count": 0, "method": "", "error": ""}
@@ -163,6 +181,8 @@ def collect_one(src: dict, since: str):
             continue  # 날짜 없는 링크는 대부분 메뉴(‘신입생장학금’, ‘맞춤형 장학검색’ 등)
         if (it["posted"] or dl) < since:
             continue
+        body = it["summary"] or (fetch_detail(it["url"]) if it["url"] and it["url"] != src.get("notice_url") and len(recs) < 25 else "")
+        it["summary"] = body
         rec = {
             "id": make_id("board", src["id"], it["url"] or it["title"]),
             "source": "board",
@@ -176,8 +196,9 @@ def collect_one(src: dict, since: str):
             "level": "대학생",
             "url": it["url"],
             "posted": it["posted"],
-            "end": deadline_from(it["title"], it["posted"]),
+            "end": deadline_from(it["title"], it["posted"]) or _deadline_in_body(it["summary"], it["posted"]),
             "summary": it["summary"],
+            "target": extract_target(it["summary"]),
             "region": src.get("region") or "",
             "district": src.get("district") or "",
             "links": [{"name": src["name"] + " 게시판", "url": src["notice_url"]}],
@@ -189,6 +210,13 @@ def collect_one(src: dict, since: str):
     status["count"] = len(recs)
     status["seconds"] = round(time.time() - t0, 1)
     return recs, status
+
+
+def _deadline_in_body(text: str, posted: str) -> str:
+    m = re.search(r"(신청|접수|모집)\s*(기간|기한|마감)[^\n]{0,40}?[~∼〜-]\s*(20\d{2}[.\-/년]\s*)?(\d{1,2})\s*[./월]\s*(\d{1,2})", text or "")
+    if not m:
+        return ""
+    return deadline_from("~" + (m.group(3) or "") + m.group(4) + "/" + m.group(5), posted)
 
 
 def _org_from_title(title: str, school: str) -> str:

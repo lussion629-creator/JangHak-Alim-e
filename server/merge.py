@@ -16,6 +16,7 @@ FAMILY = {"kosaf_univ": "kosaf", "kosaf_high": "kosaf", "kosaf_abroad": "kosaf",
 RANK = {"kosaf_univ": 0, "kosaf_high": 0, "kosaf_abroad": 0, "kosaf_creditbank": 0, "hyin": 1, "legacy": 2, "hanyang": 3, "board": 4}
 STOP = r"(20\d\d|\d+학년도|\d+년도?|\d학기|[1-4]학기|상반기|하반기|신규|정기|추가|재공고|연장|모집|선발|공고|안내|신청|접수|계획|장학생|장학금|장학|학생|대학생|대학원생|교외|교내|외부|홍보|기간|의|및|제\d+기|\d+기)"
 SUFFIX = r"(사회복지재단|복지재단|문화재단|장학재단|육영재단|교육재단|학술재단|인재육성재단|장학문화재단|장학회|육영회|재단|공제회|협회|센터|진흥원)$"
+GENERIC_T = re.compile(r"국가근로|교내근로|근로장학|국가장학금|학자금\s*대출|교내\s*장학|가계곤란|성적우수\s*장학")
 GENERIC = re.compile(r"한국장학재단|대학교|대학$|^교육부|^국가")
 FILL = ("amount", "target", "income", "gpa", "special", "residence", "selection", "quota", "restriction", "recommend",
         "documents", "summary", "apply_url", "url", "start", "end", "posted")
@@ -133,6 +134,38 @@ def merge(rows: list[dict]) -> list[dict]:
             if j != i and rows[j]["source"] != rows[i]["source"] and tc in cores[j] and can(i, j):
                 union(i, j)
 
+    # 5) 제목이 다르게 적힌 같은 공고: 핵심어 글자쌍(bigram) 유사도 0.55 이상 + 시기 가까움
+    def grams(t):
+        return {t[k:k + 2] for k in range(len(t) - 1)}
+    G = [grams(i[1]) for i in info]
+    def month(r):
+        d = (r.get("end") or r.get("start") or r.get("posted") or "")[:7]
+        return d
+    buckets: dict[str, list[int]] = {}
+    for i, r in enumerate(rows):
+        if len(info[i][1]) >= 4 and month(r):
+            buckets.setdefault(month(r), []).append(i)
+    keys = sorted(buckets)
+    for bi, k in enumerate(keys):
+        pool = buckets[k] + (buckets[keys[bi + 1]] if bi + 1 < len(keys) else [])
+        for x in range(len(buckets[k])):
+            i = buckets[k][x]
+            for j in pool:
+                if j <= i or find(i) == find(j):
+                    continue
+                if FAMILY.get(rows[i]["source"]) and FAMILY.get(rows[i]["source"]) == FAMILY.get(rows[j]["source"]):
+                    continue
+                a, b = G[i], G[j]
+                if not a or not b:
+                    continue
+                if GENERIC_T.search(rows[i].get("title", "")) or GENERIC_T.search(rows[j].get("title", "")):
+                    continue
+                sim = len(a & b) / len(a | b)
+                small = min(len(a), len(b))
+                contain = len(a & b) / small if small >= 8 else 0
+                if (sim >= 0.55 or (contain >= 0.85 and sim >= 0.4)) and can(i, j):
+                    union(i, j)
+
     groups: dict[int, list[int]] = {}
     for i in range(n):
         groups.setdefault(find(i), []).append(i)
@@ -161,6 +194,9 @@ def merge(rows: list[dict]) -> list[dict]:
         # 다른 대학 게시판에만 있고 운영기관이 그 대학 자신인 공고(교내 장학)는 그 학교 학생 전용
         rep["_univ_only"] = all(relay) and not any(m.get("_relay_ok") for m in members)
         rep["school_check"] = all(relay)
+        schools = {m.get("_relay_school") for m in members if m.get("_relay_school")}
+        rep["_relay_schools"] = sorted(schools)
+        rep["_relay_text"] = " ".join(((m.get("target") or "") + " " + (m.get("summary") or "")[:1500]) for m in members if m.get("_relay_school"))
         rep["dupes"] = len(members) - 1
         out.append(rep)
     return out
@@ -188,6 +224,18 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
             continue
         if r.pop("_univ_only", False):
             continue
+        # 한 대학 게시판에만 올라온 외부 장학: 본문에 그 대학 학생만 대상이라고 적혀 있으면 제외
+        rs = r.get("_relay_schools") or []
+        if r.get("school_check") and len(rs) == 1:
+            short = re.sub(r"\s.*$|학교$", "", rs[0]).replace("대학", "대")  # '건국대학교 서울' → '건국대'
+            body = r.get("_relay_text", "")
+            names = {short, re.sub(r"\s.*$", "", rs[0])}
+            if body and any(n and n in body for n in names) and key not in body:
+                continue
+            if body and re.search(r"본교\s*(재학|학부|소속)|본교생|우리\s*대학\s*재학", body) and key not in body:
+                continue
+        if r.get("school_check") and len(rs) >= 2:
+            r["school_check"] = False  # 여러 대학에 공통으로 온 공고는 학교 제한이 없을 가능성이 높다
         if "특정대학" in st and r.get("source", "").startswith("kosaf"):
             text = " ".join(str(r.get(k, "")) for k in ("title", "org", "special", "restriction", "target", "residence", "summary"))
             names = set(UNIV_NAME.findall(text))
@@ -198,4 +246,7 @@ def for_school(rows: list[dict], school: str = "한양대학교,한양여자대�
         r.pop("_univ_only", None)
         r.pop("_hy", None)
         r.pop("_relay_ok", None)
+        r.pop("_relay_school", None)
+        r.pop("_relay_schools", None)
+        r.pop("_relay_text", None)
     return out
