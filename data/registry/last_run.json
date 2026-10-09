@@ -1,8 +1,91 @@
 {
- "finishedAt": "2026-10-09T08:31:25+00:00",
- "total": 4304,
- "new": 64,
- "changed": 0,
+ "startedAt": "2026-10-09T09:04:05+00:00",
+ "finishedAt": "2026-10-09T09:17:26+00:00",
+ "online": true,
+ "total": 4320,
+ "new": 4,
+ "changed": 194,
+ "sources": [
+  {
+   "source": "kosaf_univ",
+   "label": "한국장학재단 대학생",
+   "ok": true,
+   "count": 1913,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_high",
+   "label": "한국장학재단 고등학생",
+   "ok": true,
+   "count": 1199,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_abroad",
+   "label": "한국장학재단 해외유학",
+   "ok": true,
+   "count": 75,
+   "mode": "online"
+  },
+  {
+   "source": "kosaf_creditbank",
+   "label": "한국장학재단 학점은행제",
+   "ok": true,
+   "count": 7,
+   "mode": "online"
+  },
+  {
+   "source": "hyin",
+   "label": "한양대 HY-in 장학캘린더",
+   "ok": true,
+   "count": 241,
+   "mode": "hyin_calendar_full.json",
+   "collectedAt": "2026-10-08T16:24:43.912Z"
+  },
+  {
+   "source": "hanyang",
+   "label": "한양대 공개 공지(장학/등록·근로 모집)",
+   "ok": true,
+   "count": 38,
+   "work": 26,
+   "mode": "seed/seed"
+  },
+  {
+   "source": "hywoman",
+   "label": "한양여대 장학공지",
+   "ok": true,
+   "count": 60,
+   "mode": "online"
+  },
+  {
+   "source": "board",
+   "label": "대학·재단·지자체 게시판 150곳",
+   "ok": true,
+   "count": 647,
+   "mode": "성공 122 / 실패 28"
+  },
+  {
+   "source": "gov24",
+   "label": "정부24 공공서비스 API",
+   "ok": false,
+   "count": 0,
+   "mode": "키 미설정"
+  },
+  {
+   "source": "legacy",
+   "label": "기존 앱 수집본",
+   "ok": true,
+   "count": 315,
+   "mode": "seed"
+  },
+  {
+   "source": "dreamspon",
+   "label": "드림스폰 공개 목록(원본 링크로 연결)",
+   "ok": true,
+   "count": 20,
+   "mode": "online"
+  }
+ ],
  "registry": {
   "total": 551,
   "enabled": 150,
@@ -455,7 +538,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 12
    },
    {
     "name": "서울여자대학교",
@@ -624,8 +707,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -994,8 +1077,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 9
    },
    {
     "name": "성결대학교",
@@ -5364,8 +5447,8 @@
     "url": "https://www.kosaf.go.kr/ko/notice.do?ctgrId1=0000000002&ctgrId2=0000000022&naviParam=JH,09,08,00",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 1
    },
    {
     "name": "한국장학재단 연합생활관",
@@ -5454,7 +5537,7 @@
     "url": "https://www.kosaf.go.kr/ko/main.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
