@@ -15,14 +15,14 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
-from .collectors import boards, dreamspon, gov24, hanyang, hywoman, hyin, kosaf, kosaf_hist, legacy
-from .merge import for_school, merge
+from .collectors import boards, dreamspon, gov24, hanyang, hywoman, hyin, kangwon, kosaf, kosaf_hist, legacy, sogang
+from .merge import for_schools, merge
 from .model import summarize_body, expected_next, now_iso, status_of, support_of
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
 WEB_DATA = ROOT / "web" / "data"
-COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
+COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("kangwon", kangwon), ("sogang", sogang), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
 log = logging.getLogger("refresh")
 
 
@@ -154,7 +154,7 @@ def export(con: sqlite3.Connection, summary: dict):
         rows.append(r)
     # 게시판 본문: 메뉴·꼬리말을 걷어내고 필요한 항목만 남긴다
     for r in rows:
-        if r.get("source") in ("board", "legacy", "hanyang", "hywoman") and r.get("summary"):
+        if r.get("source") in ("board", "legacy", "hanyang", "hywoman", "kangwon", "sogang") and r.get("summary"):
             sm = summarize_body(r["summary"], r.get("title", ""))
             r["summary"] = sm["text"]
             f = sm["fields"]
@@ -197,7 +197,7 @@ def export(con: sqlite3.Connection, summary: dict):
         if hits:
             kind = "new" if any(k == "new" for k, _ in hits) else "updated"
             r["fresh"] = {"kind": kind, "at": max(a for _, a in hits)}
-    rows = for_school(rows, os.environ.get("TARGET_SCHOOL", "한양대학교,한양여자대학교"))  # 한양대·한양여대 학생이 지원할 수 없는 장학금 제외
+    rows = for_schools(rows)  # 앱이 지원하는 학교(한양대·한양여대·강원대 삼척·서강대) 학생 누구도 지원할 수 없는 장학금 제외
     for r in rows:
         r["status"] = status_of(r.get("start"), r.get("end"), today, r.get("posted", ""))
         r["support"] = support_of(r)
