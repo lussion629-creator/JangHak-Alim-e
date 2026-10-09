@@ -95,10 +95,37 @@ def merge(rows: list[dict]) -> list[dict]:
         if len(tc) >= 4:
             by_title.setdefault(tc, []).append(i)
 
+    # 묶음(그룹)마다 출처 계열·운영기관·날짜 범위를 기억해 두고, 서로 충돌하면 합치지 않는다.
+    # (한 공고가 두 기관을 동시에 가리켜 엉뚱한 공고끼리 연쇄로 묶이는 것을 막는다)
+    def _key_date(r):
+        return _d(r.get("end")) or _d(r.get("start")) or _d(r.get("posted"))
+    meta = {}
+    for i, r in enumerate(rows):
+        oc = info[i][0]
+        org_is_title = _hangul(r.get("org", "")) == _hangul(r.get("title", ""))  # HY-in 처럼 제목을 기관명으로 쓴 경우
+        anchor = oc if (len(oc) >= 2 and not info[i][2] and not org_is_title and not re.search(r"대학교?$|대$", r.get("org", ""))) else ""
+        d = _key_date(r)
+        meta[i] = {"fam": {FAMILY.get(r["source"])} - {None}, "orgs": {anchor} - {""}, "lo": d, "hi": d}
+
+    def compatible(a, b):
+        if a["fam"] & b["fam"]:
+            return False
+        for x in a["orgs"]:
+            for y in b["orgs"]:
+                if not (x in y or y in x):
+                    return False
+        lo = min([d for d in (a["lo"], b["lo"]) if d] or [None]) if (a["lo"] or b["lo"]) else None
+        hi = max([d for d in (a["hi"], b["hi"]) if d] or [None]) if (a["hi"] or b["hi"]) else None
+        return not (lo and hi and (hi - lo).days > 120)
+
     def union(i, j):
         pi, pj = find(i), find(j)
-        if pi != pj:
-            parent[pj] = pi
+        if pi == pj or not compatible(meta[pi], meta[pj]):
+            return
+        a, b = meta[pi], meta[pj]
+        ds = [d for d in (a["lo"], a["hi"], b["lo"], b["hi"]) if d]
+        meta[pi] = {"fam": a["fam"] | b["fam"], "orgs": a["orgs"] | b["orgs"], "lo": min(ds) if ds else None, "hi": max(ds) if ds else None}
+        parent[pj] = pi
 
     # 1) 같은 기관 핵심 이름
     for ids in by_org.values():
@@ -117,7 +144,7 @@ def merge(rows: list[dict]) -> list[dict]:
     for i, (oc, tc, generic) in enumerate(info):
         if not generic and rows[i]["source"] not in ("board", "legacy", "hanyang"):
             continue
-        hay = _hangul(rows[i].get("title", ""))
+        hay = _hangul(rows[i].get("title", "") + " " + (rows[i].get("target") or "")[:200])
         for o in orgs:
             if o in hay:
                 for j in by_org[o]:
@@ -195,7 +222,8 @@ def merge(rows: list[dict]) -> list[dict]:
     out = []
     for ids in groups.values():
         members = [rows[i] for i in ids]
-        rep = dict(max(members, key=_richness))
+        today = date.today().isoformat()
+        rep = dict(max(members, key=lambda m: ((m.get("end") or "") >= today or (m.get("start") or "") >= today, _richness(m))))
         for m in members:
             if m is rep:
                 continue

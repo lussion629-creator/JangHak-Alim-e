@@ -21,7 +21,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12", cache: pip }
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt playwright==1.48.0
+      - name: 헤드리스 브라우저 (자바스크립트 게시판용)
+        run: python -m playwright install --with-deps chromium
       - name: 수집 전 보안 점검
         env: { PII_DENYLIST: "${{ secrets.PII_DENYLIST }}" }
         run: python scripts/security_check.py

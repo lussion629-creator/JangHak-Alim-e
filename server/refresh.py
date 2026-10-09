@@ -141,6 +141,14 @@ def export(con: sqlite3.Connection, summary: dict):
         r["support"] = support_of(r)
         r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
         rows.append(r)
+    ap = ROOT / "data" / "registry" / "aliases.json"
+    aliases = {k: v for k, v in (json.loads(ap.read_text()) if ap.exists() else {}).items() if not k.startswith("_")}
+    for r in rows:
+        if r.get("source") in ("board", "legacy", "hanyang"):
+            for word, org in aliases.items():
+                if word in r.get("title", ""):
+                    r["org"] = org
+                    break
     rows = merge(rows)  # 같은 장학금이 여러 곳에 올라온 경우 하나만 남긴다
     rows = for_school(rows, os.environ.get("TARGET_SCHOOL", "한양대학교,한양여자대학교"))  # 한양대·한양여대 학생이 지원할 수 없는 장학금 제외
     for r in rows:

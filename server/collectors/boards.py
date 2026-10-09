@@ -128,50 +128,93 @@ def deadline_from(title: str, posted: str) -> str:
     return dl.isoformat()
 
 
+BODY_SEL = (".view-con, .view_con, .artclView, .bbs_view, .board-view, .view-content, .view_content, .bv_content, "
+            ".content-view, .board_view, .viewContent, .txt, .cont, article, #content, .content, td.content, .fr-view")
+
+
+def text_of_html(html: str) -> str:
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html, "html.parser")
+    for t in soup(["script", "style", "nav", "header", "footer", "noscript", "form"]):
+        t.decompose()
+    cands = soup.select(BODY_SEL)
+    best = max(cands or [soup.body or soup], key=lambda e: len(e.get_text(" ", strip=True)))
+    return re.sub(r"\n{2,}", "\n", best.get_text("\n", strip=True))[:3000]
+
+
 def fetch_detail(url: str) -> str:
     """공고 본문 텍스트(최대 3000자). 본문 영역 후보 중 글자가 가장 많은 블록을 쓴다."""
-    from bs4 import BeautifulSoup
     if not url or not allowed(url):
         return ""
     try:
-        soup = BeautifulSoup(get(url, timeout=15).text, "html.parser")
+        return text_of_html(get(url, timeout=15).text)
     except Exception:  # noqa: BLE001
         return ""
-    for t in soup(["script", "style", "nav", "header", "footer", "noscript", "form"]):
-        t.decompose()
-    cands = soup.select(".view-con, .view_con, .artclView, .bbs_view, .board-view, .view-content, .view_content, .bv_content, "
-                        ".content-view, .board_view, .viewContent, .txt, .cont, article, #content, .content, td.content, .fr-view")
-    best = max(cands or [soup.body or soup], key=lambda e: len(e.get_text(" ", strip=True)))
-    text = best.get_text("\n", strip=True)
-    return re.sub(r"\n{2,}", "\n", text)[:3000]
 
 
-def collect_one(src: dict, since: str):
-    t0 = time.time()
-    status = {"id": src["id"], "name": src["name"], "url": src.get("notice_url"), "ok": False, "count": 0, "method": "", "error": ""}
-    items = []
-    try:
-        for u in rss_candidates(src):
-            if not allowed(u):
-                continue
-            try:
-                items = parse_rss(get(u).text)
-                if items:
-                    status["method"] = "rss"
-                    break
-            except Exception:  # noqa: BLE001
-                continue
-        if not items:
-            u = src["notice_url"]
-            if not allowed(u):
-                status["error"] = "robots.txt 비허용"
-                return [], status
-            items = parse_html(get(u).text, u)
-            status["method"] = "html"
-        status["ok"] = True
-    except Exception as e:  # noqa: BLE001
-        status["error"] = str(e)[:160]
-        return [], status
+class Renderer:
+    """자바스크립트로 그려지는 게시판용 헤드리스 브라우저 (GitHub Actions 에서 playwright 로 실행).
+    playwright 가 없으면 아무것도 하지 않는다."""
+
+    def __init__(self):
+        self.pw = self.browser = None
+        try:
+            from playwright.sync_api import sync_playwright
+            self.pw = sync_playwright().start()
+            self.browser = self.pw.chromium.launch()
+            self.ctx = self.browser.new_context(user_agent=UA, locale="ko-KR")
+        except Exception as e:  # noqa: BLE001
+            log.info("renderer unavailable: %s", e)
+            self.close()
+
+    def html(self, url: str, wait_ms: int = 2500) -> str:
+        if not self.browser or not allowed(url):
+            return ""
+        page = self.ctx.new_page()
+        try:
+            page.goto(url, timeout=25000, wait_until="domcontentloaded")
+            page.wait_for_timeout(wait_ms)
+            return page.content()
+        except Exception:  # noqa: BLE001
+            return ""
+        finally:
+            page.close()
+
+    def close(self):
+        try:
+            if self.browser:
+                self.browser.close()
+            if self.pw:
+                self.pw.stop()
+        except Exception:  # noqa: BLE001
+            pass
+        self.browser = self.pw = None
+
+
+ORG_TYPE = {"university": "대학 게시판", "local": "지자체", "corporate": "민간·기업·대학", "welfare": "민간·기업·대학",
+            "private": "민간·기업·대학", "public": "공공기관", "religious": "민간·기업·대학", "alumni": "민간·기업·대학"}
+
+
+def list_items(src: dict, status: dict):
+    for u in rss_candidates(src):
+        if not allowed(u):
+            continue
+        try:
+            items = parse_rss(get(u).text)
+            if items:
+                status["method"] = "rss"
+                return items
+        except Exception:  # noqa: BLE001
+            continue
+    u = src["notice_url"]
+    if not allowed(u):
+        status["error"] = "robots.txt 비허용"
+        return None
+    status["method"] = "html"
+    return parse_html(get(u).text, u)
+
+
+def build_recs(src: dict, items: list, since: str, body_fn=fetch_detail):
     recs = []
     for it in items:
         if not KEY.search(it["title"]) or DROP.search(it["title"]) or not RECRUIT.search(it["title"]):
@@ -181,24 +224,22 @@ def collect_one(src: dict, since: str):
             continue  # 날짜 없는 링크는 대부분 메뉴(‘신입생장학금’, ‘맞춤형 장학검색’ 등)
         if (it["posted"] or dl) < since:
             continue
-        body = it["summary"] or (fetch_detail(it["url"]) if it["url"] and it["url"] != src.get("notice_url") and len(recs) < 25 else "")
-        it["summary"] = body
+        body = it["summary"] or (body_fn(it["url"]) if it["url"] and it["url"] != src.get("notice_url") and len(recs) < 25 else "")
         rec = {
             "id": make_id("board", src["id"], it["url"] or it["title"]),
             "source": "board",
             "source_name": src["name"],
             "title": it["title"],
-            "org": src["name"] if src["type"] != "university" else _org_from_title(it["title"], src["name"]),
-            "org_type": {"university": "대학 게시판", "local": "지자체", "corporate": "민간·기업·대학", "welfare": "민간·기업·대학",
-                         "private": "민간·기업·대학", "public": "공공기관", "religious": "민간·기업·대학", "alumni": "민간·기업·대학"}.get(src["type"], "기타"),
+            "org": src["name"] if src["type"] != "university" else _org_from_title(it["title"], src["name"], body),
+            "org_type": ORG_TYPE.get(src["type"], "기타"),
             "category": "장학금",
             "kind": "공고",
             "level": "대학생",
             "url": it["url"],
             "posted": it["posted"],
-            "end": deadline_from(it["title"], it["posted"]) or _deadline_in_body(it["summary"], it["posted"]),
-            "summary": it["summary"],
-            "target": extract_target(it["summary"]),
+            "end": dl or _deadline_in_body(body, it["posted"]),
+            "summary": body,
+            "target": extract_target(body),
             "region": src.get("region") or "",
             "district": src.get("district") or "",
             "links": [{"name": src["name"] + " 게시판", "url": src["notice_url"]}],
@@ -207,6 +248,23 @@ def collect_one(src: dict, since: str):
             rec["school_types"] = ["특정대학"]
             rec["region"] = ""
         recs.append(finalize(rec))
+    return recs
+
+
+def collect_one(src: dict, since: str):
+    t0 = time.time()
+    status = {"id": src["id"], "name": src["name"], "url": src.get("notice_url"), "ok": False, "count": 0, "method": "", "error": ""}
+    try:
+        items = list_items(src, status)
+        if items is None:
+            return [], status
+        status["ok"] = True
+    except Exception as e:  # noqa: BLE001
+        status["error"] = str(e)[:160]
+        return [], status
+    if not items:
+        status["needs_render"] = True
+    recs = build_recs(src, items, since)
     status["count"] = len(recs)
     status["seconds"] = round(time.time() - t0, 1)
     return recs, status
@@ -219,12 +277,16 @@ def _deadline_in_body(text: str, posted: str) -> str:
     return deadline_from("~" + (m.group(3) or "") + m.group(4) + "/" + m.group(5), posted)
 
 
-def _org_from_title(title: str, school: str) -> str:
+def _org_from_title(title: str, school: str, body: str = "") -> str:
     m = re.search(r"[\[(]([^\])]{2,30}(재단|장학회|장학재단|진흥원|공단|공사|은행|그룹|협회|센터))[\])]", title)
     if m:
         return m.group(1)
     m = re.search(r"([가-힣A-Za-z0-9]{2,20}(장학재단|복지재단|문화재단|재단|장학회|인재육성재단|진흥원))", title)
-    return m.group(1) if m else school
+    if m:
+        return m.group(1)
+    # 제목에 없으면 본문 앞부분에서 운영기관 이름을 찾는다 (예: '재단법인 대산농촌재단에서 …')
+    m = re.search(r"(?:재단법인|사단법인|\(재\)|\(사\))?\s*([가-힣A-Za-z0-9]{2,20}(장학재단|복지재단|문화재단|농촌재단|학술재단|교육재단|재단|장학회|육영회|진흥원))", (body or "")[:800])
+    return m.group(1) if m and school.replace("학교", "") not in m.group(1) else school
 
 
 def load_sources() -> list[dict]:
@@ -242,6 +304,33 @@ def collect(online: bool = True, since: str | None = None, workers: int = 8):
         for recs, st in ex.map(lambda s: collect_one(s, since), srcs):
             out.extend(recs)
             statuses.append(st)
+    # 2단계: 자바스크립트로 그려지는 목록·본문은 헤드리스 브라우저로 다시 읽는다
+    need_list = [s for s, st in zip(srcs, statuses) if st.get("needs_render")]
+    need_body = [r for r in out if len(r.get("summary") or "") < 80 and r.get("url")]
+    if need_list or need_body:
+        rd = Renderer()
+        if rd.browser:
+            rendered = 0
+            for s_, st in zip(srcs, statuses):
+                if not st.get("needs_render"):
+                    continue
+                html = rd.html(s_["notice_url"])
+                items = parse_html(html, s_["notice_url"]) if html else []
+                recs = build_recs(s_, items, since, body_fn=lambda u: text_of_html(rd.html(u)) if u else "")
+                out.extend(recs)
+                st.update(count=len(recs), method="render")
+                rendered += 1
+            for r in need_body[:150]:
+                html = rd.html(r["url"])
+                body = text_of_html(html) if html else ""
+                if len(body) >= 80:
+                    r["summary"] = body
+                    r["target"] = extract_target(body)
+                    r["end"] = r.get("end") or _deadline_in_body(body, r.get("posted", ""))
+                    if r.get("org") == r.get("source_name"):
+                        r["org"] = _org_from_title(r["title"], r["source_name"], body)
+            rd.close()
+            log.info("rendered lists=%d bodies=%d", rendered, min(len(need_body), 150))
     (ROOT / "registry" / "status.json").write_text(json.dumps(statuses, ensure_ascii=False, indent=1))
     ok = sum(1 for s in statuses if s["ok"])
     return out, [{"source": "board", "label": f"대학·재단·지자체 게시판 {len(srcs)}곳", "ok": ok > 0, "count": len(out),
