@@ -1,38 +1,38 @@
 {
- "startedAt": "2026-10-09T05:35:11+00:00",
- "finishedAt": "2026-10-09T05:47:39+00:00",
+ "startedAt": "2026-10-09T06:39:15+00:00",
+ "finishedAt": "2026-10-09T06:57:20+00:00",
  "online": true,
- "total": 4239,
+ "total": 4265,
  "new": 4,
- "changed": 194,
+ "changed": 196,
  "sources": [
   {
    "source": "kosaf_univ",
    "label": "한국장학재단 대학생",
    "ok": true,
    "count": 1913,
-   "mode": "online"
+   "mode": "seed"
   },
   {
    "source": "kosaf_high",
    "label": "한국장학재단 고등학생",
    "ok": true,
    "count": 1199,
-   "mode": "online"
+   "mode": "seed"
   },
   {
    "source": "kosaf_abroad",
    "label": "한국장학재단 해외유학",
    "ok": true,
    "count": 75,
-   "mode": "online"
+   "mode": "seed"
   },
   {
    "source": "kosaf_creditbank",
    "label": "한국장학재단 학점은행제",
    "ok": true,
    "count": 7,
-   "mode": "online"
+   "mode": "seed"
   },
   {
    "source": "hyin",
@@ -54,7 +54,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 150곳",
    "ok": true,
-   "count": 609,
+   "count": 635,
    "mode": "성공 121 / 실패 29"
   },
   {
@@ -76,7 +76,7 @@
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
    "count": 20,
-   "mode": "seed"
+   "mode": "online"
   }
  ],
  "registry": {
@@ -900,7 +900,7 @@
     "url": "https://www.jbnu.ac.kr/web/news/notice/sub01.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -1080,8 +1080,8 @@
     "url": "https://www.sungkyul.ac.kr/bbs/skukr/95/artclList.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 26
    },
    {
     "name": "청주대학교",
