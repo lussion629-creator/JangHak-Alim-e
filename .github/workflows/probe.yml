@@ -17,13 +17,15 @@ jobs:
           openssl x509 -in inter.pem -noout -subject -issuer
           cat /etc/ssl/certs/ca-certificates.crt inter.pem > bundle.pem
           C="curl -sSL -m 25 --cacert bundle.pem -A"
-          $C "$UA" "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardList?pageNum=1&pageSize=3&bbsConfigFk=141" > sglist.json
-          python3 -c "import json;d=json.load(open('sglist.json'));print(json.dumps(d['data']['list'][0],ensure_ascii=False)[:3000])"
-          $C "$UA" "https://www.sogang.ac.kr/_nuxt/entry.1599b8d9.js" > e.js
-          for f in $(grep -o '"[^"]*\.js"' e.js | tr -d '"' | grep -v http | sort -u | head -400); do $C "$UA" "https://www.sogang.ac.kr/_nuxt/${f#./}" 2>/dev/null | grep -o -E 'BbsData/[A-Za-z]+[^"`]{0,60}' ; done | sort -u | head -40
-          PK=$(python3 -c "import json;print(json.load(open('sglist.json'))['data']['list'][0]['pkId'])")
-          for path in "BbsData/boardView?pkId=$PK" "BbsData/boardView/$PK" "BbsData/view?pkId=$PK" "BbsData/$PK" "BbsData/boardDetail?pkId=$PK"; do echo "-- $path"; $C "$UA" "https://www.sogang.ac.kr/api/api/v1/mainKo/$path" | head -c 1500; echo; done
-          echo "=== SAINT"; $C "Mozilla/5.0 (iPhone)" -c sc.txt -o saint.html -w "%{url_effective} %{http_code}\n" "https://saint.sogang.ac.kr/irj/portal"; wc -c saint.html; grep -n -i "<form\|<input\|<button\|captcha\|location\|<script src\|login\|iframe\|logon" saint.html | head -60
+          $C "$UA" "https://www.sogang.ac.kr/api/api/v1/mainKo/BbsData/boardListHaveContent?pageNum=1&pageSize=3&bbsConfigFk=141" > c.json; wc -c c.json
+          python3 -c "import json;d=json.load(open('c.json'));L=d['data']['list'] if isinstance(d.get('data'),dict) else d.get('data');print(type(L), json.dumps(L[1] if isinstance(L,list) else d,ensure_ascii=False)[:2500])"
+          $C "$UA" "https://www.sogang.ac.kr/ko/detail/551534" > sgd.html; wc -c sgd.html
+          python3 - <<'P'
+          import re
+          s=open('sgd.html',encoding='utf-8',errors='replace').read()
+          for m in list(re.finditer('의생명과학',s))[:5]: print('---',m.start(), s[max(0,m.start()-200):m.start()+200].replace('\n',' '))
+          P
+          echo "=== SAINT"; $C "Mozilla/5.0 (iPhone)" -c sc.txt -o saint.html "https://saint.sogang.ac.kr/irj/portal"; cat saint.html | head -c 1400
       - if: always()
         run: |
           git init -q out && cd out && cp ../*.html ../probe.txt . 2>/dev/null; git checkout -q -b probe-out
