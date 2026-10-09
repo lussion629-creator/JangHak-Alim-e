@@ -642,28 +642,28 @@ applyTheme();
 try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",applyTheme) }catch(e){}
 $("#themeBtn").addEventListener("click",()=>{const order=["auto","light","dark"]; const m=store.get("theme","auto"); store.set("theme",order[(order.indexOf(m)+1)%3]); applyTheme()});
 window.__sysTheme=applyTheme;
-// 내 학교에 맞지 않는 다른 학교 교내 공고는 숨긴다 (한양대 서울·ERICA / 한양여대)
+// 학교 전용 공고: 그 학교 학생만 지원할 수 있는 공고. 학교별로 켜고 끈다.
+const SCHOOLS=[["hyu","한양대",/^한양대학교/],["hywu","한양여대",/^한양여자대학교/],["kwsc","강원대 삼척",/^강원대학교/]];
 function ownSchool(r){
+  if(Array.isArray(r.only)&&r.only.length===1) return r.only[0];
   const o=String(r.org||"");
   if(r.source==="hywoman"||(/한양여자대학교/.test(o)&&r.org_type==="대학(교내)")) return "hywu";
-  if(r.org_type==="대학(교내)"&&/^한양대학교/.test(o)) return /ERICA/.test(o)?"erica":/서울/.test(o)?"seoul":"hyu";
+  if(r.source==="kangwon"||(r.org_type==="대학(교내)"&&/^강원대학교/.test(o))) return "kwsc";
+  if(r.org_type==="대학(교내)"&&/^한양대학교/.test(o)) return /ERICA/.test(o)?"erica":"hyu";
   return "";
 }
-// 한양대 전용·한양여대 전용 공고를 볼지 (직접 고르지 않았으면 내 학교에 맞춰 정함)
+function mySchool(){const n=(profile&&profile.schoolName)||""; const t=SCHOOLS.find(x=>x[2].test(n)); return t?t[0]:""}
+// 학교 전용 공고를 볼지 (직접 고르지 않았으면 내 학교 것만, 학교를 안 골랐으면 모두)
 function showOnly(){
-  const v=store.get("only",null); if(v) return v;
-  const n=(profile&&profile.schoolName)||"";
-  return {hyu:!/한양여자/.test(n)||!n, hywu:/한양여자/.test(n)||!n};
+  const v=store.get("only",null), me=mySchool();
+  const o={}; SCHOOLS.forEach(([k])=>o[k]=v&&k in v?!!v[k]:(!me||k===me)); return o;
 }
 function schoolOK(r){
   const own=ownSchool(r); if(!own) return true;
-  const o=showOnly();
-  if(own==="hywu") return o.hywu;
-  if(!o.hyu) return false;
-  const n=(profile&&profile.schoolName)||"";
-  return own!=="erica";
+  if(own==="erica") return false;
+  return showOnly()[own]!==false;
 }
-const OWNL={hywu:"한양여대 전용",erica:"한양대 전용 · ERICA",seoul:"한양대 전용",hyu:"한양대 전용"};
+const OWNL={hywu:"한양여대 전용",erica:"한양대 전용 · ERICA",hyu:"한양대 전용",kwsc:"강원대 삼척 전용"};
 // 지원 종류: 여러 개를 골라 보고 싶은 것만 본다 (아무것도 안 고르면 전체)
 const CATS=new Set((()=>{const v=store.get("cats",null); if(Array.isArray(v)) return v; const old=store.get("cat",""); return old?[old]:[]})());
 const catOf=r=>(r.support&&r.support.length)?r.support:["etc"];
@@ -671,10 +671,14 @@ function renderCats(){
   const base=DATA.filter(r=>r._s.key==="모집중"||r._s.key==="예정");
   const n=k=>base.filter(r=>!k||catOf(r).includes(k)).length;
   $("#cats").innerHTML=[["","전체"],...SUP,["etc","그 밖의 장학"]].map(([k,l])=>`<button type="button" class="cat ${k||"all"}" data-cat="${k}" aria-pressed="${k?CATS.has(k):!CATS.size}"><i></i>${l}<span class="n">${n(k)}</span></button>`).join("")
-    +`<div class="onlybar">${(()=>{const o=showOnly(), c=k=>DATA.filter(r=>(r._s.key==="모집중"||r._s.key==="예정")&&(k==="hywu"?ownSchool(r)==="hywu":["seoul","erica","hyu"].includes(ownSchool(r)))).length; return `<span class="note">학교 전용 공고</span><button type="button" class="chip" data-only="hyu" aria-pressed="${o.hyu}">한양대 전용 <b>${c("hyu")}</b></button><button type="button" class="chip" data-only="hywu" aria-pressed="${o.hywu}">한양여대 전용 <b>${c("hywu")}</b></button>`})()}</div>`
+    +`<div class="onlybar">${(()=>{const o=showOnly(), me=mySchool(), live=DATA.filter(r=>r._s.key==="모집중"||r._s.key==="예정"), c=k=>live.filter(r=>ownSchool(r)===k).length;
+      const others=SCHOOLS.filter(([k])=>k!==me), anyOther=others.some(([k])=>o[k]);
+      return `<span class="note">학교 전용 공고</span>${SCHOOLS.map(([k,l])=>`<button type="button" class="chip" data-only="${k}" aria-pressed="${o[k]}">${l} 전용 <b>${c(k)}</b></button>`).join("")}`
+        +(me?`<button type="button" class="chip" data-only-others="${anyOther?"off":"on"}">${anyOther?"다른 학교 것 모두 끄기":"다른 학교 것 다시 보기"}</button>`:"")})()}</div>`
     +`<p class="cats-hint">${CATS.size?`${[...CATS].map(k=>SUPL[k]||"그 밖의 장학").join(" · ")}만 보는 중 · <button type="button" class="linkbtn" data-cat="">모두 보기</button>`:"보고 싶은 종류를 눌러 고르세요. 여러 개 고를 수 있어요."}</p>`;
 }
-$("#cats").addEventListener("click",e=>{const ob=e.target.closest("[data-only]"); if(ob){const o={...showOnly()}; o[ob.dataset.only]=!o[ob.dataset.only]; store.set("only",o); renderCats(); apply(); return}
+$("#cats").addEventListener("click",e=>{const oo=e.target.closest("[data-only-others]"); if(oo){const me=mySchool(), on=oo.dataset.onlyOthers==="on", o={}; SCHOOLS.forEach(([k])=>o[k]=k===me||on); store.set("only",o); renderCats(); apply(); return}
+  const ob=e.target.closest("[data-only]"); if(ob){const o={...showOnly()}; o[ob.dataset.only]=!o[ob.dataset.only]; store.set("only",o); renderCats(); apply(); return}
   const b=e.target.closest("[data-cat]"); if(!b) return; const k=b.dataset.cat;
   if(!k) CATS.clear(); else if(CATS.has(k)) CATS.delete(k); else CATS.add(k);
   store.set("cats",[...CATS]); renderCats(); if($("#view-find").hidden) tab("find"); apply()});
@@ -909,13 +913,13 @@ function fillProfile(){
   const opt='<option value="">선택 안 함</option>'+SIDO.map(s=>`<option>${s}</option>`).join("");
   for(const id of["p_sido","p_psido","p_hsido","p_ssido"]) $("#"+id).innerHTML=opt;
   // 학교: 한양대·한양여대를 맨 위에, 나머지는 가나다순
-  const TOP=[["한양대학교","서울","한양대학교"],["한양여자대학교","서울","한양여자대학교"]];
+  const TOP=[["한양대학교","서울","한양대학교"],["한양여자대학교","서울","한양여자대학교"],["강원대학교 삼척캠퍼스","강원","강원대학교 삼척캠퍼스"]];
   const rest=[...new Map(UNIVS.filter(([n])=>!/^한양/.test(n)).map(u=>[u[0],u])).values()].sort((a,b)=>a[0].localeCompare(b[0],"ko"));
-  $("#p_schoolPick").innerHTML=`<option value="">선택 안 함</option><optgroup label="한양">${TOP.map(([v,,l])=>`<option value="${v}">${l}</option>`).join("")}</optgroup><optgroup label="다른 학교">${rest.map(([n])=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup><option value="__other">목록에 없음 (직접 입력)</option>`;
+  $("#p_schoolPick").innerHTML=`<option value="">선택 안 함</option><optgroup label="이 앱이 지원하는 학교">${TOP.map(([v,,l])=>`<option value="${v}">${l}</option>`).join("")}</optgroup><optgroup label="다른 학교">${rest.map(([n])=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup><option value="__other">목록에 없음 (직접 입력)</option>`;
   $("#p_deptPick").innerHTML=`<option value="">선택 안 함</option>`+Object.entries(MAJORS).map(([g,l])=>`<optgroup label="${g}">${l.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup>`).join("")+`<option value="__other">목록에 없음 (직접 입력)</option>`;
   const syncPick=(pick,input,val)=>{const has=[...$(pick).options].some(o=>o.value===val&&val); $(pick).value=has?val:(val?"__other":""); $(input).hidden=!(val&&!has); $(input).value=val||""};
   $("#p_schoolPick").onchange=()=>{const v=$("#p_schoolPick").value; $("#p_schoolName").hidden=v!=="__other"; $("#p_schoolName").value=v==="__other"?"":v;
-    const t=[...TOP,...UNIVS].find(u=>u[0]===v); if(t&&t[1]) $("#p_ssido").value=t[1]; if(/한양여자/.test(v)&&!$("#p_school").value) $("#p_school").value="2y"; if(/^한양대학교/.test(v)&&!$("#p_school").value) $("#p_school").value="4y"};
+    const t=[...TOP,...UNIVS].find(u=>u[0]===v); if(t&&t[1]) $("#p_ssido").value=t[1]; if(/한양여자/.test(v)&&!$("#p_school").value) $("#p_school").value="2y"; if(/^(한양대학교|강원대학교)/.test(v)&&!$("#p_school").value) $("#p_school").value="4y"};
   $("#p_deptPick").onchange=()=>{const v=$("#p_deptPick").value; $("#p_dept").hidden=v!=="__other"; $("#p_dept").value=v==="__other"?"":v; const k=Object.keys(MAJORS).find(k=>MAJORS[k].includes(v)); if(k) $("#p_major").value=k};
   const fillGu=(sel,keep)=>{const g=$("#"+sel.dataset.gu), list=DIST[sel.value]||[]; g.innerHTML=sel.value?`<option value="">선택 안 함</option>`+list.map(x=>`<option>${x}</option>`).join(""):`<option value="">시·도를 먼저 고르세요</option>`; if(keep&&list.includes(keep)) g.value=keep};
   $$("#profile select[data-gu]").forEach(sel=>{sel.onchange=()=>fillGu(sel)});
@@ -934,7 +938,8 @@ $("#profile").addEventListener("submit",e=>{
   if(p.status==="pre"&&p.sem==="") p.sem="0";
   if(p.status==="grad"&&!p.school) p.school="grad";
   p.flags=$$("#p_flags input:checked").map(c=>c.value);
-  profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis();
+  if(((profile&&profile.schoolName)||"")!==(p.schoolName||"")) store.set("only",null); // 학교를 바꾸면 전용 공고 보기도 새 학교에 맞춤
+  profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis(); renderCats();
   $("#p_saved").textContent="저장했습니다. 이 기기에만 보관됩니다.";
   F.match=new Set(["ok","check"]); F.field=new Set(); $("#sort").value="fit"; store.set("sort","fit"); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
 });
