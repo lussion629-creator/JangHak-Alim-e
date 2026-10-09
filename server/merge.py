@@ -166,6 +166,29 @@ def merge(rows: list[dict]) -> list[dict]:
                 if (sim >= 0.55 or (contain >= 0.85 and sim >= 0.4)) and can(i, j):
                     union(i, j)
 
+    # 6) 드문 고유 단어(예: '토박이', '김정옥', '봄내')를 함께 쓰는 공고는 같은 공고로 본다
+    COMMON = re.compile(r"^(장학|장학생|장학금|선발|모집|안내|공고|신청|지원|재단|학년도|하반기|상반기|대학생|학기|신규|추가|연장|기간|사업|프로그램|우수|특별|일반|재학생)$")
+    def toks(t):
+        t = re.sub(r"\[[^\]]*\]", " ", t or "")
+        out = set()
+        for w in re.findall(r"[가-힣]{2,}", t):
+            w = re.sub(STOP, "", w)
+            if len(w) >= 3 and not COMMON.match(w):
+                out.add(w)
+        return out
+    T = [toks(r.get("title", "")) | ({org_core(r.get("org", ""))} if len(org_core(r.get("org", ""))) >= 3 and not info[i][2] else set()) for i, r in enumerate(rows)]
+    df: dict[str, list[int]] = {}
+    for i, ts in enumerate(T):
+        for w in ts:
+            df.setdefault(w, []).append(i)
+    for w, ids in df.items():
+        if 2 <= len(ids) <= 6:
+            for x in range(len(ids)):
+                for y in range(x + 1, len(ids)):
+                    i, j = ids[x], ids[y]
+                    if find(i) != find(j) and not (GENERIC_T.search(rows[i].get("title", "")) or GENERIC_T.search(rows[j].get("title", ""))) and can(i, j):
+                        union(i, j)
+
     groups: dict[int, list[int]] = {}
     for i in range(n):
         groups.setdefault(find(i), []).append(i)
