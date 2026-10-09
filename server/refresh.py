@@ -15,14 +15,14 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
-from .collectors import boards, dreamspon, gov24, hanyang, hywoman, hyin, kosaf, legacy
+from .collectors import boards, dreamspon, gov24, hanyang, hywoman, hyin, kosaf, kosaf_hist, legacy
 from .merge import for_school, merge
 from .model import summarize_body, expected_next, now_iso, status_of, support_of
 
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
 WEB_DATA = ROOT / "web" / "data"
-COLLECTORS = [("kosaf", kosaf), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
+COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
 log = logging.getLogger("refresh")
 
 
