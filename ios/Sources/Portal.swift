@@ -13,19 +13,40 @@ struct Portal {
     static let hyin = Portal(key: "hyin", name: "한양 포털", start: URL(string: "https://portal.hanyang.ac.kr/port.do")!,
                              mainHost: "portal.hanyang.ac.kr", script: "hyin-app", fileName: "hyin_calendar.json")
     static let kcloud = Portal(key: "kcloud", name: "강원대 K-Cloud", start: URL(string: "https://kcloud.kangwon.ac.kr/")!,
-                               mainHost: "kcloud.kangwon.ac.kr", script: "kcloud-app", fileName: "kcloud_scholarship.json")
-    static let all = [hyin, kcloud]
+                               mainHost: "kcloud.kangwon.ac.kr", script: "portal-reader", fileName: "kcloud_scholarship.json")
+    static let saint = Portal(key: "saint", name: "서강대 SAINT", start: URL(string: "https://saint.sogang.ac.kr/irj/portal")!,
+                              mainHost: "saint.sogang.ac.kr", script: "portal-reader", fileName: "saint_scholarship.json")
+    static let all = [hyin, kcloud, saint]
+    static let desktopUA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+
+    /// 읽기 스크립트 설정 (메뉴 이름·학교 주소·안내 문구)
+    var cfg: String {
+        switch key {
+        case "kcloud": return "window.__portalCfg={host:'kangwon.ac.kr',menus:[['학부생서비스','교과','장학','장학신청']],hint:'장학 신청 화면을 열어 주세요: 학부생서비스 → 교과 → 장학 → 장학신청'};"
+        case "saint": return "window.__portalCfg={host:'sogang.ac.kr',menus:[['학사정보','장학','장학금신청'],['학사정보','장학','장학신청'],['학사정보','장학금','장학금 신청']],hint:'장학금 신청 화면을 열어 주세요 (학사정보 → 장학). 그 화면의 목록을 읽어 와요.'};"
+        default: return ""
+        }
+    }
+
+    /// 모바일 브라우저를 막는 포털(SAINT)은 PC 화면으로 연다
+    var desktop: Bool { key == "saint" }
+
+    /// 주소만으로 로그인 화면인지 알 수 없는 포털은 화면에 로그인 칸이 있는지 본다
+    var loginProbe: String? {
+        key == "saint" ? "(document.getElementById('logonForm')||document.getElementById('login_id'))?'login':'in'" : nil
+    }
     static func of(_ key: String?) -> Portal? { all.first { $0.key == key } }
 
     /// 포털 화면으로 이어지는 학교 주소인지 (다른 주소로는 가지 않는다)
     func schoolHost(_ h: String?) -> Bool {
         guard let h = h else { return false }
-        let base = key == "hyin" ? "hanyang.ac.kr" : "kangwon.ac.kr"
+        let base = key == "hyin" ? "hanyang.ac.kr" : key == "saint" ? "sogang.ac.kr" : "kangwon.ac.kr"
         return h == base || h.hasSuffix("." + base)
     }
 
     func isLogin(_ url: String) -> Bool {
         if key == "hyin" { return url.contains("lgin") || url.contains("/sso/") || url.contains("login") }
+        if key == "saint" { return url.contains("logon") || url.contains("login") }
         return url.contains("/login") || url.contains("ssoLogin") || url.contains("ssm01008") || url.contains("cert_install")
             || url.contains("notice_before_login") || url.hasSuffix("kangwon.ac.kr/")
     }
@@ -57,6 +78,10 @@ struct Portal {
                 + "var a=Array.prototype.filter.call(document.querySelectorAll('a,button'),function(e){return (e.textContent||'').trim()==='로그인'&&e.offsetParent!==null;})[0];"
                 + "if(a)a.click();})();"
         }
+        if key == "saint" {
+            return "(function(){var u=document.getElementById('login_id'),p=document.getElementById('login_pw');if(!u||!p)return;window.alert=function(){};" + setter
+                + "s(u,\(q(id)));s(p,\(q(pw)));if(typeof btnLogin==='function'){btnLogin();}else{var b=document.querySelector('.form_login_btn');if(b)b.click();}})();"
+        }
         return "(function(){var u=document.getElementById('NORMAL_ID'),p=document.getElementById('NORMAL_PWD'),b=document.getElementById('btn_Login');if(!u||!p||!b)return;"
             + "window.alert=function(){};" + setter + "s(u,\(q(id)));s(p,\(q(pw)));b.click();})();"
     }
@@ -71,6 +96,7 @@ final class PortalClient: NSObject, WKNavigationDelegate, WKScriptMessageHandler
     var onFinish: ((String) -> Void)?   // ok / login / fail / notfound
     private var finished = false
     private var triedLogin = false
+    private var injected = false
 
     init(portal: Portal, silent: Bool, frame: CGRect = .zero) {
         self.portal = portal
@@ -80,11 +106,11 @@ final class PortalClient: NSObject, WKNavigationDelegate, WKScriptMessageHandler
         let ucc = WKUserContentController()
         cfg.userContentController = ucc
         web = WKWebView(frame: frame, configuration: cfg)
+        if portal.desktop { web.customUserAgent = Portal.desktopUA }
         super.init()
         ucc.add(WeakHandler(self), name: "portal")
         web.navigationDelegate = self
         web.uiDelegate = self
-        web.customUserAgent = nil
     }
 
     func start() { web.load(URLRequest(url: portal.start)) }
@@ -140,9 +166,20 @@ final class PortalClient: NSObject, WKNavigationDelegate, WKScriptMessageHandler
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         guard !finished, let url = webView.url?.absoluteString, let host = webView.url?.host else { return }
         let main = host == portal.mainHost
-        let login = portal.isLogin(url)
+        if main, let probe = portal.loginProbe {
+            webView.evaluateJavaScript(probe) { [weak self] r, _ in
+                guard let self = self, !self.finished else { return }
+                self.route(webView, url: url, main: true, login: (r as? String) != "in")
+            }
+        } else {
+            route(webView, url: url, main: main, login: portal.isLogin(url))
+        }
+    }
+
+    private func route(_ webView: WKWebView, url: String, main: Bool, login: Bool) {
         if main && !login {
             if portal.key == "kcloud" && !url.contains("/websquare/") { return }  // 넘어가는 중인 중간 화면
+            if portal.key == "saint" && !url.contains("/irj/") { return }
             onProgress?("로그인 확인됨 · 장학 정보를 불러오는 중…")
             inject()
         } else if silent && main && login && !triedLogin && Cred.state(portal.key) == "on" {
@@ -152,7 +189,7 @@ final class PortalClient: NSObject, WKNavigationDelegate, WKScriptMessageHandler
             onProgress?("자동 로그인 중…")
             webView.evaluateJavaScript(portal.loginScript(id: c.id, pw: c.pw))
             DispatchQueue.main.asyncAfter(deadline: .now() + 25) { [weak self] in
-                guard let self = self, !self.finished, let u = self.web.url?.absoluteString, self.web.url?.host == self.portal.mainHost, self.portal.isLogin(u) else { return }
+                guard let self = self, !self.finished, !self.injected else { return }
                 Cred.setState(self.portal.key, "failed")
                 self.finish("login")
             }
@@ -171,7 +208,13 @@ final class PortalClient: NSObject, WKNavigationDelegate, WKScriptMessageHandler
               let js = try? String(contentsOf: p, encoding: .utf8) else { return finish("fail") }
         let bridge = "window.HyinBridge=window.PortalBridge={progress:function(t){webkit.messageHandlers.portal.postMessage({m:'progress',a:String(t)})},"
             + "done:function(t){webkit.messageHandlers.portal.postMessage({m:'done',a:String(t)})},fail:function(t){webkit.messageHandlers.portal.postMessage({m:'fail',a:String(t)})}};"
-        web.evaluateJavaScript("window.__portalSilent=\(silent);window.__hyinKnown=\(knownKeys());" + bridge + "\n" + js)
+        if portal.key == "saint" && !injected {
+            // SAP 포털은 화면 내용을 다른 주소의 작은 창(iframe)에 띄우므로, 학교 주소의 작은 창에도 같은 읽기 스크립트를 넣는다
+            let sub = "if(window.top!==window&&/sogang\\.ac\\.kr$/.test(location.hostname)){window.__portalSilent=\(silent);" + portal.cfg + bridge + "\n" + js + "}"
+            web.configuration.userContentController.addUserScript(WKUserScript(source: sub, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
+        }
+        injected = true
+        web.evaluateJavaScript("window.__portalSilent=\(silent);window.__hyinKnown=\(knownKeys());" + portal.cfg + bridge + "\n" + js)
     }
 
     /// 전에 불러온 공고(본문 포함) 번호 — 이번에는 본문을 다시 읽지 않는다 (한양 포털)
@@ -189,7 +232,7 @@ final class PortalClient: NSObject, WKNavigationDelegate, WKScriptMessageHandler
     }
 
     func userContentController(_ ucc: WKUserContentController, didReceive message: WKScriptMessage) {
-        guard !finished, message.frameInfo.securityOrigin.host == portal.mainHost,
+        guard !finished, portal.schoolHost(message.frameInfo.securityOrigin.host),
               let b = message.body as? [String: Any], let m = b["m"] as? String, let a = b["a"] as? String else { return }
         switch m {
         case "progress": onProgress?(String(a.prefix(120)))

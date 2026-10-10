@@ -54,6 +54,11 @@ final class HyinClient {
         s.setAllowContentAccess(false);
         s.setSaveFormData(false);
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+        if (portal.desktop()) {
+            s.setUserAgentString(Portal.DESKTOP_UA);
+            s.setUseWideViewPort(true); s.setLoadWithOverviewMode(true);
+            s.setBuiltInZoomControls(true); s.setDisplayZoomControls(false);
+        }
         CookieManager.getInstance().setAcceptCookie(true);
         CookieManager.getInstance().setAcceptThirdPartyCookies(web, true);
         Bridge br = new Bridge();
@@ -76,16 +81,32 @@ final class HyinClient {
             }
 
             @Override
-            public void onPageFinished(WebView v, String url) {
+            public void onPageFinished(final WebView v, final String url) {
                 Uri u = Uri.parse(url);
                 host = u.getHost() == null ? "" : u.getHost();
                 CookieManager.getInstance().flush();
                 if (finished) return;
-                boolean main = portal.mainHost.equals(host);
-                boolean login = portal.isLogin(url);
+                final boolean main = portal.mainHost.equals(host);
+                String probe = portal.loginProbe();
+                if (main && probe != null) {
+                    v.evaluateJavascript(probe, new android.webkit.ValueCallback<String>() {
+                        @Override public void onReceiveValue(String r) { if (!finished) route(v, url, true, !"\"in\"".equals(r)); }
+                    });
+                } else {
+                    route(v, url, main, portal.isLogin(url));
+                }
+            }
+        });
+    }
+
+    private boolean injected;
+
+    private void route(WebView v, String url, boolean main, boolean login) {
                 if (main && !login) {
                     if (portal == Portal.KCLOUD && !url.contains("/websquare/")) return; // 넘어가는 중인 중간 화면
+                    if (portal == Portal.SAINT && !url.contains("/irj/")) return;
                     ln.onProgress("로그인 확인됨 · 장학 정보를 불러오는 중…");
+                    injected = true;
                     v.evaluateJavascript(script(), null);
                 } else if (silent && main && login && !triedLogin && "on".equals(Cred.state(ctx, portal.key))) {
                     // 저장된 아이디·비밀번호로 한 번만 로그인을 시도한다 (틀리면 계정이 잠기지 않도록 다시 시도하지 않음)
@@ -95,9 +116,7 @@ final class HyinClient {
                     ln.onProgress("자동 로그인 중…");
                     v.evaluateJavascript(portal.loginScript(c.optString("id"), c.optString("pw")), null);
                     ui.postDelayed(new Runnable() { @Override public void run() {
-                        if (!finished && host.equals(portal.mainHost) && web.getUrl() != null && portal.isLogin(web.getUrl())) {
-                            Cred.setState(ctx, portal.key, "failed"); finish(); ln.onLoginNeeded();
-                        }
+                        if (!finished && !injected) { Cred.setState(ctx, portal.key, "failed"); finish(); ln.onLoginNeeded(); }
                     } }, 25000);
                 } else if (silent && triedLogin && main && login) {
                     // 자동 로그인 뒤 로그인 화면 안에서 다음 단계(추가 인증 등)로 넘어가는 중: 위의 시간 제한이 판단한다
@@ -108,8 +127,6 @@ final class HyinClient {
                 } else {
                     ln.onProgress(portal.name + "에 로그인해 주세요. 비밀번호는 앱에 저장되지 않습니다.");
                 }
-            }
-        });
     }
 
     /** 포털 로그인 칸에 저장된 아이디·비밀번호를 넣고 로그인 버튼을 누른다. (포털 자체의 암호화·로그인 절차를 그대로 쓴다) */
@@ -138,7 +155,7 @@ final class HyinClient {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             byte[] b = new byte[8192]; int n;
             while ((n = in.read(b)) > 0) bo.write(b, 0, n);
-            return "window.__portalSilent=" + silent + ";window.__hyinKnown=" + (portal == Portal.HYIN ? knownKeys() : "[]") + ";\n" + bo.toString("UTF-8");
+            return "window.__portalSilent=" + silent + ";window.__hyinKnown=" + (portal == Portal.HYIN ? knownKeys() : "[]") + ";" + portal.cfg() + "\n" + bo.toString("UTF-8");
         } catch (Exception e) {
             return "";
         }

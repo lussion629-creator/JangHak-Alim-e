@@ -403,6 +403,10 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <p class="lead">강원대 K-Cloud 장학 신청 목록</p>
       <div id="kcloudBox"></div>
     </section>
+    <section class="panel" id="saintPanel" hidden>
+      <p class="lead">서강대 SAINT 장학금 신청 목록</p>
+      <div id="saintBox"></div>
+    </section>
     <section class="panel">
       <p class="lead">자동 갱신</p>
       <div class="form" id="remoteForm"></div>
@@ -660,7 +664,7 @@ function ownSchool(r){
   const o=String(r.org||"");
   if(r.source==="hywoman"||(/한양여자대학교/.test(o)&&r.org_type==="대학(교내)")) return "hywu";
   if(r.source==="kangwon"||r.source==="kcloud"||(r.org_type==="대학(교내)"&&/^강원대학교/.test(o))) return "kwsc";
-  if(r.source==="sogang"||(r.org_type==="대학(교내)"&&/^서강대학교/.test(o))) return "sg";
+  if(r.source==="sogang"||r.source==="saint"||(r.org_type==="대학(교내)"&&/^서강대학교/.test(o))) return "sg";
   if(r.org_type==="대학(교내)"&&/^한양대학교/.test(o)) return /ERICA/.test(o)?"erica":"hyu";
   return "";
 }
@@ -1109,8 +1113,10 @@ window.__hyinUpdated=function(){ hyinMerge().then(()=>{ cacheAll(); renderHyin()
 
 /* ---------- 학교 포털(강원대 K-Cloud 등): 휴대폰 앱이 이 기기에만 저장한 장학 신청 목록 ---------- */
 const PB=(m,...a)=>{try{const b=window.AndroidBridge; return b&&typeof b[m]==="function"?b[m](...a):undefined}catch(e){return undefined}};
-const PORTALS={kcloud:{name:"K-Cloud",school:"강원대학교 삼척캠퍼스",url:"https://kcloud.kangwon.ac.kr/",group:"kw",box:"#kcloudBox",panel:"#kcloudPanel",
-  path:"K-Cloud → 학부생서비스 → 교과 → 장학 → 장학신청"}};
+const PORTALS={kcloud:{name:"K-Cloud",school:"강원대학교 삼척캠퍼스",url:"https://kcloud.kangwon.ac.kr/",group:"kw",box:"#kcloudBox",panel:"#kcloudPanel",region:"강원",district:"삼척",
+  path:"K-Cloud → 학부생서비스 → 교과 → 장학 → 장학신청"},
+  saint:{name:"SAINT",school:"서강대학교",url:"https://saint.sogang.ac.kr/",group:"sg",box:"#saintBox",panel:"#saintPanel",region:"서울",district:"마포구",
+  path:"SAINT → 학사정보 → 장학 → 장학금 신청 화면"}};
 function portalItems(key){
   const P=PORTALS[key]; let d=null; try{const t=PB("portalData",key); d=t?JSON.parse(t):null}catch(e){}
   if(!d||!Array.isArray(d.records)) return {items:[],at:0};
@@ -1119,7 +1125,7 @@ function portalItems(key){
     const status=start&&start>TODAY?"예정":end?(end>=TODAY?"모집중":"마감"):"상시/미정";
     const extra=Object.entries(x.cols||{}).map(([k,v])=>k+": "+v).join("\n");
     const all=name+" "+extra, sup=[]; if(/근로/.test(all)) sup.push("work"); else { if(/등록금|수업료/.test(all)) sup.push("tuition"); if(/생활비|SOS|학업\s*장려/.test(all)) sup.push("living"); if(/생활관|기숙사|주거/.test(all)) sup.push("dorm") }
-    return {id:key+"-"+(x.key||name+start).replace(/[^\w가-힣-]/g,"").slice(0,60),source:key,title:name,org:P.school,org_type:"대학(교내)",kind:x.kind||"",level:"대학생",region:"강원",district:"삼척",
+    return {id:key+"-"+(x.key||name+start).replace(/[^\w가-힣-]/g,"").slice(0,60),source:key,title:name,org:P.school,org_type:"대학(교내)",kind:x.kind||"",level:"대학생",region:P.region,district:P.district,
       support:sup,status,start,end,posted:"",summary:extra,url:P.url,links:[{name:P.name,url:P.url}],school_types:[],majors:[],grades:[],files:[],images:[],for:[P.group],selection:"신청: "+P.path};
   });
   return {items:out,at:d.savedAt||0};

@@ -1,13 +1,17 @@
-// 강원대 K-Cloud(kcloud.kangwon.ac.kr) 장학 신청 목록 읽기 — 휴대폰 앱이 로그인된 K-Cloud 화면에 넣어 실행한다.
+// 학교 포털(강원대 K-Cloud, 서강대 SAINT) 장학 신청 목록 읽기 — 휴대폰 앱이 로그인된 포털 화면에 넣어 실행한다.
+// 앱이 window.__portalCfg = {menus: [[메뉴 이름…], …], host: "학교 주소 끝", hint: "안내 문구"} 를 먼저 넣는다.
 // 학생이 로그인한 화면에 보이는 '장학 신청' 목록 표에서 장학명·구분·신청 기간 같은 공개 항목만 읽는다.
 // 신청 여부·결과·지급액·개인 정보 칸은 읽지 않는다. 결과는 PortalBridge.done(JSON)으로 앱에만 넘긴다.
 (function () {
   "use strict";
   var B = window.PortalBridge;
-  if (!B || window.__kcloudRunning) return;
-  window.__kcloudRunning = true;
+  if (!B || window.__portalReaderRunning) return;
+  window.__portalReaderRunning = true;
   var SILENT = !!window.__portalSilent;
-  var MENU = ["학부생서비스", "교과", "장학", "장학신청"];
+  var SUB = window.top !== window; // 앱이 화면 속 작은 창(iframe)에도 넣은 경우: 표만 찾고, 메뉴 누르기·실패 알림은 바깥 창이 한다
+  var CFG = window.__portalCfg || {};
+  var MENUS = CFG.menus || [];
+  var HOST = new RegExp((CFG.host || "kangwon.ac.kr").replace(/\./g, "\\.") + "$");
   var HEAD_NO = /상태|결과|신청일|지급|금액|학번|성명|이름|계좌|은행|연락|전화|주소|생년|소득|점수|순위|승인|선발\s*여부|신청\s*여부|수혜|환수|선택|체크/;
   var HEAD_OK = /장학|구분|유형|기간|시작|종료|마감|대상|학년|학기|년도|비고|접수|안내/;
   var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
@@ -19,7 +23,7 @@
     (function walk(d) {
       var fs = d.querySelectorAll("iframe,frame");
       for (var i = 0; i < fs.length; i++) {
-        try { var cd = fs[i].contentDocument; if (cd && cd.location && /kangwon\.ac\.kr$/.test(cd.location.hostname)) { out.push(cd); walk(cd); } } catch (e) { }
+        try { var cd = fs[i].contentDocument; if (cd && cd.location && HOST.test(cd.location.hostname)) { out.push(cd); walk(cd); } } catch (e) { }
       }
     })(document);
     return out;
@@ -27,11 +31,14 @@
 
   function clickText(t) {
     var ds = docs();
-    for (var k = 0; k < ds.length; k++) {
-      var els = ds[k].querySelectorAll("a,span,li,div,button,p,td");
-      for (var i = 0; i < els.length; i++) {
-        var e = els[i];
-        if (e.children.length <= 2 && txt(e) === t && shown(e)) { e.click(); return true; }
+    for (var pass = 0; pass < 2; pass++) {
+      for (var k = 0; k < ds.length; k++) {
+        var els = ds[k].querySelectorAll("a,span,li,div,button,p,td");
+        for (var i = 0; i < els.length; i++) {
+          var e = els[i], x = txt(e);
+          // 1차: 글자가 똑같은 메뉴, 2차: 띄어쓰기만 다른 메뉴
+          if (e.children.length <= 2 && shown(e) && (pass === 0 ? x === t : x.replace(/\s/g, "") === t.replace(/\s/g, ""))) { e.click(); return true; }
+        }
       }
     }
     return false;
@@ -51,9 +58,14 @@
         var c = cs[i];
         if (c.tagName === "TABLE" && c.closest && c.closest("[class*='w2grid']")) continue; // 그리드 안의 표는 그리드 단위로 본다
         var ths = Array.prototype.filter.call(c.querySelectorAll("th"), shown).map(txt);
-        if (!ths.length) continue;
         var rows = Array.prototype.filter.call(c.querySelectorAll("tr"), function (tr) { return shown(tr) && tr.querySelectorAll("td").length >= 2 && !tr.querySelector("th"); })
           .map(function (tr) { return Array.prototype.map.call(tr.querySelectorAll("td"), txt); });
+        if (!ths.length && rows.length > 1) {
+          // 머리글을 th 없이 첫 줄 칸으로 그리는 표 (SAP 화면 등)
+          var f = rows[0].join(" ");
+          if (/장학/.test(f) && /기간|시작|종료|마감|접수/.test(f) && !/20\d\d/.test(f)) { ths = rows[0]; rows = rows.slice(1); }
+        }
+        if (!ths.length) continue;
         // 머리글이 여러 줄이면 줄 칸 수와 같은 마지막 묶음을 쓴다
         if (rows.length) { var n = rows[0].length; if (ths.length > n) ths = ths.slice(ths.length - n); }
         out.push({ heads: ths, rows: rows });
@@ -96,18 +108,22 @@
   }
 
   async function run() {
+    if (SUB) {
+      for (var q = 0; q < 300; q++) { var rr = scrape(); if (rr) { B.done(JSON.stringify({ records: rr })); return; } await sleep(2000); }
+      return;
+    }
     B.progress("로그인 확인됨 · 장학 신청 화면을 찾는 중…");
     // 메뉴를 차례로 눌러 '장학신청' 화면으로 간다 (못 찾으면 학생이 직접 열 때까지 기다린다)
-    for (var w = 0; w < 3 && !scrape(); w++) {
-      for (var i = 0; i < MENU.length; i++) { if (clickText(MENU[i])) await sleep(1500); }
-      await sleep(1500);
-      if (scrape()) break;
+    for (var w = 0; w < MENUS.length && !scrape(); w++) {
+      var path = MENUS[w];
+      for (var i = 0; i < path.length; i++) { if (clickText(path[i])) await sleep(2000); }
+      await sleep(2000);
     }
     var limit = SILENT ? 15 : 300; // 앱 화면에서는 학생이 직접 메뉴를 열 수 있도록 10분까지 기다린다
     for (var t = 0; t < limit; t++) {
       var recs = scrape();
       if (recs) { B.done(JSON.stringify({ records: recs })); return; }
-      if (t === 3 && !SILENT) B.progress("장학 신청 화면을 열어 주세요: 학부생서비스 → 교과 → 장학 → 장학신청");
+      if (t === 3 && !SILENT) B.progress(CFG.hint || "장학 신청 화면을 열어 주세요.");
       await sleep(2000);
     }
     B.fail("NOTFOUND");
