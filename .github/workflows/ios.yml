@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: 웹앱 묶기
         run: |
           pip3 install --break-system-packages -q -r requirements.txt || pip3 install -q -r requirements.txt
