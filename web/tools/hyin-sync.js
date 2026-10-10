@@ -35,7 +35,7 @@
       if (!all[k]) all[k] = { campus: r.campusNm, name: r.janghakNm, start: r.startDt, end: r.endDt, jaewon: r.jaewonGb, year: r.year, term: r.term, cd: r.janghakCd, seq: r.seq };
     }
   }
-  const strip = (h) => { const el = document.createElement("div"); el.innerHTML = (h || "").replace(/<br\s*\/?>/gi, "\n").replace(/<\/p>/gi, "\n"); return { text: el.innerText.replace(/\n{3,}/g, "\n\n").trim(), imgs: [...el.querySelectorAll("img")].map((i) => i.src) }; };
+  const strip = (h) => { const el = new DOMParser().parseFromString((h || "").replace(/<br\s*\/?>/gi, "\n").replace(/<\/p>/gi, "\n"), "text/html").body; return { text: (el.innerText || el.textContent || "").replace(/\n{3,}/g, "\n\n").trim(), imgs: [...el.querySelectorAll("img")].map((i) => i.src) }; };
   for (const x of Object.values(all)) {
     try {
       const r = det(x); if (!r) continue; const s = strip(r.janghakContents);

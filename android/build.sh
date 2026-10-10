@@ -10,7 +10,7 @@ VERSION=${VERSION:-1.0.0}
 OUT=build; rm -rf $OUT; mkdir -p $OUT/res $OUT/classes $OUT/assets/www
 # 1) 웹앱을 assets/www 로 (문서 머리말 포함)
 python3 ../scripts/build_site.py >/dev/null
-cp -r ../site/. $OUT/assets/www/ && rm -f $OUT/assets/www/data/*.gz
+cp -r ../site/. $OUT/assets/www/ && rm -f $OUT/assets/www/data/*.gz && cp -r ../web/tools $OUT/assets/www/tools
 # 2) 리소스 컴파일·링크
 $AAPT2 compile --dir res -o $OUT/res.zip
 $AAPT2 link -o $OUT/base.apk -I $ANDROID_JAR --manifest AndroidManifest.xml -A $OUT/assets $OUT/res.zip \
@@ -24,7 +24,7 @@ python3 zipalign.py $OUT/base.apk $OUT/classes.dex $OUT/aligned.apk
 # 서명 키와 비밀번호는 저장소에 넣지 않는다: KEYSTORE / KEYSTORE_PASS 환경 변수로만 받는다
 KEYSTORE=${KEYSTORE:-release.jks}
 : "${KEYSTORE_PASS:?KEYSTORE_PASS 환경 변수를 설정하세요 (서명 키 비밀번호)}"
-[ -f "$KEYSTORE" ] || keytool -genkeypair -keystore "$KEYSTORE" -storepass "$KEYSTORE_PASS" -keypass "$KEYSTORE_PASS" -alias jangak \
+[ -f "$KEYSTORE" ] || keytool -genkeypair -keystore "$KEYSTORE" -storepass:env KEYSTORE_PASS -keypass:env KEYSTORE_PASS -alias jangak \
   -keyalg RSA -keysize 3072 -validity 10000 -dname "CN=Jangak Alimi, O=IVF, C=KR"
 java -jar $TOOLS/apksigner.jar sign --ks "$KEYSTORE" --ks-pass env:KEYSTORE_PASS --key-pass env:KEYSTORE_PASS \
   --min-sdk-version 24 --out ../jangak-alimi-$VERSION.apk $OUT/aligned.apk

@@ -2,7 +2,8 @@
 
 1) 비밀 값: API 키·토큰·개인키 패턴, 비밀 파일(.env, *.jks, 서비스 계정 JSON)이 git 추적 대상인지
 2) 개인정보: 주민등록번호 패턴, PII_DENYLIST(이름·학번 등, GitHub Secret) 문자열, HY-in 학생 제출 파일명 흔적
-3) 데이터 안전: javascript:/data: 등 http(s) 가 아닌 링크
+3) 데이터 안전: javascript:/data: 등 http(s) 가 아닌 링크, 화면에 그대로 넣는 번호·날짜 값의 모양
+4) 출처 숨김: 공개 자료(web/data)에 수집처 이름·주소가 남아 있지 않은지
 """
 import json
 import os
@@ -66,8 +67,17 @@ def main() -> int:
             for k in ("url", "apply_url"):
                 if r.get(k) and not re.match(r"^https?://", r[k]):
                     problems.append(f"안전하지 않은 링크({k}): {r['title'][:30]}")
-            if r.get("source") == "hyin" and len(r.get("files") or []) > 1:
-                problems.append(f"HY-in 학생 제출 파일명이 섞였을 수 있음: {r['title'][:30]}")
+            if r.get("source") == "p" and len(r.get("files") or []) > 1:
+                problems.append(f"포털 학생 제출 파일명이 섞였을 수 있음: {r['title'][:30]}")
+            if not re.match(r"^[\w가-힣|.-]{1,120}$", str(r.get("id", ""))):
+                problems.append(f"이상한 번호(id): {r.get('title', '')[:30]}")
+            for k in ("start", "end", "posted", "next"):
+                if r.get(k) and not re.match(r"^\d{4}-\d{2}(-\d{2})?$", str(r[k])):
+                    problems.append(f"이상한 날짜({k}): {r.get('title', '')[:30]}")
+        raw = data.read_text()
+        for w in ("dreamspon", "드림스폰", "ipsitalk", "입시톡", "HY-in", "kosaf_", '"hyin"', "대학 게시판", "portal.hanyang.ac.kr/port"):
+            if w in raw:
+                problems.append(f"공개 자료에 출처가 드러남: {w}")
     if problems:
         print("보안 점검 실패:")
         for p in sorted(set(problems)):

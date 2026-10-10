@@ -37,8 +37,10 @@
     return (JCFUtils.getDataList(Controller.submit()) || [])[0];
   }
   function strip(h) {
-    var el = document.createElement("div");
-    el.innerHTML = String(h || "").replace(/<br\s*\/?>/gi, "\n").replace(/<\/(p|div|li|tr)>/gi, "\n").replace(/<(script|style|iframe)[\s\S]*?<\/\1>/gi, "");
+    // 실행되지 않는 별도 문서로 읽는다 (공지 본문 속 스크립트·이벤트가 포털 화면에서 돌지 않게)
+    var doc = new DOMParser().parseFromString(String(h || "").replace(/<br\s*\/?>/gi, "\n").replace(/<\/(p|div|li|tr)>/gi, "\n"), "text/html");
+    var el = doc.body || doc.createElement("div");
+    Array.prototype.forEach.call(el.querySelectorAll("script,style,iframe,object,embed"), function (x) { x.remove(); });
     var imgs = Array.prototype.map.call(el.querySelectorAll("img"), function (i) { return i.getAttribute("src") || ""; }).filter(function (u) { return /^https:\/\//.test(u); });
     return { text: (el.textContent || "").replace(/[ \t ]+/g, " ").replace(/\n\s*\n\s*\n+/g, "\n\n").trim(), imgs: imgs.slice(0, 4) };
   }

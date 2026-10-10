@@ -62,7 +62,7 @@ public class PortalActivity extends Activity implements HyinClient.Listener {
 
     @Override
     protected void onDestroy() {
-        if (web != null) { web.removeJavascriptInterface("HyinBridge"); web.removeJavascriptInterface("PortalBridge"); web.destroy(); }
+        if (web != null) { web.removeJavascriptInterface(HyinClient.NATIVE); web.destroy(); }
         super.onDestroy();
     }
 }

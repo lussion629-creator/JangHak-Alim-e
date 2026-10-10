@@ -12,8 +12,9 @@
   var CFG = window.__portalCfg || {};
   var MENUS = CFG.menus || [];
   var HOST = new RegExp((CFG.host || "kangwon.ac.kr").replace(/\./g, "\\.") + "$");
-  var HEAD_NO = /상태|결과|신청일|지급|금액|학번|성명|이름|계좌|은행|연락|전화|주소|생년|소득|점수|순위|승인|선발\s*여부|신청\s*여부|수혜|환수|선택|체크/;
-  var HEAD_OK = /장학|구분|유형|기간|시작|종료|마감|대상|학년|학기|년도|비고|접수|안내/;
+  // 본인 기록일 수 있는 칸(신청 상태·결과·성적·학과·연락처 등)은 읽지 않는다
+  var HEAD_NO = /상태|결과|신청일|지급|금액|학번|성명|이름|계좌|은행|연락|전화|주소|생년|소득|점수|순위|승인|선발\s*여부|신청\s*여부|수혜|환수|선택|체크|성적|평점|학점|학과|전공|소속|비고|메모|사유|첨부/;
+  var HEAD_OK = /장학|구분|유형|기간|시작|종료|마감|대상|년도|접수|안내/;
   var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
   var txt = function (e) { return ((e && (e.innerText || e.textContent)) || "").replace(/\s+/g, " ").trim(); };
   var shown = function (e) { return !!(e && (e.offsetParent !== null || (e.getClientRects && e.getClientRects().length))); };

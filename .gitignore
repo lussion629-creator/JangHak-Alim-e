@@ -29,3 +29,4 @@ ios/build/
 ios/*.xcodeproj/
 ios/Payload/
 *.ipa
+data/seed/hyin_calendar_full.json

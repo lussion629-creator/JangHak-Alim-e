@@ -1,11 +1,9 @@
 # 아이폰 앱(IPA) 빌드: macOS 에서 XcodeGen 으로 프로젝트를 만들고 서명 없이 빌드한다.
 # 결과 IPA 는 ios-build 브랜치에 올린다 (사이드로딩 도구로 본인 Apple ID 서명 후 설치).
 name: build-ios
+# 아이폰은 웹앱(홈 화면에 추가)으로 쓴다. 이 빌드는 필요할 때 손으로만 돌린다.
 on:
   workflow_dispatch: {}
-  push:
-    branches: [main]
-    paths: ["ios/**", "web/index.html", "web/tools/**", ".github/workflows/ios.yml"]
 permissions:
   contents: write
 concurrency: { group: ios, cancel-in-progress: true }
@@ -19,7 +17,7 @@ jobs:
         run: |
           pip3 install --break-system-packages -q -r requirements.txt || pip3 install -q -r requirements.txt
           python3 scripts/build_site.py
-          rm -rf ios/www && cp -R site ios/www && rm -f ios/www/data/*.gz ios/www/.nojekyll
+          rm -rf ios/www && cp -R site ios/www && rm -f ios/www/data/*.gz ios/www/.nojekyll && cp -R web/tools ios/www/tools
       - name: Xcode 프로젝트 만들기
         run: |
           brew install xcodegen

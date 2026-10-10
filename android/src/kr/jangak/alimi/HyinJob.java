@@ -49,7 +49,7 @@ public class HyinJob extends JobService {
             return false;
         }
         final Runnable end = new Runnable() { @Override public void run() {
-            if (web != null) { try { web.removeJavascriptInterface("HyinBridge"); web.removeJavascriptInterface("PortalBridge"); web.destroy(); } catch (Exception ignored) { } web = null; }
+            if (web != null) { try { web.removeJavascriptInterface(HyinClient.NATIVE); web.destroy(); } catch (Exception ignored) { } web = null; }
             jobFinished(params, false);
             // 다른 포털도 다시 읽을 때가 됐으면 곧 이어서 한다
             for (Portal p : Portal.ALL) if (p != pt && (p.file(HyinJob.this).exists() || "on".equals(Cred.state(HyinJob.this, p.key)))

@@ -61,9 +61,13 @@ final class HyinClient {
         }
         CookieManager.getInstance().setAcceptCookie(true);
         CookieManager.getInstance().setAcceptThirdPartyCookies(web, true);
-        Bridge br = new Bridge();
-        web.addJavascriptInterface(br, "HyinBridge");
-        web.addJavascriptInterface(br, "PortalBridge");
+        // 다리 객체는 화면 속 모든 작은 창(iframe)에서 보이므로, 앱이 넣은 스크립트만 아는 일회용 열쇠가 있어야 받는다
+        byte[] rnd = new byte[16];
+        new java.security.SecureRandom().nextBytes(rnd);
+        StringBuilder tk = new StringBuilder();
+        for (byte b : rnd) tk.append(String.format("%02x", b));
+        token = tk.toString();
+        web.addJavascriptInterface(new Bridge(), NATIVE);
         web.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView v, WebResourceRequest req) {
@@ -100,6 +104,8 @@ final class HyinClient {
     }
 
     private boolean injected;
+    static final String NATIVE = "JangakPortalNative";
+    private String token;
 
     private void route(WebView v, String url, boolean main, boolean login) {
                 if (main && !login) {
@@ -155,7 +161,9 @@ final class HyinClient {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             byte[] b = new byte[8192]; int n;
             while ((n = in.read(b)) > 0) bo.write(b, 0, n);
-            return "window.__portalSilent=" + silent + ";window.__hyinKnown=" + (portal == Portal.HYIN ? knownKeys() : "[]") + ";" + portal.cfg() + "\n" + bo.toString("UTF-8");
+            String wrap = "(function(N,k){var w={progress:function(t){N.progress(k,String(t))},done:function(t){N.done(k,String(t))},fail:function(t){N.fail(k,String(t))}};"
+                    + "window.HyinBridge=w;window.PortalBridge=w;})(window." + NATIVE + ",'" + token + "');";
+            return wrap + "window.__portalSilent=" + silent + ";window.__hyinKnown=" + (portal == Portal.HYIN ? knownKeys() : "[]") + ";" + portal.cfg() + "\n" + bo.toString("UTF-8");
         } catch (Exception e) {
             return "";
         }
@@ -189,17 +197,17 @@ final class HyinClient {
     static File file(Context c) { return new File(c.getFilesDir(), "hyin_calendar.json"); }
 
     class Bridge {
-        private boolean ok() { return portal.mainHost.equals(host) && !finished; }
+        private boolean ok(String k) { return token != null && token.equals(k) && portal.mainHost.equals(host) && !finished; }
 
         @JavascriptInterface
-        public void progress(final String t) {
-            if (!ok()) return;
+        public void progress(String k, final String t) {
+            if (!ok(k)) return;
             ui.post(new Runnable() { @Override public void run() { ln.onProgress(t == null ? "" : t.substring(0, Math.min(120, t.length()))); } });
         }
 
         @JavascriptInterface
-        public void done(String json) {
-            if (!ok() || json == null || json.length() > 6_000_000) return;
+        public void done(String k, String json) {
+            if (!ok(k) || json == null || json.length() > 6_000_000) return;
             int count = 0;
             try {
                 org.json.JSONObject o = new org.json.JSONObject(json);
@@ -225,8 +233,8 @@ final class HyinClient {
         }
 
         @JavascriptInterface
-        public void fail(final String t) {
-            if (!ok()) return;
+        public void fail(String k, final String t) {
+            if (!ok(k)) return;
             if ("LOGIN".equals(t)) {
                 if (silent) { finish(); ui.post(new Runnable() { @Override public void run() { ln.onLoginNeeded(); } }); }
                 else ui.post(new Runnable() { @Override public void run() { ln.onProgress(portal.name + "에 로그인해 주세요. 로그인하면 자동으로 불러옵니다."); } });

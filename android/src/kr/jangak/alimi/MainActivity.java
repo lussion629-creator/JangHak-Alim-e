@@ -175,7 +175,7 @@ public class MainActivity extends Activity {
 
     private void dropHidden() {
         final WebView h = hidden; hidden = null;
-        if (h != null) web.post(new Runnable() { @Override public void run() { try { ((android.view.ViewGroup) h.getParent()).removeView(h); h.removeJavascriptInterface("HyinBridge"); h.removeJavascriptInterface("PortalBridge"); h.destroy(); } catch (Exception ignored) { } } });
+        if (h != null) web.post(new Runnable() { @Override public void run() { try { ((android.view.ViewGroup) h.getParent()).removeView(h); h.removeJavascriptInterface(HyinClient.NATIVE); h.destroy(); } catch (Exception ignored) { } } });
     }
 
     @Override

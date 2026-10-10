@@ -22,7 +22,8 @@ from .model import summarize_body, expected_next, now_iso, status_of, support_of
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
 WEB_DATA = ROOT / "web" / "data"
-COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("kangwon", kangwon), ("sogang", sogang), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
+# 로그인해야 보이는 학교 포털 내용(한양 포털 장학캘린더)은 공개 서버에 모으지 않는다. 휴대폰 앱이 학생 기기 안에서만 읽는다.
+COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hanyang", hanyang), ("hywoman", hywoman), ("kangwon", kangwon), ("sogang", sogang), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
 log = logging.getLogger("refresh")
 
 
@@ -78,6 +79,7 @@ def run(online: bool = True) -> dict:
         report.extend(rep)
     recs = dedupe(allrecs)
     con = connect()
+    con.execute("delete from scholarships where source = 'hyin'")  # 예전에 모아 둔 포털 내용은 지운다
     now = now_iso()
     existing = {row[0]: (row[1], row[2]) for row in con.execute("select id, hash, first_seen from scholarships")}
     new = changed = 0
@@ -203,6 +205,7 @@ def export(con: sqlite3.Connection, summary: dict):
         r["support"] = support_of(r)
         r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
     rows.sort(key=lambda r: ({"모집중": 0, "예정": 1, "상시/미정": 2, "마감": 3}[r["status"]], r.get("end") or "9999"))
+    rows = [public(r) for r in rows]
     payload = json.dumps({"generatedAt": summary["finishedAt"], "count": len(rows), "items": rows}, ensure_ascii=False, separators=(",", ":"))
     (WEB_DATA / "scholarships.json").write_text(payload)
     (WEB_DATA / "scholarships.json.gz").write_bytes(gzip.compress(payload.encode()))
@@ -214,6 +217,31 @@ def export(con: sqlite3.Connection, summary: dict):
     meta["changes"] = changes
     (ROOT / "data" / "registry" / "last_run.json").write_text(json.dumps({**summary, "registry": _registry_summary()}, ensure_ascii=False, indent=1))
     (WEB_DATA / "meta.json").write_text(json.dumps(meta, ensure_ascii=False))
+
+
+# 공개 자료에는 어디서 모았는지 드러나지 않게 한다: 출처 이름은 짧은 기호로, 수집처 주소·이름은 빼거나 바꾼다
+SRC_CODE = {"kosaf_univ": "k", "kosaf_high": "kh", "kosaf_abroad": "ka", "kosaf_creditbank": "kc", "kosaf_hist": "kp",
+            "hyin": "p", "hanyang": "u1", "hywoman": "u2", "kangwon": "u3", "sogang": "u4",
+            "board": "b", "legacy": "l", "dreamspon": "w", "gov24": "g"}
+HIDE_HOST = re.compile(r"^https?://([a-z0-9-]+\.)*(dreamspon\.com|ipsitalk\.net)(/|$)|^https?://portal\.hanyang\.ac\.kr(/|$)", re.I)
+HIDE_WORDS = [(re.compile(r"HY-?in|하이인", re.I), "포털"), (re.compile(r"장학\s*캘린더"), "장학 일정"), (re.compile(r"드림스폰|dreamspon", re.I), "")]
+
+
+def public(r: dict) -> dict:
+    r = dict(r)
+    r["source"] = SRC_CODE.get(r.get("source"), "x")
+    for k in ("url", "apply_url"):
+        if r.get(k) and HIDE_HOST.search(r[k]):
+            r[k] = ""
+    r["links"] = [l for l in (r.get("links") or []) if l.get("url") and not HIDE_HOST.search(l["url"])]
+    if r.get("org_type") == "대학 게시판":
+        r["org_type"] = "민간·기업·대학"
+    for k, v in list(r.items()):
+        if isinstance(v, str) and v and k not in ("id", "url", "apply_url"):
+            for rx, rep in HIDE_WORDS:
+                v = rx.sub(rep, v)
+            r[k] = v
+    return r
 
 
 def _registry_summary():
