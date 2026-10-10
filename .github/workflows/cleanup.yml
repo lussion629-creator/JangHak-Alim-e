@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
+          git init -q .
           for b in probe-out ios-build; do
-            git push "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" --delete "$b" || true
+            git push "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" --delete "$b"
           done
