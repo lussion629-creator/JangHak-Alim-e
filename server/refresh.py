@@ -22,8 +22,8 @@ from .model import summarize_body, expected_next, now_iso, status_of, support_of
 ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
 WEB_DATA = ROOT / "web" / "data"
-# 로그인해야 보이는 학교 포털 내용(한양 포털 장학캘린더)은 공개 서버에 모으지 않는다. 휴대폰 앱이 학생 기기 안에서만 읽는다.
-COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hanyang", hanyang), ("hywoman", hywoman), ("kangwon", kangwon), ("sogang", sogang), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
+# 한양 포털 장학 일정도 넣는다 (공개 자료에는 출처 이름·포털 주소를 빼고 내보낸다: public())
+COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("kangwon", kangwon), ("sogang", sogang), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
 log = logging.getLogger("refresh")
 
 
@@ -79,7 +79,6 @@ def run(online: bool = True) -> dict:
         report.extend(rep)
     recs = dedupe(allrecs)
     con = connect()
-    con.execute("delete from scholarships where source = 'hyin'")  # 예전에 모아 둔 포털 내용은 지운다
     now = now_iso()
     existing = {row[0]: (row[1], row[2]) for row in con.execute("select id, hash, first_seen from scholarships")}
     new = changed = 0
