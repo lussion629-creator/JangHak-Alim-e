@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-10T03:19:03+00:00",
- "finishedAt": "2026-10-10T03:35:12+00:00",
+ "startedAt": "2026-10-10T03:45:06+00:00",
+ "finishedAt": "2026-10-10T03:58:02+00:00",
  "online": true,
- "total": 4277,
- "new": 4,
- "changed": 167,
+ "total": 4542,
+ "new": 245,
+ "changed": 191,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -42,6 +42,14 @@
    "mode": "seed"
   },
   {
+   "source": "hyin",
+   "label": "한양대 HY-in 장학캘린더",
+   "ok": true,
+   "count": 241,
+   "mode": "hyin_calendar_full.json",
+   "collectedAt": "2026-10-08T16:24:43.912Z"
+  },
+  {
    "source": "hanyang",
    "label": "한양대 공개 공지(장학/등록·근로 모집)",
    "ok": true,
@@ -74,8 +82,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 148곳",
    "ok": true,
-   "count": 614,
-   "mode": "성공 117 / 실패 31"
+   "count": 656,
+   "mode": "성공 123 / 실패 25"
   },
   {
    "source": "gov24",
@@ -551,7 +559,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 12
    },
    {
     "name": "서울여자대학교",
@@ -720,8 +728,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -730,7 +738,7 @@
     "url": "https://www.hoseo.ac.kr/Home/BBSList.mbz?action=MAPP_1708240139&schCategorycode=CTG_17082400011",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -810,7 +818,7 @@
     "url": "https://www.gwangju.ac.kr/bbs/?b_id=gwangju_notice_se&site=gwangju&mn=538",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -1090,8 +1098,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 9
    },
    {
     "name": "성결대학교",
@@ -1210,8 +1218,8 @@
     "url": "https://www.cku.ac.kr/cku_kr/5787/subview.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 2
    },
    {
     "name": "상지대학교",
@@ -1240,8 +1248,8 @@
     "url": "https://janghak.kiu.ac.kr/scholarship/sub/04.htm",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 7
    },
    {
     "name": "서울신학대학교",
