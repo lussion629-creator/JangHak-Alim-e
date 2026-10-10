@@ -51,7 +51,7 @@ jobs:
           exit 1
       - name: 페이지 만들기
         run: python scripts/build_site.py
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with: { path: site }
   deploy:
     needs: refresh
