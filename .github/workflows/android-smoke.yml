@@ -1,0 +1,47 @@
+# 안드로이드 앱이 실제로 켜지는지 에뮬레이터로 확인 (손으로만 실행). 테스트용 임시 키로 서명하고 APK 는 어디에도 올리지 않는다.
+name: android-smoke
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q -r requirements.txt
+      - name: 빌드 도구 준비
+        run: |
+          BT=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1); PL=$(ls -d $ANDROID_HOME/platforms/android-* | sort -V | tail -1)
+          echo "build-tools $BT platform $PL"
+          mkdir -p android/tools && cp $BT/aapt2 android/tools/ && cp $BT/lib/d8.jar $BT/lib/apksigner.jar android/tools/ && cp $PL/android.jar android/tools/
+      - name: APK 빌드 (테스트 키)
+        run: cd android && KEYSTORE=$RUNNER_TEMP/test.jks KEYSTORE_PASS=smoketest123 VERSION=smoke bash build.sh
+      - name: KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
+      - name: 에뮬레이터에서 실행
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          script: |
+            adb install -r jangak-alimi-smoke.apk
+            adb logcat -c
+            adb shell am start -W -n kr.jangak.alimi/.MainActivity
+            sleep 30
+            adb logcat -d > logcat.txt
+            adb exec-out screencap -p > shot.png
+            adb shell dumpsys activity top | head -40 > top.txt
+            adb shell pidof kr.jangak.alimi > pid.txt || echo none > pid.txt
+      - if: always()
+        run: |
+          mkdir -p out && cd out && git init -q && git checkout -q -b smoke-out
+          cp ../logcat.txt ../shot.png ../top.txt ../pid.txt . 2>/dev/null || true
+          grep -E "AndroidRuntime|FATAL|jangak|chromium|Console" ../logcat.txt | head -300 > filtered.txt 2>/dev/null || true
+          git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -q -m smoke || true
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" smoke-out
