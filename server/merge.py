@@ -69,6 +69,7 @@ def _prog_tokens(r: dict) -> set:
     same = _hangul(org) == _hangul(r.get("title", ""))
     out = set()
     t = re.sub(r"^\s*(\([^)]*\)\s*)+", " ", re.sub(r"\[[^\]]*\]", " ", r.get("title", "")))
+    t = re.sub(r"\([^)]*(\d|마감|까지|만원)[^)]*\)?", " ", t)  # '(10/11 마감, 생활비 500만원)' 같은 일정·금액 설명은 프로그램 이름이 아니다
     for w in re.findall(r"[가-힣A-Za-z]{2,}", t):
         if re.search(SUFFIX, w) or w in ("재단법인", "사단법인", "사회복지법인"):
             continue
@@ -89,6 +90,19 @@ def _prog_overlap(a: set, b: set) -> bool:
             gx, gy = {x[k:k + 2] for k in range(len(x) - 1)}, {y[k:k + 2] for k in range(len(y) - 1)}
             if gx and gy and len(gx & gy) / len(gx | gy) >= 0.5:
                 return True
+    return False
+
+
+def _root_chain(parent: list, i: int, target: int) -> bool:
+    """i 에서 부모를 따라 올라가다 target(지난 회차 묶음의 옛 뿌리)을 지나면 True."""
+    seen = 0
+    while seen < 64:
+        if i == target:
+            return True
+        if parent[i] == i:
+            return False
+        i = parent[i]
+        seen += 1
     return False
 
 
@@ -139,6 +153,13 @@ def merge(rows: list[dict]) -> list[dict]:
         d = _key_date(r)
         meta[i] = {"fam": {FAMILY.get(r["source"])} - {None}, "orgs": {anchor} - {""}, "lo": d, "hi": d, "prog": _prog_tokens(r)}
 
+    # 한국장학재단 DB에 이름 없는 기본 장학과 이름 있는 다른 장학이 함께 있는 기관 (예: 고속도로 '장학금' / '원거리 진학 주거장학금')
+    multi = {}
+    for i, r in enumerate(rows):
+        if FAMILY.get(r["source"]) == "kosaf" and info[i][0] and not info[i][2]:
+            multi.setdefault(info[i][0], set()).add(bool(_prog_tokens(r)))
+    multi = {k for k, v in multi.items() if v == {True, False}}
+
     def compatible(a, b):
         if a["fam"] & b["fam"]:
             return False
@@ -147,6 +168,8 @@ def merge(rows: list[dict]) -> list[dict]:
         pb = {w for w in b["prog"] if not any(w in o or o in w for o in anchors)}
         if pa and pb and not _prog_overlap(pa, pb):
             return False  # 같은 기관의 다른 프로그램
+        if bool(pa) != bool(pb) and anchors & multi:
+            return False  # 이름 없는 공고는 그 기관의 기본 장학과만 합친다
         for x in a["orgs"]:
             for y in b["orgs"]:
                 if not (x in y or y in x):
@@ -257,6 +280,111 @@ def merge(rows: list[dict]) -> list[dict]:
                     if find(i) != find(j) and not (GENERIC_T.search(rows[i].get("title", "")) or GENERIC_T.search(rows[j].get("title", ""))) and can(i, j):
                         union(i, j)
 
+    # 7) 지난 회차: 같은 기관·같은 장학의 1~2년 전 회차(한국장학재단 DB, 지난 포털 일정 등)는 최신 회차에 붙인다.
+    #    그래야 '장학재단 정보'와 '올해 학교 공지'가 두 번 나오지 않는다. 지난 회차의 날짜는 쓰지 않고 설명만 빈칸에 채운다.
+    kosaf_orgs = sorted({info[i][0] for i, r in enumerate(rows) if FAMILY.get(r["source"]) == "kosaf" and len(info[i][0]) >= 2 and not info[i][2]}, key=len, reverse=True)
+    def row_key(i):
+        r = rows[i]
+        oc, generic = info[i][0], info[i][2]
+        if oc and not generic and _hangul(r.get("org", "")) != _hangul(r.get("title", "")):
+            return oc
+        own = org_core(r.get("title", ""))
+        if len(own) >= 2 and own in by_org:
+            return own  # 'OO재단' 처럼 제목이 곧 기관 이름인 경우
+        hay = _hangul(r.get("title", "") + (r.get("org") or ""))
+        return next((o for o in kosaf_orgs if len(o) >= 3 and o in hay), "")  # 두 글자 이름은 다른 말 속에 우연히 들어 있을 수 있다
+    today_d = date.today()
+    G2: dict[int, dict] = {}
+    for i, r in enumerate(rows):
+        g = G2.setdefault(find(i), {"keys": set(), "hi": None, "cur": False, "lvl": set(), "prog": set(), "progs": [], "rprog": set(), "ends": set(), "fam": set(), "kt": set(), "gen": False, "tcs": set()})
+        k = row_key(i)
+        if k:
+            g["keys"].add(k)
+        d = _key_date(r)
+        if d and (g["hi"] is None or d > g["hi"]):
+            g["hi"] = d
+        e, st, ps = _d(r.get("end")), _d(r.get("start")), _d(r.get("posted"))
+        if (e and e >= today_d) or (st and st >= today_d) or (not e and not st and ps and (today_d - ps).days <= 45):
+            g["cur"] = True
+        if e:
+            g["ends"].add(e)
+        if FAMILY.get(r["source"]):
+            g["fam"].add(FAMILY[r["source"]])
+        if FAMILY.get(r["source"]) == "kosaf":
+            g["kt"].add(re.sub(r"\d", "", _hangul(r.get("title", ""))))  # 한국장학재단 DB 상품 이름은 해마다 같다
+        if info[i][1]:
+            g["tcs"].add(info[i][1])
+        if GENERIC_T.search(r.get("title", "")) or re.search(r"이자\s*지원|학자금", r.get("title", "")):
+            g["gen"] = True  # 지역마다 따로 있는 학자금·이자 지원은 이름만으로 같은 장학이라 볼 수 없다
+        if r["source"] not in ("board", "legacy"):
+            g["rprog"] |= _prog_tokens(r)  # 게시판 글은 운영기관을 본문에서 잘못 읽은 경우가 있어 프로그램 판단에서 뺀다
+        if r.get("level"):
+            g["lvl"].add(r["level"])
+        g["progs"].append(_prog_tokens(r))
+    for root, g in G2.items():
+        ps = [p for p in g["progs"] if p]
+        g["prog"] = set().union(*ps) if ps else set()
+    def annual_ok(o, nw, key):
+        po, pn = o["rprog"], nw["rprog"]
+        if ("고등학생" in o["lvl"]) != ("고등학생" in nw["lvl"]) or o["gen"] or nw["gen"]:
+            return False
+        if o["kt"] and nw["kt"] and not (o["kt"] & nw["kt"]):
+            return False  # 둘 다 한국장학재단 DB에 있는데 상품 이름이 다르면 다른 장학
+        if po and pn:
+            both = all(_prog_overlap({x}, pn) for x in po) and all(_prog_overlap({y}, po) for y in pn)
+            return both and any(("대학원" in x) for x in po) == any(("대학원" in x) for x in pn)
+        return not (po or pn)  # 한쪽만 장학 이름이 있으면 다른 장학일 수 있어 붙이지 않는다
+    by_key: dict[str, list[int]] = {}
+    for root, g in G2.items():
+        for k in g["keys"]:
+            by_key.setdefault(k, []).append(root)
+    # 8) 같은 기관·같은 마감일의 지금 모집 중인 공고끼리는 (프로그램 이름이 서로 다르지 않으면) 같은 공고
+    for k, roots in by_key.items():
+        roots = [r for r in roots if G2[r]["cur"]]
+        for x in range(len(roots)):
+            for y in range(x + 1, len(roots)):
+                a, b = G2[roots[x]], G2[roots[y]]
+                ra, rb = find(roots[x]), find(roots[y])
+                if ra == rb or (a["fam"] & b["fam"] & {"kosaf", "hyin"}):
+                    continue
+                if a["gen"] or b["gen"]:
+                    sims = [len(G[0] & G[1]) / len(G[0] | G[1]) for G in ((({x[q:q + 2] for q in range(len(x) - 1)}), ({y[q:q + 2] for q in range(len(y) - 1)})) for x in a["tcs"] for y in b["tcs"]) if G[0] and G[1]]
+                    if not (a["ends"] & b["ends"]) or max(sims or [0]) < 0.5:
+                        continue  # 학자금·이자 지원은 마감일이 같고 제목이 거의 같을 때만
+                same_end = bool(a["ends"] & b["ends"])
+                named = bool(a["rprog"] and b["rprog"] and _prog_overlap(a["rprog"], b["rprog"]))
+                if not (same_end or (named and not (a["ends"] and b["ends"]))):
+                    continue  # 마감일이 같거나, 한쪽에 마감일이 없고 장학 이름(예: '동행')이 같아야 같은 공고
+                if a["rprog"] and b["rprog"] and not _prog_overlap(a["rprog"], b["rprog"]):
+                    continue
+                if ("고등학생" in a["lvl"]) != ("고등학생" in b["lvl"]):
+                    continue
+                parent[rb] = ra
+                for f in ("keys", "ends", "fam", "rprog", "lvl"):
+                    G2[ra][f] = G2[ra][f] | G2[rb][f]
+                G2[ra]["prog"] = G2[ra]["prog"] | G2[rb]["prog"]
+                if G2[rb]["hi"] and (not G2[ra]["hi"] or G2[rb]["hi"] > G2[ra]["hi"]):
+                    G2[ra]["hi"] = G2[rb]["hi"]
+                G2[rb] = G2[ra]
+    prev_roots = set()
+    for k, roots in by_key.items():
+        roots = sorted({find(r) for r in roots if G2[r]["hi"]}, key=lambda r: G2[r]["hi"], reverse=True)
+        for x, old in enumerate(roots):
+            o = G2[old]
+            if o["cur"] or find(old) != old:
+                continue
+            for nw in roots[:x]:
+                nwr = find(nw)
+                if nwr == old:
+                    continue
+                gap = (G2[nw]["hi"] - o["hi"]).days
+                lo_gap = 150 if G2[nw]["cur"] else 250  # 지금 모집 중인 회차가 있으면 반년 전 회차도 지난 회차로 본다
+                if lo_gap <= gap <= 800 and annual_ok(o, G2[nw], k):
+                    parent[old] = nwr
+                    prev_roots.add(old)
+                    break
+    prev = {i for i in range(n) if any(_root_chain(parent, i, r) for r in prev_roots)}
+
     groups: dict[int, list[int]] = {}
     for i in range(n):
         groups.setdefault(find(i), []).append(i)
@@ -264,11 +392,15 @@ def merge(rows: list[dict]) -> list[dict]:
     for ids in groups.values():
         members = [rows[i] for i in ids]
         today = date.today().isoformat()
-        rep = dict(max(members, key=lambda m: ((m.get("end") or "") >= today or (m.get("start") or "") >= today, _richness(m))))
-        for m in members:
-            if m is rep:
+        now = [rows[i] for i in ids if i not in prev] or members
+        rep = dict(max(now, key=lambda m: ((m.get("end") or "") >= today or (m.get("start") or "") >= today, _richness(m))))
+        for i in ids:
+            m = rows[i]
+            if m is rep or m.get("id") == rep.get("id"):
                 continue
             for k in FILL:
+                if i in prev and k in ("start", "end", "posted", "apply_url"):
+                    continue  # 지난 회차 날짜·신청 주소는 쓰지 않는다
                 if not rep.get(k) and m.get(k):
                     rep[k] = m[k]
             if not rep.get("support") and m.get("support"):

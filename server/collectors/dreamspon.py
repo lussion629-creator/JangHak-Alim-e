@@ -120,6 +120,8 @@ def collect(online: bool = True):
     homes = _homepages()
     out = []
     for r in rows:
+        if re.search(r"꿀팁|MOU|이벤트|후기|웨비나|설명회|서포터즈", r.get("title", "")) or "드림스폰" in (r.get("org") or ""):
+            continue  # 장학 공고가 아닌 사이트 자체 글
         tags = r.get("tags") or []
         st = sorted({SCHOOL_TAGS[t] for t in tags if t in SCHOOL_TAGS})
         if not st and re.search(r"#(일반인|신혼부부|예술인|창업기업|취업지원|청년|학교밖청소년)", " ".join(tags)):
