@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-10T06:36:31+00:00",
- "finishedAt": "2026-10-10T06:49:58+00:00",
+ "startedAt": "2026-10-10T12:35:30+00:00",
+ "finishedAt": "2026-10-10T12:50:42+00:00",
  "online": true,
- "total": 4542,
+ "total": 4521,
  "new": 4,
- "changed": 193,
+ "changed": 173,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -82,8 +82,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 148곳",
    "ok": true,
-   "count": 656,
-   "mode": "성공 123 / 실패 25"
+   "count": 623,
+   "mode": "성공 122 / 실패 26"
   },
   {
    "source": "gov24",
@@ -538,7 +538,7 @@
     "url": "https://www.suwon.ac.kr/index.html?menuno=2041",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -559,7 +559,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 0
    },
    {
     "name": "서울여자대학교",
@@ -728,8 +728,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -1098,8 +1098,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 9
+    "ok": false,
+    "count": 0
    },
    {
     "name": "성결대학교",
