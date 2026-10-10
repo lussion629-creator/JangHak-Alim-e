@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-10T12:35:30+00:00",
- "finishedAt": "2026-10-10T12:50:42+00:00",
+ "startedAt": "2026-10-10T18:33:25+00:00",
+ "finishedAt": "2026-10-10T18:51:02+00:00",
  "online": true,
- "total": 4521,
+ "total": 4528,
  "new": 4,
- "changed": 173,
+ "changed": 184,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -82,7 +82,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 148곳",
    "ok": true,
-   "count": 623,
+   "count": 624,
    "mode": "성공 122 / 실패 26"
   },
   {
@@ -1098,8 +1098,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 9
    },
    {
     "name": "성결대학교",
@@ -5448,8 +5448,8 @@
     "url": "https://www.rhof.or.kr/sub/sub0401.jsp",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 8
+    "ok": false,
+    "count": 0
    },
    {
     "name": "서울미래인재재단",
