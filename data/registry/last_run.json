@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-10T00:42:47+00:00",
- "finishedAt": "2026-10-10T00:56:12+00:00",
+ "startedAt": "2026-10-10T03:00:02+00:00",
+ "finishedAt": "2026-10-10T03:13:03+00:00",
  "online": true,
- "total": 4543,
+ "total": 4530,
  "new": 4,
- "changed": 218,
+ "changed": 183,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -103,7 +103,7 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 20,
+   "count": 17,
    "mode": "online"
   }
  ],
@@ -728,8 +728,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -898,8 +898,8 @@
     "url": "https://www.hanbat.ac.kr/bbs/BBSMSTR_000000001261/list.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "춘천교육대학교",
