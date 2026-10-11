@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-10T18:33:25+00:00",
- "finishedAt": "2026-10-10T18:51:02+00:00",
+ "startedAt": "2026-10-11T00:41:19+00:00",
+ "finishedAt": "2026-10-11T00:55:05+00:00",
  "online": true,
- "total": 4528,
+ "total": 4538,
  "new": 4,
- "changed": 184,
+ "changed": 193,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -82,8 +82,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 148곳",
    "ok": true,
-   "count": 624,
-   "mode": "성공 122 / 실패 26"
+   "count": 641,
+   "mode": "성공 124 / 실패 24"
   },
   {
    "source": "gov24",
@@ -728,8 +728,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -749,7 +749,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 4
    },
    {
     "name": "국립한국교통대학교 충주",
@@ -1109,7 +1109,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 26
+    "count": 24
    },
    {
     "name": "청주대학교",
@@ -5448,8 +5448,8 @@
     "url": "https://www.rhof.or.kr/sub/sub0401.jsp",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 8
    },
    {
     "name": "서울미래인재재단",
