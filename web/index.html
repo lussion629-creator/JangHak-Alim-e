@@ -56,7 +56,23 @@ header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-
 .brand h1{font-weight:800;font-size:24px;line-height:1.15;letter-spacing:-.03em;margin:0}
 .brand p{margin:2px 0 0;color:var(--ink-3);font-size:13.5px}
 .stamp{font-size:12.5px;color:var(--ink-3);text-align:right;line-height:1.5}
-@media (max-width:560px){.stamp{text-align:left;padding-left:52px;margin-top:-6px}}
+@media (max-width:560px){
+  header.top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding-block:18px 14px}
+  .topright{display:contents}
+  .themebtn{grid-column:2;grid-row:1;align-self:center}
+  .stamp{grid-column:1/-1;text-align:left;padding-left:52px;margin-top:-4px;font-size:12px}
+}
+/* 찾기 화면에서만 '새로 올라온 장학'과 요약 숫자를 보여 준다 (다른 화면은 깔끔하게) */
+body:not([data-tab="find"]) #fresh, body:not([data-tab="find"]) #kpis{display:none!important}
+/* 내 정보 맞춤 켜고 끄기 */
+.pfbar{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:4px 8px;margin:0 0 10px;padding:8px 12px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);font-size:13px;color:var(--ink-2)}
+.pfbar .sw{display:inline-flex;align-items:center;gap:8px;border:0;background:none;font:inherit;font-weight:700;color:var(--ink);cursor:pointer;padding:2px 0}
+.pfbar .sw i{position:relative;width:38px;height:22px;border-radius:999px;background:var(--line);transition:background .15s;flex:none}
+.pfbar .sw i::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+.pfbar .sw[aria-pressed="true"] i{background:var(--accent)}
+.pfbar .sw[aria-pressed="true"] i::after{transform:translateX(16px)}
+.pfbar .grow{grid-column:1/-1;grid-row:2;min-width:0;font-size:12.5px;color:var(--ink-3)}
+.pfbar .lk{border:0;background:none;color:var(--accent);font:inherit;font-weight:650;cursor:pointer;padding:2px 4px}
 .stamp b{color:var(--ink-2);font-weight:600}
 
 .kpis{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 6px;margin:2px 0 4px}
@@ -191,7 +207,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .cal .evmore{display:block;font-size:10px;color:var(--ink-3);margin-top:2px;font-weight:650}
 
 .panel{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px}
-.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px;max-width:780px}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px 20px;align-items:end}
 .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--ink-2);min-width:0}
 .form .full{grid-column:1/-1}
 .form fieldset{border:1px solid var(--line);border-radius:var(--r-sm);padding:12px 14px}
@@ -243,6 +259,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .privacy svg{flex:none;color:var(--accent);margin-top:2px}
 .privacy b{font-weight:700}
 .sec{border:0;border-top:1px solid var(--line);padding:18px 0 4px;margin:0}
+.sec+.sec{margin-top:18px}
 .sec legend{font-weight:750;font-size:15px;padding:0 10px 0 0;letter-spacing:-.02em}
 .flabel{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:8px}
 .callout{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:12px;font-size:13.5px;color:var(--ink-2)}
@@ -294,12 +311,13 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <aside class="filters" id="filters" aria-label="필터"></aside>
     <section style="min-width:0">
       <div class="search">
-        <input type="search" id="q" placeholder="장학금명, 재단, 지역, 조건으로 검색 (예: 성동구, 이공계, 생활비)" aria-label="검색">
+        <input type="search" id="q" placeholder="장학금명·재단·지역·학교·학과로 검색 (예: 서강대, 간호학과, 생활비)" aria-label="검색">
         <button class="btn mfilter" id="toggleFilters" type="button" style="padding:13px 16px">필터</button>
       </div>
       <div class="callout" id="installTip" hidden><span><b>아이폰에서 앱처럼 쓰기</b> — Safari 아래쪽 <b>공유 버튼</b>(네모에 위쪽 화살표)을 누르고 <b>‘홈 화면에 추가’</b>를 고르세요. 홈 화면 아이콘으로 열면 주소창 없이 앱처럼 열리고, 인터넷이 없어도 마지막으로 본 목록이 보여요.</span><button class="btn" type="button" id="installTipClose">닫기</button></div>
       <div class="callout" id="hyinCallout" hidden><span><b>한양대 포털 장학 캘린더</b>를 불러오면 포털에만 올라온 장학금까지 함께 볼 수 있어요. 로그인은 포털 화면에서 직접 하고, 비밀번호는 앱에 저장되지 않아요.</span><button class="btn primary" type="button" data-portal="1">포털 로그인하고 불러오기</button></div>
       <div class="callout" id="meCallout"><span><b>내 정보</b>를 넣으면 지역·학교·형편에 맞는 장학금만 골라 드립니다. 입력한 정보는 이 기기에만 저장됩니다.</span><button class="btn primary" type="button" id="goMe">내 정보 입력</button></div>
+      <div class="pfbar" id="pfBar" hidden></div>
       <div class="hidebar" id="hideBar" hidden></div>
       <div class="toolbar">
         <span id="resultCount"></span>
@@ -338,11 +356,11 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 
   <main id="view-me" hidden><section class="panel">
     <p class="lead">내 정보</p>
-    <div class="privacy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><div><b>입력한 정보는 이 기기에만 저장됩니다.</b><br>서버로 보내지 않으며, 앱을 만든 사람을 포함해 누구도 볼 수 없습니다. 지원 가능 여부 계산도 이 기기 안에서만 합니다. ‘내 정보 지우기’를 누르면 바로 삭제됩니다.</div></div>
+    <div class="privacy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><div><b>입력한 정보는 이 기기에만 저장됩니다.</b><br>서버로 보내지 않으며, 앱을 만든 사람을 포함해 누구도 볼 수 없습니다. 지원 가능 여부 계산도 이 기기 안에서만 합니다. ‘내 정보 초기화’를 누르면 바로 삭제됩니다.</div></div>
     <form id="profile" autocomplete="off">
       <fieldset class="sec"><legend>어디 학생인가요</legend><div class="form">
         <label>신분<select id="p_status"><option value="">선택 안 함</option><option value="hs">고등학생</option><option value="pre">대학 입학 예정 (고3·신입생)</option><option value="univ">대학생 (재학)</option><option value="leave">대학생 (휴학)</option><option value="grad">대학원생</option></select></label>
-        <label>성별 <span class="note" style="display:inline">(여학생 대상 장학 판단용)</span><select id="p_gender"><option value="">선택 안 함</option><option value="f">여성</option><option value="m">남성</option></select></label>
+        <label title="여학생 대상 장학을 판단할 때만 씁니다">성별<select id="p_gender"><option value="">선택 안 함</option><option value="f">여성</option><option value="m">남성</option></select></label>
         <label>학교 유형<select id="p_school"><option value="">선택 안 함</option><option value="4y">4년제 대학</option><option value="2y">전문대(2~3년제)</option><option value="grad">대학원</option><option value="cyber">원격·사이버대</option></select></label>
         <label>학교<select id="p_schoolPick"></select><input type="text" id="p_schoolName" placeholder="학교 이름 직접 입력" hidden></label>
         <label>학교 소재지 (시·도)<select id="p_ssido"></select></label>
@@ -366,7 +384,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
         <div class="full"><span class="flabel">해당하는 항목</span><div class="chips" id="p_flags"></div></div>
       </div></fieldset>
       
-      <div class="actions"><button class="btn primary" type="submit">저장하고 나에게 맞는 장학금 보기</button><button class="btn" type="button" id="p_clear">내 정보 지우기</button><span class="note" id="p_saved" role="status"></span></div>
+      <div class="actions"><button class="btn primary" type="submit">저장하고 나에게 맞는 장학금 보기</button><button class="btn" type="button" id="p_clear">내 정보 초기화</button><span class="note" id="p_saved" role="status"></span></div>
       <p class="note" style="margin-top:12px">목록에 <span class="pill ok">지원 가능</span> <span class="pill check">확인 필요</span> <span class="pill no">지원 불가</span> 표시가 붙고, 장학금을 누르면 판단 근거가 나옵니다. 공고 원문이 최종 기준입니다.</p>
     </form>
   </section></main>
@@ -470,7 +488,10 @@ function moneyOf(r){
 }
 function won(n){if(n===-1)return"등록금 전액";if(!n)return"";if(n>=1e8)return(n/1e8).toFixed(n%1e8?1:0)+"억원";return Math.round(n/1e4).toLocaleString("ko-KR")+"만원"}
 
-let SRC="", DATA=[], META={}, view=[], shown=0, favs=new Set(store.get("favs",[])), profile=store.get("profile",null);
+let PF_ON=store.get("pfOn",true)!==false;
+const savedProfile=()=>store.get("profile",null);
+let SRC="", DATA=[], META={}, view=[], shown=0, favs=new Set(store.get("favs",[])), profile=PF_ON?store.get("profile",null):null;
+document.body.dataset.tab="find";
 const F={within:0,status:new Set(["모집중","예정"]),level:new Set(),region:"",orgType:new Set(),kind:new Set(),match:new Set(),source:new Set(),field:new Set(),note:new Set()};
 const saved=store.get("filters",null); if(saved&&!store.get("mig_field",0)){saved.field=[]; store.set("mig_field",1)} if(saved){for(const k of["status","level","orgType","kind","match","source","field","note"]) if(saved[k]) F[k]=new Set(saved[k]); F.region=saved.region||""}
 
@@ -746,7 +767,7 @@ function stat(r){
   if(r.status==="마감") return {key:"마감",label:r.next?r.next.replace("-",".")+" 예상":"마감"};
   return {key:"상시/미정",label:"일정 확인"};
 }
-function cache(){for(const r of DATA){r._s=stat(r); r._fields=fieldsOf(r); r._n=notes(r); r._m=match(r,profile); r._f=majorFit(r,profile); r._q=[r.title,r._fields.map(FSHORT).join(" "),r._n.join(" "),(r.support||[]).map(k=>SUPL[k]).join(" "),r.target,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
+function cache(){for(const r of DATA){r._s=stat(r); r._fields=fieldsOf(r); r._n=notes(r); r._m=match(r,profile); r._f=majorFit(r,profile); r._q=[r.title,(r.majors||[]).join(" "),OWNL[ownSchool(r)]||"",r._fields.map(FSHORT).join(" "),r._n.join(" "),(r.support||[]).map(k=>SUPL[k]).join(" "),r.target,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
 
 /* ---------- 필터 UI ---------- */
 function chipGroup(title,key,opts){
@@ -812,8 +833,9 @@ document.addEventListener("click",e=>{
 function passes(r,q){
   if(SHOW_HIDDEN) return isHidden(r)&&(!q||!q.length||q.every(t=>r._q.includes(t)));
   if(isHidden(r)) return false;
+  const schoolQ=q&&q.some(t=>SCHOOL_Q.some(([rx])=>rx.test(t))); // 학교 이름을 검색하면 그 학교 전용 공고도 보여 준다
   if(CATS.size && !catOf(r).some(k=>CATS.has(k))) return false;
-  if(!schoolOK(r)) return false;
+  if(!schoolQ&&!schoolOK(r)) return false;
   if(F.within && !(r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=F.within)) return false;
   if(F.status.size && !F.status.has(r._s.key)) return false;
   if(F.level.size && !F.level.has(r.level==="대학생"||!r.level?"대학생":r.level)) return false;
@@ -826,8 +848,24 @@ function passes(r,q){
   if(F.note.has("no-rec") && r._n.includes("추천 필요")) return false;
   if(F.note.has("no-dup") && r._n.includes("중복 수혜 제한")) return false;
   if(F.note.has("no-int") && r._n.includes("면접 있음")) return false;
-  if(q && !q.every(t=>r._q.includes(t))) return false;
+  if(q && !q.every(t=>qMatch(r,t))) return false;
   return true;
+}
+// 검색: 글자가 그대로 들어 있거나, 학교 이름이면 그 학교 공고·전용 장학, 학과 이름이면 그 계열 장학
+const SCHOOL_Q=[[/^(한양대(학교)?|한대|hyu)$/i,"hyu"],[/^(한양여대|한양여자대(학교)?|한여대|hywu)$/i,"hywu"],[/^(강원대(학교)?|강대|강원대삼척|삼척캠퍼스|도계캠퍼스|knu)$/i,"kwsc"],[/^(서강대(학교)?|서강|sogang)$/i,"sg"]];
+const SRC_SCHOOL={u1:"hyu",p:"hyu",u2:"hywu",u3:"kwsc",kcloud:"kwsc",u4:"sg",saint:"sg"};
+let MAJOR_IDX=null;
+function majorField(t){
+  if(t.length<2||/^(학과|전공|학부|과|계열|대학|대학교)$/.test(t)) return null;
+  if(!MAJOR_IDX){ MAJOR_IDX=[]; for(const [g,l] of Object.entries(MAJORS)) for(const n of l) MAJOR_IDX.push([n.toLowerCase().replace(/\s/g,""),g]) }
+  const hits=new Set(MAJOR_IDX.filter(([n])=>n.includes(t)||(t.length>=3&&t.includes(n.replace(/(학과|학부|전공)$/,"")))).map(([,g])=>g));
+  return hits.size?hits:null;
+}
+function qMatch(r,t){
+  if(r._q.includes(t)) return true;
+  for(const [rx,k] of SCHOOL_Q) if(rx.test(t)) return ownSchool(r)===k||SRC_SCHOOL[r.source]===k;
+  const f=majorField(t); if(f) return r._fields.some(x=>f.has(x));
+  return false;
 }
 function sorter(){
   const s=$("#sort").value==="fit"&&!profile?"due":$("#sort").value;
@@ -850,7 +888,7 @@ function kindLabel(r){const k=(r.kind||"").replace(/\s*·.*$/,""); return !k||k=
 function mainUrl(r){const pub=(r.links||[]).map(l=>safeUrl(l.url)).find(u=>u&&!/portal\.hanyang\.ac\.kr/.test(u)); const own=safeUrl(r.url); if(own&&!/portal\.hanyang\.ac\.kr/.test(own)) return own; return pub||safeUrl(r.apply_url)||own}
 function card(r){
   const s=r._s, m=r._m;
-  const due=`<div class="due ${s.hot?"hot":""} ${s.key==="마감"?"closed":""}"><span class="d">${esc(s.label)}</span><span>${r.end?esc(r.end.slice(5).replace("-","."))+" 마감":r.start?esc(r.start.slice(5).replace("-","."))+" 시작":r.posted?esc(r.posted.slice(5).replace("-","."))+" 공고":""}</span></div>`;
+  const due=`<div class="due ${s.hot?"hot":""} ${s.key==="마감"?"closed":""}"><span class="d">${esc(s.label==="오늘 마감"?"오늘":s.label)}</span><span>${r.end?esc(r.end.slice(5).replace("-","."))+" 마감":r.start?esc(r.start.slice(5).replace("-","."))+" 시작":r.posted?esc(r.posted.slice(5).replace("-","."))+" 공고":""}</span></div>`;
   const amt=moneyOf(r);
   const pills=(r.support||[]).map(k=>`<span class="pill ${esc(k)}">${SUPL[k]}</span>`);
   if(m) pills.push(`<span class="pill ${m.verdict}">${VLABEL[m.verdict]}</span>`);
@@ -870,7 +908,7 @@ function card(r){
 function renderMore(){
   const next=view.slice(shown,shown+60); shown+=next.length;
   $("#list").insertAdjacentHTML("beforeend",next.map(card).join(""));
-  if(!view.length) $("#list").innerHTML=`<div class="empty">조건에 맞는 장학금이 없습니다. 모집 상태에 ‘마감·내년 예상’을 켜면 정기 장학금의 다음 모집 시기를 볼 수 있습니다.</div>`;
+  if(!view.length) $("#list").innerHTML=`<div class="empty">조건에 맞는 장학금이 없습니다.${PF_ON&&savedProfile()?" 위의 ‘내 정보 맞춤’을 끄면 내 조건과 맞지 않는 장학까지 모두 볼 수 있어요.":""} 모집 상태에 ‘마감·내년 예상’을 켜면 정기 장학금의 다음 모집 시기도 볼 수 있습니다.</div>`;
   $("#more").hidden=shown>=view.length;
 }
 $("#more").addEventListener("click",renderMore);
@@ -945,6 +983,7 @@ function selectUrl(){const r=document.createRange(); r.selectNodeContents($("#dU
 
 /* ---------- 탭 ---------- */
 function tab(name){
+  document.body.dataset.tab=name;
   $$("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===name));
   for(const v of["find","cal","fav","me","doc","src"]) $("#view-"+v).hidden=v!==name;
   $("#cats").hidden=name!=="find";
@@ -979,7 +1018,11 @@ function renderCal(){
     h+=`<div data-day="${k}" class="${k===TODAY?"today":""} ${k===calSel?"sel":""}"><span class="num">${d}</span>${ev.slice(0,max).map(x=>`<span class="ev ${x.t==="start"?"s":""} ${x.guess?"g":""}" data-ev="${esc(x.r.id)}" title="${esc(x.r.title)} ${x.t==="end"?"마감":"시작"}${x.guess?"(예상)":""}">${esc(shortName(x.r))}</span>`).join("")}${ev.length>max?`<span class="evmore">외 ${ev.length-max}건</span>`:""}</div>`}
   $("#cal").innerHTML=h;
   const sel=map[calSel]; const list=sel?[...sel.end,...sel.start]:[];
-  $("#calList").innerHTML=`<p class="note">${calSel} · ${list.length}건${profile?" (지원 불가 제외)":""}</p>`+(list.map(x=>card(x.r).replace('<span class="d">',`<span class="d">${x.t==="end"?"마감":"시작"}${x.guess?"(예상)":""} `)).join("")||"");
+  $("#calList").innerHTML=`<p class="note">${calSel} · ${list.length}건${profile?" (지원 불가 제외)":""}</p>`+(list.map(x=>{ const h=card(x.r);
+    // 마감일 칸은 카드에 이미 'D-n · 마감'이 있으므로 그대로 두고, 시작일 칸만 '접수 시작'으로 바꾼다
+    if(x.t==="start") return h.replace(/<span class="d">[^<]*<\/span>/,`<span class="d">접수 시작${x.guess?" (예상)":""}</span>`);
+    return x.guess?h.replace('<span class="d">','<span class="d">(예상) '):h;
+  }).join("")||"");
 }
 $("#cal").addEventListener("click",e=>{const v=e.target.closest("[data-ev]"); if(v){openDetail(v.dataset.ev); return} const d=e.target.closest("[data-day]"); if(d){calSel=d.dataset.day; renderCal()}});
 function shortName(r){
@@ -1027,7 +1070,7 @@ function fillProfile(){
   const fillGu=(sel,keep)=>{const g=$("#"+sel.dataset.gu), list=DIST[sel.value]||[]; g.innerHTML=sel.value?`<option value="">선택 안 함</option>`+list.map(x=>`<option>${x}</option>`).join(""):`<option value="">시·도를 먼저 고르세요</option>`; if(keep&&list.includes(keep)) g.value=keep};
   $$("#profile select[data-gu]").forEach(sel=>{sel.onchange=()=>fillGu(sel)});
   $("#p_flags").innerHTML=FLAGS.map(([k,l])=>`<label class="chip"><input type="checkbox" value="${k}" id="pf_${k}"> ${l}</label>`).join("");
-  const p=profile||{};
+  const p=savedProfile()||{};
   if(!p.status && p.level) p.status={"고등학생":"hs","대학원생":"grad","대학생":"univ"}[p.level]||"";
   for(const k of ["status","gender","school","ssido","sem","major","income","gpa","sido","hsido","psido"]) if($("#p_"+k)) $("#p_"+k).value=p[k]??"";
   syncPick("#p_schoolPick","#p_schoolName",p.schoolName||""); syncPick("#p_deptPick","#p_dept",p.dept||"");
@@ -1042,11 +1085,39 @@ $("#profile").addEventListener("submit",e=>{
   if(p.status==="grad"&&!p.school) p.school="grad";
   p.flags=$$("#p_flags input:checked").map(c=>c.value);
   if(((profile&&profile.schoolName)||"")!==(p.schoolName||"")) store.set("only",null); // 학교를 바꾸면 전용 공고 보기도 새 학교에 맞춤
-  profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis(); renderCats(); renderPortals(); pushAlerts();
+  PF_ON=true; store.set("pfOn",true);
+  profile=p; store.set("profile",p); cache(); buildFilters(); apply(); renderKpis(); renderCats(); renderPortals(); pushAlerts(); renderPfBar();
   $("#p_saved").textContent="저장했습니다. 이 기기에만 보관됩니다.";
   F.match=new Set(["ok","check"]); F.field=new Set(); $("#sort").value="fit"; store.set("sort","fit"); buildFilters(); apply(); tab("find"); window.scrollTo({top:0,behavior:"smooth"});
 });
-$("#p_clear").addEventListener("click",()=>{profile=null; store.set("profile",null); F.match=new Set(); F.field=new Set(); fillProfile(); cache(); buildFilters(); apply(); renderKpis(); renderCats(); $("#p_saved").textContent="이 기기에서 내 정보를 지웠습니다."});
+$("#p_clear").addEventListener("click",()=>{resetProfile(); $("#p_saved").textContent="내 정보를 초기화했습니다."});
+// 내 정보로 거르기 켜기·끄기 (끄면 저장된 내 정보는 그대로 두고, 모든 장학을 보여 준다)
+function refreshProfileViews(){ cache(); buildFilters(); apply(); renderKpis(); renderCats(); renderPortals(); pushAlerts(); renderPfBar(); try{ if(!$("#view-cal").hidden) renderCal() }catch(e){} }
+function setProfileOn(on){
+  PF_ON=on; store.set("pfOn",on);
+  profile=on?savedProfile():null;
+  F.match=on&&profile?new Set(["ok","check"]):new Set(); F.field=new Set();
+  if(!on) store.set("only",null);
+  refreshProfileViews();
+}
+function resetProfile(){
+  const old=savedProfile(); if(!old) return;
+  store.set("profile",null); store.set("only",null); profile=null; F.match=new Set(); F.field=new Set();
+  fillProfile(); refreshProfileViews();
+  toast("내 정보를 초기화했어요.",()=>{store.set("profile",old); PF_ON=true; store.set("pfOn",true); profile=old; F.match=new Set(["ok","check"]); fillProfile(); refreshProfileViews()});
+}
+function renderPfBar(){
+  const b=$("#pfBar"); if(!b) return; const sp=savedProfile();
+  if(!sp){b.hidden=true; return}
+  b.hidden=false;
+  const who=[sp.schoolName,sp.dept].filter(Boolean).join(" · ");
+  b.innerHTML=`<button type="button" class="sw" id="pfSw" aria-pressed="${PF_ON}"><i></i>내 정보 맞춤 ${PF_ON?"켜짐":"꺼짐"}</button><span></span><span class="grow">${PF_ON?(who?esc(who)+" 기준으로 맞는 장학만 보여요.":"내 조건에 맞는 장학만 보여요."):"모든 장학을 보여요. 내 정보는 그대로 저장돼 있어요."}</span><button type="button" class="lk" id="pfEdit">고치기</button><button type="button" class="lk" id="pfReset">초기화</button>`;
+}
+document.addEventListener("click",e=>{
+  if(e.target.closest("#pfSw")){setProfileOn(!PF_ON); return}
+  if(e.target.id==="pfEdit"){tab("me"); window.scrollTo({top:0}); return}
+  if(e.target.id==="pfReset"){resetProfile(); return}
+});
 
 /* ---------- 새 소식 ---------- */
 function renderSrc(){
@@ -1103,7 +1174,7 @@ async function boot(){
     const g=new Date(d.generatedAt||Date.now()); $("#stamp").innerHTML=`장학금 <b>${DATA.length.toLocaleString("ko-KR")}</b>건<br>${g.getMonth()+1}월 ${g.getDate()}일 ${String(g.getHours()).padStart(2,"0")}:${String(g.getMinutes()).padStart(2,"0")} 업데이트`;
   }catch(e){ $("#stamp").textContent="자료를 불러오지 못했습니다. 페이지를 새로고침하세요."; return }
   $("#sort").value=store.get("sort",profile?"fit":"due");
-  fillProfile(); cache(); buildFilters(); renderKpis(); renderCats(); apply(); renderHideBar(); $("#favCount").textContent=favs.size||"";
+  fillProfile(); cache(); buildFilters(); renderKpis(); renderCats(); apply(); renderHideBar(); renderPfBar(); $("#favCount").textContent=favs.size||"";
   const t=store.get("tab","find"); if(t!=="find") tab(t);
   // 안드로이드 앱: 관심 장학금 마감 3일 전 알림 (하루 한 번)
   try{ if(window.AndroidBridge && store.get("notified","")!==TODAY){
