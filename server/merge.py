@@ -12,8 +12,8 @@ from __future__ import annotations
 import re
 from datetime import date
 
-FAMILY = {"kosaf_univ": "kosaf", "kosaf_high": "kosaf", "kosaf_abroad": "kosaf", "kosaf_creditbank": "kosaf", "kosaf_hist": "kosaf", "hyin": "hyin", "hywoman": "hywoman", "hanyang": "hanyang", "kangwon": "kangwon", "sogang": "sogang"}
-RANK = {"kosaf_univ": 0, "kosaf_high": 0, "kosaf_abroad": 0, "kosaf_creditbank": 0, "kosaf_hist": 0, "hyin": 1, "legacy": 2, "hanyang": 3, "hywoman": 3, "kangwon": 3, "sogang": 3, "board": 4, "dreamspon": 5}
+FAMILY = {"kosaf_univ": "kosaf", "kosaf_high": "kosaf", "kosaf_abroad": "kosaf", "kosaf_creditbank": "kosaf", "kosaf_hist": "kosaf", "hyin": "hyin", "hywoman": "hywoman", "hanyang": "hanyang", "kangwon": "kangwon", "sogang": "sogang", "konkuk": "konkuk"}
+RANK = {"kosaf_univ": 0, "kosaf_high": 0, "kosaf_abroad": 0, "kosaf_creditbank": 0, "kosaf_hist": 0, "hyin": 1, "legacy": 2, "hanyang": 3, "hywoman": 3, "kangwon": 3, "sogang": 3, "konkuk": 3, "board": 4, "dreamspon": 5}
 STOP = r"(20\d\d|\d+학년도|\d+년도?|\d학기|[1-4]학기|상반기|하반기|신규|정기|추가|재공고|연장|모집|선발|공고|안내|신청|접수|계획|장학생|장학금|장학|학생|대학생|대학원생|교외|교내|외부|홍보|기간|의|및|제\d+기|\d+기)"
 SUFFIX = r"(사회복지재단|복지재단|문화재단|장학재단|육영재단|교육재단|학술재단|인재육성재단|장학문화재단|장학회|육영회|재단|공제회|협회|센터|진흥원)$"
 GENERIC_T = re.compile(r"국가근로|교내근로|근로장학|국가장학금|학자금\s*대출|교내\s*장학|가계곤란|성적우수\s*장학")
@@ -464,6 +464,8 @@ SCHOOLS = {
            "home": r"강원|삼척|영동|비수도권|지방", "region": "강원", "district": r"삼척"},
     "sg": {"own": {"sogang"}, "name": r"서강대|서강\s*대학교|Sogang",
            "home": r"서울|수도권|마포", "region": "서울", "district": r"마포"},
+    "kk": {"own": {"konkuk"}, "name": r"건국대|건국\s*대학교|Konkuk",
+           "home": r"서울|수도권|광진", "region": "서울", "district": r"광진"},
 }
 COMMON_OK = r"전국|국내|한국|대한민국|도외|관외"
 

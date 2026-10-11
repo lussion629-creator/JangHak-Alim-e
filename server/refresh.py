@@ -15,7 +15,7 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
-from .collectors import boards, dreamspon, gov24, hanyang, hywoman, hyin, kangwon, kosaf, kosaf_hist, legacy, sogang
+from .collectors import boards, dreamspon, gov24, hanyang, hywoman, hyin, kangwon, konkuk, kosaf, kosaf_hist, legacy, sogang
 from .merge import for_schools, merge
 from .model import summarize_body, expected_next, now_iso, status_of, support_of
 
@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DB = ROOT / "data" / "scholarships.db"
 WEB_DATA = ROOT / "web" / "data"
 # 한양 포털 장학 일정도 넣는다 (공개 자료에는 출처 이름·포털 주소를 빼고 내보낸다: public())
-COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("kangwon", kangwon), ("sogang", sogang), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
+COLLECTORS = [("kosaf", kosaf), ("kosaf_hist", kosaf_hist), ("hyin", hyin), ("hanyang", hanyang), ("hywoman", hywoman), ("kangwon", kangwon), ("sogang", sogang), ("konkuk", konkuk), ("board", boards), ("gov24", gov24), ("legacy", legacy), ("dreamspon", dreamspon)]
 log = logging.getLogger("refresh")
 
 
@@ -155,7 +155,7 @@ def export(con: sqlite3.Connection, summary: dict):
         rows.append(r)
     # 게시판 본문: 메뉴·꼬리말을 걷어내고 필요한 항목만 남긴다
     for r in rows:
-        if r.get("source") in ("board", "legacy", "hanyang", "hywoman", "kangwon", "sogang") and r.get("summary"):
+        if r.get("source") in ("board", "legacy", "hanyang", "hywoman", "kangwon", "sogang", "konkuk") and r.get("summary"):
             sm = summarize_body(r["summary"], r.get("title", ""))
             r["summary"] = sm["text"]
             f = sm["fields"]
@@ -198,7 +198,7 @@ def export(con: sqlite3.Connection, summary: dict):
         if hits:
             kind = "new" if any(k == "new" for k, _ in hits) else "updated"
             r["fresh"] = {"kind": kind, "at": max(a for _, a in hits)}
-    rows = for_schools(rows)  # 앱이 지원하는 학교(한양대·한양여대·강원대 삼척·서강대) 학생 누구도 지원할 수 없는 장학금 제외
+    rows = for_schools(rows)  # 앱이 지원하는 학교(한양대·한양여대·강원대 삼척·서강대·건국대) 학생 누구도 지원할 수 없는 장학금 제외
     for r in rows:
         r["status"] = status_of(r.get("start"), r.get("end"), today, r.get("posted", ""))
         r["support"] = support_of(r)
@@ -220,7 +220,7 @@ def export(con: sqlite3.Connection, summary: dict):
 
 # 공개 자료에는 어디서 모았는지 드러나지 않게 한다: 출처 이름은 짧은 기호로, 수집처 주소·이름은 빼거나 바꾼다
 SRC_CODE = {"kosaf_univ": "k", "kosaf_high": "kh", "kosaf_abroad": "ka", "kosaf_creditbank": "kc", "kosaf_hist": "kp",
-            "hyin": "p", "hanyang": "u1", "hywoman": "u2", "kangwon": "u3", "sogang": "u4",
+            "hyin": "p", "hanyang": "u1", "hywoman": "u2", "kangwon": "u3", "sogang": "u4", "konkuk": "u5",
             "board": "b", "legacy": "l", "dreamspon": "w", "gov24": "g"}
 HIDE_HOST = re.compile(r"^https?://([a-z0-9-]+\.)*(dreamspon\.com|ipsitalk\.net)(/|$)|^https?://portal\.hanyang\.ac\.kr(/|$)", re.I)
 HIDE_WORDS = [(re.compile(r"HY-?in|하이인", re.I), "포털"), (re.compile(r"장학\s*캘린더"), "장학 일정"), (re.compile(r"드림스폰|dreamspon", re.I), "")]
