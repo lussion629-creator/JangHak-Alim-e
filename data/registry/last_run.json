@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-11T00:41:19+00:00",
- "finishedAt": "2026-10-11T00:55:05+00:00",
+ "startedAt": "2026-10-11T04:34:55+00:00",
+ "finishedAt": "2026-10-11T04:50:14+00:00",
  "online": true,
- "total": 4538,
- "new": 4,
- "changed": 193,
+ "total": 4511,
+ "new": 5,
+ "changed": 166,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -82,8 +82,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 148곳",
    "ok": true,
-   "count": 641,
-   "mode": "성공 124 / 실패 24"
+   "count": 613,
+   "mode": "성공 118 / 실패 30"
   },
   {
    "source": "gov24",
@@ -258,8 +258,8 @@
     "url": "https://www.ewha.ac.kr/ewha/bachelor/scholarship-notice.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 8
+    "ok": false,
+    "count": 0
    },
    {
     "name": "숙명여자대학교",
@@ -329,7 +329,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 4
    },
    {
     "name": "숭실대학교",
@@ -438,7 +438,7 @@
     "url": "https://web.kangnam.ac.kr/menu/f19069e6134f8f8aa7f689a4a675e66f.do",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -558,7 +558,7 @@
     "url": "https://scholarship.uos.ac.kr/scholarship/notice/notice/list.do?brdBbsseq=1",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -728,8 +728,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -1098,8 +1098,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 9
+    "ok": false,
+    "count": 0
    },
    {
     "name": "성결대학교",
@@ -3688,7 +3688,7 @@
     "url": "https://www.gangnam.go.kr/board/B_000031/list.do?mid=ID01",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
