@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-11T06:37:05+00:00",
- "finishedAt": "2026-10-11T06:52:47+00:00",
+ "startedAt": "2026-10-11T10:00:09+00:00",
+ "finishedAt": "2026-10-11T10:13:44+00:00",
  "online": true,
  "total": 4539,
- "new": 4,
- "changed": 195,
+ "new": 54,
+ "changed": 185,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -79,11 +79,18 @@
    "mode": "online"
   },
   {
-   "source": "board",
-   "label": "대학·재단·지자체 게시판 148곳",
+   "source": "konkuk",
+   "label": "건국대 장학공지",
    "ok": true,
-   "count": 640,
-   "mode": "성공 123 / 실패 25"
+   "count": 50,
+   "mode": "online"
+  },
+  {
+   "source": "board",
+   "label": "대학·재단·지자체 게시판 147곳",
+   "ok": true,
+   "count": 592,
+   "mode": "성공 122 / 실패 25"
   },
   {
    "source": "gov24",
@@ -109,7 +116,7 @@
  ],
  "registry": {
   "total": 551,
-  "enabled": 148,
+  "enabled": 147,
   "sources": [
    {
     "name": "한양대학교 서울캠퍼스",
@@ -226,10 +233,10 @@
     "type": "university",
     "region": "서울",
     "url": "https://www.konkuk.ac.kr/konkuk/2239/subview.do",
-    "enabled": true,
+    "enabled": false,
     "verified": true,
-    "ok": true,
-    "count": 38
+    "ok": null,
+    "count": null
    },
    {
     "name": "홍익대학교 서울",
@@ -438,7 +445,7 @@
     "url": "https://web.kangnam.ac.kr/menu/f19069e6134f8f8aa7f689a4a675e66f.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -728,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -1219,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 2
    },
    {
     "name": "상지대학교",
