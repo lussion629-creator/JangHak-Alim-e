@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-12T12:58:27+00:00",
- "finishedAt": "2026-10-12T13:11:24+00:00",
+ "startedAt": "2026-10-12T13:12:39+00:00",
+ "finishedAt": "2026-10-12T13:26:08+00:00",
  "online": true,
- "total": 4553,
+ "total": 4554,
  "new": 4,
- "changed": 191,
+ "changed": 193,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 598,
+   "count": 607,
    "mode": "성공 121 / 실패 26"
   },
   {
