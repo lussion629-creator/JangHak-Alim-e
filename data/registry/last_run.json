@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-12T13:12:39+00:00",
- "finishedAt": "2026-10-12T13:26:08+00:00",
+ "startedAt": "2026-10-12T15:45:19+00:00",
+ "finishedAt": "2026-10-12T15:58:47+00:00",
  "online": true,
- "total": 4554,
- "new": 4,
- "changed": 193,
+ "total": 4541,
+ "new": 5,
+ "changed": 180,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 607,
-   "mode": "성공 121 / 실패 26"
+   "count": 595,
+   "mode": "성공 120 / 실패 27"
   },
   {
    "source": "gov24",
@@ -110,7 +110,7 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 15,
+   "count": 14,
    "mode": "online"
   }
  ],
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 4
    },
    {
     "name": "명지대학교 인문/자연",
@@ -326,7 +326,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "한성대학교",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 9
    },
    {
     "name": "서울여자대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -796,7 +796,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 11
    },
    {
     "name": "동서대학교",
@@ -806,7 +806,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 17
+    "count": 18
    },
    {
     "name": "한동대학교",
