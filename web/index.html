@@ -118,7 +118,7 @@ aside.filters{display:flex;flex-direction:column;gap:18px;flex:1 1 auto;min-heig
 .onlybox .chip{font-size:12px;padding:4px 9px}
 .onlybox .chip b{font-weight:650;color:var(--ink-3);margin-left:2px}
 .onlybox .note{font-size:11.5px;margin:6px 0 0}
-.grouphead{display:flex;align-items:baseline;gap:8px;margin:14px 2px 2px;font-size:14px;font-weight:750;color:var(--ink)}
+.grouphead{display:flex;flex-wrap:wrap;word-break:keep-all;align-items:baseline;gap:2px 8px;margin:14px 2px 2px;font-size:14px;font-weight:750;color:var(--ink)}
 .grouphead:first-child{margin-top:0}
 .gsec{margin-bottom:14px}
 .gsec:first-child .grouphead{margin-top:0}
@@ -196,13 +196,15 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .toolbar select{width:auto;padding:6px 10px;font-size:13px}
 
 .list{display:flex;flex-direction:column;gap:6px}
-.item{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:10px;align-items:start;padding:9px 8px 9px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.item{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:10px;align-items:start;padding:9px 8px 9px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .item:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:var(--shadow)}
 .due{display:flex;flex-direction:column;gap:1px;font-size:10.5px;color:var(--ink-3);line-height:1.25}
 .due .d{font-weight:800;font-size:15px;letter-spacing:-.02em;color:var(--ink)}
 .due.hot .d{color:var(--seal)}
 .due.closed .d{color:var(--ink-3);font-size:12.5px;font-weight:700}
-.due{border-radius:8px;padding:5px 6px;align-self:start}
+.due{border-radius:8px;padding:5px 4px;align-self:start;align-items:center;text-align:center;white-space:nowrap;min-width:0}
+.due span{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.due .d2{font-size:10px;font-weight:600;color:var(--ink-3)}
 .due.st-모집중{background:var(--st-live-soft)} .due.st-모집중 .d{color:var(--st-live)} .due.st-모집중.hot .d{color:var(--seal)}
 .due.st-예정{background:var(--st-soon-soft)} .due.st-예정 .d{color:var(--st-soon)}
 .due.st-마감,.due.st-상시\/미정{background:var(--st-end-soft)}
@@ -353,7 +355,9 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
   .kpi .n{font-size:11px}
   nav.tabs{width:100%;justify-content:space-between}
   nav.tabs button{padding:8px 6px;flex:1;font-size:13px}
-  .item{grid-template-columns:50px minmax(0,1fr) auto;gap:8px;padding:8px 4px 8px 10px}
+  .due{padding:5px 2px}
+  .due span:not(.d){font-size:9.5px;letter-spacing:-.02em}
+  .item{grid-template-columns:56px minmax(0,1fr) auto;gap:8px;padding:8px 4px 8px 10px}
   .form{grid-template-columns:minmax(0,1fr)}
   .facts{grid-template-columns:86px minmax(0,1fr)}
   .panel{padding:18px}
@@ -954,7 +958,7 @@ $("#cats").addEventListener("click",onCatsClick); $("#onlyBox").addEventListener
 function stat(r){
   if(r.status==="모집중"){const d=r.end?days(TODAY,r.end):null; return {key:"모집중",d,label:d==null?(r.posted&&!r.start?"마감일 확인":"모집중"):d===0?"오늘 마감":"D-"+d,hot:d!=null&&d<=7}}
   if(r.status==="예정") return {key:"예정",d:days(TODAY,r.start),label:"D-"+days(TODAY,r.start)+" 시작"};
-  if(r.status==="마감") return {key:"마감",label:r.next?r.next.replace("-",".")+" 예상":"마감"};
+  if(r.status==="마감"){ if(!r.next) return {key:"마감",label:"마감"}; const [y,m]=r.next.split("-"); return {key:"마감",label:(y===TODAY.slice(0,4)?"":"’"+y.slice(2)+" ")+(+m)+"월 예상",ny:y,nm:+m} }
   return {key:"상시/미정",label:"일정 확인"};
 }
 function cache(){for(const r of DATA){r._s=stat(r); r._fields=fieldsOf(r); r._n=notes(r); r._m=match(r,profile); r._f=majorFit(r,profile); r._q=[r.title,(r.majors||[]).join(" "),OWNL[ownSchool(r)]||"",r._fields.map(FSHORT).join(" "),r._n.join(" "),(r.support||[]).map(k=>SUPL[k]).join(" "),r.target,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
@@ -1110,7 +1114,10 @@ function kindLabel(r){const k=(r.kind||"").replace(/\s*·.*$/,""); return !k||k=
 function mainUrl(r){const pub=(r.links||[]).map(l=>safeUrl(l.url)).find(u=>u&&!/portal\.hanyang\.ac\.kr/.test(u)); const own=safeUrl(r.url); if(own&&!/portal\.hanyang\.ac\.kr/.test(own)) return own; return pub||safeUrl(r.apply_url)||own}
 function card(r){
   const s=r._s, m=r._m;
-  const due=`<div class="due st-${s.key} ${s.hot?"hot":""} ${s.key==="마감"?"closed":""}"><span class="d">${esc(s.label==="오늘 마감"?"오늘":s.label)}</span><span>${r.end?esc(r.end.slice(5).replace("-","."))+" 마감":r.start?esc(r.start.slice(5).replace("-","."))+" 시작":r.posted?esc(r.posted.slice(5).replace("-","."))+" 공고":""}</span></div>`;
+  const ymd=d=>d?(d.slice(0,4)===TODAY.slice(0,4)?d.slice(5):d.slice(2)).replace(/-/g,"."):"";
+  const due=s.key==="마감"
+    ?`<div class="due st-마감 closed"><span class="d">${s.nm?(s.ny===TODAY.slice(0,4)?"":"’"+esc(s.ny.slice(2))+" ")+s.nm+"월":"마감"}</span><span class="d2">${s.nm?"모집 예상":"지난 회차"}</span><span title="${r.end?"지난 회차 마감 "+esc(r.end):""}">${r.end?"지난 "+esc(r.end.slice(2,7).replace("-",".")):r.posted?esc(ymd(r.posted))+" 공고":""}</span></div>`
+    :`<div class="due st-${s.key} ${s.hot?"hot":""}"><span class="d">${esc(s.label==="오늘 마감"?"오늘":s.label)}</span><span>${r.end?esc(ymd(r.end))+" 마감":r.start?esc(ymd(r.start))+" 시작":r.posted?esc(ymd(r.posted))+" 공고":""}</span></div>`;
   const amt=moneyOf(r);
   const pills=(r.support||[]).map(k=>`<span class="pill ${esc(k)}">${SUPL[k]}</span>`);
   if(m) pills.push(`<span class="pill ${m.verdict}">${VLABEL[m.verdict]}</span>`);
