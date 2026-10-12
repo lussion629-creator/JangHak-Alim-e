@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-12T02:10:59+00:00",
- "finishedAt": "2026-10-12T02:24:09+00:00",
+ "startedAt": "2026-10-12T06:44:10+00:00",
+ "finishedAt": "2026-10-12T06:58:08+00:00",
  "online": true,
- "total": 4539,
- "new": 11,
- "changed": 178,
+ "total": 4538,
+ "new": 23,
+ "changed": 170,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 601,
+   "count": 585,
    "mode": "성공 122 / 실패 25"
   },
   {
@@ -111,7 +111,7 @@
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
    "count": 15,
-   "mode": "online"
+   "mode": "seed"
   }
  ],
  "registry": {
@@ -246,7 +246,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "삼육대학교",
@@ -266,7 +266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 10
    },
    {
     "name": "숙명여자대학교",
@@ -336,7 +336,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 3
    },
    {
     "name": "숭실대학교",
@@ -346,7 +346,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 13
+    "count": 12
    },
    {
     "name": "가톨릭대학교 성심",
@@ -386,7 +386,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "성공회대학교",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 11
+    "count": 12
    },
    {
     "name": "경기대학교 수원/서울",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 0
    },
    {
     "name": "서울여자대학교",
@@ -636,7 +636,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 4
    },
    {
     "name": "국립부경대학교",
@@ -886,7 +886,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 6
    },
    {
     "name": "한경국립대학교",
@@ -1006,7 +1006,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "계명대학교",
@@ -1046,7 +1046,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 11
    },
    {
     "name": "인제대학교 김해",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 0
    },
    {
     "name": "전주대학교",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "상지대학교",
