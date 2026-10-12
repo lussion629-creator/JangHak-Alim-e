@@ -591,7 +591,9 @@ const F={within:0,status:new Set(ST_DEF),level:new Set(),region:"",orgType:new S
 const saved=store.get("filters",null); if(saved&&!store.get("mig_field",0)){saved.field=[]; store.set("mig_field",1)}
 if(saved&&!store.get("mig_st3",0)){ if(Array.isArray(saved.status)&&saved.status.length) saved.status=[...new Set([...saved.status,"예정","마감"])]; store.set("mig_st3",1) }
 if(saved){for(const k of["status","level","orgType","kind","match","source","field","note","ex"]) if(saved[k]) F[k]=new Set(saved[k]); F.region=saved.region||""}
-F.exw=(saved&&Array.isArray(saved.exw)?saved.exw:[]).slice(0,20); // 이 말이 들어간 장학 빼기
+F.exw=(saved&&Array.isArray(saved.exw)?saved.exw:[]).slice(0,20);
+// 앱을 켤 때마다 모집중·접수 예정·마감(내년 예상)은 항상 켠 상태로 시작한다 (일정 미정은 고른 대로)
+F.status=new Set([...ST_DEF,...(F.status.has("상시/미정")?["상시/미정"]:[])]); // 이 말이 들어간 장학 빼기
 // 빼고 보기: 누르면 그 기관 장학을 목록에서 뺀다
 const EX={work:r=>(r.support||[]).includes("work"),loan:r=>(r.support||[]).includes("loan"),rec:r=>r._n&&r._n.includes("추천 필요"),dorm:r=>(r.support||[]).length===1&&r.support[0]==="dorm",kosaf:r=>r.org_type==="한국장학재단"||/^한국장학재단/.test(r.org||""),gov:r=>r.org_type==="정부"||r.org_type==="공공기관",local:r=>r.org_type==="지자체",inside:r=>r.org_type==="대학(교내)"||r.org_type==="대학 게시판"};
 
