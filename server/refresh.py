@@ -16,7 +16,7 @@ from datetime import date
 from pathlib import Path
 
 from .collectors import boards, dreamspon, gov24, hanyang, hywoman, hyin, kangwon, konkuk, kosaf, kosaf_hist, legacy, sogang
-from .merge import for_schools, merge
+from .merge import collapse, for_schools, merge
 from .model import summarize_body, expected_next, now_iso, status_of, support_of
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -203,6 +203,7 @@ def export(con: sqlite3.Connection, summary: dict):
         r["status"] = status_of(r.get("start"), r.get("end"), today, r.get("posted", ""))
         r["support"] = support_of(r)
         r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
+    rows = collapse(rows)  # 원칙: 같은 장학(세부 분야·지난 회차 포함)은 한 번만 보여 준다
     rows.sort(key=lambda r: ({"모집중": 0, "예정": 1, "상시/미정": 2, "마감": 3}[r["status"]], r.get("end") or "9999"))
     rows = [public(r) for r in rows]
     payload = json.dumps({"generatedAt": summary["finishedAt"], "count": len(rows), "items": rows}, ensure_ascii=False, separators=(",", ":"))

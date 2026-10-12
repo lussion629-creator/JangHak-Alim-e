@@ -605,3 +605,153 @@ def for_school(rows: list[dict], school: str = "hy") -> list[dict]:
         for k in ("_srcs", "_st_all", "_alltext", "_textby"):
             r.pop(k, None)
     return out
+
+
+# ---------------------------------------------------------------------------
+# 원칙: 같은 장학은 목록에 한 번만 나온다.
+#  A) 같은 기관·같은 장학의 세부 분야(괄호 안: 성적우수·특기·다자녀 …)가 같은 마감일로 여러 줄이면 한 줄로 묶고, 분야는 variants 로 남긴다.
+#  B) 같은 기관·같은 장학의 여러 회차(학기·1차·2차·연도)는 지금 열려 있는 회차만, 모두 지났으면 가장 최근 회차 하나만 남긴다.
+SCHOOL_SRC = {"hyin": "hy", "hanyang": "hy", "hywoman": "hywu", "kangwon": "kw", "sogang": "sg", "konkuk": "kk"}
+GENERIC_TAG = re.compile(r"^(학자금대출|학부|학부생|대학원|대학원생|신설|신규|계속|한국장학재단|장학재단|교외장학금|교내장학금|교내|교외|국가|외부|장학|장학금|등록금|생활비|근로|근로장학|학자금|공지|필독|중요|홍보|안내|모집|선발|신청|마감|재공고|추가|긴급|삼척|ALL|전체|서울|ERICA|교내장학|교외장학|국가장학)$")
+ROUND = re.compile(r"20\d\d\s*[-.]?\s*(학년도|년도|년)?|\d+\s*[-.]\s*\d+\s*학기|\d\s*학기|여름학기|겨울학기|[상하]반기|\d+\s*차|제\s*\d+\s*(기|회|차)|\d+\s*(기|회)(?![가-힣])|\d+\s*월")
+ROUND_WORDS = re.compile(r"학생\s*신청\s*기간|신청\s*방법|신청\s*기간|및|일정|신청|안내|모집|선발|공고|접수|추가|재공고|연장|대상자|장학생|장학금|장학")
+
+
+def _org_key(r: dict) -> str:
+    srcs = set(r.get("_srcs") or [r.get("source")])
+    for s in srcs:
+        if s in SCHOOL_SRC and (r.get("org_type") == "대학(교내)" or not r.get("org") or re.search(r"20\d\d|\d\s*학기", r.get("org") or "")):
+            return "@" + SCHOOL_SRC[s]
+    return org_core(r.get("org") or "") or "@" + (r.get("source") or "")
+
+
+def _base_title(t: str) -> tuple[str, str]:
+    """끝의 괄호(세부 분야)를 떼어 낸 제목과 그 괄호 안 글."""
+    m = re.match(r"^(.*?\S)\s*[(（]((?:[^()（）]|[(（][^()（）]*[)）]){1,30})[)）]\s*$", t or "")
+    return (m.group(1), m.group(2).strip()) if m else (t or "", "")
+
+
+def _round_core(t: str) -> str:
+    t = re.sub(r"^\s*(\[[^\]]*\]\s*)+", " ", t or "")  # 맨 앞 [말머리]
+    t = re.sub(r"[(（][^()（）]*[)）]", " ", t)  # 괄호 안 설명
+    t = re.sub(r"\[([^\]]*)\]", lambda m: " " if GENERIC_TAG.match(m.group(1).strip()) else " " + m.group(1) + " ", t or "")
+    t = re.sub(r"[(（]([^()（）]*)[)）]", lambda m: " " if re.search(r"\d|마감|~|신청|기간|접수|한국장학재단", m.group(1)) or GENERIC_TAG.match(m.group(1).strip()) else " " + m.group(1) + " ", t)
+    t = ROUND.sub(" ", t)
+    t = ROUND_WORDS.sub(" ", t)
+    return _hangul(t)
+
+
+def _lv(r: dict) -> str:
+    return "hs" if r.get("level") == "고등학생" else "u"
+
+
+def _when(r: dict) -> str:
+    return r.get("end") or r.get("start") or r.get("posted") or ""
+
+
+def _union_into(rep: dict, others: list[dict]):
+    for f in ("support", "majors", "school_types", "grades"):
+        vals = [v for r in [rep] + others for v in (r.get(f) or [])]
+        if vals:
+            rep[f] = list(dict.fromkeys(vals))
+    fs = [r.get("for") or [] for r in [rep] + others]
+    if all(fs):
+        rep["for"] = list(dict.fromkeys(x for f in fs for x in f))
+    if not rep.get("fresh"):
+        fr = next((r["fresh"] for r in others if r.get("fresh") and r.get("status") != "마감"), None)
+        if fr:
+            rep["fresh"] = fr
+    rep["aka"] = list(dict.fromkeys((rep.get("aka") or []) + [x for r in others for x in [r["id"]] + (r.get("aka") or [])]))[:30]
+
+
+def _group(rows, keyfn):
+    groups, order = {}, []
+    for r in rows:
+        k = keyfn(r) or ("#", r["id"])
+        if k not in groups:
+            groups[k] = []
+            order.append(k)
+        groups[k].append(r)
+    return [groups[k] for k in order]
+
+
+def _pick_rounds(g: list[dict]) -> list[dict]:
+    """여러 회차 중 남길 것: 모집중·예정이면 그것만, 아니면 일정이 있는 가장 최근 회차 하나."""
+    live = [r for r in g if r.get("status") in ("모집중", "예정")]
+    if live:
+        keep = live
+    else:
+        keep = [max(g, key=lambda r: (bool(r.get("end") or r.get("start")), _when(r), _richness(r)))]
+    drop = [r for r in g if not any(r is k for k in keep)]
+    if drop:
+        rep = keep[0]
+        vs = list(rep.get("variants") or [])
+        names = {_hangul(v["n"]) for v in vs}
+        for r in drop:
+            _, var = _base_title(r.get("title", ""))
+            for v in (r.get("variants") or ([{"n": var, "a": (r.get("amount") or "")[:120], "t": (r.get("target") or "")[:240]}] if var else [])):
+                if _hangul(v["n"]) not in names and len(vs) < 12:
+                    names.add(_hangul(v["n"]))
+                    vs.append(dict(v, e=r.get("end") or ""))
+        if len(vs) > 1:
+            if not rep.get("variants"):
+                b, var = _base_title(rep["title"])
+                if var and _hangul(var) not in {_hangul(v["n"]) for v in vs}:
+                    vs.insert(0, {"n": var, "a": (rep.get("amount") or "")[:120], "t": (rep.get("target") or "")[:240], "e": rep.get("end") or ""})
+            rep["variants"] = vs
+            rep["title"] = _base_title(rep["title"])[0] if _base_title(rep["title"])[1] else rep["title"]
+        for k in keep:
+            _union_into(k, drop)
+    return keep
+
+
+def _ccore(r: dict) -> str:
+    return _round_core(re.sub(r"\[[^\]]*\]", " ", _base_title(r.get("title", ""))[0]))
+
+
+def collapse(rows: list[dict]) -> list[dict]:
+    # A0) 제목·마감일까지 똑같은 줄
+    out = []
+    for g in _group(rows, lambda r: (_hangul(r.get("title")), r.get("end") or "", _lv(r)) if len(_hangul(r.get("title"))) >= 4 else None):
+        g.sort(key=lambda r: -_richness(r))
+        rep = g[0]
+        if len(g) > 1:
+            _union_into(rep, g[1:])
+        out.append(rep)
+    # A) 세부 분야(끝 괄호)만 다르고 마감일이 같은 줄 → 한 줄 + variants
+    rows, out = out, []
+    for g in _group(rows, lambda r: (_org_key(r), _hangul(_base_title(r.get("title", ""))[0]), r.get("end") or "", _lv(r)) if len(_hangul(_base_title(r.get("title", ""))[0])) >= 4 else None):
+        if len(g) == 1:
+            out.append(g[0])
+            continue
+        g.sort(key=lambda r: -_richness(r))
+        rep = g[0]
+        base = _base_title(rep["title"])[0]
+        seen, variants = set(), []
+        for r in g:
+            var = _base_title(r.get("title", ""))[1]
+            if var and _hangul(var) not in seen:
+                seen.add(_hangul(var))
+                variants.append({"n": var[:30], "a": (r.get("amount") or "")[:120], "t": (r.get("target") or "")[:240]})
+        if len(variants) > 1:
+            rep["title"] = base
+            rep["variants"] = variants[:12]
+        _union_into(rep, g[1:])
+        out.append(rep)
+    # B) 같은 기관의 여러 회차·세부 분야(마감일 다름) → 열린 회차만, 다 지났으면 최근 회차 하나
+    rows, out = out, []
+    for g in _group(rows, lambda r: (_org_key(r), _round_core(_base_title(r.get("title", ""))[0]), _lv(r)) if len(_round_core(_base_title(r.get("title", ""))[0])) >= 4 else None):
+        out.extend(_pick_rounds(g) if len(g) > 1 else g)
+    # C) 기관 이름이 다르게 적혔어도 긴 핵심 이름이 같으면 같은 장학 (서로 다른 학교의 교내 공고끼리는 제외)
+    rows, out = out, []
+    for g in _group(rows, lambda r: ("C", _ccore(r), _lv(r)) if len(_ccore(r)) >= 8 else None):
+        if len(g) > 1 and len({_org_key(r) for r in g if _org_key(r).startswith("@")}) <= 1:
+            live = [r for r in g if r.get("status") in ("모집중", "예정")]
+            if len(live) > 1:  # 같은 공고가 여러 곳에 올라온 것: 내용이 가장 많은 하나로
+                live.sort(key=lambda r: (bool(r.get("end")), _richness(r)), reverse=True)
+                _union_into(live[0], live[1:])
+                g = [r for r in g if not any(r is x for x in live[1:])]
+            out.extend(_pick_rounds(g))
+        else:
+            out.extend(g)
+    return out
