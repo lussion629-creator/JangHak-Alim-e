@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-12T08:38:22+00:00",
- "finishedAt": "2026-10-12T08:52:27+00:00",
+ "startedAt": "2026-10-12T12:58:27+00:00",
+ "finishedAt": "2026-10-12T13:11:24+00:00",
  "online": true,
- "total": 4544,
- "new": 9,
- "changed": 177,
+ "total": 4553,
+ "new": 4,
+ "changed": 191,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 597,
+   "count": 598,
    "mode": "성공 121 / 실패 26"
   },
   {
@@ -165,7 +165,7 @@
     "url": "https://student.snu.ac.kr/?page_id=10815&mod=list&category1=장학공지",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -265,8 +265,8 @@
     "url": "https://www.ewha.ac.kr/ewha/bachelor/scholarship-notice.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 10
    },
    {
     "name": "숙명여자대학교",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 9
+    "count": 0
    },
    {
     "name": "서울여자대학교",
