@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-12T07:46:24+00:00",
- "finishedAt": "2026-10-12T08:06:56+00:00",
+ "startedAt": "2026-10-12T08:23:08+00:00",
+ "finishedAt": "2026-10-12T08:37:18+00:00",
  "online": true,
- "total": 4551,
- "new": 5,
- "changed": 183,
+ "total": 4554,
+ "new": 8,
+ "changed": 188,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 596,
+   "count": 607,
    "mode": "성공 122 / 실패 25"
   },
   {
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 9
    },
    {
     "name": "서울여자대학교",
@@ -1046,7 +1046,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 12
    },
    {
     "name": "인제대학교 김해",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 3
    },
    {
     "name": "상지대학교",
