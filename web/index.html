@@ -131,8 +131,12 @@ aside.filters{display:flex;flex-direction:column;gap:18px;flex:1 1 auto;min-heig
 .bell[aria-pressed="true"]{color:var(--accent)}
 .bell[aria-pressed="true"] svg path{fill:currentColor}
 .chip.ex[aria-pressed="true"]{background:var(--surface-2);color:var(--seal);border-color:var(--seal);text-decoration:line-through}
-.exbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-.exbar .chip{font-size:12.5px;padding:4px 10px}
+.quickex{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-2px 2px 12px}
+.quickex .lab{font-size:12px;font-weight:700;color:var(--ink-3);margin-right:2px}
+.quickex .chip{font-size:12.5px;padding:4px 10px}
+.quickex .sp{flex:1}
+.quickex .hid[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+@media (max-width:560px){.quickex{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.quickex::-webkit-scrollbar{display:none}.quickex>*{flex:none}.quickex .sp{display:none}}
 .watchhits{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r);padding:10px 12px;margin:0 0 8px;font-size:13.5px}
 .watchhits h2{font-size:13px;margin:0 0 4px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .watchhits ul{list-style:none;margin:0;padding:0}
@@ -396,7 +400,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <div class="pfbar" id="pfBar" hidden></div>
       <div class="hidebar" id="hideBar" hidden></div>
       <div class="toolbar">
-        <span class="exbar"><span id="resultCount"></span><button type="button" class="chip ex" id="exKosaf" aria-pressed="false">한국장학재단 빼고 보기</button></span>
+        <span id="resultCount"></span>
         <label>정렬 <select id="sort">
           <option value="fit">나에게 맞는 순</option>
           <option value="due">마감 임박순</option>
@@ -405,6 +409,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
           <option value="next">다음 모집 예상순</option>
         </select></label>
       </div>
+      <div class="quickex" id="quickEx" aria-label="빠르게 빼고 보기"></div>
       <div class="list" id="list"></div>
       <button class="more" id="more" type="button" hidden>더 보기</button>
     </section>
@@ -545,10 +550,10 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <details open data-k="찾기 검색 학교 학과 이름"><summary>장학금 찾기·검색</summary><p>위쪽 검색 칸에 장학금 이름·재단·지역·학교·학과를 쳐 보세요. ‘간호학과’처럼 학과를 치면 그 계열 대상 장학까지, ‘건국대’처럼 학교를 치면 그 학교 공고까지 찾아요. 검색 칸 위의 색 버튼(등록금·생활비·근로 등)을 누르면 그 종류만 볼 수 있어요.</p></details>
     <details data-k="중복 같은 장학 한 번 세부 분야 회차"><summary>같은 장학은 한 번만</summary><p>여러 곳에 올라온 같은 장학, 지난 회차, 성적우수·특기처럼 세부 분야만 다른 장학은 한 줄로 묶어 보여 줘요. 묶인 세부 분야는 카드의 ‘세부 n개’ 표시와 상세의 ‘세부 분야’에서 볼 수 있어요.</p></details>
     <details data-k="모집 상태 접수 예정 마감 내년 예상 묶음"><summary>모집중 · 접수 예정 · 마감·내년 예상</summary><p>목록은 ‘지금 모집중’, ‘접수 예정’, ‘마감·내년 예상’으로 나뉘어 차례로 나와요. 마감된 장학도 작년 일정을 보고 다음 모집 시기를 예상해 보여 줘요. 왼쪽(휴대폰은 ‘필터’ 버튼) 모집 상태에서 원하는 것만 켜고 끌 수 있어요.</p></details>
-    <details data-k="빼고 보기 한국장학재단 제외 국가장학 기관"><summary>한국장학재단 같은 곳 빼고 보기</summary><p>결과 개수 옆 <b>한국장학재단 빼고 보기</b>를 누르면 국가장학금 같은 재단 장학이 빠져요. 필터의 ‘빼고 보기’에서 정부·공공기관, 지자체, 교내 장학도 같은 방법으로 뺄 수 있어요. 줄이 그어진 버튼이 지금 빼고 있는 것이에요.</p></details>
+    <details data-k="빼고 보기 한국장학재단 제외 국가장학 기관"><summary>한국장학재단 같은 곳 빼고 보기</summary><p>목록 바로 위 <b>빼고 보기</b> 줄에서 한국장학재단, 정부·공공기관, 지자체, 교내 장학, 근로장학, 학자금 대출, 추천 필요를 눌러 뺄 수 있어요. 필터의 ‘빼고 보기’ 칸에는 낱말을 넣어 뺄 수도 있어요. 줄이 그어진 버튼이 지금 빼고 있는 것이에요.</p></details>
     <details data-k="학교 전용 공고 왼쪽 아래 다른 학교"><summary>학교 전용 공고</summary><p>그 학교 학생만 지원할 수 있는 공고는 왼쪽 아래 <b>학교 전용 공고</b> 칸에 따로 모여 있어요(휴대폰은 목록 위). 학교 이름을 누르면 그 학교 전용 공고만 보여요. 내 정보에 학교를 넣으면 다른 학교 전용 공고는 기본으로 숨겨요.</p></details>
     <details data-k="별표 관심 종 알림 비슷한 같은"><summary>별표(관심)와 종(알림)</summary><p><b>별</b>을 누르면 ‘관심’ 탭에 모이고, 마감 전에 알려 드려요. 별 아래 <b>종</b>을 누르면 그 장학과 같거나 비슷한 장학이 새로 올라올 때 알려 드려요. 키워드·지원 종류 알림과 등록한 목록은 ‘알림’ 탭에서 바꿀 수 있어요. 휴대폰 앱은 휴대폰 알림으로, 웹은 다음에 열 때 맨 위에 알려 드려요.</p></details>
-    <details data-k="숨기기 숨김 안 보이게"><summary>장학 숨기기</summary><p>카드 오른쪽 <b>눈 모양</b>을 누르면 목록·달력·새 소식에서 빠져요. 실수했다면 바로 뜨는 ‘되돌리기’를 누르거나, 목록 위 ‘숨긴 장학 보기’에서 다시 풀 수 있어요.</p></details>
+    <details data-k="숨기기 숨김 안 보이게"><summary>장학 숨기기</summary><p>카드 오른쪽 <b>눈 모양</b>을 누르면 목록·달력·새 소식에서 빠져요. 실수했다면 바로 뜨는 ‘되돌리기’를 누르거나, 목록 위 오른쪽 <b>숨긴 것만 보기</b>를 누르면 숨긴 장학만 따로 모아 보고 다시 풀 수 있어요.</p></details>
     <details data-k="내 정보 맞춤 학과 전공 학교 초기화 리셋"><summary>내 정보로 맞춤 찾기</summary><p>‘내 정보’ 탭에 학교·학과(쳐서 찾기)·지역·소득구간·성적을 넣으면 지원 가능 여부를 표시해 줘요. 목록 위의 스위치로 맞춤 거르기를 껐다 켤 수 있고, ‘내 정보 초기화’로 지울 수 있어요. 입력한 정보는 이 기기에만 저장돼요.</p></details>
     <details data-k="중학생 고등학생 청소년 대학원 대학원생 석사 박사"><summary>중·고등학생 · 대학원생 장학</summary><p>대학원생만 지원할 수 있는 장학은 기본으로 숨겨져 있어요. 필터 ‘대상’에서 <b>대학원생</b>을 누르거나 내 정보 신분을 대학원생으로 고르면 보여요. 중·고등학생 장학도 기본으로는 숨겨져 있어요. 필터 ‘대상’의 <b>+ 중·고등학생 장학</b>을 누르면 함께 보여요.</p></details>
     <details data-k="달력 마감 캘린더 일정"><summary>마감 달력</summary><p>날짜별로 마감·접수 시작 장학을 보여 줘요. ‘관심만’을 켜면 별표한 장학만, ‘작년 일정으로 예상 포함’을 켜면 다음 모집 예상까지 보여요.</p></details>
@@ -984,7 +989,8 @@ document.addEventListener("click",e=>{
   const c=e.target.closest(".chip[data-f]");
   if(c){F.within=0;const s=F[c.dataset.f]; s.has(c.dataset.v)?s.delete(c.dataset.v):s.add(c.dataset.v); c.setAttribute("aria-pressed",s.has(c.dataset.v)); apply(); if(c.dataset.v==="대학원생") renderKpis(); return}
   if(e.target.id==="fReset"){F.within=0;F.status=new Set(ST_DEF);for(const k of["level","orgType","kind","match","source","field","note","ex"])F[k]=new Set();F.exw=[];F.region="";buildFilters();apply()}
-  if(e.target.id==="exKosaf"){F.ex.has("kosaf")?F.ex.delete("kosaf"):F.ex.add("kosaf"); buildFilters(); apply(); toast(F.ex.has("kosaf")?"한국장학재단 장학을 빼고 보여요.":"한국장학재단 장학도 다시 보여요."); return}
+  const qx=e.target.closest("[data-qex]"); if(qx){const k=qx.dataset.qex, l=qx.dataset.l; F.ex.has(k)?F.ex.delete(k):F.ex.add(k); buildFilters(); apply(); toast(F.ex.has(k)?l+" 장학을 빼고 보여요.":l+" 장학도 다시 보여요."); return}
+  if(e.target.closest("#qHidden")){SHOW_HIDDEN=!SHOW_HIDDEN; apply(); renderHideBar(); return}
 });
 document.addEventListener("change",e=>{if(e.target.id==="fRegion"){F.region=e.target.value;apply()}});
 document.addEventListener("input",e=>{ if(e.target.id!=="fExw") return; clearTimeout(window.__exw); window.__exw=setTimeout(()=>{F.exw=e.target.value.split(/[,，]/).map(x=>x.trim().toLowerCase()).filter(Boolean).slice(0,20); apply()},250) });
@@ -1001,7 +1007,7 @@ const HIDDEN=new Set(store.get("hidden",[])||[]); let SHOW_HIDDEN=false;
 const isHidden=r=>HIDDEN.has(r.id);
 function setHidden(id,on){ on?HIDDEN.add(id):HIDDEN.delete(id); store.set("hidden",[...HIDDEN]); }
 function renderHideBar(){
-  const n=DATA.filter(isHidden).length, b=$("#hideBar"); if(!b) return;
+  const n=DATA.filter(isHidden).length, b=$("#hideBar"); if(!b) return; renderQuickEx(); b.hidden=true; return; // 숨긴 장학은 목록 위 '숨긴 것만 보기'에서 본다
   if(!n&&!SHOW_HIDDEN){b.hidden=true; return}
   b.hidden=false;
   b.innerHTML=SHOW_HIDDEN?`<span>숨긴 장학 ${n}건을 보고 있어요.</span><button class="linkbtn2" type="button" id="hideBack">목록으로 돌아가기</button>`
@@ -1084,9 +1090,16 @@ function sorter0(){
   const rank={"모집중":0,"예정":1,"상시/미정":2,"마감":3};
   return (a,b)=>rank[a._s.key]-rank[b._s.key] || (a._s.key==="마감"?(a.next||"9").localeCompare(b.next||"9"):(a.end||a.start||"9999").localeCompare(b.end||b.start||"9999")) || (b.amount_won||0)-(a.amount_won||0);
 }
+// 목록 바로 위: 자주 빼는 것 한 번에 빼기 + 숨긴 장학만 보기
+const QEX=[["kosaf","한국장학재단"],["gov","정부·공공기관"],["local","지자체"],["inside","교내 장학"],["work","근로장학"],["loan","학자금 대출"],["rec","추천 필요"]];
+function renderQuickEx(){
+  const b=$("#quickEx"); if(!b) return; const nh=DATA.filter(isHidden).length;
+  b.innerHTML=SHOW_HIDDEN?`<span class="lab">숨긴 장학만 보는 중</span><span class="sp"></span><button type="button" class="chip hid" id="qHidden" aria-pressed="true">목록으로 돌아가기</button>`
+    :`<span class="lab">빼고 보기</span>${QEX.map(([k,l])=>`<button type="button" class="chip ex" data-qex="${k}" data-l="${l}" aria-pressed="${F.ex.has(k)}">${l}</button>`).join("")}<span class="sp"></span><button type="button" class="chip hid" id="qHidden" aria-pressed="false">숨긴 것만 보기${nh?` <b>${nh}</b>`:""}</button>`;
+}
 function apply(){
   store.set("filters",{status:[...F.status],level:[...F.level],region:F.region,orgType:[...F.orgType],kind:[...F.kind],match:[...F.match],source:[...F.source],field:[...F.field],note:[...F.note],ex:[...F.ex],exw:F.exw});
-  {const b=$("#exKosaf"); if(b){b.setAttribute("aria-pressed",F.ex.has("kosaf")); b.textContent=F.ex.has("kosaf")?"한국장학재단 빼는 중":"한국장학재단 빼고 보기"}}
+  renderQuickEx();
   const q=$("#q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
   if(q.length===1&&/^(도움말|사용법|help)$/.test(q[0])&&!$("#helpWrap").dataset.fromq){ $("#helpWrap").dataset.fromq="1"; openHelp(); } else if(!(q.length===1&&/^(도움말|사용법|help)$/.test(q[0]))) delete $("#helpWrap").dataset.fromq;
   view=DATA.filter(r=>passes(r,q)).sort(sorter());
@@ -1122,6 +1135,7 @@ const GLABEL={"모집중":["지금 모집중",""],"예정":["접수 예정","곧
 let GSHOWN={};
 function renderMore(){
   const multi=Object.keys(GCNT).length>1&&!SHOW_HIDDEN;
+  if(!view.length&&SHOW_HIDDEN){ $("#list").innerHTML=`<div class="empty">숨긴 장학이 없어요. 카드 오른쪽 눈 모양을 누르면 여기로 모여요.</div>`; $("#more").hidden=true; return }
   if(!view.length){ $("#list").innerHTML=`<div class="empty">조건에 맞는 장학금이 없습니다.${PF_ON&&savedProfile()?" 위의 ‘내 정보 맞춤’을 끄면 내 조건과 맞지 않는 장학까지 모두 볼 수 있어요.":""} 모집 상태에 ‘마감·내년 예상’을 켜면 정기 장학금의 다음 모집 시기도 볼 수 있습니다.</div>`; $("#more").hidden=true; return }
   if(!multi){ const next=view.slice(shown,shown+60); shown+=next.length; $("#list").insertAdjacentHTML("beforeend",next.map(card).join("")); $("#more").hidden=shown>=view.length; return }
   $("#more").hidden=true; GSHOWN={};
