@@ -975,7 +975,7 @@ function buildFilters(){
   const more=F.region||F.orgType.size||F.field.size||F.note.size||F.kind.size||store.get("fmore",false);
   $("#filters").innerHTML=
     chipGroup("모집 상태","status",[["모집중","모집중"],["예정","접수 예정"],["마감","마감·내년 예상"],["상시/미정","일정 미정"]])+
-    `<div class="fgroup" data-g="level"><h3>대상</h3><div class="chips">${[["대학생","대학생"],["대학원생","대학원생"],...(teenShown()?[["고등학생","중·고등학생"]]:[]),["해외유학","해외유학"],["학점은행제","학점은행제"]].map(([v,l])=>`<button type="button" class="chip" data-f="level" data-v="${esc(v)}" aria-pressed="${F.level.has(v)}">${esc(l)}</button>`).join("")}<button type="button" class="chip" id="teenSw" aria-pressed="${teenShown()}">${teenShown()?"중·고등학생 장학 끄기":"+ 중·고등학생 장학"}</button></div></div>`+
+    `<div class="fgroup" data-g="level"><h3>대상</h3><div class="chips">${[["대학생","대학생"],["대학원생","대학원생"],...(teenShown()?[["고등학생","중·고등학생"]]:[]),["해외유학","해외유학"],["학점은행제","학점은행제"]].map(([v,l])=>`<button type="button" class="chip" data-f="level" data-v="${esc(v)}" aria-pressed="${F.level.has(v)}">${esc(l)}</button>`).join("")}<button type="button" class="chip" id="teenSw" aria-pressed="${teenShown()&&!F.level.has("고등학생")}">${teenShown()?"중·고등학생 장학 끄기":"+ 중·고등학생 함께 보기"}</button><button type="button" class="chip" id="teenOnly" aria-pressed="${teenShown()&&F.level.size===1&&F.level.has("고등학생")}">중·고등학생만 보기</button></div></div>`+
     (profile?chipGroup("나에게 맞는지","match",[["ok","지원 가능"],["check","확인 필요"],["no","지원 불가"]]):"")+
     `<div class="fgroup" data-g="ex"><h3>빼고 보기</h3><div class="chips">${[["kosaf","한국장학재단"],["gov","정부·공공기관"],["local","지자체"],["inside","교내 장학"],["work","근로장학"],["loan","학자금 대출"],["rec","추천 필요"]].map(([v,l])=>`<button type="button" class="chip ex" data-f="ex" data-v="${v}" aria-pressed="${F.ex.has(v)}">${l}</button>`).join("")}</div>
       <input type="search" id="fExw" placeholder="이 말이 들어간 장학 빼기" value="${esc(F.exw.join(", "))}" style="margin-top:6px;font-size:13px;padding:6px 10px" aria-label="뺄 낱말 (쉼표로 구분)"></div>`+
@@ -998,6 +998,12 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("change",e=>{if(e.target.id==="fRegion"){F.region=e.target.value;apply()}});
 document.addEventListener("input",e=>{ if(e.target.id!=="fExw") return; clearTimeout(window.__exw); window.__exw=setTimeout(()=>{F.exw=e.target.value.split(/[,，]/).map(x=>x.trim().toLowerCase()).filter(Boolean).slice(0,20); apply()},250) });
+document.addEventListener("click",e=>{ if(e.target.id!=="teenOnly") return;
+  const on=!(teenShown()&&F.level.size===1&&F.level.has("고등학생"));
+  if(on){ TEEN_ON=true; store.set("teen",true); F.level=new Set(["고등학생"]) } else { F.level=new Set(); }
+  buildFilters(); apply(); renderKpis(); try{ if(!$("#view-cal").hidden) renderCal() }catch(x){}
+  toast(on?"중·고등학생 장학만 보여요.":"다시 모든 대상을 보여요.");
+});
 document.addEventListener("click",e=>{ if(e.target.id!=="teenSw") return;
   TEEN_ON=!TEEN_ON; store.set("teen",TEEN_ON); if(!teenShown()) F.level.delete("고등학생");
   buildFilters(); apply(); renderKpis(); try{ if(!$("#view-cal").hidden) renderCal() }catch(x){}
