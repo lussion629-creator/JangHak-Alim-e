@@ -151,14 +151,16 @@ aside.filters{display:flex;flex-direction:column;gap:18px;flex:1 1 auto;min-heig
 .helpbox summary{cursor:pointer;font-weight:700;font-size:14.5px}
 .helpbox details p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.6}
 .helpbox .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
-.fgroup{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+.fgroup[data-g="status"],.fgroup[data-g="level"]{border-radius:var(--r);padding:10px 12px;border:1px solid transparent}
+.fmore summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--ink-2);padding:4px 0}
+.fmore[open]{display:flex;flex-direction:column;gap:18px}
+.fmore[open] summary{margin-bottom:-6px}
 .fgroup[data-g="status"]{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
 .fgroup[data-g="status"] h3{color:var(--accent)}
 .fgroup[data-g="status"] .chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.fgroup[data-g="level"],.fgroup[data-g="teen"]{background:var(--c-dorm-soft);border-color:color-mix(in srgb,var(--c-dorm) 35%,transparent)}
-.fgroup[data-g="level"] h3,.fgroup[data-g="teen"] h3{color:var(--c-dorm)}
-.fgroup[data-g="level"] .chip[aria-pressed="true"],.fgroup[data-g="teen"] .chip[aria-pressed="true"]{background:var(--c-dorm);color:#fff;border-color:var(--c-dorm)}
-.fgroup[data-g="ex"]{background:var(--seal-soft);border-color:color-mix(in srgb,var(--seal) 30%,transparent)}
+.fgroup[data-g="level"]{background:var(--c-dorm-soft);border-color:color-mix(in srgb,var(--c-dorm) 35%,transparent)}
+.fgroup[data-g="level"] h3 h3{color:var(--c-dorm)}
+.fgroup[data-g="level"] .chip[aria-pressed="true"] .chip[aria-pressed="true"]{background:var(--c-dorm);color:#fff;border-color:var(--c-dorm)}
 .fgroup[data-g="ex"] h3{color:var(--seal)}
 .grouphead.g-모집중{color:var(--accent)} .grouphead.g-예정{color:var(--check)}
 .fgroup h3{font-weight:700;font-size:12px;letter-spacing:.02em;color:var(--ink-3);margin:0 0 8px}
@@ -331,7 +333,15 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
   .wrap{padding-inline:16px}
   .layout{grid-template-columns:minmax(0,1fr);gap:0}
   .side{position:static;height:auto;display:block}
-  .onlybox{margin-bottom:12px}
+  .onlybox{margin-bottom:12px;padding:8px 10px;display:flex;align-items:center;gap:8px}
+  .onlybox h3{margin:0;flex:none;font-size:12px}
+  .onlybox .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;min-width:0}
+  .onlybox .chip{flex:none;white-space:nowrap}
+  .onlybox .chips::-webkit-scrollbar,.cats::-webkit-scrollbar{display:none}
+  .onlybox .note,.onlybox [data-only-others]{display:none}
+  .cats{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;padding:2px 2px 4px;margin-top:12px}
+  .cats>*{flex:none}
+  .cats .onlybar,.cats .cats-hint{flex-basis:auto}
   aside.filters{position:static;max-height:none;display:none;margin-bottom:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
   aside.filters.open{display:flex}
   .mfilter{display:inline-flex;white-space:nowrap}
@@ -369,7 +379,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <button role="tab" data-tab="alert" aria-selected="false">알림<span class="count" id="watchCount"></span></button>
     <button role="tab" data-tab="me" aria-selected="false">내 정보</button>
     <button role="tab" data-tab="doc" aria-selected="false">서류 쓰기</button>
-    <button role="tab" data-tab="src" aria-selected="false">새 소식</button>
+    <button role="tab" data-tab="src" aria-selected="false">새 소식<span class="count" id="newCount"></span></button>
   </nav>
 
   <div class="cats" id="cats" role="group" aria-label="지원 종류"></div>
@@ -539,7 +549,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <details data-k="별표 관심 종 알림 비슷한 같은"><summary>별표(관심)와 종(알림)</summary><p><b>별</b>을 누르면 ‘관심’ 탭에 모이고, 마감 전에 알려 드려요. 별 아래 <b>종</b>을 누르면 그 장학과 같거나 비슷한 장학이 새로 올라올 때 알려 드려요. 키워드·지원 종류 알림과 등록한 목록은 ‘알림’ 탭에서 바꿀 수 있어요. 휴대폰 앱은 휴대폰 알림으로, 웹은 다음에 열 때 맨 위에 알려 드려요.</p></details>
     <details data-k="숨기기 숨김 안 보이게"><summary>장학 숨기기</summary><p>카드 오른쪽 <b>눈 모양</b>을 누르면 목록·달력·새 소식에서 빠져요. 실수했다면 바로 뜨는 ‘되돌리기’를 누르거나, 목록 위 ‘숨긴 장학 보기’에서 다시 풀 수 있어요.</p></details>
     <details data-k="내 정보 맞춤 학과 전공 학교 초기화 리셋"><summary>내 정보로 맞춤 찾기</summary><p>‘내 정보’ 탭에 학교·학과(쳐서 찾기)·지역·소득구간·성적을 넣으면 지원 가능 여부를 표시해 줘요. 목록 위의 스위치로 맞춤 거르기를 껐다 켤 수 있고, ‘내 정보 초기화’로 지울 수 있어요. 입력한 정보는 이 기기에만 저장돼요.</p></details>
-    <details data-k="중학생 고등학생 청소년"><summary>중·고등학생 장학</summary><p>기본으로는 숨겨져 있어요. 필터의 <b>중·고등학생 장학도 보기</b>를 누르면 함께 보여요.</p></details>
+    <details data-k="중학생 고등학생 청소년"><summary>중·고등학생 장학</summary><p>기본으로는 숨겨져 있어요. 필터 ‘대상’의 <b>+ 중·고등학생 장학</b>을 누르면 함께 보여요.</p></details>
     <details data-k="달력 마감 캘린더 일정"><summary>마감 달력</summary><p>날짜별로 마감·접수 시작 장학을 보여 줘요. ‘관심만’을 켜면 별표한 장학만, ‘작년 일정으로 예상 포함’을 켜면 다음 모집 예상까지 보여요.</p></details>
     <details data-k="앱 설치 아이폰 홈 화면 웹앱"><summary>휴대폰에 앱처럼 설치</summary><p>아이폰은 Safari 공유 버튼에서 ‘홈 화면에 추가’를 누르면 앱처럼 쓸 수 있어요. 안드로이드는 Chrome 메뉴의 ‘홈 화면에 추가’ 또는 앱 설치를 쓰세요.</p></details>
   </div>
@@ -909,7 +919,7 @@ function countWith(cats,only){
 }
 function renderOnly(){
   const box=$("#onlyBox"); if(!box) return; const o=showOnly(), me=mySchool(), anyOther=SCHOOLS.filter(([k])=>k!==me).some(([k])=>o[k]);
-  box.innerHTML=`<h3>학교 전용 공고${ONLY_SEL.size?`<button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button>`:""}</h3><div class="chips">${SCHOOLS.map(([k,l])=>`<button type="button" class="chip" data-only="${k}" aria-pressed="${ONLY_SEL.has(k)}">${l} <b>${countWith([...CATS],[k])}</b></button>`).join("")}</div>`
+  box.innerHTML=`<h3>학교 전용${ONLY_SEL.size?`<button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button>`:""}</h3><div class="chips">${SCHOOLS.map(([k,l])=>`<button type="button" class="chip" data-only="${k}" aria-pressed="${ONLY_SEL.has(k)}">${l} <b>${countWith([...CATS],[k])}</b></button>`).join("")}</div>`
     +(me&&!ONLY_SEL.size?`<button type="button" class="chip" style="margin-top:6px" data-only-others="${anyOther?"off":"on"}">${anyOther?"다른 학교 전용 숨기기":"다른 학교 전용도 보기"}</button>`:"")
     +`<p class="note">${ONLY_SEL.size?"고른 학교 학생만 지원할 수 있는 공고만 보는 중":"그 학교 학생만 지원할 수 있는 공고예요. 누르면 그것만 보여요."}</p>`;
 }
@@ -917,7 +927,7 @@ function renderCats(){ renderOnly();
   const n=k=>countWith(k?[k]:[],[...ONLY_SEL]);
   const o=showOnly(), me=mySchool(), others=SCHOOLS.filter(([k])=>k!==me), anyOther=others.some(([k])=>o[k]);
   $("#cats").innerHTML=[["","전체"],...SUP,["etc","그 밖의 장학"]].map(([k,l])=>`<button type="button" class="cat ${k||"all"}" data-cat="${k}" aria-pressed="${k?CATS.has(k):!CATS.size}"><i></i>${l}<span class="n">${n(k)}</span></button>`).join("")
-    +`<p class="cats-hint">${CATS.size||ONLY_SEL.size?`${[...[...CATS].map(k=>SUPL[k]||"그 밖의 장학"),...[...ONLY_SEL].map(k=>OWNL[k])].join(" · ")}만 보는 중 · <button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button>`:"보고 싶은 종류나 학교 전용 공고를 눌러 고르세요. 여러 개 고를 수 있어요."}</p>`;
+    +(CATS.size||ONLY_SEL.size?`<p class="cats-hint">`:"")+`${CATS.size||ONLY_SEL.size?`${[...[...CATS].map(k=>SUPL[k]||"그 밖의 장학"),...[...ONLY_SEL].map(k=>OWNL[k])].join(" · ")}만 보는 중 · <button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button></p>`:""}`;
 }
 function onCatsClick(e){
   const oo=e.target.closest("[data-only-others]"); if(oo){const me=mySchool(), on=oo.dataset.onlyOthers==="on", o={}; SCHOOLS.forEach(([k])=>o[k]=k===me||on); store.set("only",o); renderKpis(); apply(); return}
@@ -946,19 +956,21 @@ function buildFilters(){
   const kinds=cnt("kind"), kindOpts=["지역연고","성적우수","소득구분","특기자","장애인","기타","공고"].filter(k=>kinds[k]);
   const orgs=["한국장학재단","정부","공공기관","지자체","민간·기업·대학","대학(교내)","대학 게시판"].filter(o=>cnt("org_type")[o]);
   const OL={"대학 게시판":"대학 공고","대학(교내)":"교내 장학"};
+  const more=F.region||F.orgType.size||F.field.size||F.note.size||F.kind.size||store.get("fmore",false);
   $("#filters").innerHTML=
     chipGroup("모집 상태","status",[["모집중","모집중"],["예정","접수 예정"],["마감","마감·내년 예상"],["상시/미정","일정 미정"]])+
-    `<div class="fgroup" data-g="ex"><h3>빼고 보기 <span style="font-weight:500">· 누르면 목록에서 빠져요</span></h3><div class="chips">${[["kosaf","한국장학재단"],["gov","정부·공공기관"],["local","지자체"],["inside","교내 장학"],["work","근로장학"],["loan","학자금 대출"],["dorm","기숙사만 지원"],["rec","추천 필요"]].map(([v,l])=>`<button type="button" class="chip ex" data-f="ex" data-v="${v}" aria-pressed="${F.ex.has(v)}">${l}</button>`).join("")}</div>
-      <input type="search" id="fExw" placeholder="이 말이 들어간 장학 빼기 (쉼표로 구분, 예: 대출, 군인)" value="${esc(F.exw.join(", "))}" style="margin-top:8px;font-size:13px;padding:7px 10px" aria-label="뺄 낱말"></div>`+
+    `<div class="fgroup" data-g="level"><h3>대상</h3><div class="chips">${[["대학생","대학생"],...(teenShown()?[["고등학생","중·고등학생"]]:[]),["해외유학","해외유학"],["학점은행제","학점은행제"]].map(([v,l])=>`<button type="button" class="chip" data-f="level" data-v="${esc(v)}" aria-pressed="${F.level.has(v)}">${esc(l)}</button>`).join("")}<button type="button" class="chip" id="teenSw" aria-pressed="${teenShown()}">${teenShown()?"중·고등학생 장학 끄기":"+ 중·고등학생 장학"}</button></div></div>`+
     (profile?chipGroup("나에게 맞는지","match",[["ok","지원 가능"],["check","확인 필요"],["no","지원 불가"]]):"")+
-    `<div class="fgroup" data-g="teen"><h3>중·고등학생</h3><button type="button" class="chip" id="teenSw" aria-pressed="${teenShown()}">${teenShown()?"중·고등학생 장학 보는 중":"중·고등학생 장학도 보기"}</button></div>`+
-    chipGroup("대상","level",[["대학생","대학생"],...(teenShown()?[["고등학생","중·고등학생"]]:[]),["해외유학","해외유학"],["학점은행제","학점은행제"]])+
+    `<div class="fgroup" data-g="ex"><h3>빼고 보기</h3><div class="chips">${[["kosaf","한국장학재단"],["gov","정부·공공기관"],["local","지자체"],["inside","교내 장학"],["work","근로장학"],["loan","학자금 대출"],["rec","추천 필요"]].map(([v,l])=>`<button type="button" class="chip ex" data-f="ex" data-v="${v}" aria-pressed="${F.ex.has(v)}">${l}</button>`).join("")}</div>
+      <input type="search" id="fExw" placeholder="이 말이 들어간 장학 빼기" value="${esc(F.exw.join(", "))}" style="margin-top:6px;font-size:13px;padding:6px 10px" aria-label="뺄 낱말 (쉼표로 구분)"></div>`+
+    `<details class="fmore" id="fMore" ${more?"open":""}><summary>필터 더 보기</summary>`+
     `<div class="fgroup"><h3>지역</h3><select id="fRegion"><option value="">전체</option><option value="전국">전국 단위만</option>${SIDO.map(s=>`<option ${F.region===s?"selected":""}>${s}</option>`).join("")}</select></div>`+
     chipGroup("운영 기관","orgType",orgs.map(o=>[o,OL[o]||o]))+
     chipGroup("계열"+(profile&&profile.major?` <span style="font-weight:500">· 내 계열: ${FSHORT(profile.major)}</span>`:""),"field",[["무관","전공 무관"],...FIELDS.map(f=>[f,FSHORT(f)]),["특정학과","특정 학과"]])+
     chipGroup("조건","note",[["no-rec","추천 없이 지원"],["no-dup","중복 수혜 허용"],["no-int","면접 없음"]])+
     chipGroup("유형","kind",kindOpts.map(k=>[k,k==="공고"?"모집 공고":k]))+
-    `<button class="btn" type="button" id="fReset">필터 초기화</button>`;
+    `</details><button class="linkbtn" type="button" id="fReset" style="align-self:flex-start">필터 초기화</button>`;
+  {const d=$("#fMore"); if(d) d.addEventListener("toggle",()=>store.set("fmore",d.open))}
   if($("#fRegion")) $("#fRegion").value=F.region;
 }
 document.addEventListener("click",e=>{
@@ -1354,7 +1366,8 @@ function freshList(openOnly){
 }
 function renderFresh(){
   const l=freshList(true), show=l.slice(0,5), box=$("#fresh");
-  if(!l.length){box.hidden=true; return}
+  {const c=$("#newCount"); if(c) c.textContent=l.length||""}
+  box.hidden=true; return; // 맨 위에는 띄우지 않고 '새 소식' 탭에서 본다
   box.hidden=false;
   box.innerHTML=`<h2>새로 올라오거나 바뀐 장학금<small>최근 7일 · ${l.length}건</small></h2><ul>${show.map(r=>`<li data-id="${esc(r.id)}" tabindex="0"><span class="fb ${r.fresh.kind==="new"?"":"u"}">${r.fresh.kind==="new"?"새로":"바뀜"}</span><span class="ft">${esc(r.title)}</span><span class="fd ${r._s.hot?"hot":""}">${esc(r._s.label)}</span></li>`).join("")}</ul>${l.length>show.length?`<button class="more" type="button" id="freshMore">${l.length-show.length}건 더 보기</button>`:""}`;
 }
