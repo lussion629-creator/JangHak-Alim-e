@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-11T18:33:57+00:00",
- "finishedAt": "2026-10-11T18:47:52+00:00",
+ "startedAt": "2026-10-12T00:44:33+00:00",
+ "finishedAt": "2026-10-12T01:00:02+00:00",
  "online": true,
- "total": 4536,
- "new": 6,
- "changed": 184,
+ "total": 4529,
+ "new": 13,
+ "changed": 178,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 591,
+   "count": 580,
    "mode": "성공 122 / 실패 25"
   },
   {
@@ -466,7 +466,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 31
+    "count": 29
    },
    {
     "name": "가천대학교 글로벌/메디컬",
@@ -536,7 +536,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 17
+    "count": 16
    },
    {
     "name": "수원대학교",
@@ -586,7 +586,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "대진대학교",
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "충북대학교",
@@ -656,7 +656,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "충남대학교",
@@ -705,8 +705,8 @@
     "url": "https://www.donga.ac.kr/kor/CMS/Board/Board.do?mCode=MN172",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 11
+    "ok": false,
+    "count": 0
    },
    {
     "name": "원광대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -806,7 +806,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 18
+    "count": 17
    },
    {
     "name": "한동대학교",
@@ -906,7 +906,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 13
    },
    {
     "name": "춘천교육대학교",
@@ -1036,7 +1036,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "조선대학교",
@@ -1086,7 +1086,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 9
    },
    {
     "name": "한림대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 0
    },
    {
     "name": "전주대학교",
