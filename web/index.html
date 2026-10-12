@@ -739,7 +739,13 @@ function showOnly(){
   const o={}; SCHOOLS.forEach(([k])=>o[k]=v&&k in v?!!v[k]:(!me||k===me)); return o;
 }
 function myGroup(){return GROUP[mySchool()]||""}
+// 중·고등학생 장학: 기본은 숨기고, 필터에서 켜거나 내 정보 신분을 고등학생으로 골랐을 때만 보여 준다
+let TEEN_ON=store.get("teen",false)===true;
+const isTeen=r=>r.level==="고등학생"||(Array.isArray(r.for)&&r.for[0]==="hs");
+const teenShown=()=>TEEN_ON||!!(profile&&profile.status==="hs");
+function teenOK(r){ return !isTeen(r)||teenShown() }
 function schoolOK(r){
+  if(isTeen(r)) return teenShown();
   const g=myGroup(); if(g&&Array.isArray(r.for)&&r.for.length&&!r.for.includes(g)) return false; // 내 학교 학생은 지원할 수 없는 장학
   const own=ownSchool(r); if(!own) return true;
   if(own==="erica") return false;
@@ -797,7 +803,8 @@ function buildFilters(){
   $("#filters").innerHTML=
     chipGroup("모집 상태","status",[["모집중","모집중"],["예정","접수 예정"],["마감","마감·내년 예상"],["상시/미정","일정 미정"]])+
     (profile?chipGroup("나에게 맞는지","match",[["ok","지원 가능"],["check","확인 필요"],["no","지원 불가"]]):"")+
-    chipGroup("대상","level",[["대학생","대학생"],["고등학생","고등학생"],["해외유학","해외유학"],["학점은행제","학점은행제"]])+
+    `<div class="fgroup"><h3>중·고등학생</h3><button type="button" class="chip" id="teenSw" aria-pressed="${teenShown()}">${teenShown()?"중·고등학생 장학 보는 중":"중·고등학생 장학도 보기"}</button></div>`+
+    chipGroup("대상","level",[["대학생","대학생"],...(teenShown()?[["고등학생","중·고등학생"]]:[]),["해외유학","해외유학"],["학점은행제","학점은행제"]])+
     `<div class="fgroup"><h3>지역</h3><select id="fRegion"><option value="">전체</option><option value="전국">전국 단위만</option>${SIDO.map(s=>`<option ${F.region===s?"selected":""}>${s}</option>`).join("")}</select></div>`+
     chipGroup("운영 기관","orgType",orgs.map(o=>[o,OL[o]||o]))+
     chipGroup("계열"+(profile&&profile.major?` <span style="font-weight:500">· 내 계열: ${FSHORT(profile.major)}</span>`:""),"field",[["무관","전공 무관"],...FIELDS.map(f=>[f,FSHORT(f)]),["특정학과","특정 학과"]])+
@@ -812,6 +819,11 @@ document.addEventListener("click",e=>{
   if(e.target.id==="fReset"){F.within=0;F.status=new Set(["모집중","예정"]);for(const k of["level","orgType","kind","match","source","field","note"])F[k]=new Set();F.region="";buildFilters();apply()}
 });
 document.addEventListener("change",e=>{if(e.target.id==="fRegion"){F.region=e.target.value;apply()}});
+document.addEventListener("click",e=>{ if(e.target.id!=="teenSw") return;
+  TEEN_ON=!TEEN_ON; store.set("teen",TEEN_ON); if(!teenShown()) F.level.delete("고등학생");
+  buildFilters(); apply(); renderKpis(); try{ if(!$("#view-cal").hidden) renderCal() }catch(x){}
+  toast(teenShown()?"중·고등학생 장학도 함께 보여요.":"중·고등학생 장학을 다시 숨겼어요.");
+});
 $("#goMe").addEventListener("click",()=>{tab("me");window.scrollTo({top:0})});
 $("#toggleFilters").addEventListener("click",()=>$("#filters").classList.toggle("open"));
 
@@ -851,6 +863,7 @@ function passes(r,q){
   if(isHidden(r)) return false;
   const schoolQ=q&&q.some(t=>SCHOOL_Q.some(([rx])=>rx.test(t))); // 학교 이름을 검색하면 그 학교 전용 공고도 보여 준다
   if(CATS.size && !catOf(r).some(k=>CATS.has(k))) return false;
+  if(!teenOK(r)) return false;
   if(ONLY_SEL.size){ if(!ONLY_SEL.has(ownSchool(r))) return false }
   else if(!schoolQ&&!schoolOK(r)) return false;
   if(F.within && !(r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=F.within)) return false;
@@ -917,7 +930,7 @@ function card(r){
   if(r._n.includes("추천 필요")) pills.push(`<span class="pill">추천 필요</span>`);
   if(r.region) pills.push(`<span class="pill">${esc(r.region)}${r.district?" "+esc(r.district):""}</span>`);
   const kd=kindLabel(r); if(kd) pills.push(`<span class="pill">${esc(kd)}</span>`);
-  if(r.level && r.level!=="대학생") pills.push(`<span class="pill">${esc(r.level)}</span>`);
+  if(r.level && r.level!=="대학생") pills.push(`<span class="pill">${esc(r.level==="고등학생"?(r.mid?"중·고등학생":"고등학생"):r.level)}</span>`);
   const fr=r.fresh&&r._s.key!=="마감"?r.fresh.kind:"";
   const tag=fr==="new"?`<span class="newtag">새 장학</span>`:fr==="updated"?`<span class="newtag upd">바뀜</span>`:"";
   return `<article class="item ${r.support&&r.support[0]?"sup-"+r.support[0]:""} ${fr==="new"?"is-new":fr==="updated"?"is-upd":""}" data-id="${esc(r.id)}" tabindex="0">${due}<div style="min-width:0"><p class="t">${tag}${esc(r.title)}${amt?`<span class="money">${esc(amt)}</span>`:""}</p><div class="meta">${r.org&&r.org!==r.title?`<span>${esc(r.org)}</span>`:""}</div><div class="pills">${pills.slice(0,5).join("")}</div></div><div class="acts"><button class="star" type="button" data-star="${esc(r.id)}" aria-pressed="${favs.has(r.id)}" aria-label="관심 등록"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></button>${isHidden(r)?`<button class="hide" type="button" data-hide="${esc(r.id)}" aria-label="숨김 풀기" title="숨김 풀기">풀기</button>`:`<button class="hide" type="button" data-hide="${esc(r.id)}" aria-label="숨기기" title="숨기기 (목록에서 안 보이게)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l18 18M10.6 6.1A9.9 9.9 0 0 1 12 6c5 0 9 4.5 10 6-.4.7-1.4 2-2.8 3.3M6.4 7.6C4.4 8.9 2.9 10.8 2 12c1 1.5 5 6 10 6 1.6 0 3.1-.5 4.4-1.2M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></button>`}</div></article>`;
@@ -1015,7 +1028,7 @@ function calItems(){
   const useNext=$("#calNextYear").checked;
   const out=[];
   for(const r of DATA){
-    if(isHidden(r)) continue;
+    if(isHidden(r)||!teenOK(r)) continue;
     if(profile && r._m && r._m.verdict==="no") continue;
     if($("#calFav").checked && !favs.has(r.id)) continue;
     if(r.status!=="마감"){ if(r.end) out.push({d:r.end,t:"end",r}); if(r.start&&r.start>=TODAY) out.push({d:r.start,t:"start",r}); }

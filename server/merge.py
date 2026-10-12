@@ -482,6 +482,19 @@ def for_schools(rows: list[dict]) -> list[dict]:
                 r["for"] = []
                 order.append(r["id"])
             picked[r["id"]]["for"].append(key)
+    # 중·고등학생 장학: 학교와 상관없이 따로 넣고(for=["hs"]), 앱에서 켜야 보인다
+    teen = re.compile(r"중학생|중학교|중등")
+    old_cut = date.fromordinal(date.today().toordinal() - 365).isoformat()  # 1년 넘게 지난 회차는 빼서 용량을 줄인다
+    for r in rows:
+        if r.get("level") == "고등학생" and r["id"] not in picked and (r.get("end") or "9999") >= old_cut:
+            t = dict(r)
+            for k in ("_univ_only", "_hy", "_relay_ok", "_relay_school", "_relay_schools", "_relay_text", "_srcs", "_st_all", "_alltext", "_textby"):
+                t.pop(k, None)
+            t["for"] = ["hs"]
+            if teen.search(" ".join(str(r.get(k) or "") for k in ("title", "target", "special", "summary"))[:3000]):
+                t["mid"] = True
+            picked[t["id"]] = t
+            order.append(t["id"])
     return [picked[i] for i in order]
 
 
