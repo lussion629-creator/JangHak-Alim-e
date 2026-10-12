@@ -20,6 +20,8 @@
   --c-tuition:#2459c9; --c-tuition-soft:#e6eefc; --c-living:#c0306b; --c-living-soft:#fce8f0; --c-dorm:#6a43c9; --c-dorm-soft:#efe9fc; --c-loan:#5b6573; --c-loan-soft:#eceef1; --c-work:#b45309; --c-work-soft:#fdf0e1;
   --font:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
   --r-lg:16px; --r:12px; --r-sm:8px;
+  --p-fld:#4338ca; --p-fld-soft:#e9e8fd; --p-reg:#0f7a5c; --p-reg-soft:#ddf3ea; --p-lvl:#9d3cb8; --p-lvl-soft:#f6e6fb; --p-kind:#0b6694; --p-kind-soft:#e0f0f9; --p-rec:#a15c00; --p-rec-soft:#fdefd8;
+  --st-live:#0b6e78; --st-live-soft:#dff1f2; --st-soon:#9a6400; --st-soon-soft:#fdf1d6; --st-end-soft:#eceef1;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0e1216; --surface:#161b21; --surface-2:#1b2128; --ink:#eef1f4; --ink-2:#b4bcc6; --ink-3:#808a96;
@@ -28,7 +30,9 @@
   --seal:#ff7b6e; --seal-soft:#3a1d1a;
   --ok:#5bd394; --ok-soft:#14301f; --no:#ff8a7d; --no-soft:#3a1e1b; --check:#f2bf55; --check-soft:#33290f;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark;
-  --c-tuition:#7aa5ff; --c-tuition-soft:#18243d; --c-living:#ff86b5; --c-living-soft:#3a1828; --c-dorm:#b79bff; --c-dorm-soft:#261d40; --c-loan:#a7b0bc; --c-loan-soft:#232a32; --c-work:#f3a65a; --c-work-soft:#3a2814;}}
+  --c-tuition:#7aa5ff; --c-tuition-soft:#18243d; --c-living:#ff86b5; --c-living-soft:#3a1828; --c-dorm:#b79bff; --c-dorm-soft:#261d40; --c-loan:#a7b0bc; --c-loan-soft:#232a32; --c-work:#f3a65a; --c-work-soft:#3a2814;
+  --p-fld:#a5a1ff; --p-fld-soft:#23214a; --p-reg:#5fd3a6; --p-reg-soft:#123326; --p-lvl:#e19cf5; --p-lvl-soft:#35193f; --p-kind:#71c3ee; --p-kind-soft:#10293a; --p-rec:#f5b860; --p-rec-soft:#3a2a10;
+  --st-live:#4fc1cb; --st-live-soft:#123135; --st-soon:#f2bf55; --st-soon-soft:#33290f; --st-end-soft:#20262d;}}
 :root[data-theme="dark"]{
   --bg:#0e1216; --surface:#161b21; --surface-2:#1b2128; --ink:#eef1f4; --ink-2:#b4bcc6; --ink-3:#808a96;
   --line:#262d35; --line-2:#20262d;
@@ -36,11 +40,14 @@
   --seal:#ff7b6e; --seal-soft:#3a1d1a;
   --ok:#5bd394; --ok-soft:#14301f; --no:#ff8a7d; --no-soft:#3a1e1b; --check:#f2bf55; --check-soft:#33290f;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark;
-  --c-tuition:#7aa5ff; --c-tuition-soft:#18243d; --c-living:#ff86b5; --c-living-soft:#3a1828; --c-dorm:#b79bff; --c-dorm-soft:#261d40; --c-loan:#a7b0bc; --c-loan-soft:#232a32; --c-work:#f3a65a; --c-work-soft:#3a2814;}
+  --c-tuition:#7aa5ff; --c-tuition-soft:#18243d; --c-living:#ff86b5; --c-living-soft:#3a1828; --c-dorm:#b79bff; --c-dorm-soft:#261d40; --c-loan:#a7b0bc; --c-loan-soft:#232a32; --c-work:#f3a65a; --c-work-soft:#3a2814;
+  --p-fld:#a5a1ff; --p-fld-soft:#23214a; --p-reg:#5fd3a6; --p-reg-soft:#123326; --p-lvl:#e19cf5; --p-lvl-soft:#35193f; --p-kind:#71c3ee; --p-kind-soft:#10293a; --p-rec:#f5b860; --p-rec-soft:#3a2a10;
+  --st-live:#4fc1cb; --st-live-soft:#123135; --st-soon:#f2bf55; --st-soon-soft:#33290f; --st-end-soft:#20262d;}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 .topright{display:flex;align-items:center;gap:10px}
 .themebtn{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:5px 10px;font:inherit;font-size:12px;font-weight:650;cursor:pointer;white-space:nowrap}
+.tbtns{display:flex;gap:6px}
 .themebtn:hover{border-color:var(--accent);color:var(--ink)}
 body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--font);margin:0;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
 a{color:var(--accent);text-underline-offset:2px}
@@ -59,7 +66,7 @@ header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-
 @media (max-width:560px){
   header.top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding-block:18px 14px}
   .topright{display:contents}
-  .themebtn{grid-column:2;grid-row:1;align-self:center}
+  .tbtns{grid-column:2;grid-row:1;align-self:center}
   .stamp{grid-column:1/-1;text-align:left;padding-left:52px;margin-top:-4px;font-size:12px}
 }
 /* 찾기 화면에서만 '새로 올라온 장학'과 요약 숫자를 보여 준다 (다른 화면은 깔끔하게) */
@@ -103,7 +110,57 @@ nav.tabs .count{font-weight:700;font-size:11.5px;margin-left:5px;background:var(
 nav.tabs .count:empty{display:none}
 
 .layout{display:grid;grid-template-columns:256px minmax(0,1fr);gap:28px;margin-top:22px}
-aside.filters{display:flex;flex-direction:column;gap:18px;align-self:start;position:sticky;top:calc(env(safe-area-inset-top,0px) + 72px);max-height:calc(100vh - 88px);overflow:auto;padding:2px 4px 8px 0}
+.side{align-self:start;position:sticky;top:calc(env(safe-area-inset-top,0px) + 72px);height:calc(100vh - 88px);display:flex;flex-direction:column;gap:12px;min-height:0}
+aside.filters{display:flex;flex-direction:column;gap:18px;flex:1 1 auto;min-height:0;overflow:auto;padding:2px 4px 8px 0}
+.onlybox{flex:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+.onlybox h3{margin:0 0 6px;font-size:12.5px;font-weight:750;color:var(--ink-2);display:flex;justify-content:space-between;align-items:center;gap:6px}
+.onlybox .chips{display:flex;flex-wrap:wrap;gap:5px}
+.onlybox .chip{font-size:12px;padding:4px 9px}
+.onlybox .chip b{font-weight:650;color:var(--ink-3);margin-left:2px}
+.onlybox .note{font-size:11.5px;margin:6px 0 0}
+.grouphead{display:flex;align-items:baseline;gap:8px;margin:14px 2px 2px;font-size:14px;font-weight:750;color:var(--ink)}
+.grouphead:first-child{margin-top:0}
+.gsec{margin-bottom:14px}
+.gsec:first-child .grouphead{margin-top:0}
+.grouphead .n{font-size:12px;font-weight:600;color:var(--ink-3)}
+.grouphead small{font-size:11.5px;font-weight:500;color:var(--ink-3)}
+.grouphead.closed{border-top:1px dashed var(--line);padding-top:12px;color:var(--ink-2)}
+.bell{border:0;background:none;width:30px;height:26px;border-radius:8px;cursor:pointer;color:var(--ink-3);display:grid;place-items:center;margin:0 -4px 0 0}
+.bell:hover{background:var(--surface-2)}
+.bell svg{width:18px;height:18px}
+.bell[aria-pressed="true"]{color:var(--accent)}
+.bell[aria-pressed="true"] svg path{fill:currentColor}
+.chip.ex[aria-pressed="true"]{background:var(--surface-2);color:var(--seal);border-color:var(--seal);text-decoration:line-through}
+.exbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.exbar .chip{font-size:12.5px;padding:4px 10px}
+.watchhits{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r);padding:10px 12px;margin:0 0 8px;font-size:13.5px}
+.watchhits h2{font-size:13px;margin:0 0 4px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.watchhits ul{list-style:none;margin:0;padding:0}
+.watchhits li{padding:5px 0;border-top:1px solid var(--line);cursor:pointer}
+.watchhits li:first-child{border-top:0}
+.watchlist{list-style:none;margin:8px 0 0;padding:0}
+.watchlist li{display:flex;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px}
+.watchlist li span{flex:1;min-width:0}
+.watchlist li small{display:block;color:var(--ink-3);font-size:11.5px}
+.helpwrap{position:fixed;inset:0;z-index:30;background:rgba(8,12,16,.42);display:grid;place-items:center;padding:16px}
+.helpwrap[hidden]{display:none}
+.helpbox{background:var(--surface);color:var(--ink);border-radius:16px;box-shadow:var(--shadow);width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:20px 20px 16px}
+.helpbox h2{margin:0 0 4px;font-size:18px}
+.helpbox input{margin:10px 0 6px}
+.helpbox details{border-top:1px solid var(--line);padding:9px 0}
+.helpbox summary{cursor:pointer;font-weight:700;font-size:14.5px}
+.helpbox details p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.6}
+.helpbox .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+.fgroup{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+.fgroup[data-g="status"]{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.fgroup[data-g="status"] h3{color:var(--accent)}
+.fgroup[data-g="status"] .chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fgroup[data-g="level"],.fgroup[data-g="teen"]{background:var(--c-dorm-soft);border-color:color-mix(in srgb,var(--c-dorm) 35%,transparent)}
+.fgroup[data-g="level"] h3,.fgroup[data-g="teen"] h3{color:var(--c-dorm)}
+.fgroup[data-g="level"] .chip[aria-pressed="true"],.fgroup[data-g="teen"] .chip[aria-pressed="true"]{background:var(--c-dorm);color:#fff;border-color:var(--c-dorm)}
+.fgroup[data-g="ex"]{background:var(--seal-soft);border-color:color-mix(in srgb,var(--seal) 30%,transparent)}
+.fgroup[data-g="ex"] h3{color:var(--seal)}
+.grouphead.g-모집중{color:var(--accent)} .grouphead.g-예정{color:var(--check)}
 .fgroup h3{font-weight:700;font-size:12px;letter-spacing:.02em;color:var(--ink-3);margin:0 0 8px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:500;cursor:pointer;color:var(--ink-2);transition:background .12s,border-color .12s}
@@ -139,6 +196,11 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 .due .d{font-weight:800;font-size:15px;letter-spacing:-.02em;color:var(--ink)}
 .due.hot .d{color:var(--seal)}
 .due.closed .d{color:var(--ink-3);font-size:12.5px;font-weight:700}
+.due{border-radius:8px;padding:5px 6px;align-self:start}
+.due.st-모집중{background:var(--st-live-soft)} .due.st-모집중 .d{color:var(--st-live)} .due.st-모집중.hot .d{color:var(--seal)}
+.due.st-예정{background:var(--st-soon-soft)} .due.st-예정 .d{color:var(--st-soon)}
+.due.st-마감,.due.st-상시\/미정{background:var(--st-end-soft)}
+.pill.fld{background:var(--p-fld-soft);color:var(--p-fld)} .pill.reg{background:var(--p-reg-soft);color:var(--p-reg)} .pill.lvl{background:var(--p-lvl-soft);color:var(--p-lvl)} .pill.kind{background:var(--p-kind-soft);color:var(--p-kind)} .pill.rec{background:var(--p-rec-soft);color:var(--p-rec)}
 .t{font-weight:700;font-size:14.5px;line-height:1.35;letter-spacing:-.015em;margin:0;text-wrap:pretty}
 .item .t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .meta{display:flex;flex-wrap:wrap;gap:2px 12px;color:var(--ink-2);font-size:12px;margin-top:2px}
@@ -268,6 +330,8 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 @media (max-width:860px){
   .wrap{padding-inline:16px}
   .layout{grid-template-columns:minmax(0,1fr);gap:0}
+  .side{position:static;height:auto;display:block}
+  .onlybox{margin-bottom:12px}
   aside.filters{position:static;max-height:none;display:none;margin-bottom:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
   aside.filters.open{display:flex}
   .mfilter{display:inline-flex;white-space:nowrap}
@@ -291,9 +355,10 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2.5 9.2 12 4.5l9.5 4.7L12 13.9z" fill="#fff"/><path d="M6.5 11.4v4.3c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.3L12 14.2z" fill="#fff" opacity=".8"/></svg></span>
       <h1>장학알리미</h1>
     </div>
-    <div class="topright"><button class="themebtn" type="button" id="themeBtn" aria-label="화면 밝기 바꾸기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></svg><span id="themeLbl">자동</span></button><div class="stamp" id="stamp">자료를 불러오는 중…</div></div>
+    <div class="topright"><span class="tbtns"><button class="themebtn" type="button" id="helpBtn" aria-label="도움말 열기">도움말</button><button class="themebtn" type="button" id="themeBtn" aria-label="화면 밝기 바꾸기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></svg><span id="themeLbl">자동</span></button></span><div class="stamp" id="stamp">자료를 불러오는 중…</div></div>
   </header>
 
+  <section class="watchhits" id="watchHits" aria-label="알림" hidden></section>
   <section class="fresh" id="fresh" aria-label="새로 올라오거나 바뀐 장학금" hidden></section>
   <section class="kpis" id="kpis" aria-label="요약"></section>
 
@@ -301,6 +366,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <button role="tab" data-tab="find" aria-selected="true">찾기</button>
     <button role="tab" data-tab="cal" aria-selected="false">마감 달력</button>
     <button role="tab" data-tab="fav" aria-selected="false">관심<span class="count" id="favCount"></span></button>
+    <button role="tab" data-tab="alert" aria-selected="false">알림<span class="count" id="watchCount"></span></button>
     <button role="tab" data-tab="me" aria-selected="false">내 정보</button>
     <button role="tab" data-tab="doc" aria-selected="false">서류 쓰기</button>
     <button role="tab" data-tab="src" aria-selected="false">새 소식</button>
@@ -308,7 +374,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 
   <div class="cats" id="cats" role="group" aria-label="지원 종류"></div>
   <main id="view-find" class="layout">
-    <aside class="filters" id="filters" aria-label="필터"></aside>
+    <div class="side"><aside class="filters" id="filters" aria-label="필터"></aside><section class="onlybox" id="onlyBox" aria-label="학교 전용 공고"></section></div>
     <section style="min-width:0">
       <div class="search">
         <input type="search" id="q" placeholder="장학금명·재단·지역·학교·학과로 검색 (예: 서강대, 간호학과, 생활비)" aria-label="검색">
@@ -320,7 +386,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <div class="pfbar" id="pfBar" hidden></div>
       <div class="hidebar" id="hideBar" hidden></div>
       <div class="toolbar">
-        <span id="resultCount"></span>
+        <span class="exbar"><span id="resultCount"></span><button type="button" class="chip ex" id="exKosaf" aria-pressed="false">한국장학재단 빼고 보기</button></span>
         <label>정렬 <select id="sort">
           <option value="fit">나에게 맞는 순</option>
           <option value="due">마감 임박순</option>
@@ -354,6 +420,15 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <div class="list" id="favList"></div>
   </main>
 
+  <main id="view-alert" hidden><section class="panel">
+    <p class="lead">알림 설정</p>
+    <div id="alertBox"></div>
+  </section><section class="panel">
+    <p class="lead">비슷한 장학 알림</p>
+    <p class="note">장학금 목록에서 별 아래 <b>종</b>을 누르면, 그 장학과 같거나 비슷한 이름의 장학이 새로 올라올 때 알려 드려요. 내년에 다시 열리는 같은 장학도 알려 드려요.</p>
+    <ul class="watchlist" id="watchList"></ul>
+  </section></main>
+
   <main id="view-me" hidden><section class="panel">
     <p class="lead">내 정보</p>
     <div class="privacy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><div><b>입력한 정보는 이 기기에만 저장됩니다.</b><br>서버로 보내지 않으며, 앱을 만든 사람을 포함해 누구도 볼 수 없습니다. 지원 가능 여부 계산도 이 기기 안에서만 합니다. ‘내 정보 초기화’를 누르면 바로 삭제됩니다.</div></div>
@@ -362,10 +437,10 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
         <label>신분<select id="p_status"><option value="">선택 안 함</option><option value="hs">고등학생</option><option value="pre">대학 입학 예정 (고3·신입생)</option><option value="univ">대학생 (재학)</option><option value="leave">대학생 (휴학)</option><option value="grad">대학원생</option></select></label>
         <label title="여학생 대상 장학을 판단할 때만 씁니다">성별<select id="p_gender"><option value="">선택 안 함</option><option value="f">여성</option><option value="m">남성</option></select></label>
         <label>학교 유형<select id="p_school"><option value="">선택 안 함</option><option value="4y">4년제 대학</option><option value="2y">전문대(2~3년제)</option><option value="grad">대학원</option><option value="cyber">원격·사이버대</option></select></label>
-        <label>학교<select id="p_schoolPick"></select><input type="text" id="p_schoolName" placeholder="학교 이름 직접 입력" hidden></label>
+        <label>학교<input type="search" id="p_schoolName" list="schoolList" placeholder="학교 이름을 쳐서 찾기 (예: 건국대)" autocomplete="off"><datalist id="schoolList"></datalist></label>
         <label>학교 소재지 (시·도)<select id="p_ssido"></select></label>
         <label>다음 학기 기준 학기<select id="p_sem"><option value="">선택 안 함</option><option value="0">신입생(1학기)</option><option value="2">2학기</option><option value="3">3학기</option><option value="4">4학기</option><option value="5">5학기</option><option value="6">6학기</option><option value="7">7학기</option><option value="8">8학기 이상</option></select></label>
-        <label>학과(전공)<select id="p_deptPick"></select><input type="text" id="p_dept" placeholder="학과 이름 직접 입력" hidden></label>
+        <label>학과(전공)<input type="search" id="p_dept" list="deptList" placeholder="학과 이름을 쳐서 찾기 (예: 간호, 컴퓨터)" autocomplete="off"><datalist id="deptList"></datalist><span class="note" id="p_deptHint" style="font-size:11.5px"></span></label>
         <label>계열<select id="p_major"><option value="">선택 안 함</option><option>인문계열</option><option>사회계열</option><option>교육계열</option><option>공학계열</option><option>자연계열</option><option>의약계열</option><option>예체능계열</option></select></label>
       </div></fieldset>
       <fieldset class="sec"><legend>내 지역</legend><div class="form">
@@ -428,10 +503,6 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
       <p class="note" id="srcReport"></p>
       <div class="list" id="changes" style="margin-top:14px"></div>
     </section>
-    <section class="panel">
-      <p class="lead">알림 설정</p>
-      <div id="alertBox"></div>
-    </section>
     <section class="panel" id="hyinPanel">
       <p class="lead">한양대 포털 장학 캘린더</p>
       <div id="hyinBox"></div>
@@ -456,6 +527,25 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 </div>
 
 <div class="scrim" id="scrim" hidden></div>
+<div class="helpwrap" id="helpWrap" hidden><div class="helpbox" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+  <h2 id="helpTitle">장학알리미 사용법</h2>
+  <p class="note">궁금한 말을 쳐서 찾을 수 있어요. 이 도움말은 오른쪽 위 <b>도움말</b> 버튼으로 언제든 다시 열 수 있어요.</p>
+  <input type="search" id="helpQ" placeholder="도움말 검색 (예: 알림, 숨기기, 학과)" aria-label="도움말 검색">
+  <div id="helpList">
+    <details open data-k="찾기 검색 학교 학과 이름"><summary>장학금 찾기·검색</summary><p>위쪽 검색 칸에 장학금 이름·재단·지역·학교·학과를 쳐 보세요. ‘간호학과’처럼 학과를 치면 그 계열 대상 장학까지, ‘건국대’처럼 학교를 치면 그 학교 공고까지 찾아요. 검색 칸 위의 색 버튼(등록금·생활비·근로 등)을 누르면 그 종류만 볼 수 있어요.</p></details>
+    <details data-k="모집 상태 접수 예정 마감 내년 예상 묶음"><summary>모집중 · 접수 예정 · 마감·내년 예상</summary><p>목록은 ‘지금 모집중’, ‘접수 예정’, ‘마감·내년 예상’으로 나뉘어 차례로 나와요. 마감된 장학도 작년 일정을 보고 다음 모집 시기를 예상해 보여 줘요. 왼쪽(휴대폰은 ‘필터’ 버튼) 모집 상태에서 원하는 것만 켜고 끌 수 있어요.</p></details>
+    <details data-k="빼고 보기 한국장학재단 제외 국가장학 기관"><summary>한국장학재단 같은 곳 빼고 보기</summary><p>결과 개수 옆 <b>한국장학재단 빼고 보기</b>를 누르면 국가장학금 같은 재단 장학이 빠져요. 필터의 ‘빼고 보기’에서 정부·공공기관, 지자체, 교내 장학도 같은 방법으로 뺄 수 있어요. 줄이 그어진 버튼이 지금 빼고 있는 것이에요.</p></details>
+    <details data-k="학교 전용 공고 왼쪽 아래 다른 학교"><summary>학교 전용 공고</summary><p>그 학교 학생만 지원할 수 있는 공고는 왼쪽 아래 <b>학교 전용 공고</b> 칸에 따로 모여 있어요(휴대폰은 목록 위). 학교 이름을 누르면 그 학교 전용 공고만 보여요. 내 정보에 학교를 넣으면 다른 학교 전용 공고는 기본으로 숨겨요.</p></details>
+    <details data-k="별표 관심 종 알림 비슷한 같은"><summary>별표(관심)와 종(알림)</summary><p><b>별</b>을 누르면 ‘관심’ 탭에 모이고, 마감 전에 알려 드려요. 별 아래 <b>종</b>을 누르면 그 장학과 같거나 비슷한 장학이 새로 올라올 때 알려 드려요. 키워드·지원 종류 알림과 등록한 목록은 ‘알림’ 탭에서 바꿀 수 있어요. 휴대폰 앱은 휴대폰 알림으로, 웹은 다음에 열 때 맨 위에 알려 드려요.</p></details>
+    <details data-k="숨기기 숨김 안 보이게"><summary>장학 숨기기</summary><p>카드 오른쪽 <b>눈 모양</b>을 누르면 목록·달력·새 소식에서 빠져요. 실수했다면 바로 뜨는 ‘되돌리기’를 누르거나, 목록 위 ‘숨긴 장학 보기’에서 다시 풀 수 있어요.</p></details>
+    <details data-k="내 정보 맞춤 학과 전공 학교 초기화 리셋"><summary>내 정보로 맞춤 찾기</summary><p>‘내 정보’ 탭에 학교·학과(쳐서 찾기)·지역·소득구간·성적을 넣으면 지원 가능 여부를 표시해 줘요. 목록 위의 스위치로 맞춤 거르기를 껐다 켤 수 있고, ‘내 정보 초기화’로 지울 수 있어요. 입력한 정보는 이 기기에만 저장돼요.</p></details>
+    <details data-k="중학생 고등학생 청소년"><summary>중·고등학생 장학</summary><p>기본으로는 숨겨져 있어요. 필터의 <b>중·고등학생 장학도 보기</b>를 누르면 함께 보여요.</p></details>
+    <details data-k="달력 마감 캘린더 일정"><summary>마감 달력</summary><p>날짜별로 마감·접수 시작 장학을 보여 줘요. ‘관심만’을 켜면 별표한 장학만, ‘작년 일정으로 예상 포함’을 켜면 다음 모집 예상까지 보여요.</p></details>
+    <details data-k="앱 설치 아이폰 홈 화면 웹앱"><summary>휴대폰에 앱처럼 설치</summary><p>아이폰은 Safari 공유 버튼에서 ‘홈 화면에 추가’를 누르면 앱처럼 쓸 수 있어요. 안드로이드는 Chrome 메뉴의 ‘홈 화면에 추가’ 또는 앱 설치를 쓰세요.</p></details>
+  </div>
+  <p class="note" id="helpNone" hidden>찾는 내용이 없어요. 다른 말로 쳐 보세요.</p>
+  <div class="actions"><button class="btn primary" type="button" id="helpClose">시작하기</button></div>
+</div></div>
 <aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog" aria-labelledby="dTitle"></aside>
 
 <script>
@@ -496,8 +586,14 @@ let PF_ON=store.get("pfOn",true)!==false;
 const savedProfile=()=>store.get("profile",null);
 let SRC="", DATA=[], META={}, view=[], shown=0, favs=new Set(store.get("favs",[])), profile=PF_ON?store.get("profile",null):null;
 document.body.dataset.tab="find";
-const F={within:0,status:new Set(["모집중","예정"]),level:new Set(),region:"",orgType:new Set(),kind:new Set(),match:new Set(),source:new Set(),field:new Set(),note:new Set()};
-const saved=store.get("filters",null); if(saved&&!store.get("mig_field",0)){saved.field=[]; store.set("mig_field",1)} if(saved){for(const k of["status","level","orgType","kind","match","source","field","note"]) if(saved[k]) F[k]=new Set(saved[k]); F.region=saved.region||""}
+const ST_DEF=["모집중","예정","마감"]; // 기본: 모집중·접수 예정·마감(내년 예상) 모두 보여 주고 목록에서 묶어서 나눈다
+const F={within:0,status:new Set(ST_DEF),level:new Set(),region:"",orgType:new Set(),kind:new Set(),match:new Set(),source:new Set(),field:new Set(),note:new Set(),ex:new Set()};
+const saved=store.get("filters",null); if(saved&&!store.get("mig_field",0)){saved.field=[]; store.set("mig_field",1)}
+if(saved&&!store.get("mig_st3",0)){ if(Array.isArray(saved.status)&&saved.status.length) saved.status=[...new Set([...saved.status,"예정","마감"])]; store.set("mig_st3",1) }
+if(saved){for(const k of["status","level","orgType","kind","match","source","field","note","ex"]) if(saved[k]) F[k]=new Set(saved[k]); F.region=saved.region||""}
+F.exw=(saved&&Array.isArray(saved.exw)?saved.exw:[]).slice(0,20); // 이 말이 들어간 장학 빼기
+// 빼고 보기: 누르면 그 기관 장학을 목록에서 뺀다
+const EX={work:r=>(r.support||[]).includes("work"),loan:r=>(r.support||[]).includes("loan"),rec:r=>r._n&&r._n.includes("추천 필요"),dorm:r=>(r.support||[]).length===1&&r.support[0]==="dorm",kosaf:r=>r.org_type==="한국장학재단"||/^한국장학재단/.test(r.org||""),gov:r=>r.org_type==="정부"||r.org_type==="공공기관",local:r=>r.org_type==="지자체",inside:r=>r.org_type==="대학(교내)"||r.org_type==="대학 게시판"};
 
 /* ---------- 매칭 ---------- */
 const INC_MED={0:0,1:30,2:50,3:70,4:90,5:100,6:130,7:150,8:200,9:300,10:999};
@@ -683,10 +779,52 @@ function pushAlerts(){
   try{ if(!(window.AndroidBridge&&window.AndroidBridge.setAlerts)) return;
     const fav=DATA.filter(r=>favs.has(r.id)&&r.end&&r.end>=TODAY).map(r=>({id:r.id,t:r.title.slice(0,80),e:r.end}));
     const rv=store.get("remote",null)??PAGES;
-    window.AndroidBridge.setAlerts(JSON.stringify({kw:AL.kw||[],cats:AL.cats||[],before:AL.before||[],fav,school:myGroup(),remote:/^https:\/\//.test(rv||"")?rv.replace(/\/*$/,"/"):PAGES+"/"}));
+    const wk=(AL.watch||[]).map(w=>[...(w.k||[])].sort((a,b)=>b.length-a.length)[0]).filter(Boolean);
+    window.AndroidBridge.setAlerts(JSON.stringify({kw:[...new Set([...(AL.kw||[]),...wk])].slice(0,60),cats:AL.cats||[],before:AL.before||[],fav,school:myGroup(),remote:/^https:\/\//.test(rv||"")?rv.replace(/\/*$/,"/"):PAGES+"/"}));
   }catch(e){}
 }
+// 비슷한 장학 알림: 제목에서 해·학기·모집 같은 말을 빼고 남은 핵심 이름으로 같은·비슷한 장학을 찾는다
+const STOPW=/^(장학금?|장학생|장학|모집|선발|공고|안내|신청|접수|추가|재공고|대상자?|지원|사업|프로그램|및|의|년도?|학년도|학기|상반기|하반기|정기|수시|차|기|회|제|교외|교내|국가|신규|계속|대학생|대학원생|학부생|재학생|신입생|희망|모집안내|선발안내|신청안내)$/;
+function coreTokens(t){
+  t=String(t||"").replace(/\[[^\]]*\]|\([^)]*\)|<[^>]*>|【[^】]*】/g," ").replace(/20\d\d\s*(년도?|학년도)?|\d+\s*(학기|차|기|회|학년|기수)|제\s*\d+/g," ").replace(/[^\w가-힣]+/g," ");
+  return [...new Set(t.split(/\s+/).map(w=>w.replace(/(장학생|장학금|모집|선발|공고|안내)$/,"")).filter(w=>w.length>=2&&!STOPW.test(w)&&!/^\d+$/.test(w)))].slice(0,4);
+}
+const nsp=x=>String(x||"").toLowerCase().replace(/\s+/g,"");
+function watchHitW(w,r){ if(r.id===w.id||!w.k||!w.k.length) return false; const h=nsp(r.title+" "+(r.org||"")); return w.k.every(k=>h.includes(nsp(k))) }
+function watchHits(r){ return (AL.watch||[]).filter(w=>watchHitW(w,r)) }
+const isWatched=id=>(AL.watch||[]).some(w=>w.id===id);
+function toggleWatch(id){
+  const r=BYID[id]; if(!r) return; AL.watch=AL.watch||[];
+  if(isWatched(id)){ AL.watch=AL.watch.filter(w=>w.id!==id); toast("비슷한 장학 알림을 껐어요."); }
+  else{
+    const k=coreTokens(r.title); if(!k.length){ toast("이 장학은 이름이 짧아 비슷한 장학을 찾기 어려워요. ‘알림’ 탭에서 키워드로 정해 주세요."); return }
+    AL.watch.unshift({id,t:r.title.slice(0,80),k,at:TODAY}); AL.watch=AL.watch.slice(0,50);
+    const seen=new Set(store.get("watchSeen",[])||[]); DATA.forEach(x=>{ if(watchHitW(AL.watch[0],x)) seen.add(x.id) }); store.set("watchSeen",[...seen].slice(-3000));
+    toast("‘"+k.join(" ")+"’ 장학이 새로 올라오면 알려 드릴게요.");
+    try{ if(!IN_APP&&"Notification" in window&&Notification.permission==="default") Notification.requestPermission().catch(()=>{}) }catch(e){}
+  }
+  store.set("alerts",AL); pushAlerts(); $$(`[data-bell="${id}"]`).forEach(b=>{b.setAttribute("aria-pressed",isWatched(id)); if(b.classList.contains("btn")) b.textContent=isWatched(id)?"🔔 비슷한 장학 알림 끄기":"🔔 비슷한 장학 알림 받기"});
+  $("#watchCount").textContent=(AL.watch||[]).length||""; if(!$("#view-alert").hidden) renderAlerts();
+}
+// 새로 올라온 것 중 종을 누른 장학과 같거나 비슷한 것 (웹: 열 때 맨 위에 알려 줌)
+function renderWatchHits(){
+  const box=$("#watchHits"); if(!box) return; const seen=new Set(store.get("watchSeen",[])||[]);
+  const l=DATA.filter(r=>!seen.has(r.id)&&r._s.key!=="마감"&&watchHits(r).length).slice(0,8);
+  if(!l.length){box.hidden=true; return}
+  box.hidden=false;
+  box.innerHTML=`<h2>🔔 알림 · 종을 누른 장학과 비슷한 장학이 새로 올라왔어요<button class="btn" type="button" id="watchOk">확인</button></h2><ul>${l.map(r=>`<li data-id="${esc(r.id)}" tabindex="0">${esc(r.title)} <span class="note" style="display:inline">· ${esc(r._s.label)} · ‘${esc(watchHits(r)[0].t.slice(0,30))}’와 비슷</span></li>`).join("")}</ul>`;
+  try{ if(!IN_APP&&"Notification" in window&&Notification.permission==="granted"&&store.get("watchNotified","")!==l.map(r=>r.id).join(",")){
+    store.set("watchNotified",l.map(r=>r.id).join(","));
+    const body=l.slice(0,3).map(r=>r.title).join("\n");
+    navigator.serviceWorker&&navigator.serviceWorker.getRegistration?navigator.serviceWorker.getRegistration().then(g=>g?g.showNotification("비슷한 장학이 새로 올라왔어요",{body}):new Notification("비슷한 장학이 새로 올라왔어요",{body})).catch(()=>{}):new Notification("비슷한 장학이 새로 올라왔어요",{body});
+  }}catch(e){}
+}
+$("#watchHits").addEventListener("click",e=>{
+  if(e.target.id==="watchOk"){ const seen=new Set(store.get("watchSeen",[])||[]); DATA.forEach(r=>{ if(watchHits(r).length) seen.add(r.id) }); store.set("watchSeen",[...seen].slice(-3000)); $("#watchHits").hidden=true; return }
+  const li=e.target.closest("li[data-id]"); if(li) openDetail(li.dataset.id);
+});
 function alertHit(r){ const t=(r.title+" "+(r.org||"")).toLowerCase(); return (AL.kw||[]).some(w=>w&&t.includes(w.toLowerCase()))||(r.support||[]).some(k=>(AL.cats||[]).includes(k)) }
+document.addEventListener("click",e=>{ const u=e.target.closest("[data-unwatch]"); if(u){ toggleWatch(u.dataset.unwatch); renderAlerts(); return } const b=e.target.closest("[data-bell]"); if(b){ e.stopPropagation(); toggleWatch(b.dataset.bell) } },true);
 function renderAlerts(){
   const box=$("#alertBox"); if(!box) return; const app=!!(window.AndroidBridge&&window.AndroidBridge.setAlerts);
   const hits=DATA.filter(r=>(r._s.key==="모집중"||r._s.key==="예정")&&alertHit(r)).length;
@@ -698,9 +836,10 @@ function renderAlerts(){
   </div>
   <div class="actions"><button class="btn primary" type="button" id="al_save">알림 저장</button><span class="note" id="al_msg" role="status">${(AL.kw||[]).length||(AL.cats||[]).length?`지금 조건에 맞는 모집 중 장학 ${hits}건`:""}</span></div>`;
   $("#al_save").onclick=()=>{
-    AL={kw:$("#al_kw").value.split(/[,，]/).map(x=>x.trim()).filter(Boolean).slice(0,20),cats:$$("#alertBox .chips input:checked").map(c=>c.value),before:$("#al_before").value?$("#al_before").value.split(",").map(Number):[]};
+    AL={watch:AL.watch||[],kw:$("#al_kw").value.split(/[,，]/).map(x=>x.trim()).filter(Boolean).slice(0,20),cats:$$("#alertBox .chips input:checked").map(c=>c.value),before:$("#al_before").value?$("#al_before").value.split(",").map(Number):[]};
     store.set("alerts",AL); pushAlerts(); renderAlerts(); $("#al_msg").textContent="저장했어요. "+$("#al_msg").textContent;
   };
+  const wl=$("#watchList"); if(wl) wl.innerHTML=(AL.watch||[]).length?(AL.watch||[]).map(w=>`<li><span>${esc(w.t)}<small>찾는 말: ${esc((w.k||[]).join(" "))} · ${esc(w.at||"")} 등록 · 지금 비슷한 장학 ${DATA.filter(r=>r._s.key!=="마감"&&watchHitW(w,r)).length}건 모집중·예정</small></span><button class="btn" type="button" data-unwatch="${esc(w.id)}">끄기</button></li>`).join(""):`<li><span class="note">아직 없어요. 목록에서 별 아래 종을 눌러 보세요.</span></li>`;
 }
 // 화면 밝기: 자동(휴대폰 설정 따라감) → 밝게 → 어둡게
 const THEME_L={auto:"자동",light:"밝게",dark:"어둡게"};
@@ -766,21 +905,26 @@ function countWith(cats,only){
   CATS.clear(); c0.forEach(k=>CATS.add(k)); ONLY_SEL.clear(); o0.forEach(k=>ONLY_SEL.add(k));
   return n;
 }
-function renderCats(){
+function renderOnly(){
+  const box=$("#onlyBox"); if(!box) return; const o=showOnly(), me=mySchool(), anyOther=SCHOOLS.filter(([k])=>k!==me).some(([k])=>o[k]);
+  box.innerHTML=`<h3>학교 전용 공고${ONLY_SEL.size?`<button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button>`:""}</h3><div class="chips">${SCHOOLS.map(([k,l])=>`<button type="button" class="chip" data-only="${k}" aria-pressed="${ONLY_SEL.has(k)}">${l} <b>${countWith([...CATS],[k])}</b></button>`).join("")}</div>`
+    +(me&&!ONLY_SEL.size?`<button type="button" class="chip" style="margin-top:6px" data-only-others="${anyOther?"off":"on"}">${anyOther?"다른 학교 전용 숨기기":"다른 학교 전용도 보기"}</button>`:"")
+    +`<p class="note">${ONLY_SEL.size?"고른 학교 학생만 지원할 수 있는 공고만 보는 중":"그 학교 학생만 지원할 수 있는 공고예요. 누르면 그것만 보여요."}</p>`;
+}
+function renderCats(){ renderOnly();
   const n=k=>countWith(k?[k]:[],[...ONLY_SEL]);
   const o=showOnly(), me=mySchool(), others=SCHOOLS.filter(([k])=>k!==me), anyOther=others.some(([k])=>o[k]);
   $("#cats").innerHTML=[["","전체"],...SUP,["etc","그 밖의 장학"]].map(([k,l])=>`<button type="button" class="cat ${k||"all"}" data-cat="${k}" aria-pressed="${k?CATS.has(k):!CATS.size}"><i></i>${l}<span class="n">${n(k)}</span></button>`).join("")
-    +`<div class="onlybar"><span class="note">학교 전용 공고</span>${SCHOOLS.map(([k,l])=>`<button type="button" class="chip" data-only="${k}" aria-pressed="${ONLY_SEL.has(k)}">${l} 전용 <b>${countWith([...CATS],[k])}</b></button>`).join("")}`
-    +(me&&!ONLY_SEL.size?`<button type="button" class="chip" data-only-others="${anyOther?"off":"on"}">${anyOther?"다른 학교 전용 숨기기":"다른 학교 전용도 보기"}</button>`:"")+`</div>`
     +`<p class="cats-hint">${CATS.size||ONLY_SEL.size?`${[...[...CATS].map(k=>SUPL[k]||"그 밖의 장학"),...[...ONLY_SEL].map(k=>OWNL[k])].join(" · ")}만 보는 중 · <button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button>`:"보고 싶은 종류나 학교 전용 공고를 눌러 고르세요. 여러 개 고를 수 있어요."}</p>`;
 }
-$("#cats").addEventListener("click",e=>{
+function onCatsClick(e){
   const oo=e.target.closest("[data-only-others]"); if(oo){const me=mySchool(), on=oo.dataset.onlyOthers==="on", o={}; SCHOOLS.forEach(([k])=>o[k]=k===me||on); store.set("only",o); renderKpis(); apply(); return}
   const ob=e.target.closest("[data-only]"); if(ob){const k=ob.dataset.only; ONLY_SEL.has(k)?ONLY_SEL.delete(k):ONLY_SEL.add(k); store.set("onlySel",[...ONLY_SEL]); if($("#view-find").hidden) tab("find"); apply(); return}
   if(e.target.closest("[data-cat-reset]")){CATS.clear(); ONLY_SEL.clear(); store.set("cats",[]); store.set("onlySel",[]); apply(); return}
   const b=e.target.closest("[data-cat]"); if(!b) return; const k=b.dataset.cat;
   if(!k) CATS.clear(); else if(CATS.has(k)) CATS.delete(k); else CATS.add(k);
-  store.set("cats",[...CATS]); if($("#view-find").hidden) tab("find"); apply()});
+  store.set("cats",[...CATS]); if($("#view-find").hidden) tab("find"); apply()}
+$("#cats").addEventListener("click",onCatsClick); $("#onlyBox").addEventListener("click",onCatsClick);
 
 /* ---------- 상태 ---------- */
 function stat(r){
@@ -793,7 +937,7 @@ function cache(){for(const r of DATA){r._s=stat(r); r._fields=fieldsOf(r); r._n=
 
 /* ---------- 필터 UI ---------- */
 function chipGroup(title,key,opts){
-  return `<div class="fgroup"><h3>${title}</h3><div class="chips">${opts.map(([v,l])=>`<button type="button" class="chip" data-f="${key}" data-v="${esc(v)}" aria-pressed="${F[key].has(v)}">${esc(l)}</button>`).join("")}</div></div>`;
+  return `<div class="fgroup" data-g="${key}"><h3>${title}</h3><div class="chips">${opts.map(([v,l])=>`<button type="button" class="chip" data-f="${key}" data-v="${esc(v)}" aria-pressed="${F[key].has(v)}">${esc(l)}</button>`).join("")}</div></div>`;
 }
 function buildFilters(){
   const cnt=k=>{const c={};DATA.forEach(r=>{const v=r[k]||"기타";c[v]=(c[v]||0)+1});return c};
@@ -802,8 +946,10 @@ function buildFilters(){
   const OL={"대학 게시판":"대학 공고","대학(교내)":"교내 장학"};
   $("#filters").innerHTML=
     chipGroup("모집 상태","status",[["모집중","모집중"],["예정","접수 예정"],["마감","마감·내년 예상"],["상시/미정","일정 미정"]])+
+    `<div class="fgroup" data-g="ex"><h3>빼고 보기 <span style="font-weight:500">· 누르면 목록에서 빠져요</span></h3><div class="chips">${[["kosaf","한국장학재단"],["gov","정부·공공기관"],["local","지자체"],["inside","교내 장학"],["work","근로장학"],["loan","학자금 대출"],["dorm","기숙사만 지원"],["rec","추천 필요"]].map(([v,l])=>`<button type="button" class="chip ex" data-f="ex" data-v="${v}" aria-pressed="${F.ex.has(v)}">${l}</button>`).join("")}</div>
+      <input type="search" id="fExw" placeholder="이 말이 들어간 장학 빼기 (쉼표로 구분, 예: 대출, 군인)" value="${esc(F.exw.join(", "))}" style="margin-top:8px;font-size:13px;padding:7px 10px" aria-label="뺄 낱말"></div>`+
     (profile?chipGroup("나에게 맞는지","match",[["ok","지원 가능"],["check","확인 필요"],["no","지원 불가"]]):"")+
-    `<div class="fgroup"><h3>중·고등학생</h3><button type="button" class="chip" id="teenSw" aria-pressed="${teenShown()}">${teenShown()?"중·고등학생 장학 보는 중":"중·고등학생 장학도 보기"}</button></div>`+
+    `<div class="fgroup" data-g="teen"><h3>중·고등학생</h3><button type="button" class="chip" id="teenSw" aria-pressed="${teenShown()}">${teenShown()?"중·고등학생 장학 보는 중":"중·고등학생 장학도 보기"}</button></div>`+
     chipGroup("대상","level",[["대학생","대학생"],...(teenShown()?[["고등학생","중·고등학생"]]:[]),["해외유학","해외유학"],["학점은행제","학점은행제"]])+
     `<div class="fgroup"><h3>지역</h3><select id="fRegion"><option value="">전체</option><option value="전국">전국 단위만</option>${SIDO.map(s=>`<option ${F.region===s?"selected":""}>${s}</option>`).join("")}</select></div>`+
     chipGroup("운영 기관","orgType",orgs.map(o=>[o,OL[o]||o]))+
@@ -816,9 +962,11 @@ function buildFilters(){
 document.addEventListener("click",e=>{
   const c=e.target.closest(".chip[data-f]");
   if(c){F.within=0;const s=F[c.dataset.f]; s.has(c.dataset.v)?s.delete(c.dataset.v):s.add(c.dataset.v); c.setAttribute("aria-pressed",s.has(c.dataset.v)); apply(); return}
-  if(e.target.id==="fReset"){F.within=0;F.status=new Set(["모집중","예정"]);for(const k of["level","orgType","kind","match","source","field","note"])F[k]=new Set();F.region="";buildFilters();apply()}
+  if(e.target.id==="fReset"){F.within=0;F.status=new Set(ST_DEF);for(const k of["level","orgType","kind","match","source","field","note","ex"])F[k]=new Set();F.exw=[];F.region="";buildFilters();apply()}
+  if(e.target.id==="exKosaf"){F.ex.has("kosaf")?F.ex.delete("kosaf"):F.ex.add("kosaf"); buildFilters(); apply(); toast(F.ex.has("kosaf")?"한국장학재단 장학을 빼고 보여요.":"한국장학재단 장학도 다시 보여요."); return}
 });
 document.addEventListener("change",e=>{if(e.target.id==="fRegion"){F.region=e.target.value;apply()}});
+document.addEventListener("input",e=>{ if(e.target.id!=="fExw") return; clearTimeout(window.__exw); window.__exw=setTimeout(()=>{F.exw=e.target.value.split(/[,，]/).map(x=>x.trim().toLowerCase()).filter(Boolean).slice(0,20); apply()},250) });
 document.addEventListener("click",e=>{ if(e.target.id!=="teenSw") return;
   TEEN_ON=!TEEN_ON; store.set("teen",TEEN_ON); if(!teenShown()) F.level.delete("고등학생");
   buildFilters(); apply(); renderKpis(); try{ if(!$("#view-cal").hidden) renderCal() }catch(x){}
@@ -871,6 +1019,8 @@ function passes(r,q){
   if(F.level.size && !F.level.has(r.level==="대학생"||!r.level?"대학생":r.level)) return false;
   if(F.region){ if(F.region==="전국"? r.region!=="전국" : r.region!==F.region) return false }
   if(F.orgType.size && !F.orgType.has(r.org_type)) return false;
+  if(F.ex.size){ for(const k of F.ex) if(EX[k]&&EX[k](r)) return false }
+  if(F.exw.length){ const h=(r.title+" "+(r.org||"")+" "+(r.target||"")).toLowerCase(); if(F.exw.some(w=>h.includes(w))) return false }
   if(F.kind.size && !F.kind.has(r.kind||"기타")) return false;
   if(F.source.size && !F.source.has(r.source)) return false;
   if(F.match.size && r._m && !F.match.has(r._m.verdict)) return false;
@@ -897,7 +1047,9 @@ function qMatch(r,t){
   const f=majorField(t); if(f) return r._fields.some(x=>f.has(x));
   return false;
 }
-function sorter(){
+const GRANK={"모집중":0,"예정":1,"상시/미정":2,"마감":3};
+function sorter(){ const f=sorter0(); return (a,b)=>GRANK[a._s.key]-GRANK[b._s.key]||f(a,b) }
+function sorter0(){
   const s=$("#sort").value==="fit"&&!profile?"due":$("#sort").value;
   if(s==="fit"){const V={ok:0,check:1,no:2}; const rank={"모집중":0,"예정":1,"상시/미정":2,"마감":3};
     return (a,b)=>rank[a._s.key]-rank[b._s.key] || (V[a._m?.verdict]??1)-(V[b._m?.verdict]??1) || (a._f?.rank??1)-(b._f?.rank??1) || (a.end||a.start||"9999").localeCompare(b.end||b.start||"9999");}
@@ -908,39 +1060,54 @@ function sorter(){
   return (a,b)=>rank[a._s.key]-rank[b._s.key] || (a._s.key==="마감"?(a.next||"9").localeCompare(b.next||"9"):(a.end||a.start||"9999").localeCompare(b.end||b.start||"9999")) || (b.amount_won||0)-(a.amount_won||0);
 }
 function apply(){
-  store.set("filters",{status:[...F.status],level:[...F.level],region:F.region,orgType:[...F.orgType],kind:[...F.kind],match:[...F.match],source:[...F.source],field:[...F.field],note:[...F.note]});
+  store.set("filters",{status:[...F.status],level:[...F.level],region:F.region,orgType:[...F.orgType],kind:[...F.kind],match:[...F.match],source:[...F.source],field:[...F.field],note:[...F.note],ex:[...F.ex],exw:F.exw});
+  {const b=$("#exKosaf"); if(b){b.setAttribute("aria-pressed",F.ex.has("kosaf")); b.textContent=F.ex.has("kosaf")?"한국장학재단 빼는 중":"한국장학재단 빼고 보기"}}
   const q=$("#q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  if(q.length===1&&/^(도움말|사용법|help)$/.test(q[0])&&!$("#helpWrap").dataset.fromq){ $("#helpWrap").dataset.fromq="1"; openHelp(); } else if(!(q.length===1&&/^(도움말|사용법|help)$/.test(q[0]))) delete $("#helpWrap").dataset.fromq;
   view=DATA.filter(r=>passes(r,q)).sort(sorter());
-  shown=0; $("#list").innerHTML=""; $("#resultCount").innerHTML="<b>"+view.length.toLocaleString("ko-KR")+"</b>건";
+  shown=0; LASTG=""; GCNT={}; view.forEach(r=>GCNT[r._s.key]=(GCNT[r._s.key]||0)+1); $("#list").innerHTML=""; $("#resultCount").innerHTML="<b>"+view.length.toLocaleString("ko-KR")+"</b>건";
   renderMore(); renderCats();
 }
 function kindLabel(r){const k=(r.kind||"").replace(/\s*·.*$/,""); return !k||k==="해당없음"||k==="기타"||k==="공고"?"":k}
 function mainUrl(r){const pub=(r.links||[]).map(l=>safeUrl(l.url)).find(u=>u&&!/portal\.hanyang\.ac\.kr/.test(u)); const own=safeUrl(r.url); if(own&&!/portal\.hanyang\.ac\.kr/.test(own)) return own; return pub||safeUrl(r.apply_url)||own}
 function card(r){
   const s=r._s, m=r._m;
-  const due=`<div class="due ${s.hot?"hot":""} ${s.key==="마감"?"closed":""}"><span class="d">${esc(s.label==="오늘 마감"?"오늘":s.label)}</span><span>${r.end?esc(r.end.slice(5).replace("-","."))+" 마감":r.start?esc(r.start.slice(5).replace("-","."))+" 시작":r.posted?esc(r.posted.slice(5).replace("-","."))+" 공고":""}</span></div>`;
+  const due=`<div class="due st-${s.key} ${s.hot?"hot":""} ${s.key==="마감"?"closed":""}"><span class="d">${esc(s.label==="오늘 마감"?"오늘":s.label)}</span><span>${r.end?esc(r.end.slice(5).replace("-","."))+" 마감":r.start?esc(r.start.slice(5).replace("-","."))+" 시작":r.posted?esc(r.posted.slice(5).replace("-","."))+" 공고":""}</span></div>`;
   const amt=moneyOf(r);
   const pills=(r.support||[]).map(k=>`<span class="pill ${esc(k)}">${SUPL[k]}</span>`);
   if(m) pills.push(`<span class="pill ${m.verdict}">${VLABEL[m.verdict]}</span>`);
   {const own=ownSchool(r); if(own) pills.push(`<span class="pill only">${OWNL[own]}</span>`)}
   if(r._f&&r._f.label==="내 학과 대상") pills.push(`<span class="pill ok">내 학과 대상</span>`);
   const mine=profile&&profile.major;
-  pills.push(`<span class="pill ${mine&&r._fields.includes(mine)?"ok":mine&&!r._fields.includes("무관")&&!r._fields.includes("특정학과")?"no":"field"}">${r._fields.map(FSHORT).join("·")}${r._fields[0]==="무관"||r._fields[0]==="특정학과"?"":" 계열"}</span>`);
+  pills.push(`<span class="pill ${mine&&r._fields.includes(mine)?"ok":mine&&!r._fields.includes("무관")&&!r._fields.includes("특정학과")?"no":"fld"}">${r._fields.map(FSHORT).join("·")}${r._fields[0]==="무관"||r._fields[0]==="특정학과"?"":" 계열"}</span>`);
   if(applyState[r.id]) pills.unshift(`<span class="pill state">${esc(applyState[r.id])}</span>`);
-  if(r._n.includes("추천 필요")) pills.push(`<span class="pill">추천 필요</span>`);
-  if(r.region) pills.push(`<span class="pill">${esc(r.region)}${r.district?" "+esc(r.district):""}</span>`);
-  const kd=kindLabel(r); if(kd) pills.push(`<span class="pill">${esc(kd)}</span>`);
-  if(r.level && r.level!=="대학생") pills.push(`<span class="pill">${esc(r.level==="고등학생"?(r.mid?"중·고등학생":"고등학생"):r.level)}</span>`);
+  if(r._n.includes("추천 필요")) pills.push(`<span class="pill rec">추천 필요</span>`);
+  if(r.region) pills.push(`<span class="pill reg">${esc(r.region)}${r.district?" "+esc(r.district):""}</span>`);
+  const kd=kindLabel(r); if(kd) pills.push(`<span class="pill kind">${esc(kd)}</span>`);
+  if(r.level && r.level!=="대학생") pills.push(`<span class="pill lvl">${esc(r.level==="고등학생"?(r.mid?"중·고등학생":"고등학생"):r.level)}</span>`);
   const fr=r.fresh&&r._s.key!=="마감"?r.fresh.kind:"";
   const tag=fr==="new"?`<span class="newtag">새 장학</span>`:fr==="updated"?`<span class="newtag upd">바뀜</span>`:"";
-  return `<article class="item ${r.support&&r.support[0]?"sup-"+r.support[0]:""} ${fr==="new"?"is-new":fr==="updated"?"is-upd":""}" data-id="${esc(r.id)}" tabindex="0">${due}<div style="min-width:0"><p class="t">${tag}${esc(r.title)}${amt?`<span class="money">${esc(amt)}</span>`:""}</p><div class="meta">${r.org&&r.org!==r.title?`<span>${esc(r.org)}</span>`:""}</div><div class="pills">${pills.slice(0,5).join("")}</div></div><div class="acts"><button class="star" type="button" data-star="${esc(r.id)}" aria-pressed="${favs.has(r.id)}" aria-label="관심 등록"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></button>${isHidden(r)?`<button class="hide" type="button" data-hide="${esc(r.id)}" aria-label="숨김 풀기" title="숨김 풀기">풀기</button>`:`<button class="hide" type="button" data-hide="${esc(r.id)}" aria-label="숨기기" title="숨기기 (목록에서 안 보이게)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l18 18M10.6 6.1A9.9 9.9 0 0 1 12 6c5 0 9 4.5 10 6-.4.7-1.4 2-2.8 3.3M6.4 7.6C4.4 8.9 2.9 10.8 2 12c1 1.5 5 6 10 6 1.6 0 3.1-.5 4.4-1.2M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></button>`}</div></article>`;
+  return `<article class="item ${r.support&&r.support[0]?"sup-"+r.support[0]:""} ${fr==="new"?"is-new":fr==="updated"?"is-upd":""}" data-id="${esc(r.id)}" tabindex="0">${due}<div style="min-width:0"><p class="t">${tag}${esc(r.title)}${amt?`<span class="money">${esc(amt)}</span>`:""}</p><div class="meta">${r.org&&r.org!==r.title?`<span>${esc(r.org)}</span>`:""}</div><div class="pills">${pills.slice(0,5).join("")}</div></div><div class="acts"><button class="star" type="button" data-star="${esc(r.id)}" aria-pressed="${favs.has(r.id)}" aria-label="관심 등록"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></button><button class="bell" type="button" data-bell="${esc(r.id)}" aria-pressed="${isWatched(r.id)}" aria-label="비슷한 장학 알림" title="같거나 비슷한 장학이 새로 올라오면 알림"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0" stroke-linecap="round"/></svg></button>${isHidden(r)?`<button class="hide" type="button" data-hide="${esc(r.id)}" aria-label="숨김 풀기" title="숨김 풀기">풀기</button>`:`<button class="hide" type="button" data-hide="${esc(r.id)}" aria-label="숨기기" title="숨기기 (목록에서 안 보이게)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l18 18M10.6 6.1A9.9 9.9 0 0 1 12 6c5 0 9 4.5 10 6-.4.7-1.4 2-2.8 3.3M6.4 7.6C4.4 8.9 2.9 10.8 2 12c1 1.5 5 6 10 6 1.6 0 3.1-.5 4.4-1.2M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></button>`}</div></article>`;
 }
+let LASTG="", GCNT={};
+const GLABEL={"모집중":["지금 모집중",""],"예정":["접수 예정","곧 접수가 시작돼요"],"상시/미정":["일정 미정","공고에서 일정을 확인하세요"],"마감":["마감·내년 예상","지난 회차 · 작년 일정으로 다음 모집 시기를 예상했어요"]};
+// 모집중 · 접수 예정 · 마감·내년 예상을 칸으로 나눠 따로 보여 준다 (칸마다 '더 보기')
+let GSHOWN={};
 function renderMore(){
-  const next=view.slice(shown,shown+60); shown+=next.length;
-  $("#list").insertAdjacentHTML("beforeend",next.map(card).join(""));
-  if(!view.length) $("#list").innerHTML=`<div class="empty">조건에 맞는 장학금이 없습니다.${PF_ON&&savedProfile()?" 위의 ‘내 정보 맞춤’을 끄면 내 조건과 맞지 않는 장학까지 모두 볼 수 있어요.":""} 모집 상태에 ‘마감·내년 예상’을 켜면 정기 장학금의 다음 모집 시기도 볼 수 있습니다.</div>`;
-  $("#more").hidden=shown>=view.length;
+  const multi=Object.keys(GCNT).length>1&&!SHOW_HIDDEN;
+  if(!view.length){ $("#list").innerHTML=`<div class="empty">조건에 맞는 장학금이 없습니다.${PF_ON&&savedProfile()?" 위의 ‘내 정보 맞춤’을 끄면 내 조건과 맞지 않는 장학까지 모두 볼 수 있어요.":""} 모집 상태에 ‘마감·내년 예상’을 켜면 정기 장학금의 다음 모집 시기도 볼 수 있습니다.</div>`; $("#more").hidden=true; return }
+  if(!multi){ const next=view.slice(shown,shown+60); shown+=next.length; $("#list").insertAdjacentHTML("beforeend",next.map(card).join("")); $("#more").hidden=shown>=view.length; return }
+  $("#more").hidden=true; GSHOWN={};
+  $("#list").innerHTML=Object.keys(GLABEL).filter(k=>GCNT[k]).map(k=>{const [l,sub]=GLABEL[k];
+    return `<section class="gsec" data-gsec="${esc(k)}"><div class="grouphead g-${k} ${k==="마감"?"closed":""}">${l}<span class="n">${GCNT[k].toLocaleString("ko-KR")}건</span>${sub?`<small>${sub}</small>`:""}</div><div class="list"></div><button class="more" type="button" data-gmore="${esc(k)}" hidden>더 보기</button></section>`}).join("");
+  Object.keys(GLABEL).filter(k=>GCNT[k]).forEach(k=>gMore(k,k==="마감"?20:40));
 }
+function gMore(k,n){
+  const sec=$(`[data-gsec="${k}"]`); if(!sec) return; const all=view.filter(r=>r._s.key===k), from=GSHOWN[k]||0, next=all.slice(from,from+(n||60));
+  GSHOWN[k]=from+next.length; sec.querySelector(".list").insertAdjacentHTML("beforeend",next.map(card).join(""));
+  const b=sec.querySelector("[data-gmore]"); b.hidden=GSHOWN[k]>=all.length; b.textContent=`${GLABEL[k][0]} 더 보기 (${(all.length-GSHOWN[k]).toLocaleString("ko-KR")}건 남음)`;
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-gmore]"); if(b) gMore(b.dataset.gmore,60)});
 $("#more").addEventListener("click",renderMore);
 let qt; $("#q").addEventListener("input",()=>{clearTimeout(qt);qt=setTimeout(apply,160)});
 $("#sort").addEventListener("change",()=>{store.set("sort",$("#sort").value);apply()});
@@ -971,6 +1138,7 @@ function openDetail(id){
   const gc=gcal(r);
   const addr=""; if(gc && s.key!=="마감") links.push(`<a class="btn" href="${esc(gc)}" target="_blank" rel="noopener">구글 캘린더에 추가</a>`);
   links.push(`<button class="btn" type="button" data-star="${esc(r.id)}" aria-pressed="${favs.has(r.id)}">${favs.has(r.id)?"★ 관심 해제":"☆ 관심 등록"}</button>`);
+  links.push(`<button class="btn" type="button" data-bell="${esc(r.id)}" aria-pressed="${isWatched(r.id)}">${isWatched(r.id)?"🔔 비슷한 장학 알림 끄기":"🔔 비슷한 장학 알림 받기"}</button>`);
   links.push(`<button class="btn" type="button" id="dShare">내용 복사</button>`);
   links.push(`<button class="btn" type="button" data-hide="${esc(r.id)}">${isHidden(r)?"숨김 풀기":"이 장학 숨기기"}</button>`);
   if(s.key!=="마감") links.push(`<button class="btn" type="button" data-write="${esc(r.id)}">추천서·자소서 쓰기</button>`);
@@ -1015,9 +1183,9 @@ function selectUrl(){const r=document.createRange(); r.selectNodeContents($("#dU
 function tab(name){
   document.body.dataset.tab=name;
   $$("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===name));
-  for(const v of["find","cal","fav","me","doc","src"]) $("#view-"+v).hidden=v!==name;
+  for(const v of["find","cal","fav","alert","me","doc","src"]) $("#view-"+v).hidden=v!==name;
   $("#cats").hidden=name!=="find";
-  if(name==="cal") renderCal(); if(name==="fav") renderFav(); if(name==="src") renderSrc(); if(name==="doc") renderDoc();
+  if(name==="cal") renderCal(); if(name==="fav") renderFav(); if(name==="alert") renderAlerts(); if(name==="src") renderSrc(); if(name==="doc") renderDoc();
   store.set("tab",name);
 }
 $$("nav.tabs button").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.tab)));
@@ -1091,19 +1259,24 @@ function fillProfile(){
   // 학교: 한양대·한양여대를 맨 위에, 나머지는 가나다순
   const TOP=[["한양대학교","서울","한양대학교"],["한양여자대학교","서울","한양여자대학교"],["강원대학교 삼척캠퍼스","강원","강원대학교 삼척캠퍼스"],["서강대학교","서울","서강대학교"],["건국대학교","서울","건국대학교 (서울캠퍼스)"]];
   const rest=[...new Map(UNIVS.filter(([n])=>!/^한양/.test(n)).map(u=>[u[0],u])).values()].sort((a,b)=>a[0].localeCompare(b[0],"ko"));
-  $("#p_schoolPick").innerHTML=`<option value="">선택 안 함</option><optgroup label="이 앱이 지원하는 학교">${TOP.map(([v,,l])=>`<option value="${v}">${l}</option>`).join("")}</optgroup><optgroup label="다른 학교">${rest.map(([n])=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup><option value="__other">목록에 없음 (직접 입력)</option>`;
-  $("#p_deptPick").innerHTML=`<option value="">선택 안 함</option>`+Object.entries(MAJORS).map(([g,l])=>`<optgroup label="${g}">${l.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("")}</optgroup>`).join("")+`<option value="__other">목록에 없음 (직접 입력)</option>`;
-  const syncPick=(pick,input,val)=>{const has=[...$(pick).options].some(o=>o.value===val&&val); $(pick).value=has?val:(val?"__other":""); $(input).hidden=!(val&&!has); $(input).value=val||""};
-  $("#p_schoolPick").onchange=()=>{const v=$("#p_schoolPick").value; $("#p_schoolName").hidden=v!=="__other"; $("#p_schoolName").value=v==="__other"?"":v;
-    const t=[...TOP,...UNIVS].find(u=>u[0]===v); if(t&&t[1]) $("#p_ssido").value=t[1]; if(/한양여자/.test(v)&&!$("#p_school").value) $("#p_school").value="2y"; if(/^(한양대학교|강원대학교|서강대학교|건국대학교)/.test(v)&&!$("#p_school").value) $("#p_school").value="4y"};
-  $("#p_deptPick").onchange=()=>{const v=$("#p_deptPick").value; $("#p_dept").hidden=v!=="__other"; $("#p_dept").value=v==="__other"?"":v; const k=Object.keys(MAJORS).find(k=>MAJORS[k].includes(v)); if(k) $("#p_major").value=k};
+  // 학교·학과는 쳐서 찾는다 (목록에서 고르거나, 목록에 없으면 그대로 입력)
+  $("#schoolList").innerHTML=TOP.map(([v,,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join("")+rest.map(([n])=>`<option value="${esc(n)}"></option>`).join("");
+  $("#deptList").innerHTML=Object.entries(MAJORS).map(([g,l])=>l.map(n=>`<option value="${esc(n)}">${esc(g)}</option>`).join("")).join("");
+  const onSchool=()=>{const v=$("#p_schoolName").value.trim(); const t=[...TOP,...UNIVS].find(u=>u[0]===v); if(t&&t[1]) $("#p_ssido").value=t[1]; if(/한양여자/.test(v)&&!$("#p_school").value) $("#p_school").value="2y"; if(/^(한양대학교|강원대학교|서강대학교|건국대학교)/.test(v)&&!$("#p_school").value) $("#p_school").value="4y"};
+  $("#p_schoolName").onchange=onSchool;
+  const onDept=()=>{const v=$("#p_dept").value.trim(), h=$("#p_deptHint"); if(!v){h.textContent="";return}
+    let k=Object.keys(MAJORS).find(k=>MAJORS[k].includes(v));
+    if(!k){ const f=majorField(v.toLowerCase().replace(/\s/g,"")); if(f&&f.size===1) k=[...f][0] }
+    if(k){ $("#p_major").value=k; h.textContent=k+"로 맞췄어요"; } else h.textContent="목록에 없는 학과면 아래 ‘계열’을 직접 골라 주세요";
+  };
+  $("#p_dept").oninput=onDept; $("#p_dept").onchange=onDept;
   const fillGu=(sel,keep)=>{const g=$("#"+sel.dataset.gu), list=DIST[sel.value]||[]; g.innerHTML=sel.value?`<option value="">선택 안 함</option>`+list.map(x=>`<option>${x}</option>`).join(""):`<option value="">시·도를 먼저 고르세요</option>`; if(keep&&list.includes(keep)) g.value=keep};
   $$("#profile select[data-gu]").forEach(sel=>{sel.onchange=()=>fillGu(sel)});
   $("#p_flags").innerHTML=FLAGS.map(([k,l])=>`<label class="chip"><input type="checkbox" value="${k}" id="pf_${k}"> ${l}</label>`).join("");
   const p=savedProfile()||{};
   if(!p.status && p.level) p.status={"고등학생":"hs","대학원생":"grad","대학생":"univ"}[p.level]||"";
   for(const k of ["status","gender","school","ssido","sem","major","income","gpa","sido","hsido","psido"]) if($("#p_"+k)) $("#p_"+k).value=p[k]??"";
-  syncPick("#p_schoolPick","#p_schoolName",p.schoolName||""); syncPick("#p_deptPick","#p_dept",p.dept||"");
+  $("#p_schoolName").value=p.schoolName||""; $("#p_dept").value=p.dept||"";
   fillGu($("#p_sido"),p.gu); fillGu($("#p_hsido"),p.hgu); fillGu($("#p_psido"),p.pgu);
   (p.flags||[]).forEach(k=>{const c=$("#pf_"+k); if(c) c.checked=true});
 }
@@ -1151,7 +1324,7 @@ document.addEventListener("click",e=>{
 
 /* ---------- 새 소식 ---------- */
 function renderSrc(){
-  renderHyin(); renderPortals(); renderAlerts();
+  renderHyin(); renderPortals();
   const when=(META.finishedAt||"").replace("T"," ").slice(0,16);
   $("#srcReport").textContent=`마지막 갱신 ${when} · 전체 ${(META.total||DATA.length).toLocaleString("ko-KR")}건 · 이번에 새로 ${META.new||0}건, 바뀜 ${META.changed||0}건`;
   const ch=freshList(false);
@@ -1191,6 +1364,18 @@ $("#kpis").addEventListener("click",e=>{const b=e.target.closest("[data-k]"); if
   if(k==="mine"&&profile) F.match=new Set(["ok","check"]);
   $("#sort").value=k==="soon"?"next":"due"; buildFilters(); apply();});
 
+/* ---------- 도움말 (처음 켜면 한 번 보여 주고, 위쪽 '도움말' 버튼·검색으로 다시 연다) ---------- */
+function openHelp(){ $("#helpWrap").hidden=false; $("#helpQ").value=""; filterHelp(); setTimeout(()=>{try{$("#helpClose").focus()}catch(e){}},0) }
+function closeHelp(){ $("#helpWrap").hidden=true; store.set("helpSeen",true) }
+function filterHelp(){ const q=$("#helpQ").value.trim().toLowerCase(); let n=0;
+  $$("#helpList details").forEach(d=>{ const hit=!q||(d.dataset.k+" "+d.textContent).toLowerCase().includes(q); d.hidden=!hit; if(hit){n++; if(q) d.open=true} });
+  $("#helpNone").hidden=n>0 }
+$("#helpBtn").addEventListener("click",openHelp);
+$("#helpClose").addEventListener("click",closeHelp);
+$("#helpQ").addEventListener("input",filterHelp);
+$("#helpWrap").addEventListener("click",e=>{ if(e.target.id==="helpWrap") closeHelp() });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("#helpWrap").hidden) closeHelp() });
+
 /* ---------- 시작 ---------- */
 async function boot(){
   try{
@@ -1204,7 +1389,8 @@ async function boot(){
     const g=new Date(d.generatedAt||Date.now()); $("#stamp").innerHTML=`장학금 <b>${DATA.length.toLocaleString("ko-KR")}</b>건<br>${g.getMonth()+1}월 ${g.getDate()}일 ${String(g.getHours()).padStart(2,"0")}:${String(g.getMinutes()).padStart(2,"0")} 업데이트`;
   }catch(e){ $("#stamp").textContent="자료를 불러오지 못했습니다. 페이지를 새로고침하세요."; return }
   $("#sort").value=store.get("sort",profile?"fit":"due");
-  fillProfile(); cache(); buildFilters(); renderKpis(); renderCats(); apply(); renderHideBar(); renderPfBar(); $("#favCount").textContent=favs.size||"";
+  fillProfile(); cache(); buildFilters(); renderKpis(); renderCats(); apply(); renderHideBar(); renderPfBar(); $("#favCount").textContent=favs.size||""; $("#watchCount").textContent=(AL.watch||[]).length||""; renderWatchHits();
+  if(!store.get("helpSeen",false)) openHelp();
   const t=store.get("tab","find"); if(t!=="find") tab(t);
   // 안드로이드 앱: 관심 장학금 마감 3일 전 알림 (하루 한 번)
   try{ if(window.AndroidBridge && store.get("notified","")!==TODAY){
