@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-13T02:35:22+00:00",
- "finishedAt": "2026-10-13T02:50:12+00:00",
+ "startedAt": "2026-10-13T06:42:39+00:00",
+ "finishedAt": "2026-10-13T06:57:32+00:00",
  "online": true,
  "total": 4553,
- "new": 5,
- "changed": 186,
+ "new": 9,
+ "changed": 195,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 599,
+   "count": 594,
    "mode": "성공 121 / 실패 26"
   },
   {
@@ -176,7 +176,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 24
+    "count": 25
    },
    {
     "name": "고려대학교 서울",
@@ -386,7 +386,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "성공회대학교",
@@ -886,7 +886,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 5
    },
    {
     "name": "한경국립대학교",
@@ -1076,7 +1076,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 20
+    "count": 19
    },
    {
     "name": "배재대학교",
@@ -1236,7 +1236,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 9
    },
    {
     "name": "동신대학교",
@@ -1866,7 +1866,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "초록우산(구 어린이재단)",
@@ -5416,7 +5416,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "손태희장학재단",
