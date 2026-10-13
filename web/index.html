@@ -561,6 +561,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <details data-k="내 정보 맞춤 학과 전공 학교 초기화 리셋"><summary>내 정보로 맞춤 찾기</summary><p>‘내 정보’ 탭에 학교·학과(쳐서 찾기)·지역·소득구간·성적을 넣으면 지원 가능 여부를 표시해 줘요. 목록 위의 스위치로 맞춤 거르기를 껐다 켤 수 있고, ‘내 정보 초기화’로 지울 수 있어요. 입력한 정보는 이 기기에만 저장돼요.</p></details>
     <details data-k="중학생 고등학생 청소년 대학원 대학원생 석사 박사"><summary>중·고등학생 · 대학원생 장학</summary><p>대학원생만 지원할 수 있는 장학은 기본으로 숨겨져 있어요. 필터 ‘대상’에서 <b>대학원생</b>을 누르거나 내 정보 신분을 대학원생으로 고르면 보여요. 중·고등학생 장학도 기본으로는 숨겨져 있어요. 필터 ‘대상’에서 <b>중·고등학생</b>을 누르면 중·고등학생 장학만, <b>+ 중·고등학생 함께 보기</b>를 누르면 대학생 장학과 함께 보여요.</p></details>
     <details data-k="달력 마감 캘린더 일정"><summary>마감 달력</summary><p>날짜별로 마감·접수 시작 장학을 보여 줘요. ‘관심만’을 켜면 별표한 장학만, ‘작년 일정으로 예상 포함’을 켜면 다음 모집 예상까지 보여요.</p></details>
+    <details data-k="확대 축소 크기 글자 컨트롤 휠 줌"><summary>화면 확대·축소</summary><p>컴퓨터에서는 <b>Ctrl(맥은 ⌘)을 누른 채 마우스 휠</b>을 돌리거나 Ctrl + <b>+</b>/<b>-</b>를 누르면 화면이 커지고 작아져요. <b>Ctrl + 0</b>을 누르면 원래 크기로 돌아가요. 휴대폰 앱에서는 두 손가락으로 벌리거나 오므리면 돼요. 정한 크기는 이 기기에 기억돼요.</p></details>
     <details data-k="앱 설치 아이폰 홈 화면 웹앱"><summary>휴대폰에 앱처럼 설치</summary><p>아이폰은 Safari 공유 버튼에서 ‘홈 화면에 추가’를 누르면 앱처럼 쓸 수 있어요. 안드로이드는 Chrome 메뉴의 ‘홈 화면에 추가’ 또는 앱 설치를 쓰세요.</p></details>
   </div>
   <p class="note" id="helpNone" hidden>찾는 내용이 없어요. 다른 말로 쳐 보세요.</p>
@@ -865,6 +866,13 @@ function renderAlerts(){
   };
   const wl=$("#watchList"); if(wl) wl.innerHTML=(AL.watch||[]).length?(AL.watch||[]).map(w=>`<li><span>${esc(w.t)}<small>찾는 말: ${esc((w.k||[]).join(" "))} · ${esc(w.at||"")} 등록 · 지금 비슷한 장학 ${DATA.filter(r=>r._s.key!=="마감"&&watchHitW(w,r)).length}건 모집중·예정</small></span><button class="btn" type="button" data-unwatch="${esc(w.id)}">끄기</button></li>`).join(""):`<li><span class="note">아직 없어요. 목록에서 별 아래 종을 눌러 보세요.</span></li>`;
 }
+// 화면 크기: Ctrl(맥은 ⌘) + 마우스 휠, Ctrl + '+'/'-'/'0' 으로 확대·축소 (웹·휴대폰 앱 모두 같은 방식, 이 기기에 기억)
+let ZOOM=+store.get("zoom",1)||1;
+function setZoom(z,quiet){ ZOOM=Math.min(2,Math.max(0.6,Math.round(z*10)/10)); try{document.documentElement.style.zoom=ZOOM===1?"":String(ZOOM)}catch(e){} store.set("zoom",ZOOM); if(!quiet) try{toast("화면 크기 "+Math.round(ZOOM*100)+"% · Ctrl+0 으로 원래대로")}catch(e){} }
+setZoom(ZOOM,true);
+window.addEventListener("wheel",e=>{ if(!(e.ctrlKey||e.metaKey)) return; e.preventDefault(); setZoom(ZOOM+(e.deltaY<0?0.1:-0.1)) },{passive:false});
+window.addEventListener("keydown",e=>{ if(!(e.ctrlKey||e.metaKey)) return; const k=e.key;
+  if(k==="+"||k==="="){e.preventDefault(); setZoom(ZOOM+0.1)} else if(k==="-"||k==="_"){e.preventDefault(); setZoom(ZOOM-0.1)} else if(k==="0"){e.preventDefault(); setZoom(1)} });
 // 화면 밝기: 자동(휴대폰 설정 따라감) → 밝게 → 어둡게
 const THEME_L={auto:"자동",light:"밝게",dark:"어둡게"};
 function sysDark(){ try{ if(window.AndroidBridge&&window.AndroidBridge.isDark) return !!window.AndroidBridge.isDark() }catch(e){} return !!(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches) }

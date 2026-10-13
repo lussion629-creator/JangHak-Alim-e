@@ -50,6 +50,9 @@ public class MainActivity extends Activity {
         s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
         s.setSaveFormData(false);
         s.setTextZoom(100);
+        s.setSupportZoom(true);            // 두 손가락으로 벌려 확대·축소
+        s.setBuiltInZoomControls(true);
+        s.setDisplayZoomControls(false);   // 화면에 +/- 버튼은 띄우지 않는다
         web.addJavascriptInterface(new Bridge(), "AndroidBridge");
         web.setWebViewClient(new WebViewClient() {
             @Override
