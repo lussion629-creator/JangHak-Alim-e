@@ -57,7 +57,11 @@ button,input,select{font:inherit;color:inherit;letter-spacing:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding-inline:20px;padding-block:0 56px}
 
 header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding-block:28px 20px}
-.brand{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.brand:active{opacity:.6}
+.updbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r);padding:8px 12px;margin:0 0 8px;font-size:13.5px}
+.updbar[hidden]{display:none}
+.updbar .btn{padding:6px 12px;font-size:13px}
 .mark{width:40px;height:40px;border-radius:12px;background:var(--accent);display:grid;place-items:center;flex:none}
 .mark svg{width:24px;height:24px}
 .brand h1{font-weight:800;font-size:24px;line-height:1.15;letter-spacing:-.03em;margin:0}
@@ -369,13 +373,14 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
 
 <div class="wrap">
   <header class="top">
-    <div class="brand">
+    <div class="brand" id="brandBtn" role="button" tabindex="0" title="새로고침" aria-label="장학알리미 — 눌러서 새로고침">
       <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M2.5 9.2 12 4.5l9.5 4.7L12 13.9z" fill="#fff"/><path d="M6.5 11.4v4.3c0 1.6 2.5 3 5.5 3s5.5-1.4 5.5-3v-4.3L12 14.2z" fill="#fff" opacity=".8"/></svg></span>
       <h1>장학알리미</h1>
     </div>
     <div class="topright"><span class="tbtns"><button class="themebtn" type="button" id="helpBtn" aria-label="도움말 열기">도움말</button><button class="themebtn" type="button" id="themeBtn" aria-label="화면 밝기 바꾸기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></svg><span id="themeLbl">자동</span></button></span><div class="stamp" id="stamp">자료를 불러오는 중…</div></div>
   </header>
 
+  <div class="updbar" id="updBar" role="status" hidden></div>
   <section class="watchhits" id="watchHits" aria-label="알림" hidden></section>
   <section class="fresh" id="fresh" aria-label="새로 올라오거나 바뀐 장학금" hidden></section>
   <section class="kpis" id="kpis" aria-label="요약"></section>
@@ -561,6 +566,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <details data-k="내 정보 맞춤 학과 전공 학교 초기화 리셋"><summary>내 정보로 맞춤 찾기</summary><p>‘내 정보’ 탭에 학교·학과(쳐서 찾기)·지역·소득구간·성적을 넣으면 지원 가능 여부를 표시해 줘요. 목록 위의 스위치로 맞춤 거르기를 껐다 켤 수 있고, ‘내 정보 초기화’로 지울 수 있어요. 입력한 정보는 이 기기에만 저장돼요.</p></details>
     <details data-k="중학생 고등학생 청소년 대학원 대학원생 석사 박사"><summary>중·고등학생 · 대학원생 장학</summary><p>대학원생만 지원할 수 있는 장학은 기본으로 숨겨져 있어요. 필터 ‘대상’에서 <b>대학원생</b>을 누르거나 내 정보 신분을 대학원생으로 고르면 보여요. 중·고등학생 장학도 기본으로는 숨겨져 있어요. 필터 ‘대상’에서 <b>중·고등학생</b>을 누르면 중·고등학생 장학만, <b>+ 중·고등학생 함께 보기</b>를 누르면 대학생 장학과 함께 보여요.</p></details>
     <details data-k="달력 마감 캘린더 일정"><summary>마감 달력</summary><p>날짜별로 마감·접수 시작 장학을 보여 줘요. ‘관심만’을 켜면 별표한 장학만, ‘작년 일정으로 예상 포함’을 켜면 다음 모집 예상까지 보여요.</p></details>
+    <details data-k="새로고침 업데이트 최신 새 공지"><summary>새로고침</summary><p>맨 위 <b>장학알리미</b>(아이콘이나 글자)를 누르면 새로고침돼요. 앱을 켜 둔 사이에 새 장학 정보가 올라오면 맨 위에 <b>새로고침</b> 버튼이 나타나요.</p></details>
     <details data-k="확대 축소 크기 글자 컨트롤 휠 줌"><summary>화면 확대·축소</summary><p>컴퓨터에서는 <b>Ctrl(맥은 ⌘)을 누른 채 마우스 휠</b>을 돌리거나 Ctrl + <b>+</b>/<b>-</b>를 누르면 화면이 커지고 작아져요. <b>Ctrl + 0</b>을 누르면 원래 크기로 돌아가요. 휴대폰 앱에서는 두 손가락으로 벌리거나 오므리면 돼요. 정한 크기는 이 기기에 기억돼요.</p></details>
     <details data-k="앱 설치 아이폰 홈 화면 웹앱"><summary>휴대폰에 앱처럼 설치</summary><p>아이폰은 Safari 공유 버튼에서 ‘홈 화면에 추가’를 누르면 앱처럼 쓸 수 있어요. 안드로이드는 Chrome 메뉴의 ‘홈 화면에 추가’ 또는 앱 설치를 쓰세요.</p></details>
   </div>
@@ -1431,6 +1437,24 @@ $("#helpQ").addEventListener("input",filterHelp);
 $("#helpWrap").addEventListener("click",e=>{ if(e.target.id==="helpWrap") closeHelp() });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!$("#helpWrap").hidden) closeHelp() });
 
+/* ---------- 새로고침: 위쪽 '장학알리미'(아이콘·글자)를 누르면 새로고침, 새 장학 정보가 올라오면 알려 준다 ---------- */
+let DATA_BASE="", LOADED_AT="";
+function reloadApp(){ try{ store.set("tab",document.body.dataset.tab||"find") }catch(e){} location.reload() }
+$("#brandBtn").addEventListener("click",reloadApp);
+$("#brandBtn").addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); reloadApp() } });
+document.addEventListener("click",e=>{ if(e.target.closest("#updReload")) reloadApp(); if(e.target.closest("#updLater")) $("#updBar").hidden=true });
+async function checkUpdate(){
+  if(!LOADED_AT||document.hidden) return;
+  try{ const m=await fetch(DATA_BASE+"data/meta.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null);
+    const at=m&&String(m.finishedAt||""); if(!at||at<=LOADED_AT) return;
+    const known=new Set(DATA.map(r=>r.id)), fresh=(m.open||[]).filter(o=>o&&!known.has(o.id)).length;
+    const b=$("#updBar"); b.hidden=false;
+    b.innerHTML=`<span>🔔 <b>${fresh?"새 장학 "+fresh+"건이":"새 장학 정보가"}</b> 올라왔어요.</span><span><button class="btn primary" type="button" id="updReload">새로고침</button> <button class="btn" type="button" id="updLater">나중에</button></span>`;
+  }catch(e){}
+}
+setInterval(checkUpdate,10*60*1000);
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpdate() });
+
 /* ---------- 시작 ---------- */
 async function boot(){
   try{
@@ -1438,8 +1462,9 @@ async function boot(){
     const remote=/^https:\/\//.test(rv||"")?rv.replace(/\/+$/,""):"";
     const get=(base,t)=>{const c=new AbortController(); const id=setTimeout(()=>c.abort(),t); return Promise.all([fetch(base+"data/scholarships.json",{signal:c.signal,cache:"no-store"}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}),fetch(base+"data/meta.json",{signal:c.signal,cache:"no-store"}).then(r=>r.json()).catch(()=>({}))]).finally(()=>clearTimeout(id))};
     let d,m; SRC="지금: 기기에 저장된 목록";
-    if(remote){ try{[d,m]=await get(remote+"/",12000); SRC="지금: 서버의 최신 목록"}catch(e){SRC="서버에 연결하지 못해 저장된 목록을 보여 줍니다"} }
-    if(!d){[d,m]=await get("",30000)}
+    if(remote){ try{[d,m]=await get(remote+"/",12000); SRC="지금: 서버의 최신 목록"; DATA_BASE=remote+"/"}catch(e){SRC="서버에 연결하지 못해 저장된 목록을 보여 줍니다"} }
+    if(!d){[d,m]=await get("",30000); DATA_BASE=""}
+    LOADED_AT=String(d.generatedAt||"");
     DATA=(Array.isArray(d.items)?d.items:[]).map(cleanRec).filter(Boolean); META=m&&typeof m==="object"?m:{}; DATA.forEach(r=>BYID[r.id]=r);
     // 합쳐진 장학(지난 회차·세부 분야)의 예전 번호로 저장된 관심·숨김·알림도 새 줄로 옮긴다
     {let ch=false; for(const r of DATA) for(const a of (r.aka||[])){ if(!BYID[a]) BYID[a]=r; if(favs.has(a)){favs.delete(a); favs.add(r.id); ch=true} if(HIDDEN.has(a)){HIDDEN.delete(a); HIDDEN.add(r.id); store.set("hidden",[...HIDDEN])} }
@@ -1455,7 +1480,7 @@ async function boot(){
     const soon=DATA.filter(r=>favs.has(r.id)&&r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=3).map(r=>({id:r.id,title:r.title,org:r.org,label:r._s.label}));
     if(soon.length) window.AndroidBridge.notifyDeadlines(JSON.stringify(soon)); store.set("notified",TODAY);
   }}catch(e){}
-  pushAlerts();
+  pushAlerts(); setTimeout(checkUpdate,8000);
   hyinMerge().then(n=>{ if(n) cacheAll(); renderHyin(); renderPortals() }).catch(()=>{ try{renderHyin()}catch(e){} });
   try{ let n=0; for(const k in PORTALS) n+=portalMerge(k); if(n) cacheAll() }catch(e){}
   if(!myGroup()||myGroup()==="hy") hyWorkSync().catch(()=>{});
