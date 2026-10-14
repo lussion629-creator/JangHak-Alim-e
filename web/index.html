@@ -1185,17 +1185,17 @@ function gcal(r){
   const n=new Date(r.end||r.start); n.setDate(n.getDate()+1);
   return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent("[장학 마감] "+r.title)+"&dates="+d+"/"+iso(n).replace(/-/g,"")+"&details="+encodeURIComponent((r.org||"")+"\n장학알리미에서 공고 원문 확인");
 }
-// '새 장학'·'바뀜' 표시: 상세를 세 번 열어 보면 없앤다. 학교·기관 공고는 공고일로부터 이틀이 지나면 없앤다
+// '새 장학'·'바뀜' 표시: 상세를 한 번 열어 보면 없앤다. 학교·기관 공고는 공고일로부터 이틀이 지나면 없앤다
 // (장학 DB 에서 새로 들어온 장학은 공고일이 없으므로 이틀 규칙에서 빼고, 서버의 '최근 7일' 기준을 따른다)
 const SEEN=store.get("seenCnt",{})||{};
 const DB_SRC=/^k[a-z]?$/;
 function freshKind(r){
   if(!r.fresh||r._s.key==="마감") return "";
-  if((SEEN[r.id]||0)>=3) return "";
+  if((SEEN[r.id]||0)>=1) return "";
   if(r.fresh.kind==="new"&&!DB_SRC.test(r.source||"")){ const p=r.posted||r.fresh.at||""; if(/^\d{4}-\d\d-\d\d/.test(p)&&days(p.slice(0,10),TODAY)>2) return "" }
   return r.fresh.kind;
 }
-function markSeen(id){ SEEN[id]=(SEEN[id]||0)+1; const ks=Object.keys(SEEN); if(ks.length>800) ks.slice(0,ks.length-800).forEach(k=>delete SEEN[k]); store.set("seenCnt",SEEN); if(SEEN[id]===3) setTimeout(()=>{ try{ refreshCard(id); renderFresh() }catch(e){} },0) }
+function markSeen(id){ SEEN[id]=(SEEN[id]||0)+1; const ks=Object.keys(SEEN); if(ks.length>800) ks.slice(0,ks.length-800).forEach(k=>delete SEEN[k]); store.set("seenCnt",SEEN); if(SEEN[id]===1) setTimeout(()=>{ try{ refreshCard(id); renderFresh() }catch(e){} },0) }
 function openDetail(id){ markSeen(id);
   const r=BYID[id]; if(!r) return;
   const m=r._m, s=r._s;
