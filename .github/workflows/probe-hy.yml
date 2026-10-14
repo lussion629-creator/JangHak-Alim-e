@@ -3,41 +3,8 @@ on: workflow_dispatch
 permissions:
   contents: write
 jobs:
-  probe:
+  cleanup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install requests beautifulsoup4 -q
-      - name: probe
-        run: |
-          mkdir -p out
-          python3 -c "import requests;print(requests.get('https://www.hanyang.ac.kr/robots.txt',timeout=20).text)" > out/robots.txt 2>&1
-          python3 -c "
-          import requests
-          from server.collectors import hanyang as h
-          open('out/list.html','w').write(requests.get(h.LIST.format(p=h.PID,page=1,cat=h.CAT_SCH),timeout=25,headers={'User-Agent':'Mozilla/5.0'}).text)
-          [open(f'out/all{i}.html','w').write(requests.get(h.LIST.format(p=h.PID,page=i,cat='').replace('_sCategoryId=&',''),timeout=25,headers={'User-Agent':'Mozilla/5.0'}).text) for i in (1,2)]
-          open('out/view.html','w').write(requests.get(h.VIEW.format(p=h.PID,cat=h.CAT_SCH,id='115603'),timeout=25,headers={'User-Agent':'Mozilla/5.0'}).text)
-          "
-          python3 - <<'PY' > out/hy.txt 2>&1
-          import requests, traceback, time
-          from server.collectors import hanyang, boards
-          urls=["https://www.hanyang.ac.kr/robots.txt", hanyang.LIST.format(p=hanyang.PID,page=1,cat=hanyang.CAT_SCH)]
-          for u in urls:
-              for ua in ["Mozilla/5.0", boards.UA]:
-                  t=time.time()
-                  try:
-                      r=requests.get(u,timeout=25,headers={"User-Agent":ua})
-                      print(u[:60],ua[:20],r.status_code,len(r.text),round(time.time()-t,1),repr(r.text[:300]))
-                  except Exception as e:
-                      print(u[:60],ua[:20],"ERR",repr(e)[:300],round(time.time()-t,1))
-          print("allowed",boards.allowed(urls[1]))
-          try:
-              rows=hanyang.fetch(pages=1); print("fetch rows",len(rows)); [print(r) for r in rows[:5]]
-          except Exception: traceback.print_exc()
-          PY
-      - name: push result
-        run: |
-          cd out && git init -q && git checkout -q -b probe-out && git add . && git -c user.name=probe -c user.email=probe@x commit -qm probe && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe-out
+      - run: |
+          git init -q && git push "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" --delete probe-out || true

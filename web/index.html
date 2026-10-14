@@ -1635,22 +1635,30 @@ function hyItem(p){
   if(end) status=p.start&&p.start>TODAY?"예정":end>=TODAY?"모집중":"마감";
   else status=p.date&&days(p.date,TODAY)<=30?"모집중":"마감";
   const pay=(p.text||"").match(/시\s*급\s*[:：]?\s*([\d,]{4,})\s*원/);
-  return {id:"hyw-"+p.id,source:"u1",title:t,org:"한양대학교"+(p.campus==="서울"||p.campus==="ERICA"?" "+p.campus:""),org_type:"대학(교내)",category:"근로장학",kind:/교외/.test(t)?"교외근로":"교내근로",
-    level:/대학원/.test(t)?"대학원생":"대학생",region:p.campus==="ERICA"?"경기":"서울",support:["work"],status,start:p.start||"",end,posted:p.date||"",amount:pay?`시급 ${pay[1]}원`:"",
+  const work=HYWORK.test(t)&&!HYNOT.test(t), ext=!work&&/^\s*\[(교외|외부)\]|재단|장학회|육영회|협회|구민|시민|군민|도민|공사|공단|진흥원|은행/.test(t)&&!/교내|가계곤란|국가장학|국가근로|한양/.test(t);
+  const sup=work?["work"]:[...(/등록금|수업료/.test(t)?["tuition"]:[]),...(/생활비|생활\s*지원/.test(t)?["living"]:[]),...(/기숙사|주거/.test(t)?["dorm"]:[]),...(/대출|이자/.test(t)?["loan"]:[])];
+  const extOrg=ext?(t.replace(/^\s*(\[[^\]]*\]\s*)+/,"").replace(/^20\d\d\s*(학년도|년도|년)?\s*/,"").match(/^[^\s]*(재단|장학회|육영회|협회|공사|공단|진흥원|은행)/)||[""])[0]:"";
+  return {id:"hyw-"+p.id,source:"u1",title:t,org:extOrg||("한양대학교"+(p.campus==="서울"||p.campus==="ERICA"?" "+p.campus:"")),org_type:ext?"민간·기업·대학":"대학(교내)",category:work?"근로장학":"장학금",kind:work?(/교외/.test(t)?"교외근로":"교내근로"):"공고",
+    level:/대학원/.test(t)&&!/학부/.test(t)?"대학원생":"대학생",region:p.campus==="ERICA"?"경기":"서울",support:sup,status,start:p.start||"",end,posted:p.date||"",amount:pay?`시급 ${pay[1]}원`:"",for:["hy"],
     summary:p.text||"",selection:p.dept?"담당: "+p.dept:"",links:[{name:"공고 원문",url:hyView(p.cat,p.id)}],url:hyView(p.cat,p.id),school_types:[],majors:[],grades:[],files:p.files||[],fresh:p.isNew?{kind:"new",at:TODAY}:undefined};
 }
 async function hyWorkSync(){
   if(!(window.AndroidBridge&&window.AndroidBridge.fetchHanyang)) return;
   const hc=store.get("hywork",{})||{}, last=store.get("hyworkAt",0)||0;
-  const add=()=>{let n=0; for(const p of Object.values(hc)){const r=hyItem(p); if(BYID[r.id]||DATA.some(x=>x.title===r.title&&x.source==="u1")) continue; if(!cleanRec(r)) continue; DATA.push(r); BYID[r.id]=r; n++} return n};
+  // 같은 장학은 한 번만: 이미 있는 한양대 공고(공지·포털)와 핵심 이름이 같으면 넣지 않는다
+  const hyCore=t=>String(t||"").replace(/\[[^\]]*\]|\([^)]*\)/g," ").replace(/20\d\d\s*(학년도|년도|년)?|\d+\s*[-.]?\s*\d*\s*학기|\d+\s*차|신청|안내|선발|모집|공고|일정|및|장학생|장학금|장학/g," ").replace(/[^가-힣A-Za-z0-9]/g,"").toLowerCase();
+  const add=()=>{let n=0; const have=DATA.filter(x=>x.source==="u1"||x.source==="p"||ownSchool(x)==="hyu").map(x=>hyCore(x.title)).filter(c=>c.length>=3);
+    for(const p of Object.values(hc)){const r=hyItem(p); if(BYID[r.id]||DATA.some(x=>x.title===r.title)) continue; const c=hyCore(r.title); if(c.length>=3&&have.some(h=>h===c||(Math.min(h.length,c.length)>=4&&(h.includes(c)||c.includes(h))))) continue; if(!cleanRec(r)) continue; DATA.push(r); BYID[r.id]=r; have.push(c); n++} return n};
   const added=add();
-  if(Date.now()-last<2*3600e3){ if(added) cacheAll(); return }
+  if(Date.now()-last<30*60e3){ if(added) cacheAll(); return } // 앱을 열 때 30분마다 학교 공지를 이 휴대폰에서 직접 확인
   const found=[];
   for(const cat of ["224311302","224311300"]){
     const html=await hyGet(hyList(cat)); if(!html){ if(added) cacheAll(); return }
     const d=new DOMParser().parseFromString(html,"text/html");
     for(const it of d.querySelectorAll(".hyu-list-body-item")){
-      const a=it.querySelector("h4 a"); if(!a) continue; const t=a.textContent.trim(); if(!HYWORK.test(t)||HYNOT.test(t)) continue;
+      const a=it.querySelector("h4 a"); if(!a) continue; const t=a.textContent.trim();
+      if(cat==="224311302"&&(!HYWORK.test(t)||HYNOT.test(t))) continue; // 모집/채용 분류는 근로장학 글만
+      if(cat==="224311300"&&/등록\s*안내|증명\s*발급|서비스\s*오픈|등록금\s*납부|분할납부/.test(t)) continue; // 장학/등록 분류는 장학 공고만
       const m=(a.getAttribute("href")||"").match(/entryId=(\d+)/); if(!m) continue;
       const dt=(it.querySelector(".date")?.textContent||"").replace(/[^\d.\s]/g,"").trim().split(/\.\s*/).filter(Boolean);
       const badges=[...it.querySelectorAll("[data-itemvalue]")].map(b=>b.getAttribute("data-itemvalue"));
@@ -1673,7 +1681,7 @@ async function hyWorkSync(){
     }
     hc[p.id]=p;
   }
-  const ids=Object.keys(hc); if(ids.length>80) ids.sort((a,b)=>a-b).slice(0,ids.length-80).forEach(k=>delete hc[k]);
+  const ids=Object.keys(hc); if(ids.length>150) ids.sort((a,b)=>a-b).slice(0,ids.length-150).forEach(k=>delete hc[k]);
   store.set("hywork",hc); store.set("hyworkAt",Date.now());
   try{window.AndroidBridge.markWorkSeen&&window.AndroidBridge.markWorkSeen(JSON.stringify(found.map(p=>p.id)))}catch(e){}
   add(); cacheAll();
