@@ -1144,7 +1144,7 @@ function card(r){
   const kd=kindLabel(r); if(kd) pills.push(`<span class="pill kind">${esc(kd)}</span>`);
   if(isGradOnly(r)&&r.level==="대학생") pills.push(`<span class="pill lvl">대학원생</span>`);
   if(r.level && r.level!=="대학생") pills.push(`<span class="pill lvl">${esc(r.level==="고등학생"?(r.mid?"중·고등학생":"고등학생"):r.level)}</span>`);
-  const fr=r.fresh&&r._s.key!=="마감"?r.fresh.kind:"";
+  const fr=freshKind(r);
   const tag=fr==="new"?`<span class="newtag">새 장학</span>`:fr==="updated"?`<span class="newtag upd">바뀜</span>`:"";
   return `<article class="item ${r.support&&r.support[0]?"sup-"+r.support[0]:""} ${fr==="new"?"is-new":fr==="updated"?"is-upd":""}" data-id="${esc(r.id)}" tabindex="0">${due}<div style="min-width:0"><p class="t">${tag}${esc(r.title)}${amt?`<span class="money">${esc(amt)}</span>`:""}</p><div class="meta">${r.org&&r.org!==r.title?`<span>${esc(r.org)}</span>`:""}</div><div class="pills">${pills.slice(0,5).join("")}</div></div><div class="acts"><button class="star" type="button" data-star="${esc(r.id)}" aria-pressed="${favs.has(r.id)}" aria-label="관심 등록"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></button><button class="bell" type="button" data-bell="${esc(r.id)}" aria-pressed="${isWatched(r.id)}" aria-label="비슷한 장학 알림" title="같거나 비슷한 장학이 새로 올라오면 알림"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0" stroke-linecap="round"/></svg></button>${isHidden(r)?`<button class="hide" type="button" data-hide="${esc(r.id)}" aria-label="숨김 풀기" title="숨김 풀기">풀기</button>`:`<button class="hide" type="button" data-hide="${esc(r.id)}" aria-label="숨기기" title="숨기기 (목록에서 안 보이게)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l18 18M10.6 6.1A9.9 9.9 0 0 1 12 6c5 0 9 4.5 10 6-.4.7-1.4 2-2.8 3.3M6.4 7.6C4.4 8.9 2.9 10.8 2 12c1 1.5 5 6 10 6 1.6 0 3.1-.5 4.4-1.2M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></button>`}</div></article>`;
 }
@@ -1185,7 +1185,18 @@ function gcal(r){
   const n=new Date(r.end||r.start); n.setDate(n.getDate()+1);
   return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent("[장학 마감] "+r.title)+"&dates="+d+"/"+iso(n).replace(/-/g,"")+"&details="+encodeURIComponent((r.org||"")+"\n장학알리미에서 공고 원문 확인");
 }
-function openDetail(id){
+// '새 장학'·'바뀜' 표시: 상세를 세 번 열어 보면 없앤다. 학교·기관 공고는 공고일로부터 이틀이 지나면 없앤다
+// (장학 DB 에서 새로 들어온 장학은 공고일이 없으므로 이틀 규칙에서 빼고, 서버의 '최근 7일' 기준을 따른다)
+const SEEN=store.get("seenCnt",{})||{};
+const DB_SRC=/^k[a-z]?$/;
+function freshKind(r){
+  if(!r.fresh||r._s.key==="마감") return "";
+  if((SEEN[r.id]||0)>=3) return "";
+  if(r.fresh.kind==="new"&&!DB_SRC.test(r.source||"")){ const p=r.posted||r.fresh.at||""; if(/^\d{4}-\d\d-\d\d/.test(p)&&days(p.slice(0,10),TODAY)>2) return "" }
+  return r.fresh.kind;
+}
+function markSeen(id){ SEEN[id]=(SEEN[id]||0)+1; const ks=Object.keys(SEEN); if(ks.length>800) ks.slice(0,ks.length-800).forEach(k=>delete SEEN[k]); store.set("seenCnt",SEEN); if(SEEN[id]===3) setTimeout(()=>{ try{ refreshCard(id); renderFresh() }catch(e){} },0) }
+function openDetail(id){ markSeen(id);
   const r=BYID[id]; if(!r) return;
   const m=r._m, s=r._s;
   const rows=[["운영기관",r.org],["모집 기간",(r.start||"?")+" ~ "+(r.end||"?")+(r.next?"\n다음 모집 예상: "+r.next.replace("-","년 ")+"월 (작년 일정 기준)":"")],["지원 종류",(r.support||[]).map(k=>SUPL[k]).join(", ")],["계열",r._fields.map(FSHORT).join(", ")],["알아둘 점",r._n.join(" · ")],["지원 내용",r.amount],["세부 분야",(r.variants||[]).map(v=>"· "+v.n+(v.e?" ("+v.e.slice(5).replace("-",".")+" 마감)":"")+(v.a?" — "+v.a.slice(0,80):"")).join("\n")],["선발 인원",r.quota],["지원 대상",r.target||((r.source==="p"||r.source==="u1")&&(r.images||[]).length?"공고 이미지에 있음 — 아래 ‘공고 이미지’에서 확인":"")],["대상 학교",(r.school_types||[]).join(", ")],["학년·학기",(r.grades||[]).join(", ")],["지역",[r.region,r.district].filter(Boolean).join(" ")],["거주 조건",r.residence],["소득 기준",r.income],["성적 기준",r.gpa],["특정 자격",r.special],["자격 제한",r.restriction],["추천",r.recommend],["선발 방법",r.selection],["제출 서류",r.documents],["첨부파일",(r.files||[]).join("\n")],["처음 등록",(r.posted||r.first_seen||"").slice(0,10)]].filter(x=>x[1]&&String(x[1]).trim());
@@ -1407,8 +1418,8 @@ function renderKpis(){
 }
 function freshList(openOnly){
   const rank={"모집중":0,"예정":1,"상시/미정":2,"마감":3};
-  return DATA.filter(r=>r.fresh&&!isHidden(r)&&schoolOK(r)&&!(profile&&r._m&&r._m.verdict==="no")&&(!openOnly||r._s.key!=="마감"))
-    .sort((a,b)=>(a.fresh.kind==="new"?0:1)-(b.fresh.kind==="new"?0:1)||rank[a._s.key]-rank[b._s.key]||(b.fresh.at||"").localeCompare(a.fresh.at||""));
+  return DATA.filter(r=>freshKind(r)&&!isHidden(r)&&schoolOK(r)&&!(profile&&r._m&&r._m.verdict==="no")&&(!openOnly||r._s.key!=="마감"))
+    .sort((a,b)=>(freshKind(a)==="new"?0:1)-(freshKind(b)==="new"?0:1)||rank[a._s.key]-rank[b._s.key]||(b.fresh.at||"").localeCompare(a.fresh.at||""));
 }
 function renderFresh(){
   const l=freshList(true), show=l.slice(0,5), box=$("#fresh");
