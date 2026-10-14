@@ -14,6 +14,12 @@ jobs:
         run: |
           mkdir -p out
           python3 -c "import requests;print(requests.get('https://www.hanyang.ac.kr/robots.txt',timeout=20).text)" > out/robots.txt 2>&1
+          python3 -c "
+          import requests
+          from server.collectors import hanyang as h
+          open('out/list.html','w').write(requests.get(h.LIST.format(p=h.PID,page=1,cat=h.CAT_SCH),timeout=25,headers={'User-Agent':'Mozilla/5.0'}).text)
+          open('out/view.html','w').write(requests.get(h.VIEW.format(p=h.PID,cat=h.CAT_SCH,id='115603'),timeout=25,headers={'User-Agent':'Mozilla/5.0'}).text)
+          "
           python3 - <<'PY' > out/hy.txt 2>&1
           import requests, traceback, time
           from server.collectors import hanyang, boards
