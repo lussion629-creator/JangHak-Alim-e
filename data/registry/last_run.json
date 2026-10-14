@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-14T05:46:15+00:00",
- "finishedAt": "2026-10-14T06:02:40+00:00",
+ "startedAt": "2026-10-14T06:57:20+00:00",
+ "finishedAt": "2026-10-14T07:14:12+00:00",
  "online": true,
- "total": 4544,
- "new": 24,
- "changed": 181,
+ "total": 4552,
+ "new": 6,
+ "changed": 189,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 586,
+   "count": 593,
    "mode": "성공 121 / 실패 26"
   },
   {
@@ -336,7 +336,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "숭실대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 9
    },
    {
     "name": "전주대학교",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "상지대학교",
