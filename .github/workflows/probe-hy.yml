@@ -18,6 +18,7 @@ jobs:
           import requests
           from server.collectors import hanyang as h
           open('out/list.html','w').write(requests.get(h.LIST.format(p=h.PID,page=1,cat=h.CAT_SCH),timeout=25,headers={'User-Agent':'Mozilla/5.0'}).text)
+          [open(f'out/all{i}.html','w').write(requests.get(h.LIST.format(p=h.PID,page=i,cat='').replace('_sCategoryId=&',''),timeout=25,headers={'User-Agent':'Mozilla/5.0'}).text) for i in (1,2)]
           open('out/view.html','w').write(requests.get(h.VIEW.format(p=h.PID,cat=h.CAT_SCH,id='115603'),timeout=25,headers={'User-Agent':'Mozilla/5.0'}).text)
           "
           python3 - <<'PY' > out/hy.txt 2>&1
