@@ -13,6 +13,7 @@ jobs:
       - name: probe
         run: |
           mkdir -p out
+          python3 -c "import requests;print(requests.get('https://www.hanyang.ac.kr/robots.txt',timeout=20).text)" > out/robots.txt 2>&1
           python3 - <<'PY' > out/hy.txt 2>&1
           import requests, traceback, time
           from server.collectors import hanyang, boards
