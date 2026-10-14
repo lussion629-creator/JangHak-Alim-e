@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-14T12:55:10+00:00",
- "finishedAt": "2026-10-14T13:09:40+00:00",
+ "startedAt": "2026-10-14T18:53:54+00:00",
+ "finishedAt": "2026-10-14T19:08:41+00:00",
  "online": true,
- "total": 4541,
+ "total": 4530,
  "new": 3,
- "changed": 180,
+ "changed": 175,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -68,7 +68,7 @@
    "source": "kangwon",
    "label": "강원대 장학공지(삼척)",
    "ok": true,
-   "count": 59,
+   "count": 54,
    "mode": "online"
   },
   {
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 583,
-   "mode": "성공 122 / 실패 25"
+   "count": 573,
+   "mode": "성공 119 / 실패 28"
   },
   {
    "source": "gov24",
@@ -110,8 +110,8 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 14,
-   "mode": "seed"
+   "count": 12,
+   "mode": "online"
   }
  ],
  "registry": {
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -415,7 +415,7 @@
     "url": "https://www.inha.ac.kr/bbs/kr/8/artclList.do?layout=unknown&bbsClSeq=215",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 8
    },
    {
     "name": "전주대학교",
