@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-14T18:53:54+00:00",
- "finishedAt": "2026-10-14T19:08:41+00:00",
+ "startedAt": "2026-10-15T00:54:12+00:00",
+ "finishedAt": "2026-10-15T01:08:45+00:00",
  "online": true,
- "total": 4530,
- "new": 3,
- "changed": 175,
+ "total": 4547,
+ "new": 8,
+ "changed": 191,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 573,
-   "mode": "성공 119 / 실패 28"
+   "count": 589,
+   "mode": "성공 121 / 실패 26"
   },
   {
    "source": "gov24",
@@ -146,7 +146,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "국민대학교",
@@ -176,7 +176,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 24
+    "count": 25
    },
    {
     "name": "고려대학교 서울",
@@ -226,7 +226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 11
+    "count": 8
    },
    {
     "name": "건국대학교 서울",
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "이화여자대학교",
@@ -316,7 +316,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 32
+    "count": 31
    },
    {
     "name": "상명대학교 서울",
@@ -415,7 +415,7 @@
     "url": "https://www.inha.ac.kr/bbs/kr/8/artclList.do?layout=unknown&bbsClSeq=215",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -615,7 +615,7 @@
     "url": "https://www.pusan.ac.kr/kor/CMS/Board/Board.do?mCode=MN095",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 2
    },
    {
     "name": "충북대학교",
@@ -636,7 +636,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 4
+    "count": 5
    },
    {
     "name": "국립부경대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
