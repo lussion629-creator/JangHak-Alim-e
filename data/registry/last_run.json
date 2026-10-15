@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-15T12:57:28+00:00",
- "finishedAt": "2026-10-15T13:11:28+00:00",
+ "startedAt": "2026-10-15T18:53:08+00:00",
+ "finishedAt": "2026-10-15T19:07:05+00:00",
  "online": true,
- "total": 4546,
- "new": 13,
- "changed": 186,
+ "total": 4542,
+ "new": 3,
+ "changed": 189,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 592,
-   "mode": "성공 122 / 실패 25"
+   "count": 586,
+   "mode": "성공 121 / 실패 26"
   },
   {
    "source": "gov24",
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 5
+    "ok": false,
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -1235,8 +1235,8 @@
     "url": "https://www.sangji.ac.kr/prog/bbsArticle/BBSMSTR_000000000042/list.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 9
+    "ok": false,
+    "count": 0
    },
    {
     "name": "동신대학교",
@@ -5455,8 +5455,8 @@
     "url": "https://www.rhof.or.kr/sub/sub0401.jsp",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 8
    },
    {
     "name": "서울미래인재재단",
