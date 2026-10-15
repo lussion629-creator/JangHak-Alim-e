@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-15T06:57:38+00:00",
- "finishedAt": "2026-10-15T07:13:27+00:00",
+ "startedAt": "2026-10-15T12:57:28+00:00",
+ "finishedAt": "2026-10-15T13:11:28+00:00",
  "online": true,
- "total": 4480,
+ "total": 4546,
  "new": 13,
- "changed": 158,
+ "changed": 186,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 521,
-   "mode": "성공 120 / 실패 27"
+   "count": 592,
+   "mode": "성공 122 / 실패 25"
   },
   {
    "source": "gov24",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 10
    },
    {
     "name": "서울여자대학교",
@@ -636,7 +636,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 4
    },
    {
     "name": "국립부경대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -785,7 +785,7 @@
     "url": "https://www.postech.ac.kr/kor/newscenter/notice.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -1025,8 +1025,8 @@
     "url": "https://www.cu.ac.kr/plaza/notice/scholarship",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 22
    },
    {
     "name": "울산대학교",
@@ -1046,7 +1046,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 13
    },
    {
     "name": "인제대학교 김해",
@@ -1095,8 +1095,8 @@
     "url": "https://www.hallym.ac.kr/hallym/1135/subview.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 35
    },
    {
     "name": "목원대학교",
@@ -5325,7 +5325,7 @@
     "url": "https://ilsaf.or.kr/community/notice.asp",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -5455,8 +5455,8 @@
     "url": "https://www.rhof.or.kr/sub/sub0401.jsp",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 8
+    "ok": false,
+    "count": 0
    },
    {
     "name": "서울미래인재재단",
