@@ -84,7 +84,8 @@ def one(name, dom):
                 u = urljoin(home, a.get("href") or "")
                 if any((urlparse(u).hostname or "").endswith(x) for x in doms) and not (a.get("href") or "").startswith(("javascript", "#")):
                     queue.append((5, "intro", u))
-    diag = {"len": len(html), "rlen": len(rh), "a": html.count("<a"), "ra": rh.count("<a"), "q": len(queue), "render": bool(RD.browser)} seen = {home.split("#")[0]}; best = None; visits = 0
+    diag = {"len": len(html), "rlen": len(rh), "a": html.count("<a"), "ra": rh.count("<a"), "q": len(queue), "render": bool(RD.browser)}
+    seen = {home.split("#")[0]}; best = None; visits = 0
     while queue and visits < 24:
         queue.sort(key=lambda x: -x[0]); sc, t, u = queue.pop(0)
         k = u.split("#")[0]
