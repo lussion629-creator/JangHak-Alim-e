@@ -13,6 +13,7 @@ def find(pat, attr="text|content-desc|hint"):
                 b = re.search(r'bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"', n)
                 if b:
                     x1, y1, x2, y2 = map(int, b.groups())
+                    if x2 - x1 < 2 or y2 - y1 < 2: continue  # 화면 밖 요소
                     return (x1 + x2) // 2, (y1 + y2) // 2
     return None
 cmd, pat = sys.argv[1], sys.argv[2]
@@ -21,6 +22,6 @@ for _ in range(int(sys.argv[3]) if len(sys.argv) > 3 else 10):
     if p:
         if cmd in ("tap", "tapscroll"): subprocess.run(["adb", "shell", "input", "tap", str(p[0]), str(p[1])])
         print("found", pat, p); sys.exit(0)
-    if cmd == "tapscroll": subprocess.run(["adb", "shell", "input", "swipe", "500", "1500", "500", "700", "300"])
+    if cmd == "tapscroll": subprocess.run(["adb", "shell", "input", "swipe", "160", "520", "160", "220", "300"])
     time.sleep(2)
 print("NOT FOUND", pat); sys.exit(1)
