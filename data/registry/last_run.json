@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T15:19:02+00:00",
- "finishedAt": "2026-10-16T15:46:28+00:00",
+ "startedAt": "2026-10-16T15:48:39+00:00",
+ "finishedAt": "2026-10-16T16:24:01+00:00",
  "online": true,
- "total": 4844,
- "new": 69,
- "changed": 353,
+ "total": 4842,
+ "new": 66,
+ "changed": 357,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 221곳",
    "ok": true,
-   "count": 990,
+   "count": 980,
    "mode": "성공 205 / 실패 16"
   },
   {
@@ -6025,8 +6025,8 @@
     "url": "https://www.kookje.ac.kr/kor/?pCode=main",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 4
    },
    {
     "name": "글로벌사이버대학교",
