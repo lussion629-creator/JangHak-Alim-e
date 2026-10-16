@@ -76,8 +76,16 @@ def one(name, dom):
     if not allowed(home):
         return {"err": "robots", "home": home}
     doms = {d, urlparse(home).hostname.replace("www.", "")}
-    queue = cands(html, home, doms); seen = {home.split("#")[0]}; best = None; visits = 0
-    while queue and visits < 14:
+    rh = RD.html(home, 4000) if RD.browser else ""  # 메뉴를 자바스크립트로 그리는 학교가 많아 첫 화면은 늘 브라우저로도 연다
+    queue = cands(html, home, doms) + (cands(rh, home, doms) if rh else [])
+    if len(queue) < 3:  # 인트로·게이트 화면: 같은 학교 주소의 첫 링크들을 따라간다
+        for src in (html, rh):
+            for a in BeautifulSoup(src or "", "html.parser").find_all("a")[:8]:
+                u = urljoin(home, a.get("href") or "")
+                if any((urlparse(u).hostname or "").endswith(x) for x in doms) and not (a.get("href") or "").startswith(("javascript", "#")):
+                    queue.append((5, "intro", u))
+    diag = {"len": len(html), "rlen": len(rh), "a": html.count("<a"), "ra": rh.count("<a"), "q": len(queue), "render": bool(RD.browser)} seen = {home.split("#")[0]}; best = None; visits = 0
+    while queue and visits < 24:
         queue.sort(key=lambda x: -x[0]); sc, t, u = queue.pop(0)
         k = u.split("#")[0]
         if k in seen: continue
@@ -88,10 +96,10 @@ def one(name, dom):
         if n >= 2 and (not best or n > best["n"] or (n == best["n"] and "장학" in t and "장학" not in best["label"])):
             best = {"url": f, "label": t, "n": n, "home": home, "dom": d}
             if n >= 5 and "장학" in t: break
-        if sc >= 6 or re.search(r"사이트\s*맵|sitemap|전체\s*메뉴", t, re.I):  # 장학 메뉴·사이트맵 아래 하위 메뉴까지
+        if sc >= 5 or re.search(r"사이트\s*맵|sitemap|전체\s*메뉴", t, re.I):  # 장학 메뉴·사이트맵 아래 하위 메뉴까지
             for x in cands(h, f, doms):
                 if x[2].split("#")[0] not in seen: queue.append((x[0] - 1, x[1], x[2]))
-    return best or {"err": "notfound", "home": home, "visits": visits}
+    return best or {"err": "notfound", "home": home, "visits": visits, **diag}
 
 
 res = {}
