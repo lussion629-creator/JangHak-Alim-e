@@ -30,10 +30,13 @@ jobs:
           target: google_apis
           arch: x86_64
           disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -dns-server 8.8.8.8
           script: |
             adb install -r jangak-alimi-smoke.apk
             adb shell pm grant kr.jangak.alimi android.permission.POST_NOTIFICATIONS || true
             adb logcat -c
+            sleep 20
+            adb shell ping -c 2 www.konkuk.ac.kr > ping.txt 2>&1 || true
             adb shell am start -W -n kr.jangak.alimi/.PortalActivity --es key my --es t_domain konkuk.ac.kr --es t_entry https://www.konkuk.ac.kr/bbs/konkuk/235/artclList.do --ez t_save true
             sleep 15
             adb exec-out screencap -p > shot1.png
@@ -49,7 +52,7 @@ jobs:
       - if: always()
         run: |
           mkdir -p out && cd out && git init -q && git checkout -q -b probe-out
-          cp ../logcat.txt ../shot*.png ../top.txt ../pid.txt ../found.txt ../ui.xml . 2>/dev/null || true
+          cp ../logcat.txt ../shot*.png ../top.txt ../pid.txt ../found.txt ../ui.xml ../ping.txt . 2>/dev/null || true
           grep -E "AndroidRuntime|FATAL|jangak|chromium|Console" ../logcat.txt | head -300 > filtered.txt 2>/dev/null || true
           git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -q -m smoke || true
           git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" probe-out
