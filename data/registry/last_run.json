@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T05:24:47+00:00",
- "finishedAt": "2026-10-16T05:42:27+00:00",
+ "startedAt": "2026-10-16T06:08:44+00:00",
+ "finishedAt": "2026-10-16T06:23:41+00:00",
  "online": true,
- "total": 4541,
- "new": 23,
- "changed": 169,
+ "total": 4552,
+ "new": 10,
+ "changed": 194,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -68,7 +68,7 @@
    "source": "kangwon",
    "label": "강원대 장학공지(삼척)",
    "ok": true,
-   "count": 55,
+   "count": 54,
    "mode": "online"
   },
   {
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 585,
-   "mode": "성공 119 / 실패 28"
+   "count": 598,
+   "mode": "성공 122 / 실패 25"
   },
   {
    "source": "gov24",
@@ -165,7 +165,7 @@
     "url": "https://student.snu.ac.kr/?page_id=10815&mod=list&category1=장학공지",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "서울여자대학교",
@@ -636,7 +636,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 4
+    "count": 5
    },
    {
     "name": "국립부경대학교",
@@ -656,7 +656,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "충남대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -806,7 +806,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 16
+    "count": 15
    },
    {
     "name": "한동대학교",
@@ -1026,7 +1026,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 20
+    "count": 19
    },
    {
     "name": "울산대학교",
