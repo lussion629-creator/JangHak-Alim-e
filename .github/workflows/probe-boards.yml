@@ -5,13 +5,13 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 70
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install -q -r requirements.txt
-      - run: mkdir -p out && timeout 3000 python3 scripts/discover_boards2.py > out/boards.json 2> out/err.txt || true
+      - run: pip install -q -r requirements.txt playwright==1.48.0 && python -m playwright install --with-deps chromium
+      - run: mkdir -p out && timeout 3300 python3 scripts/discover_boards2.py --render > out/boards.json 2> out/err.txt || true
       - name: push result
         run: |
           cd out && git init -q && git checkout -q -b probe-out && git add . && git -c user.name=probe -c user.email=probe@x commit -qm probe && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe-out

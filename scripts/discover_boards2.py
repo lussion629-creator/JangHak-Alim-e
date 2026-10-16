@@ -41,18 +41,37 @@ def links(html, base, dom):
             u = urljoin(base, a.get("href") or "")
             if (urlparse(u).hostname or "").endswith(dom): out.append((5, "intro", u))
     return out
+RENDER = "--render" in sys.argv
+_R = None
+def render(url):
+    global _R
+    try:
+        if _R is None:
+            from server.collectors.boards import Renderer
+            _R = Renderer()
+        return _R.html(url, 3000)
+    except Exception:
+        return ""
 def one(item):
     name, dom, home = item
     if not allowed(home): return name, {"err": "robots"}
     queue = [(10, "home", home)]; seen = set(); visits = 0
     try:
-        while queue and visits < 18:
+        while queue and visits < (8 if RENDER else 18):
             queue.sort(key=lambda x: -x[0]); sc, t, u = queue.pop(0)
             k = u.split("#")[0]
             if k in seen or not allowed(u): continue
             seen.add(k); visits += 1
-            try: r = get(u)
-            except Exception: continue
+            html, final = "", u
+            try:
+                r = get(u); html, final = r.text, r.url
+            except Exception: pass
+            if RENDER and (len(BeautifulSoup(html or "", "html.parser").find_all("a")) < 30 or t != "home"):
+                h = render(u)
+                if h: html = h
+            if not html: continue
+            class R: pass
+            r = R(); r.text = html; r.url = final
             ps = posts(r.text)
             if len(ps) >= 2 and t != "home": return name, {"url": r.url, "label": t, "n": len(ps), "ex": ps[:2]}
             if len(ps) >= 3 and t == "home" and re.search(r"장학|notice|board|bbs", r.url, re.I): return name, {"url": r.url, "label": t, "n": len(ps), "ex": ps[:2]}
@@ -61,6 +80,11 @@ def one(item):
         return name, {"err": "notfound", "visits": visits}
     except Exception as e:
         return name, {"err": repr(e)[:80]}
-with cf.ThreadPoolExecutor(12) as ex:
-    res = dict(ex.map(one, TODO))
+if RENDER:
+    res = {}
+    for it in TODO:
+        k, v = one(it); res[k] = v
+else:
+    with cf.ThreadPoolExecutor(12) as ex:
+        res = dict(ex.map(one, TODO))
 json.dump(res, sys.stdout, ensure_ascii=False, indent=0)
