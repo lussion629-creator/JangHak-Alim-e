@@ -31,6 +31,7 @@ jobs:
           disable-animations: true
           script: |
             adb install -r jangak-alimi-smoke.apk
+            adb shell pm grant kr.jangak.alimi android.permission.POST_NOTIFICATIONS || true
             adb logcat -c
             adb shell am start -W -n kr.jangak.alimi/.MainActivity
             sleep 30
@@ -54,6 +55,7 @@ jobs:
             sleep 20
             adb exec-out screencap -p > shot3.png
             python3 .github/ci/ui.py find "건 \\(모집" 5 > found.txt || true
+            adb shell uiautomator dump /sdcard/ui.xml; adb shell cat /sdcard/ui.xml > ui.xml
             sleep 2
             adb logcat -d > logcat.txt
             adb exec-out screencap -p > shot.png
@@ -62,7 +64,7 @@ jobs:
       - if: always()
         run: |
           mkdir -p out && cd out && git init -q && git checkout -q -b probe-out
-          cp ../logcat.txt ../shot*.png ../top.txt ../pid.txt ../found.txt . 2>/dev/null || true
+          cp ../logcat.txt ../shot*.png ../top.txt ../pid.txt ../found.txt ../ui.xml . 2>/dev/null || true
           grep -E "AndroidRuntime|FATAL|jangak|chromium|Console" ../logcat.txt | head -300 > filtered.txt 2>/dev/null || true
           git add -A && git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -q -m smoke || true
           git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" probe-out
