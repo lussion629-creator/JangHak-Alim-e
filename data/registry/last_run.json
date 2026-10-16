@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T15:48:39+00:00",
- "finishedAt": "2026-10-16T16:24:01+00:00",
+ "startedAt": "2026-10-16T16:25:11+00:00",
+ "finishedAt": "2026-10-16T16:53:50+00:00",
  "online": true,
- "total": 4842,
- "new": 66,
- "changed": 357,
+ "total": 4941,
+ "new": 95,
+ "changed": 394,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -87,10 +87,10 @@
   },
   {
    "source": "board",
-   "label": "대학·재단·지자체 게시판 221곳",
+   "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 980,
-   "mode": "성공 205 / 실패 16"
+   "count": 1138,
+   "mode": "성공 232 / 실패 18"
   },
   {
    "source": "gov24",
@@ -110,13 +110,13 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 12,
-   "mode": "seed"
+   "count": 11,
+   "mode": "online"
   }
  ],
  "registry": {
-  "total": 625,
-  "enabled": 221,
+  "total": 654,
+  "enabled": 250,
   "sources": [
    {
     "name": "한양대학교 서울캠퍼스",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "서울여자대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 8
    },
    {
     "name": "전주대학교",
@@ -5705,7 +5705,7 @@
     "url": "https://www.ccn.ac.kr/scholarship",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -6367,6 +6367,296 @@
     "verified": false,
     "ok": true,
     "count": 0
+   },
+   {
+    "name": "강동대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.gangdong.ac.kr/gangdong/contents/MENU030104.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 9
+   },
+   {
+    "name": "경복대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.kbu.ac.kr/kor/CMS/Board/Board.do?mCode=MN071",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 4
+   },
+   {
+    "name": "계명문화대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.kmcu.ac.kr/kr/index.php?pCode=notice&CgCode=003",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 12
+   },
+   {
+    "name": "광주보건대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.ghu.ac.kr/ScholarshipNotice",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 7
+   },
+   {
+    "name": "구미대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.gumi.ac.kr/pages/sub.htm?nav_code=gum1781760704",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 9
+   },
+   {
+    "name": "극동대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.kdu.ac.kr/home/sub.do?mncd=179",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 5
+   },
+   {
+    "name": "대구공업대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.ttc.ac.kr/bbs.do?menuCode=02",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 2
+   },
+   {
+    "name": "동남보건대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.dongnam.ac.kr/main/485/subview.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 8
+   },
+   {
+    "name": "동원과학기술대학교",
+    "type": "university",
+    "region": "",
+    "url": "http://www.dist.ac.kr/kor/CMS/Board/Board.do?mCode=MN091",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 6
+   },
+   {
+    "name": "디지털서울문화예술대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.scau.ac.kr/Application/04_Degree/Scholarship.aspx?MRID=113&URID=51",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "백제예술대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.paekche.ac.kr/ict/main/?lms=main_life_005",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 4
+   },
+   {
+    "name": "부산장신대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.bpu.ac.kr/Board/BoardList.aspx?BoardMstNo=26",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 12
+   },
+   {
+    "name": "서영대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.seoyeong.ac.kr/syu/na/ntt/selectNttList.do?mi=3855&bbsId=689",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 5
+   },
+   {
+    "name": "서울디지털대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://go.sdu.ac.kr/go/cms/FR_CON/index.do?MENU_ID=800",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "서울상담심리대학원대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.scu.ac.kr/community/scholarship-notice",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 1
+   },
+   {
+    "name": "서울예술대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.seoularts.ac.kr/web/cop/bbsWeb/selectBoardList.do?bbsId=BBSMSTR_000000000651",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 1
+   },
+   {
+    "name": "서일대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.seoil.ac.kr/seoil/601/subview.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 8
+   },
+   {
+    "name": "영진전문대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.yju.ac.kr/kr/3261/subview.do",
+    "enabled": true,
+    "verified": false,
+    "ok": false,
+    "count": 0
+   },
+   {
+    "name": "우석대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.woosuk.ac.kr/main/?menu=110",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 16
+   },
+   {
+    "name": "울산과학대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.uc.ac.kr/kr/b/165",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 9
+   },
+   {
+    "name": "유원대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.u1.ac.kr/u1/community/scholarship.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "을지대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.eulji.ac.kr/?menuno=4005",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 11
+   },
+   {
+    "name": "인천재능대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.jeiu.ac.kr/board/list.asp?BoardID=00005",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 9
+   },
+   {
+    "name": "장로회신학대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.puts.ac.kr/www/sub/lounge/sub.asp?m1=6&m2=3",
+    "enabled": true,
+    "verified": false,
+    "ok": false,
+    "count": 0
+   },
+   {
+    "name": "전주교육대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.jnue.kr/portal/jnue/contents/contents_view.do?menuId=M0004000900010000",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "제주국제대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.jeju.ac.kr/square/scholarship.htm",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 1
+   },
+   {
+    "name": "진주교육대학교",
+    "type": "university",
+    "region": "",
+    "url": "http://www.cue.ac.kr/kor/CMS/Board/Board.do?mCode=MN186",
+    "enabled": true,
+    "verified": false,
+    "ok": false,
+    "count": 0
+   },
+   {
+    "name": "한국전통문화대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.knuh.ac.kr/kr/brd/list.do?mnuBaseId=MNU0000146&topBaseId=MNU0000009&tplSer=2",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 2
+   },
+   {
+    "name": "한라대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.halla.ac.kr/kr/244/subview.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 9
    }
   ]
  }
