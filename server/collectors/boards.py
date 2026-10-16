@@ -263,7 +263,8 @@ def collect_one(src: dict, since: str):
             return [], status
         status["ok"] = True
     except Exception as e:  # noqa: BLE001
-        status["error"] = str(e)[:160]
+        m = re.search(r"Caused by (\w+)", str(e))
+        status["error"] = (type(e).__name__ + (":" + m.group(1) if m else "") + " " + str(e))[:160]
         status["needs_render"] = True  # 접속·인증서 문제는 브라우저로 한 번 더 열어 본다 (robots.txt 는 그대로 지킨다)
         return [], status
     if not items:
@@ -322,6 +323,8 @@ def collect(online: bool = True, since: str | None = None, workers: int = 8):
                 items = parse_html(html, s_["notice_url"]) if html else []
                 if html and st.get("error"):
                     st.update(ok=True, error="")
+                elif st.get("error"):
+                    st["error"] = st["error"][:120] + " / 브라우저도 실패"
                 recs = build_recs(s_, items, since, body_fn=lambda u: text_of_html(rd.html(u)) if u else "")
                 out.extend(recs)
                 st.update(count=len(recs), method="render")
