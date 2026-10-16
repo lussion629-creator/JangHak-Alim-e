@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T07:46:54+00:00",
- "finishedAt": "2026-10-16T08:01:42+00:00",
+ "startedAt": "2026-10-16T08:03:08+00:00",
+ "finishedAt": "2026-10-16T08:22:10+00:00",
  "online": true,
- "total": 4547,
- "new": 4,
- "changed": 193,
+ "total": 4705,
+ "new": 166,
+ "changed": 192,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -87,10 +87,10 @@
   },
   {
    "source": "board",
-   "label": "대학·재단·지자체 게시판 147곳",
+   "label": "대학·재단·지자체 게시판 181곳",
    "ok": true,
-   "count": 602,
-   "mode": "성공 124 / 실패 23"
+   "count": 822,
+   "mode": "성공 155 / 실패 26"
   },
   {
    "source": "gov24",
@@ -115,8 +115,8 @@
   }
  ],
  "registry": {
-  "total": 551,
-  "enabled": 147,
+  "total": 585,
+  "enabled": 181,
   "sources": [
    {
     "name": "한양대학교 서울캠퍼스",
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "명지대학교 인문/자연",
@@ -725,8 +725,8 @@
     "url": "https://home.sch.ac.kr/sch/06/010300.jsp",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 10
    },
    {
     "name": "경성대학교",
@@ -1905,7 +1905,7 @@
     "url": "https://chest.or.kr/bbs/1000/initPostList.do",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -5627,6 +5627,346 @@
     "verified": false,
     "ok": null,
     "count": null
+   },
+   {
+    "name": "감리교신학대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.mtu.ac.kr/mtu/board/list.do?mId=160",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 16
+   },
+   {
+    "name": "강원도립대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.gw.ac.kr/po/portal/educational/scholarship",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 6
+   },
+   {
+    "name": "건양사이버대학교",
+    "type": "university",
+    "region": "",
+    "url": "http://www.kycu.ac.kr/cop/bbs/BBSMSTR_000000000192/selectBoardList.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 1
+   },
+   {
+    "name": "경북전문대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.kbc.ac.kr/kor/CMS/Board/Board.do?mCode=MN095",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 1
+   },
+   {
+    "name": "광주여자대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.kwu.ac.kr/mod/board/list.do?MID=KWU_B06010401",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 10
+   },
+   {
+    "name": "국립금오공과대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.kumoh.ac.kr/ko/sub06_01_01_01.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 5
+   },
+   {
+    "name": "국립목포해양대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.mmu.ac.kr/main/board/303",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 10
+   },
+   {
+    "name": "기독간호대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.ccn.ac.kr/scholarship",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "대경대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.tk.ac.kr/bbs/board.php?bo_table=scholarship",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "대구교육대학교",
+    "type": "university",
+    "region": "",
+    "url": "http://www.dnue.ac.kr/kor/CMS/Board/Board.do?mCode=MN169",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 10
+   },
+   {
+    "name": "대구대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://daegu.ac.kr/article/DG159/list?article_seq=&flag=&pageIndex=1&category_cd=2&searchCondition=TA.SUBJECT&searchKeyword=",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 8
+   },
+   {
+    "name": "대구예술대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.dgau.ac.kr/notice_sch",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "목포가톨릭대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.mcu.ac.kr/bb/bbBoard.php?boardID=SCHOLARSHIP&pageID=mcu0708000000",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 8
+   },
+   {
+    "name": "문경대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.mkc.ac.kr/?page_id=3984",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 8
+   },
+   {
+    "name": "배화여자대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.baewha.ac.kr/bbs/board.do?bsIdx=798&menuId=3378",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "부산디지털대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.bdu.ac.kr/bduhome/sub03_06_02.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 8
+   },
+   {
+    "name": "삼육보건대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.shu.ac.kr/cms/FrCon/index.do?MENU_ID=2080",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 5
+   },
+   {
+    "name": "서울기독대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.scu.ac.kr/community/scholarship-notice",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 1
+   },
+   {
+    "name": "서정대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.seojeong.ac.kr/main/campus-life/scholarship-notice.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 10
+   },
+   {
+    "name": "선학유피대학원대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.sunhakup.ac.kr/bbs/board.php?bo_table=04_community01&sca=%ED%95%99%EC%82%AC%EC%9D%BC%EC%A0%95",
+    "enabled": true,
+    "verified": false,
+    "ok": false,
+    "count": 0
+   },
+   {
+    "name": "세종사이버대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://home.sjcu.ac.kr/ko/academic/notice-of-scholarship.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 6
+   },
+   {
+    "name": "세한대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.sehan.ac.kr/sehan/229/subview.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 9
+   },
+   {
+    "name": "수성대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.sc.ac.kr/list/notice/",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 8
+   },
+   {
+    "name": "숭실사이버대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.kcu.ac/bbs?menuSeDe=20230625&menuSeq=2",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "아신대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.acts.ac.kr/modules/board/bd_list.asp?id=board_notice05&left=unilife4_1",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 8
+   },
+   {
+    "name": "영남이공대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.ync.ac.kr/kor/CMS/Board/Board.do?mCode=MN214",
+    "enabled": true,
+    "verified": false,
+    "ok": false,
+    "count": 0
+   },
+   {
+    "name": "용인예술과학대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.ysc.ac.kr/kor/CMS/Board/Board.do?mCode=MN164",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 11
+   },
+   {
+    "name": "우송대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.wsu.ac.kr/board/index.jsp?code=college0204",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 0
+   },
+   {
+    "name": "인하공업전문대학",
+    "type": "university",
+    "region": "",
+    "url": "https://www.inhatc.ac.kr/kr/463/subview.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 11
+   },
+   {
+    "name": "장안대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.jangan.ac.kr/jangan/681/subview.do",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 9
+   },
+   {
+    "name": "추계예술대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.chugye.ac.kr/mbs/university/jsp/board/list.jsp?boardId=6768&id=university_040803000000",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 17
+   },
+   {
+    "name": "한림성심대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.hsc.ac.kr/site/hsc/boardList.do;jsessionid=2B48F62CE3A2495153108B9F7FDA5E07?boardSeq=694&key=2100",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 10
+   },
+   {
+    "name": "한일장신대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.hanil.ac.kr/portal/default/bbs/list.do?menuId=M0004000100040000",
+    "enabled": true,
+    "verified": false,
+    "ok": true,
+    "count": 13
+   },
+   {
+    "name": "화성의과학대학교",
+    "type": "university",
+    "region": "",
+    "url": "https://www.hsmu.ac.kr/web/contents/HSMU40102000.do",
+    "enabled": true,
+    "verified": false,
+    "ok": false,
+    "count": 0
    }
   ]
  }
