@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T14:54:26+00:00",
- "finishedAt": "2026-10-16T15:17:30+00:00",
+ "startedAt": "2026-10-16T15:19:02+00:00",
+ "finishedAt": "2026-10-16T15:46:28+00:00",
  "online": true,
- "total": 4789,
- "new": 6,
- "changed": 363,
+ "total": 4844,
+ "new": 69,
+ "changed": 353,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 221곳",
    "ok": true,
-   "count": 916,
-   "mode": "성공 189 / 실패 32"
+   "count": 990,
+   "mode": "성공 205 / 실패 16"
   },
   {
    "source": "gov24",
@@ -110,8 +110,8 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 11,
-   "mode": "online"
+   "count": 12,
+   "mode": "seed"
   }
  ],
  "registry": {
@@ -155,7 +155,7 @@
     "url": "https://biz.kookmin.ac.kr/community/kookmin/scholarship",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -266,7 +266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 11
    },
    {
     "name": "숙명여자대학교",
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 5
    },
    {
     "name": "명지대학교 인문/자연",
@@ -475,8 +475,8 @@
     "url": "https://www.gachon.ac.kr/kor/1146/subview.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 37
    },
    {
     "name": "한신대학교",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 14
+    "count": 12
    },
    {
     "name": "경기대학교 수원/서울",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 10
    },
    {
     "name": "서울여자대학교",
@@ -575,7 +575,7 @@
     "url": "https://www.swu.ac.kr/front/boardlist.do?bbsConfigFK=5",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "충북대학교",
@@ -675,7 +675,7 @@
     "url": "https://www.jejunu.ac.kr/ara/noticesurvey/degree.htm?category=238",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -705,7 +705,7 @@
     "url": "https://www.donga.ac.kr/kor/CMS/Board/Board.do?mCode=MN172",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -806,7 +806,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 15
+    "count": 17
    },
    {
     "name": "한동대학교",
@@ -845,8 +845,8 @@
     "url": "https://www.kmou.ac.kr/kmou/na/ntt/selectNttList.do?mi=5691&bbsId=10004365",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 9
    },
    {
     "name": "서울교육대학교",
@@ -945,7 +945,7 @@
     "url": "https://www.cha.ac.kr/?page_id=2587",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -1055,7 +1055,7 @@
     "url": "https://www.inje.ac.kr/kor/Template/Bsub_page.asp?Ltype=5&Ltype2=0&Ltype3=0&Tname=S_News&Ldir=board/S_News&div=10&d1n=5&d2n=1&d3n=6&d4n=0",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -1076,7 +1076,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 18
+    "count": 17
    },
    {
     "name": "배재대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 0
    },
    {
     "name": "전주대학교",
@@ -1165,7 +1165,7 @@
     "url": "https://www.kongju.ac.kr/bbs/KNU/2132/artclList.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -1205,7 +1205,7 @@
     "url": "https://www.semyung.ac.kr/prog/vwBoard/bbs06/kor/sub08_02_03/list.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -5705,7 +5705,7 @@
     "url": "https://www.ccn.ac.kr/scholarship",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -5825,8 +5825,8 @@
     "url": "https://www.sunhakup.ac.kr/bbs/board.php?bo_table=04_community01&sca=%ED%95%99%EC%82%AC%EC%9D%BC%EC%A0%95",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 2
    },
    {
     "name": "세종사이버대학교",
@@ -5885,8 +5885,8 @@
     "url": "https://www.ync.ac.kr/kor/CMS/Board/Board.do?mCode=MN214",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 5
    },
    {
     "name": "용인예술과학대학교",
@@ -5965,8 +5965,8 @@
     "url": "https://www.hsmu.ac.kr/web/contents/HSMU40102000.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 7
    },
    {
     "name": "가톨릭꽃동네대학교",
@@ -5995,8 +5995,8 @@
     "url": "https://www.ikw.ac.kr/main.tc",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 4
    },
    {
     "name": "경인교육대학교",
@@ -6175,8 +6175,8 @@
     "url": "https://www.cs.ac.kr/board/board_community1",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 2
    },
    {
     "name": "충청대학교",
@@ -6345,8 +6345,8 @@
     "url": "https://www.songho.ac.kr/songho/index.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 4
    },
    {
     "name": "수원과학대학교",
