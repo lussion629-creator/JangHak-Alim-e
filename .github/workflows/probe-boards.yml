@@ -18,4 +18,4 @@ jobs:
       - name: push result
         if: always()
         run: |
-          cd out && git init -q && git checkout -q -b probe-out-${{ matrix.shard }} && git add . && git -c user.name=probe -c user.email=probe@x commit -qm probe && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe-out
+          cd out && git init -q && git checkout -q -b probe-out-${{ matrix.shard }} && git add . && git -c user.name=probe -c user.email=probe@x commit -qm probe && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe-out-${{ matrix.shard }}
