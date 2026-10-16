@@ -3,19 +3,7 @@ on: workflow_dispatch
 permissions:
   contents: write
 jobs:
-  probe:
+  cleanup:
     runs-on: ubuntu-latest
-    timeout-minutes: 150
-    strategy:
-      fail-fast: false
-      matrix: {shard: [0, 1, 2, 3, 4, 5]}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install -q -r requirements.txt playwright==1.48.0 && python -m playwright install --with-deps chromium
-      - run: mkdir -p out && timeout 120m python3 scripts/discover_boards3.py ${{ matrix.shard }} 6 2> out/err.txt || true
-      - name: push result
-        if: always()
-        run: |
-          cd out && git init -q && git checkout -q -b probe-out-${{ matrix.shard }} && git add . && git -c user.name=probe -c user.email=probe@x commit -qm probe && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe-out-${{ matrix.shard }}
+      - run: git init -q && git push "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" --delete probe-out probe-out-0 probe-out-1 probe-out-2 probe-out-3 probe-out-4 probe-out-5 || true
