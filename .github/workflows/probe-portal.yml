@@ -16,6 +16,7 @@ jobs:
           BT=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1); PL=$(ls -d $ANDROID_HOME/platforms/android-* | sort -V | tail -1)
           echo "build-tools $BT platform $PL"
           mkdir -p android/tools && cp $BT/aapt2 android/tools/ && cp $BT/lib/d8.jar $BT/lib/apksigner.jar android/tools/ && cp $PL/android.jar android/tools/
+      - run: python3 .github/ci/testpatch.py
       - name: APK 빌드 (테스트 키)
         run: cd android && KEYSTORE=$RUNNER_TEMP/test.jks KEYSTORE_PASS=smoketest123 VERSION=smoke bash build.sh
       - name: KVM
@@ -33,37 +34,18 @@ jobs:
             adb install -r jangak-alimi-smoke.apk
             adb shell pm grant kr.jangak.alimi android.permission.POST_NOTIFICATIONS || true
             adb logcat -c
-            adb shell am start -W -n kr.jangak.alimi/.MainActivity
-            sleep 30
-            python3 .github/ci/ui.py tap "시작하기" 10 || true
-            sleep 2
-            python3 .github/ci/ui.py tap "^내 정보$" 10 || true
-            sleep 3
-            python3 .github/ci/ui.py tapscroll "우리 학교 장학도 보기" 10 || true
-            sleep 4
+            adb shell am start -W -n kr.jangak.alimi/.PortalActivity --es key my --es t_domain konkuk.ac.kr --es t_entry https://www.konkuk.ac.kr/bbs/konkuk/235/artclList.do --ez t_save true
+            sleep 15
             adb exec-out screencap -p > shot1.png
-            python3 .github/ci/ui.py tap "portal.학교" 10 || true
-            sleep 3
-            python3 .github/ci/ui.py tap "portal.학교" 3 || true
-            sleep 3
-            adb shell input text 'https://www.konkuk.ac.kr/bbs/konkuk/235/artclList.do'
-            sleep 3
-            adb exec-out screencap -p > shot1b.png
-            adb shell input keyevent 4
-            sleep 2
-            python3 .github/ci/ui.py tapscroll "^연결하기$" 6 || true
-            sleep 25
+            sleep 30
             adb exec-out screencap -p > shot2.png
-            python3 .github/ci/ui.py tap "이 화면 저장" 10 || true
+            adb shell run-as kr.jangak.alimi cat files/my_portal.json > found.txt || echo none > found.txt
+            adb shell run-as kr.jangak.alimi cat shared_prefs/myportal.xml >> found.txt || true
+            adb shell am start -W -n kr.jangak.alimi/.MainActivity
             sleep 20
+            adb shell input tap 300 60 || true
             adb exec-out screencap -p > shot3.png
-            python3 .github/ci/ui.py find "건 \\(모집" 5 > found.txt || true
-            adb shell uiautomator dump /sdcard/ui.xml; adb shell cat /sdcard/ui.xml > ui.xml
-            sleep 2
             adb logcat -d > logcat.txt
-            adb exec-out screencap -p > shot.png
-            adb shell dumpsys activity top | head -40 > top.txt
-            adb shell pidof kr.jangak.alimi > pid.txt || echo none > pid.txt
       - if: always()
         run: |
           mkdir -p out && cd out && git init -q && git checkout -q -b probe-out
