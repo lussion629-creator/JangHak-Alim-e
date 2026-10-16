@@ -23,6 +23,11 @@ def _leaf_der(host: str, port: int) -> bytes:
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
     ctx.verify_mode = ssl.CERT_NONE  # 서버 인증서를 '읽기만' 한다 (검증은 아래에서 묶음 파일로 다시 한다)
+    ctx.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
+    try:
+        ctx.set_ciphers("DEFAULT:@SECLEVEL=1")
+    except ssl.SSLError:
+        pass
     with socket.create_connection((host, port), timeout=10) as s, ctx.wrap_socket(s, server_hostname=host) as t:
         return t.getpeercert(binary_form=True)
 
@@ -76,12 +81,38 @@ def bundle_for(url: str) -> str | None:
     return path
 
 
+class _Legacy(requests.adapters.HTTPAdapter):
+    """오래된 학교 서버(옛 재협상 방식·짧은 키)와도 연결한다. 인증서·주소 검증은 그대로 한다."""
+
+    def init_poolmanager(self, *a, **kw):
+        ctx = ssl.create_default_context()
+        ctx.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
+        try:
+            ctx.set_ciphers("DEFAULT:@SECLEVEL=1")
+        except ssl.SSLError:
+            pass
+        kw["ssl_context"] = ctx
+        return super().init_poolmanager(*a, **kw)
+
+
+def _legacy_get(url, verify, **kw):
+    s = requests.Session()
+    s.mount("https://", _Legacy())
+    return s.get(url, verify=verify, **kw)
+
+
 def get(url: str, **kw) -> requests.Response:
-    """requests.get 과 같지만, 중간 인증서가 빠진 서버면 보완한 묶음으로 한 번 더 '검증해서' 연다."""
+    """requests.get 과 같지만, 인증서 문제가 있는 학교 서버면 한 번 더 '검증해서' 연다.
+    1) 빠진 중간 인증서를 보완한 묶음  2) 오래된 서버용 연결 설정 (둘 다 검증은 끄지 않는다)"""
     try:
         return requests.get(url, **kw)
-    except requests.exceptions.SSLError:
-        b = bundle_for(url)
-        if not b:
-            raise
-        return requests.get(url, verify=b, **kw)
+    except requests.exceptions.SSLError as e:
+        err = e
+    b = bundle_for(url) if "CERTIFICATE_VERIFY_FAILED" in str(err) or "certificate" in str(err).lower() else None
+    if b:
+        try:
+            return requests.get(url, verify=b, **kw)
+        except requests.exceptions.SSLError:
+            pass
+    import certifi
+    return _legacy_get(url, b or certifi.where(), **kw)
