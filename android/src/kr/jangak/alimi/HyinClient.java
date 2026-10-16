@@ -90,7 +90,8 @@ final class HyinClient {
                 host = u.getHost() == null ? "" : u.getHost();
                 CookieManager.getInstance().flush();
                 if (finished) return;
-                final boolean main = portal.mainHost.equals(host);
+                final boolean main = portal.isMain(host);
+                if (portal.custom && main) v.evaluateJavascript(recorder(), null); // 학생이 누른 메뉴 이름을 기억해 두었다가 '이 화면 저장' 때 함께 저장
                 String probe = portal.loginProbe();
                 if (main && probe != null) {
                     v.evaluateJavascript(probe, new android.webkit.ValueCallback<String>() {
@@ -107,7 +108,27 @@ final class HyinClient {
     static final String NATIVE = "JangakPortalNative";
     private String token;
 
+    private int savedTries;
+
+    /** 지금 보는 주소가 저장해 둔 장학 화면인지 (# 뒤는 보지 않는다). */
+    private boolean atSaved(String url) {
+        if (portal.saved == null || portal.saved.isEmpty()) return false;
+        String a = url.split("#")[0], b = portal.saved.split("#")[0];
+        return a.equals(b);
+    }
+
     private void route(WebView v, String url, boolean main, boolean login) {
+                if (portal.custom && main && !login) {
+                    // 학생이 고른 학교 포털: 저장한 장학 화면에서만 읽는다
+                    boolean hasSaved = portal.saved != null && !portal.saved.isEmpty();
+                    if (silent && hasSaved && !atSaved(url) && savedTries < 2) { savedTries++; v.loadUrl(portal.saved); return; } // 로그인 뒤 첫 화면으로 가면 장학 화면을 다시 연다
+                    if (atSaved(url) || (silent && hasSaved)) { if (!injected) { injected = true; ln.onProgress("장학 화면을 읽는 중…"); v.evaluateJavascript(script(), null); } return; }
+                    if (!silent) ln.onProgress(portal.saved == null || portal.saved.isEmpty()
+                            ? "로그인한 뒤 장학 공지나 장학 신청 화면을 열고 「이 화면 저장」을 눌러 주세요."
+                            : "저장한 장학 화면을 여는 중이에요. 다른 화면이면 장학 화면을 열고 「이 화면 저장」을 눌러 주세요.");
+                    if (silent && (portal.saved == null || portal.saved.isEmpty())) { finish(); ln.onFail("NOSAVED"); }
+                    return;
+                }
                 if (main && !login) {
                     if (portal == Portal.KCLOUD && !url.contains("/websquare/")) return; // 넘어가는 중인 중간 화면
                     if (portal == Portal.SAINT && !url.contains("/irj/")) return;
@@ -150,6 +171,29 @@ final class HyinClient {
     }
 
     void start() { web.loadUrl(portal.start); }
+
+    // ---- 학생이 고른 학교 포털: 누른 메뉴 기록 · '이 화면 저장' ----
+    private final java.util.ArrayList<String> clicks = new java.util.ArrayList<>();
+
+    private String recorder() {
+        return "(function(N,k){function hook(d){try{if(d.__jkr)return;d.__jkr=1;d.addEventListener('click',function(e){var el=e.target&&e.target.closest?e.target.closest('a,button,li,span,td,div'):null;if(!el)return;"
+                + "var t=(el.innerText||el.textContent||'').replace(/\\s+/g,' ').trim();if(t&&t.length<=20)N.click(k,t);},true);"
+                + "var f=d.querySelectorAll('iframe,frame');for(var i=0;i<f.length;i++){try{if(f[i].contentDocument)hook(f[i].contentDocument);}catch(x){}}}catch(x){}}"
+                + "hook(document);setInterval(function(){hook(document)},3000);})(window." + NATIVE + ",'" + token + "');";
+    }
+
+    /** 지금 화면을 '장학 화면'으로 저장하고 바로 읽는다. */
+    void saveHere() {
+        String url = web.getUrl();
+        if (url == null || !portal.isMain(Uri.parse(url).getHost())) { ln.onFail("학교 포털 화면에서 눌러 주세요."); return; }
+        org.json.JSONArray m = new org.json.JSONArray();
+        synchronized (clicks) { int from = Math.max(0, clicks.size() - 4); for (int i = from; i < clicks.size(); i++) m.put(clicks.get(i)); }
+        String h = Uri.parse(url).getHost();
+        ctx.getSharedPreferences(Portal.MY, Context.MODE_PRIVATE).edit().putString("saved", url).putString("menus", m.toString()).putString("savedHost", h == null ? "" : h).apply();
+        injected = true;
+        ln.onProgress("이 화면의 장학 목록을 읽는 중…");
+        web.evaluateJavascript("window.__portalReaderRunning=false;window.__portalNow=true;" + script(), null);
+    }
 
     private void finish() {
         finished = true;
@@ -197,7 +241,13 @@ final class HyinClient {
     static File file(Context c) { return new File(c.getFilesDir(), "hyin_calendar.json"); }
 
     class Bridge {
-        private boolean ok(String k) { return token != null && token.equals(k) && portal.mainHost.equals(host) && !finished; }
+        private boolean ok(String k) { return token != null && token.equals(k) && portal.isMain(host) && !finished; }
+
+        @JavascriptInterface
+        public void click(String k, String t) {
+            if (token == null || !token.equals(k) || t == null) return;
+            synchronized (clicks) { if (clicks.isEmpty() || !clicks.get(clicks.size() - 1).equals(t)) clicks.add(t.substring(0, Math.min(20, t.length()))); while (clicks.size() > 12) clicks.remove(0); }
+        }
 
         @JavascriptInterface
         public void progress(String k, final String t) {
@@ -219,6 +269,14 @@ final class HyinClient {
                     org.json.JSONArray prev = new org.json.JSONObject(read(portal.file(ctx))).getJSONArray("records");
                     for (int i = 0; i < prev.length(); i++) { org.json.JSONObject r = prev.getJSONObject(i); if (r.has("detail")) old.put(key(r), r.get("detail")); }
                     for (int i = 0; i < rs.length(); i++) { org.json.JSONObject r = rs.getJSONObject(i); if (!r.has("detail") && old.containsKey(key(r))) r.put("detail", old.get(key(r))); }
+                } catch (Exception ignored) { }
+                if (portal.custom && silent) try { // 내 학교 포털: 전에 없던 장학이 있으면 알림
+                    java.util.HashSet<String> old = new java.util.HashSet<>();
+                    org.json.JSONArray prev = new org.json.JSONObject(read(portal.file(ctx))).getJSONArray("records");
+                    for (int i = 0; i < prev.length(); i++) old.add(prev.getJSONObject(i).optString("name"));
+                    java.util.ArrayList<String> fresh = new java.util.ArrayList<>();
+                    for (int i = 0; i < rs.length(); i++) { String n = rs.getJSONObject(i).optString("name"); if (!n.isEmpty() && !old.contains(n)) fresh.add(n); }
+                    if (!fresh.isEmpty() && !old.isEmpty()) Alerts.simple(ctx, 7190, portal.name + "에 새 장학 " + fresh.size() + "건", fresh.get(0));
                 } catch (Exception ignored) { }
                 o.put("savedAt", System.currentTimeMillis());
                 try (FileOutputStream out = new FileOutputStream(portal.file(ctx))) { out.write(o.toString().getBytes(StandardCharsets.UTF_8)); }

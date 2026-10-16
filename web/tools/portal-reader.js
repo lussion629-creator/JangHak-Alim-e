@@ -105,13 +105,58 @@
       });
       if (recs.length) return recs;
     }
-    return null;
+    return CFG.generic ? generic() : null;
+  }
+
+  // 학생이 고른 학교 포털: 표 머리글이 정해져 있지 않으므로, 화면의 표 줄·목록 줄 가운데 '장학'이 들어간 줄을 공고로 읽는다.
+  // 수혜 내역·지급액처럼 본인 기록인 표(머리글에 지급·수혜·계좌·학번 등)는 통째로 건너뛴다.
+  var MINE = /지급|수혜|환수|계좌|은행|학번|성명|생년|연락처|전화|주소|성적|평점|선발\s*결과|신청\s*결과|승인/;
+  var NAV = /^(장학|장학금|장학안내|장학공지|장학제도|장학신청|교내장학|교외장학|국가장학|장학금 신청|장학금 안내)$/;
+  function dates(t) {
+    var m = String(t).match(/(20\d{2}|\d{2})\s*[.\-\/년]\s*\d{1,2}\s*[.\-\/월]\s*\d{1,2}/g) || [];
+    return m.map(function (x) { var y = x.match(/^(\d{2,4})/)[1]; return date((y.length === 2 ? "20" + y : y) + x.slice(y.length)); }).filter(Boolean);
+  }
+  function generic() {
+    var out = [], seen = {}, ds = docs();
+    for (var k = 0; k < ds.length; k++) {
+      var d = ds[k];
+      var rows = Array.prototype.slice.call(d.querySelectorAll("tr")).concat(Array.prototype.slice.call(d.querySelectorAll("li,[class*='list'] > *,[class*='item'],[class*='row']")));
+      for (var i = 0; i < rows.length && out.length < 200; i++) {
+        var r = rows[i];
+        if (!shown(r)) continue;
+        var tb = r.closest && r.closest("table");
+        if (tb) { var hd = Array.prototype.map.call(tb.querySelectorAll("th"), txt).join(" "); if (MINE.test(hd)) continue; }
+        if (r.tagName !== "TR" && r.querySelector("tr,li")) continue; // 목록을 감싼 큰 칸은 건너뛴다
+        var full = txt(r);
+        if (full.length < 4 || full.length > 400 || !/장학/.test(full) || MINE.test(full)) continue;
+        var a = r.querySelector("a"), name = a ? txt(a) : "";
+        if (r.tagName !== "TR" && (!a || name.length < 8)) continue; // 표가 아닌 목록은 제목 링크가 있는 줄만 (분류·작성자 줄 제외)
+        if (!name || name.length < 4) {
+          var cells = r.tagName === "TR" ? Array.prototype.map.call(r.querySelectorAll("td"), txt) : [full];
+          name = cells.filter(function (c) { return /장학/.test(c); }).sort(function (x, y) { return y.length - x.length; })[0] || "";
+        }
+        name = name.replace(/\s*(new|N|새글)$/i, "").slice(0, 120);
+        if (name.length < 8 || NAV.test(name) || seen[name]) continue; // 짧은 글자는 메뉴·분류 이름
+        seen[name] = 1;
+        var dt = dates(full).filter(function (x, j, arr) { return arr.indexOf(x) === j; });
+        var rg = full.match(/(20\d{2}\s*[.\-\/년]\s*\d{1,2}\s*[.\-\/월]\s*\d{1,2})[^~～]{0,12}[~～][^0-9]{0,4}(20\d{2}\s*[.\-\/년]\s*\d{1,2}\s*[.\-\/월]\s*\d{1,2})/);
+        var s0 = "", e0 = "", p0 = "";
+        if (rg) { s0 = date(rg[1]); e0 = date(rg[2]); } else if (dt.length >= 2) { var so = dt.slice().sort(); s0 = so[0]; e0 = so[so.length - 1]; } else if (dt.length === 1) p0 = dt[0];
+        var href = a && a.href && /^https:/.test(a.href) ? a.href : "";
+        out.push({ key: name.slice(0, 120), name: name, kind: "", start: s0, end: e0, posted: p0, href: href.slice(0, 300), cols: {} });
+      }
+    }
+    return out.length ? out : null;
   }
 
   async function run() {
     if (SUB) {
       for (var q = 0; q < 300; q++) { var rr = scrape(); if (rr) { B.done(JSON.stringify({ records: rr })); return; } await sleep(2000); }
       return;
+    }
+    if (window.__portalNow) { // '이 화면 저장'을 눌렀을 때: 지금 화면만 읽는다
+      for (var z = 0; z < 5; z++) { var rz = scrape(); if (rz) { B.done(JSON.stringify({ records: rz })); return; } await sleep(2000); }
+      B.fail("EMPTY"); return;
     }
     B.progress("로그인 확인됨 · 장학 신청 화면을 찾는 중…");
     // 메뉴를 차례로 눌러 '장학신청' 화면으로 간다 (못 찾으면 학생이 직접 열 때까지 기다린다)

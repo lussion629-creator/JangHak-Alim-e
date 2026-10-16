@@ -35,7 +35,7 @@ public class HyinJob extends JobService {
     @Override
     public boolean onStartJob(final JobParameters params) {
         Portal pick = null;
-        for (Portal p : Portal.ALL) {
+        for (Portal p : Portal.all(this)) {
             boolean has = p.file(this).exists() || "on".equals(Cred.state(this, p.key));
             if (has && System.currentTimeMillis() - p.file(this).lastModified() >= 20L * 60 * 60 * 1000) { pick = p; break; }
         }
@@ -52,7 +52,7 @@ public class HyinJob extends JobService {
             if (web != null) { try { web.removeJavascriptInterface(HyinClient.NATIVE); web.destroy(); } catch (Exception ignored) { } web = null; }
             jobFinished(params, false);
             // 다른 포털도 다시 읽을 때가 됐으면 곧 이어서 한다
-            for (Portal p : Portal.ALL) if (p != pt && (p.file(HyinJob.this).exists() || "on".equals(Cred.state(HyinJob.this, p.key)))
+            for (Portal p : Portal.all(HyinJob.this)) if (!p.key.equals(pt.key) && (p.file(HyinJob.this).exists() || "on".equals(Cred.state(HyinJob.this, p.key)))
                     && System.currentTimeMillis() - p.file(HyinJob.this).lastModified() >= 20L * 60 * 60 * 1000) { once(HyinJob.this); break; }
         } };
         new HyinClient(this, web, true, pt, new HyinClient.Listener() {
@@ -86,7 +86,7 @@ public class HyinJob extends JobService {
                 .setContentText("2차 인증이 필요하거나 비밀번호가 바뀌었을 수 있어요. 눌러서 한 번 로그인해 주세요.")
                 .setStyle(new Notification.BigTextStyle().bigText("2차 인증이 필요하거나 비밀번호가 바뀌었을 수 있어요. 눌러서 한 번 로그인해 주세요."))
                 .setAutoCancel(true).setContentIntent(pi);
-        nm.notify(7102 + (pt == Portal.HYIN ? 0 : 1), b.build());
+        nm.notify(7102 + (pt == Portal.HYIN ? 0 : "my".equals(pt.key) ? 2 : 1), b.build());
     }
 
     @Override public boolean onStopJob(JobParameters params) { return true; }

@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
     /** 전에 로그인한 적이 있고 하루가 지났으면, 남아 있는 포털 로그인으로 조용히 장학 정보를 다시 읽어 본다 (포털마다 차례로). */
     private void silentHyin(final android.widget.FrameLayout root) {
         if (hidden != null) return;
-        for (final Portal p : Portal.ALL) {
+        for (final Portal p : Portal.all(this)) {
             java.io.File f = p.file(this);
             if (!f.exists() && !"on".equals(Cred.state(this, p.key))) continue;
             if (f.exists() && System.currentTimeMillis() - f.lastModified() < 20L * 60 * 60 * 1000) continue;
@@ -150,7 +150,7 @@ public class MainActivity extends Activity {
         int p = Math.round(20 * getResources().getDisplayMetrics().density);
         box.setPadding(p, p / 2, p, 0);
         final android.widget.EditText id = new android.widget.EditText(this);
-        id.setHint(pt == Portal.HYIN ? "포털 아이디" : "학번"); id.setSingleLine(true);
+        id.setHint(pt == Portal.HYIN ? "포털 아이디" : pt.custom ? "포털 아이디(학번)" : "학번"); id.setSingleLine(true);
         id.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         final android.widget.EditText pw = new android.widget.EditText(this);
         pw.setHint("비밀번호"); pw.setSingleLine(true);
@@ -185,7 +185,7 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int req, int res, Intent data) {
         super.onActivityResult(req, res, data);
         if (req == REQ_PORTAL && res == RESULT_OK) {
-            Portal p = Portal.of(data == null ? null : data.getStringExtra("key"));
+            Portal p = Portal.of(this, data == null ? null : data.getStringExtra("key"));
             if (p == null) p = Portal.HYIN;
             setState(p, "ok");
             if ("failed".equals(Cred.state(this, p.key))) Cred.setState(this, p.key, "on");
@@ -294,22 +294,22 @@ public class MainActivity extends Activity {
         // ---- 학교 포털 공통 (key: hyin = 한양 포털, kcloud = 강원대 K-Cloud) ----
         @JavascriptInterface
         public void portalOpen(final String key) {
-            final Portal p = Portal.of(key); if (p == null) return;
+            final Portal p = Portal.of(MainActivity.this, key); if (p == null) return;
             runOnUiThread(new Runnable() { @Override public void run() { startActivityForResult(new Intent(MainActivity.this, PortalActivity.class).putExtra("key", p.key), REQ_PORTAL); } });
         }
 
         @JavascriptInterface
         public String portalData(String key) {
-            Portal p = Portal.of(key); if (p == null) return "";
+            Portal p = Portal.of(MainActivity.this, key); if (p == null) return "";
             try { java.io.File f = p.file(MainActivity.this); return f.exists() ? HyinClient.read(f) : ""; } catch (Exception e) { return ""; }
         }
 
         @JavascriptInterface
-        public String portalState(String key) { Portal p = Portal.of(key); return p == null ? "" : st(p); }
+        public String portalState(String key) { Portal p = Portal.of(MainActivity.this, key); return p == null ? "" : st(p); }
 
         @JavascriptInterface
         public void portalClear(String key) {
-            final Portal p = Portal.of(key); if (p == null) return;
+            final Portal p = Portal.of(MainActivity.this, key); if (p == null) return;
             try { p.file(MainActivity.this).delete(); } catch (Exception ignored) { }
             setState(p, "");
             runOnUiThread(new Runnable() { @Override public void run() {
@@ -323,15 +323,55 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void portalLoginSetup(String key) {
-            final Portal p = Portal.of(key); if (p == null) return;
+            final Portal p = Portal.of(MainActivity.this, key); if (p == null) return;
             runOnUiThread(new Runnable() { @Override public void run() { showLoginDialog(p); } });
         }
 
         @JavascriptInterface
-        public String portalLoginState(String key) { Portal p = Portal.of(key); return p == null ? "off" : Cred.state(MainActivity.this, p.key); }
+        public String portalLoginState(String key) { Portal p = Portal.of(MainActivity.this, key); return p == null ? "off" : Cred.state(MainActivity.this, p.key); }
 
         @JavascriptInterface
-        public void portalLoginOff(String key) { Portal p = Portal.of(key); if (p != null) Cred.clear(MainActivity.this, p.key); }
+        public void portalLoginOff(String key) { Portal p = Portal.of(MainActivity.this, key); if (p != null) Cred.clear(MainActivity.this, p.key); }
+
+        // ---- 학생이 고른 학교 포털 (key "my") ----
+        /** 학교를 정한다: 이름·학교 주소(예: snu.ac.kr)·처음 열 주소. 학교가 바뀌면 전에 저장한 화면·자료·자동 로그인은 지운다. */
+        @JavascriptInterface
+        public boolean myPortalSet(String name, String domain, String entry) {
+            if (name == null || domain == null || entry == null) return false;
+            domain = domain.trim().toLowerCase(java.util.Locale.ROOT).replaceAll("^www\\.", "");
+            if (!domain.matches("[a-z0-9.-]{3,60}\\.[a-z]{2,}") ) return false;
+            android.net.Uri u = android.net.Uri.parse(entry.trim());
+            String h = u.getHost();
+            if (!("https".equals(u.getScheme()) || "http".equals(u.getScheme())) || h == null || !(h.equals(domain) || h.endsWith("." + domain))) return false;
+            android.content.SharedPreferences sp = getSharedPreferences(Portal.MY, MODE_PRIVATE);
+            if (!domain.equals(sp.getString("domain", ""))) {
+                sp.edit().clear().apply();
+                new java.io.File(getFilesDir(), "my_portal.json").delete();
+                Cred.clear(MainActivity.this, "my");
+                getSharedPreferences("portal_my", MODE_PRIVATE).edit().clear().apply();
+            }
+            sp.edit().putString("name", name.trim().substring(0, Math.min(40, name.trim().length()))).putString("domain", domain).putString("entry", "https://" + h + (u.getPath() == null ? "/" : u.getPath())).apply();
+            return true;
+        }
+
+        @JavascriptInterface
+        public String myPortalInfo() {
+            android.content.SharedPreferences sp = getSharedPreferences(Portal.MY, MODE_PRIVATE);
+            try {
+                java.io.File f = new java.io.File(getFilesDir(), "my_portal.json");
+                return new org.json.JSONObject().put("name", sp.getString("name", "")).put("domain", sp.getString("domain", ""))
+                        .put("saved", !sp.getString("saved", "").isEmpty()).put("savedAt", f.exists() ? f.lastModified() : 0)
+                        .put("state", getSharedPreferences("portal_my", MODE_PRIVATE).getString("state", "")).toString();
+            } catch (Exception e) { return "{}"; }
+        }
+
+        @JavascriptInterface
+        public void myPortalForget() {
+            getSharedPreferences(Portal.MY, MODE_PRIVATE).edit().clear().apply();
+            getSharedPreferences("portal_my", MODE_PRIVATE).edit().clear().apply();
+            new java.io.File(getFilesDir(), "my_portal.json").delete();
+            Cred.clear(MainActivity.this, "my");
+        }
 
         /** 이 기기에 저장된 장학캘린더 자료 (없으면 빈 문자열). */
         @JavascriptInterface

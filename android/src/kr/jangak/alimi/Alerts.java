@@ -98,6 +98,14 @@ final class Alerts {
         sp(ctx).edit().putStringSet("seen", seen).apply();
     }
 
+    /** 알림 하나 바로 보내기 (학교 포털 새 장학 등). */
+    static void simple(Context ctx, int id, String title, String text) {
+        NotificationManager nm = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= 26) nm.createNotificationChannel(new NotificationChannel("alerts", "장학 알림", NotificationManager.IMPORTANCE_DEFAULT));
+        PendingIntent pi = PendingIntent.getActivity(ctx, 2, new Intent(ctx, MainActivity.class), PendingIntent.FLAG_IMMUTABLE);
+        notify(ctx, nm, pi, id, title, text);
+    }
+
     private static void notify(Context ctx, NotificationManager nm, PendingIntent pi, int id, String title, String text) {
         Notification.Builder b = Build.VERSION.SDK_INT >= 26 ? new Notification.Builder(ctx, "alerts") : new Notification.Builder(ctx);
         b.setSmallIcon(android.R.drawable.ic_popup_reminder).setContentTitle(title).setContentText(text)
