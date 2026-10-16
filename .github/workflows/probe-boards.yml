@@ -3,15 +3,7 @@ on: workflow_dispatch
 permissions:
   contents: write
 jobs:
-  probe:
+  cleanup:
     runs-on: ubuntu-latest
-    timeout-minutes: 70
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - run: pip install -q -r requirements.txt
-      - run: mkdir -p out && python3 scripts/check_cand.py 2> out/err.txt || true
-      - name: push result
-        run: |
-          cd out && git init -q && git checkout -q -b probe-out && git add . && git -c user.name=probe -c user.email=probe@x commit -qm probe && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe-out
+      - run: git init -q && git push "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" --delete probe-out || true
