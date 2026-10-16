@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T08:03:08+00:00",
- "finishedAt": "2026-10-16T08:22:10+00:00",
+ "startedAt": "2026-10-16T12:09:14+00:00",
+ "finishedAt": "2026-10-16T12:26:35+00:00",
  "online": true,
- "total": 4705,
- "new": 166,
- "changed": 192,
+ "total": 4689,
+ "new": 8,
+ "changed": 292,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 181곳",
    "ok": true,
-   "count": 822,
-   "mode": "성공 155 / 실패 26"
+   "count": 797,
+   "mode": "성공 154 / 실패 27"
   },
   {
    "source": "gov24",
@@ -111,7 +111,7 @@
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
    "count": 12,
-   "mode": "online"
+   "mode": "seed"
   }
  ],
  "registry": {
@@ -366,7 +366,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 17
+    "count": 16
    },
    {
     "name": "덕성여자대학교",
@@ -436,7 +436,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "강남대학교",
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "충북대학교",
@@ -725,8 +725,8 @@
     "url": "https://home.sch.ac.kr/sch/06/010300.jsp",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 10
+    "ok": false,
+    "count": 0
    },
    {
     "name": "경성대학교",
@@ -906,7 +906,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 11
    },
    {
     "name": "춘천교육대학교",
@@ -1126,7 +1126,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 10
    },
    {
     "name": "한국기술교육대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 0
    },
    {
     "name": "전주대학교",
@@ -1216,7 +1216,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 11
    },
    {
     "name": "가톨릭관동대학교",
@@ -1905,7 +1905,7 @@
     "url": "https://chest.or.kr/bbs/1000/initPostList.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -5705,7 +5705,7 @@
     "url": "https://www.ccn.ac.kr/scholarship",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
