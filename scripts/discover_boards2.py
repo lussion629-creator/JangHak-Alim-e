@@ -57,7 +57,7 @@ def one(item):
     if not allowed(home): return name, {"err": "robots"}
     queue = [(10, "home", home)]; seen = set(); visits = 0
     try:
-        while queue and visits < (8 if RENDER else 18):
+        while queue and visits < (5 if RENDER else 18):
             queue.sort(key=lambda x: -x[0]); sc, t, u = queue.pop(0)
             k = u.split("#")[0]
             if k in seen or not allowed(u): continue
@@ -84,7 +84,8 @@ if RENDER:
     res = {}
     for it in TODO:
         k, v = one(it); res[k] = v
+        json.dump(res, open("out/boards.json", "w"), ensure_ascii=False, indent=0)  # 중간에 끊겨도 남도록
 else:
     with cf.ThreadPoolExecutor(12) as ex:
         res = dict(ex.map(one, TODO))
-json.dump(res, sys.stdout, ensure_ascii=False, indent=0)
+json.dump(res, open("out/boards.json", "w"), ensure_ascii=False, indent=0)
