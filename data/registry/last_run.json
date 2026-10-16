@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T16:25:11+00:00",
- "finishedAt": "2026-10-16T16:53:50+00:00",
+ "startedAt": "2026-10-16T18:50:08+00:00",
+ "finishedAt": "2026-10-16T19:21:28+00:00",
  "online": true,
- "total": 4941,
- "new": 95,
- "changed": 394,
+ "total": 4939,
+ "new": 5,
+ "changed": 419,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1138,
-   "mode": "성공 232 / 실패 18"
+   "count": 1142,
+   "mode": "성공 231 / 실패 19"
   },
   {
    "source": "gov24",
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 10
    },
    {
     "name": "서울여자대학교",
