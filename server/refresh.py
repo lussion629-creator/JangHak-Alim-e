@@ -203,6 +203,13 @@ def export(con: sqlite3.Connection, summary: dict):
         r["status"] = status_of(r.get("start"), r.get("end"), today, r.get("posted", ""))
         r["support"] = support_of(r)
         r["next"] = expected_next(r.get("start"), r.get("end"), today) if r["status"] == "마감" and r["source"].startswith(("kosaf", "hyin")) else ""
+    from .model import fix_entities
+    for r in rows:  # '&amp;#9312;' 같은 깨진 글자 표기를 고친다
+        for k, v in list(r.items()):
+            if isinstance(v, str) and "&" in v:
+                r[k] = fix_entities(v)
+        if r.get("quota") and len(r["quota"]) > 120:
+            r["quota"] = re.split(r"\n|(?<=[가-힣)])\s*\d{1,2}\.\s", r["quota"])[0][:120]  # 선발 인원 칸에 다른 항목이 이어 붙은 경우
     rows = collapse(rows)  # 원칙: 같은 장학(세부 분야·지난 회차 포함)은 한 번만 보여 준다
     rows.sort(key=lambda r: ({"모집중": 0, "예정": 1, "상시/미정": 2, "마감": 3}[r["status"]], r.get("end") or "9999"))
     rows = [public(r) for r in rows]

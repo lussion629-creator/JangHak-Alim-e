@@ -269,12 +269,33 @@ def _join_fragments(lines: list[str]) -> list[str]:
     return out
 
 
+def fix_entities(t: str) -> str:
+    """'&amp;#9312;'처럼 두 번 감싼 HTML 문자 표기를 원래 글자(①)로 되돌린다."""
+    import html as _h
+    for _ in range(3):
+        if not t or not re.search(r"&(#\d{2,6}|#x[0-9a-fA-F]{2,5}|[a-zA-Z]{2,8});", t):
+            break
+        t = _h.unescape(t)
+    return t.replace("\u00a0", " ") if t else t
+
+
+def split_flat(t: str) -> str:
+    """줄바꿈 없이 이어 붙은 '…내외2. 모집기간: …' 같은 번호 항목·①②를 줄로 나눈다."""
+    out = []
+    for l in (t or "").split("\n"):
+        if len(l) > 80:
+            l = re.sub(r"(?<=[가-힣A-Za-z)\]])\s*(?=\d{1,2}\.\s*[가-힣])", "\n", l)
+            l = re.sub(r"\s*(?=[①-⑳❶-❿])", "\n", l)
+        out.append(l)
+    return "\n".join(x.strip() for x in "\n".join(out).split("\n") if x.strip())
+
+
 def summarize_body(text: str, title: str = "") -> dict:
     """게시판 본문에서 메뉴·꼬리말을 걷어내고 필요한 항목만 정리한다.
     반환: {"text": 정리된 본문, "fields": {라벨: 값}}"""
     if not text:
         return {"text": "", "fields": {}}
-    t = _html_to_text(text)
+    t = split_flat(fix_entities(_html_to_text(fix_entities(text))))
     lines = [re.sub(r"\s+", " ", l).strip() for l in t.splitlines()]
     lines = [l for l in lines if l and not _PRE_JUNK.search(l)]
     lines = _join_fragments(lines)

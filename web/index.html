@@ -1333,8 +1333,9 @@ function fillProfile(){
   const opt='<option value="">선택 안 함</option>'+SIDO.map(s=>`<option>${s}</option>`).join("");
   for(const id of["p_sido","p_psido","p_hsido","p_ssido"]) $("#"+id).innerHTML=opt;
   // 학교: 한양대·한양여대를 맨 위에, 나머지는 가나다순
-  const TOP=[["한양대학교","서울","한양대학교"],["한양여자대학교","서울","한양여자대학교"],["강원대학교 삼척캠퍼스","강원","강원대학교 삼척캠퍼스"],["서강대학교","서울","서강대학교"],["건국대학교","서울","건국대학교 (서울캠퍼스)"]];
-  const rest=[...new Map(UNIVS.filter(([n])=>!/^한양/.test(n)).map(u=>[u[0],u])).values()].sort((a,b)=>a[0].localeCompare(b[0],"ko"));
+  // 학교: 어느 학교도 따로 앞에 두지 않고 가나다순 (캠퍼스가 나뉜 학교는 캠퍼스 이름도 함께)
+  const TOP=[];
+  const rest=[...new Map([...UNIVS,["강원대학교 삼척캠퍼스","강원"],...UNIV_PORTALS.map(([n])=>[n,""])].map(u=>[u[0],u])).values()].sort((a,b)=>a[0].localeCompare(b[0],"ko"));
   // 학교·학과는 쳐서 찾는다 (목록에서 고르거나, 목록에 없으면 그대로 입력)
   $("#schoolList").innerHTML=TOP.map(([v,,l])=>`<option value="${esc(v)}">${esc(l)}</option>`).join("")+rest.map(([n])=>`<option value="${esc(n)}"></option>`).join("");
   $("#deptList").innerHTML=Object.entries(MAJORS).map(([g,l])=>l.map(n=>`<option value="${esc(n)}">${esc(g)}</option>`).join("")).join("");
@@ -1500,7 +1501,7 @@ async function boot(){
   pushAlerts(); setTimeout(checkUpdate,8000);
   hyinMerge().then(n=>{ if(n) cacheAll(); renderHyin(); renderPortals() }).catch(()=>{ try{renderHyin()}catch(e){} });
   try{ syncMyPortal(); let n=0; for(const k in PORTALS) n+=portalMerge(k); if(n) cacheAll() }catch(e){}
-  if(!myGroup()||myGroup()==="hy") hyWorkSync().catch(()=>{});
+  if(myGroup()==="hy"||/^한양대학교/.test(chosenSchool())) hyWorkSync().catch(()=>{}); // 내 학교가 한양대일 때만
 }
 /* ---------- 휴대폰 앱: 한양 포털 장학캘린더 (학생이 직접 로그인) ---------- */
 const HYIN_APP=()=>!!(window.AndroidBridge&&window.AndroidBridge.openPortal);
@@ -1571,7 +1572,7 @@ function renderHyin(){
       <div class="actions"><button class="btn${a==="off"?" primary":""}" type="button" id="alOn">${a==="off"?"자동 로그인 켜기":"아이디·비밀번호 바꾸기"}</button>${a!=="off"?`<button class="btn" type="button" id="alOff">자동 로그인 끄기</button>`:""}</div></div>`})():""}`;
   const on=$("#alOn"); if(on) on.onclick=()=>{try{window.AndroidBridge.autoLoginSetup()}catch(e){}};
   const off=$("#alOff"); if(off) off.onclick=()=>{try{window.AndroidBridge.autoLoginOff()}catch(e){} renderHyin()};
-  if(call) call.hidden=!!when&&st!=="login";
+  if(call) call.hidden=presetKey(chosenSchool())!=="hyin"||(!!when&&st!=="login"); // 한양대를 고른 사람에게만
   const c=$("#hyinClear"); if(c) c.onclick=()=>{try{window.AndroidBridge.hyinClear()}catch(e){} store.set("hyinKnown",[]); location.reload()};
 }
 document.addEventListener("click",e=>{ if(e.target.closest("[data-portal]")){ try{window.AndroidBridge.openPortal()}catch(err){} } });
@@ -1608,7 +1609,7 @@ function portalMerge(key){
 function renderPortal(key){
   if(key==="my") return renderMyPortal();
   const P=PORTALS[key], box=$(P.box), panel=$(P.panel); if(!box) return;
-  const g=myGroup(); if(panel) panel.hidden=!!g&&g!==P.group;
+  if(panel) panel.hidden=presetKey(chosenSchool())!==key;
   if(!(window.AndroidBridge&&window.AndroidBridge.portalOpen)){ box.innerHTML=`<p class="note">${APP_ONLY} 앱에서 ${P.name}에 한 번 로그인하면 ${P.name}의 장학 신청 목록까지 함께 보여 줍니다.</p>`; return }
   const {items,at}=portalItems(key), st=PB("portalState",key)||"", a=PB("portalLoginState",key)||"off";
   const when=at?new Date(at):null, live=items.filter(r=>r.status!=="마감").length;
@@ -1622,7 +1623,7 @@ function renderPortal(key){
       <div class="actions"><button class="btn${a==="off"?" primary":""}" type="button" data-portal-al-on="${key}">${a==="off"?"자동 로그인 켜기":"학번·비밀번호 바꾸기"}</button>${a!=="off"?`<button class="btn" type="button" data-portal-al-off="${key}">자동 로그인 끄기</button>`:""}</div></div>`;
 }
 function renderPortals(){ try{renderMyPortal()}catch(e){} for(const k in PORTALS) try{if(k!=="my") renderPortal(k)}catch(e){}
-  const g=myGroup(), hp=$("#hyinPanel"); if(hp) hp.hidden=!!g&&g!=="hy"; const hc=$("#hyinCallout"); if(hc&&g&&g!=="hy") hc.hidden=true }
+  const pk=presetKey(chosenSchool()), hp=$("#hyinPanel"); if(hp) hp.hidden=pk!=="hyin"; const hc=$("#hyinCallout"); if(hc&&pk!=="hyin") hc.hidden=true }
 document.addEventListener("click",e=>{
   const o=e.target.closest("[data-portal-open]"); if(o){PB("portalOpen",o.dataset.portalOpen); return}
   const c=e.target.closest("[data-portal-clear]"); if(c){PB("portalClear",c.dataset.portalClear); location.reload(); return}
@@ -1636,41 +1637,53 @@ const UNIV_PORTALS=[["가야대학교","kaya.ac.kr","https://www.kaya.ac.kr/"],[
 const PRESET_PORTAL=[[/^한양대학교/,"hyin","한양 포털"],[/^강원대학교/,"kcloud","K-Cloud"],[/^서강대학교/,"saint","SAINT"],[/^건국대학교/,"kuis","건국대 학사정보시스템"]];
 function myInfo(){ try{ return JSON.parse(PB("myPortalInfo")||"{}")||{} }catch(e){ return {} } }
 function syncMyPortal(){ const i=myInfo(); if(i.domain){ PORTALS.my={name:(i.name||"학교")+" 포털",school:i.name||"학교",url:"https://www."+i.domain+"/",group:"",box:"#myBox",panel:null,region:"",district:"",path:"저장한 장학 화면",custom:true} } else delete PORTALS.my; return i }
+// 내가 고른 학교 (앱에서 연결한 학교 > 이 칸에서 고른 학교 > 내 정보의 학교)
+function chosenSchool(){ const i=(window.AndroidBridge&&window.AndroidBridge.myPortalInfo)?myInfo():{}; return i.name||(store.get("mySchoolPick",null)||{}).name||(profile&&profile.schoolName)||"" }
+function presetKey(n){ const p=PRESET_PORTAL.find(([rx])=>rx.test(n||"")); return p?p[1]:"" }
 function renderMyPortal(){
   const box=$("#myBox"); if(!box) return;
-  if(!(window.AndroidBridge&&window.AndroidBridge.myPortalInfo)){ box.innerHTML=`<p class="note">전국 어느 대학이든, 학교 포털에 로그인해야만 보이는 장학 공지·장학 신청 목록을 함께 볼 수 있어요. ${APP_ONLY}</p>`; return }
-  const i=syncMyPortal(), mine=(profile&&profile.schoolName)||"";
-  const pre=PRESET_PORTAL.find(([rx])=>rx.test(i.name||mine));
-  if(!i.domain){
-    const list=UNIV_PORTALS.map(([n,d])=>`<option value="${esc(n)}">${esc(d)}</option>`).join("");
-    box.innerHTML=`<p class="note">학교를 고르고 ‘연결하기’를 누르면 그 학교 포털이 앱 안에서 열려요. 직접 로그인한 뒤 <b>장학 공지</b>나 <b>장학 신청</b> 목록 화면을 열고 위쪽 <b>「이 화면 저장」</b>을 누르면, 그다음부터는 앱이 그 화면을 다시 읽어 새 장학을 알려 줘요. 읽은 목록은 이 휴대폰에만 저장되고, 본인의 신청·수혜 내역 표는 읽지 않아요.</p>
-      <div class="form" style="margin-top:8px"><label>학교<input type="search" id="mp_name" list="mpList" value="${esc(mine)}" placeholder="학교 이름 (예: 부산대)" autocomplete="off"><datalist id="mpList">${list}</datalist></label>
-      <label>포털 주소 <span class="note" style="display:inline">(목록에 없거나 다른 주소면)</span><input type="url" id="mp_url" placeholder="https://portal.학교.ac.kr"></label></div>
+  const app=!!(window.AndroidBridge&&window.AndroidBridge.myPortalInfo);
+  const i=app?syncMyPortal():{}, pick=store.get("mySchoolPick",null)||{}, name=i.name||pick.name||"";
+  const pre=PRESET_PORTAL.find(([rx])=>rx.test(name));
+  const list=UNIV_PORTALS.map(([n,d])=>`<option value="${esc(n)}">${esc(d)}</option>`).join("");
+  const how=`학교를 고르면 그 학교 포털이 앱 안에서 열려요. 직접 로그인한 뒤 <b>장학 공지</b>나 <b>장학 신청</b> 목록 화면을 열고 위쪽 <b>「이 화면 저장」</b>을 누르면, 그다음부터는 앱이 그 화면을 다시 읽어 새 장학을 알려 줘요. 읽은 목록은 이 휴대폰에만 저장되고, 본인의 신청·수혜 내역 표는 읽지 않아요.`;
+  if(!name||(!app&&!pick.name)||(app&&!i.domain&&!pre)){
+    box.innerHTML=`<p class="note">${how}${app?"":` <b>로그인해서 읽는 일은 안드로이드 앱에서만 돼요.</b> 여기서 학교를 골라 두면 앱에서도 같은 학교로 이어서 연결할 수 있어요.`}</p>
+      <div class="form" style="margin-top:8px"><label>학교<input type="search" id="mp_name" list="mpList" value="${esc(name||(profile&&profile.schoolName)||"")}" placeholder="학교 이름 (예: 부산대)" autocomplete="off"><datalist id="mpList">${list}</datalist></label>
+      <label>포털 주소 <span class="note" style="display:inline">(목록에 없거나 다른 주소면)</span><input type="url" id="mp_url" placeholder="https://portal.학교.ac.kr" value="${esc(pick.entry&&pick.typed?pick.entry:"")}"></label></div>
       <p class="note" id="mp_hint"></p>
-      <div class="actions"><button class="btn primary" type="button" id="mp_go">연결하기</button></div>`;
-    const hint=()=>{const n=$("#mp_name").value.trim(), u=UNIV_PORTALS.find(x=>x[0]===n), p=PRESET_PORTAL.find(([rx])=>rx.test(n));
-      $("#mp_hint").innerHTML=p?`${esc(n)}는 아래 <b>${esc(p[2])}</b> 칸에서 더 정확하게 연결할 수 있어요.`:u?`처음 열 주소: ${esc(u[2])} — 학교 홈페이지에서 포털(통합정보시스템)로 들어가 로그인하세요.`:n?"목록에 없는 학교예요. 위에 포털 주소를 넣어 주세요.":""};
+      <div class="actions"><button class="btn primary" type="button" id="mp_go">${app?"연결하기":"이 학교로 정하기"}</button></div>`;
+    const hint=()=>{const n=$("#mp_name").value.trim(), u=UNIV_PORTALS.find(x=>x[0]===n);
+      $("#mp_hint").textContent=u?`처음 열 주소: ${u[2]} — 학교 홈페이지에서 포털(통합정보시스템)로 들어가 로그인하세요.`:n?"목록에 없는 학교예요. 위에 포털 주소를 넣어 주세요.":""};
     $("#mp_name").oninput=hint; hint();
     $("#mp_go").onclick=()=>{ const n=$("#mp_name").value.trim(), typed=$("#mp_url").value.trim(), u=UNIV_PORTALS.find(x=>x[0]===n);
       let entry=typed||(u&&u[2])||"", dom=u?u[1]:"";
       if(typed){ try{ const h=new URL(typed).hostname.replace(/^www\./,""); const m=h.match(/([a-z0-9-]+\.(ac\.kr|ac|edu|or\.kr|kr|com|net|org))$/); dom=m?m[1]:h }catch(e){ toast("포털 주소를 확인해 주세요 (https://로 시작)"); return } }
-      if(!entry){ toast("학교를 고르거나 포털 주소를 넣어 주세요."); return }
-      const nm=n||dom;
-      if(!PB("myPortalSet",nm,dom,entry)){ toast("주소가 학교 주소와 맞지 않아요. 다시 확인해 주세요."); return }
-      PB("portalOpen","my"); renderMyPortal() };
+      const nm=n||dom, pk=presetKey(nm);
+      if(!entry&&!pk){ toast("학교를 고르거나 포털 주소를 넣어 주세요."); return }
+      store.set("mySchoolPick",{name:nm,dom,entry,typed:!!typed});
+      if(app){
+        if(pk){ renderPortals(); PB(pk==="hyin"?"openPortal":"portalOpen",pk); }
+        else { if(!PB("myPortalSet",nm,dom,entry)){ toast("주소가 학교 주소와 맞지 않아요. 다시 확인해 주세요."); return } PB("portalOpen","my"); }
+      } else toast(nm+"(으)로 정했어요. 안드로이드 앱에서 이어서 연결할 수 있어요.");
+      renderPortals(); };
     return;
   }
-  const {items,at}=portalItems("my"), st=i.state||"", a=PB("portalLoginState","my")||"off";
-  const when=at?new Date(at):null, live=items.filter(r=>r.status!=="마감").length;
-  box.innerHTML=`<p class="note"><b>${esc(i.name)}</b> 포털 · ${i.saved?"장학 화면 저장됨":`<span style="color:var(--seal)">아직 장학 화면을 저장하지 않았어요</span>`} · ${when?`마지막으로 불러온 때 ${when.getMonth()+1}월 ${when.getDate()}일 ${String(when.getHours()).padStart(2,"0")}:${String(when.getMinutes()).padStart(2,"0")} · ${items.length}건 (모집 중·예정 ${live}건)`:"아직 불러오지 않았어요."}</p>
-    ${st==="login"?`<p class="note" style="color:var(--seal)">로그인이 끝나서 자동으로 다시 불러오지 못했어요. 한 번 더 로그인해 주세요.</p>`:st==="notfound"||st==="fail"?`<p class="note" style="color:var(--seal)">저장한 화면에서 장학 목록을 찾지 못했어요. ‘다시 불러오기’를 누르고 장학 목록 화면에서 「이 화면 저장」을 다시 눌러 주세요.</p>`:""}
-    ${pre?`<p class="note">${esc(i.name)}는 아래 <b>${esc(pre[2])}</b> 칸의 맞춤 연결이 더 정확해요.</p>`:""}
-    <div class="actions"><button class="btn primary" type="button" data-portal-open="my">${i.saved?"다시 불러오기":"포털 열고 장학 화면 저장하기"}</button><button class="btn" type="button" id="mp_reset">다른 학교로 바꾸기</button></div>
-    <div class="sec" style="margin-top:14px;padding-top:12px"><b style="font-size:14px">하루 한 번 자동 로그인</b>
-      <p class="note">${a==="on"?"켜져 있어요. 하루에 한 번 앱이 알아서 로그인해 저장한 장학 화면을 다시 읽어요.":a==="failed"?`<span style="color:var(--seal)">자동 로그인이 한 번 실패해서 멈췄어요.</span> 2차 인증이 필요하거나 비밀번호가 바뀌었을 수 있어요. 위에서 한 번 직접 로그인하면 다시 켜져요.`:"꺼져 있어요. 켜면 포털 아이디·비밀번호를 이 휴대폰에 암호화해 저장하고, 하루 한 번 로그인 칸에 넣어 로그인해요. (2차 인증·보안 프로그램이 필요한 학교는 자동 로그인이 안 될 수 있어요)"}</p>
-      <p class="note">아이디·비밀번호는 휴대폰의 안전한 저장소에 암호화되고 그 학교 포털 로그인 칸에만 들어가요. 서버로 보내지 않아요. 로그인이 한 번이라도 실패하면 계정이 잠기지 않도록 바로 멈춰요.</p>
-      <div class="actions"><button class="btn${a==="off"?" primary":""}" type="button" data-portal-al-on="my">${a==="off"?"자동 로그인 켜기":"아이디·비밀번호 바꾸기"}</button>${a!=="off"?`<button class="btn" type="button" data-portal-al-off="my">자동 로그인 끄기</button>`:""}</div></div>`;
-  $("#mp_reset").onclick=()=>{ PB("myPortalForget"); delete PORTALS.my; location.reload() };
+  const reset=`<button class="btn" type="button" id="mp_reset">다른 학교로 바꾸기</button>`;
+  if(pre||!app){
+    box.innerHTML=`<p class="note"><b>${esc(name)}</b>${pre?` · 아래 <b>${esc(pre[2])}</b> 칸에서 연결해요. 이 학교는 장학 화면 위치를 미리 맞춰 두어서 「이 화면 저장」 없이 바로 읽어요.`:` · ${app?"":"로그인해서 읽는 일은 안드로이드 앱에서만 돼요. 앱의 이 칸에서 ‘연결하기’를 누르세요."}`}</p><div class="actions">${reset}</div>`;
+  } else {
+    const {items,at}=portalItems("my"), st=i.state||"", a=PB("portalLoginState","my")||"off";
+    const when=at?new Date(at):null, live=items.filter(r=>r.status!=="마감").length;
+    box.innerHTML=`<p class="note"><b>${esc(i.name)}</b> 포털 · ${i.saved?"장학 화면 저장됨":`<span style="color:var(--seal)">아직 장학 화면을 저장하지 않았어요</span>`} · ${when?`마지막으로 불러온 때 ${when.getMonth()+1}월 ${when.getDate()}일 ${String(when.getHours()).padStart(2,"0")}:${String(when.getMinutes()).padStart(2,"0")} · ${items.length}건 (모집 중·예정 ${live}건)`:"아직 불러오지 않았어요."}</p>
+      ${st==="login"?`<p class="note" style="color:var(--seal)">로그인이 끝나서 자동으로 다시 불러오지 못했어요. 한 번 더 로그인해 주세요.</p>`:st==="notfound"||st==="fail"?`<p class="note" style="color:var(--seal)">저장한 화면에서 장학 목록을 찾지 못했어요. ‘다시 불러오기’를 누르고 장학 목록 화면에서 「이 화면 저장」을 다시 눌러 주세요.</p>`:""}
+      <div class="actions"><button class="btn primary" type="button" data-portal-open="my">${i.saved?"다시 불러오기":"포털 열고 장학 화면 저장하기"}</button>${reset}</div>
+      <div class="sec" style="margin-top:14px;padding-top:12px"><b style="font-size:14px">하루 한 번 자동 로그인</b>
+        <p class="note">${a==="on"?"켜져 있어요. 하루에 한 번 앱이 알아서 로그인해 저장한 장학 화면을 다시 읽어요.":a==="failed"?`<span style="color:var(--seal)">자동 로그인이 한 번 실패해서 멈췄어요.</span> 2차 인증이 필요하거나 비밀번호가 바뀌었을 수 있어요. 위에서 한 번 직접 로그인하면 다시 켜져요.`:"꺼져 있어요. 켜면 포털 아이디·비밀번호를 이 휴대폰에 암호화해 저장하고, 하루 한 번 로그인 칸에 넣어 로그인해요. (2차 인증·보안 프로그램이 필요한 학교는 자동 로그인이 안 될 수 있어요)"}</p>
+        <p class="note">아이디·비밀번호는 휴대폰의 안전한 저장소에 암호화되고 그 학교 포털 로그인 칸에만 들어가요. 서버로 보내지 않아요. 로그인이 한 번이라도 실패하면 계정이 잠기지 않도록 바로 멈춰요.</p>
+        <div class="actions"><button class="btn${a==="off"?" primary":""}" type="button" data-portal-al-on="my">${a==="off"?"자동 로그인 켜기":"아이디·비밀번호 바꾸기"}</button>${a!=="off"?`<button class="btn" type="button" data-portal-al-off="my">자동 로그인 끄기</button>`:""}</div></div>`;
+  }
+  $("#mp_reset").onclick=()=>{ PB("myPortalForget"); delete PORTALS.my; store.set("mySchoolPick",null); renderPortals() };
 }
 document.addEventListener("click",e=>{ if(e.target.id==="goMyPortal"){ tab("src"); setTimeout(()=>{ try{ $("#myPanel").scrollIntoView({behavior:"smooth",block:"start"}) }catch(x){} },50) } });
 
