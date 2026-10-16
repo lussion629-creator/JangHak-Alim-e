@@ -564,7 +564,7 @@ select:focus,input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 
     <details data-k="중복 같은 장학 한 번 세부 분야 회차"><summary>같은 장학은 한 번만</summary><p>여러 곳에 올라온 같은 장학, 지난 회차, 성적우수·특기처럼 세부 분야만 다른 장학은 한 줄로 묶어 보여 줘요. 묶인 세부 분야는 카드의 ‘세부 n개’ 표시와 상세의 ‘세부 분야’에서 볼 수 있어요.</p></details>
     <details data-k="모집 상태 접수 예정 마감 내년 예상 묶음"><summary>모집중 · 접수 예정 · 마감·내년 예상</summary><p>목록은 ‘지금 모집중’, ‘접수 예정’, ‘마감·내년 예상’으로 나뉘어 차례로 나와요. 마감된 장학도 작년 일정을 보고 다음 모집 시기를 예상해 보여 줘요. 왼쪽(휴대폰은 ‘필터’ 버튼) 모집 상태에서 원하는 것만 켜고 끌 수 있어요.</p></details>
     <details data-k="빼고 보기 한국장학재단 제외 국가장학 기관"><summary>한국장학재단 같은 곳 빼고 보기</summary><p>목록 바로 위 <b>빼고 보기</b> 줄에서 한국장학재단, 정부·공공기관, 지자체, 교내 장학, 근로장학, 학자금 대출, 추천 필요를 눌러 뺄 수 있어요. 필터의 ‘빼고 보기’ 칸에는 낱말을 넣어 뺄 수도 있어요. 줄이 그어진 버튼이 지금 빼고 있는 것이에요.</p></details>
-    <details data-k="학교 전용 공고 왼쪽 아래 다른 학교"><summary>학교 전용 공고</summary><p>그 학교 학생만 지원할 수 있는 공고는 기본 목록에서 빼고 왼쪽 아래 <b>학교 전용</b> 칸에 따로 모아 두었어요(휴대폰은 목록 위). 학교 이름을 누르면 그 학교 전용 공고만 보여요. 검색 칸에 학교 이름을 쳐도 찾을 수 있어요.</p></details>
+    <details data-k="학교 전용 공고 왼쪽 아래 다른 학교"><summary>학교 전용 공고</summary><p>그 학교 학생만 지원할 수 있는 공고는 기본 목록에서 빼고 왼쪽 아래 <b>학교 전용</b> 칸에 따로 모아 두었어요(휴대폰은 목록 위). 학교 이름을 누르거나, 칸 아래 ‘다른 학교 찾기’에서 전국 대학 중 원하는 학교를 고르면 그 학교 전용 공고만 보여요. 검색 칸에 ‘○○대’처럼 학교 이름을 쳐도 찾을 수 있어요.</p></details>
     <details data-k="별표 관심 종 알림 비슷한 같은"><summary>별표(관심)와 종(알림)</summary><p><b>별</b>을 누르면 ‘관심’ 탭에 모이고, 마감 전에 알려 드려요. 별 아래 <b>종</b>을 누르면 그 장학과 같거나 비슷한 장학이 새로 올라올 때 알려 드려요. 키워드·지원 종류 알림과 등록한 목록은 ‘알림’ 탭에서 바꿀 수 있어요. 휴대폰 앱은 휴대폰 알림으로, 웹은 다음에 열 때 맨 위에 알려 드려요.</p></details>
     <details data-k="숨기기 숨김 안 보이게"><summary>장학 숨기기</summary><p>카드 오른쪽 <b>눈 모양</b>을 누르면 목록·달력·새 소식에서 빠져요. 실수했다면 바로 뜨는 ‘되돌리기’를 누르거나, 목록 위 오른쪽 <b>숨긴 것만 보기</b>를 누르면 숨긴 장학만 따로 모아 보고 다시 풀 수 있어요.</p></details>
     <details data-k="내 정보 맞춤 학과 전공 학교 초기화 리셋"><summary>내 정보로 맞춤 찾기</summary><p>‘내 정보’ 탭에 학교·학과(쳐서 찾기)·지역·소득구간·성적을 넣으면 지원 가능 여부를 표시해 줘요. 목록 위의 스위치로 맞춤 거르기를 껐다 켤 수 있고, ‘내 정보 초기화’로 지울 수 있어요. 입력한 정보는 이 기기에만 저장돼요.</p></details>
@@ -904,7 +904,17 @@ const APP_ONLY=IS_IOS?"이 기능은 안드로이드 앱에서만 쓸 수 있어
 // 학교 전용 공고: 그 학교 학생만 지원할 수 있는 공고. 학교별로 켜고 끈다.
 const SCHOOLS=[["hyu","한양대",/^한양대학교/],["hywu","한양여대",/^한양여자대학교/],["kwsc","강원대 삼척",/^강원대학교/],["sg","서강대",/^서강대학교/],["kku","건국대",/^건국대학교/]];
 const GROUP={hyu:"hy",hywu:"hy",kwsc:"kw",sg:"sg",kku:"kk"};
-function ownSchool(r){
+// 그 학교 학생만 지원할 수 있는 장학의 학교 열쇠들 (미리 맞춘 5개 학교는 짧은 열쇠, 다른 학교는 "u:학교이름")
+const schoolKey=n=>{ n=String(n||"").trim(); const t=SCHOOLS.find(x=>x[2].test(n)); return t?(t[0]==="hyu"&&/ERICA/.test(n)?"erica":t[0]):(n?"u:"+n.replace(/\s.*$/,""):"") };
+function ownKeys(r){
+  if(r._ok!==undefined) return r._ok;
+  const k=ownSchool0(r); const out=k?[k]:[];
+  if(Array.isArray(r.own)) for(const n of r.own){ const x=schoolKey(n); if(x&&!out.includes(x)) out.push(x) }
+  return r._ok=out;
+}
+function ownSchool(r){ return ownKeys(r)[0]||"" }
+function ownLabel(k){ return OWNL[k]||(k&&k.startsWith("u:")?k.slice(2)+" 전용":"") }
+function ownSchool0(r){
   if(Array.isArray(r.only)&&r.only.length===1) return r.only[0];
   const o=String(r.org||"");
   if(r.source==="u2"||(/한양여자대학교/.test(o)&&r.org_type==="대학(교내)")) return "hywu";
@@ -914,7 +924,7 @@ function ownSchool(r){
   if(r.org_type==="대학(교내)"&&/^한양대학교/.test(o)) return /ERICA/.test(o)?"erica":"hyu";
   return "";
 }
-function mySchool(){const n=(profile&&profile.schoolName)||""; const t=SCHOOLS.find(x=>x[2].test(n)); return t?t[0]:""}
+function mySchool(){const n=(profile&&profile.schoolName)||""; return schoolKey(n)}
 // 학교 전용 공고를 볼지 (직접 고르지 않았으면 내 학교 것만, 학교를 안 골랐으면 모두)
 function showOnly(){
   const v=store.get("only",null), me=mySchool();
@@ -941,7 +951,7 @@ const OWNL={hywu:"한양여대 전용",erica:"한양대 전용 · ERICA",hyu:"�
 const CATS=new Set((()=>{const v=store.get("cats",null); if(Array.isArray(v)) return v; const old=store.get("cat",""); return old?[old]:[]})());
 const catOf=r=>(r.support&&r.support.length)?r.support:["etc"];
 // 학교 전용 공고 고르기: 누르면 그 학교 전용 공고'만' 보여 준다 (여러 개 고를 수 있음)
-const ONLY_SEL=new Set((store.get("onlySel",[])||[]).filter(k=>SCHOOLS.some(([x])=>x===k)));
+const ONLY_SEL=new Set((store.get("onlySel",[])||[]).filter(k=>typeof k==="string"&&(SCHOOLS.some(([x])=>x===k)||k.startsWith("u:"))));
 // 숫자는 '눌렀을 때 실제로 보이게 될 개수' (지금 고른 다른 조건·검색까지 반영)
 function countWith(cats,only){
   const c0=new Set(CATS), o0=new Set(ONLY_SEL);
@@ -951,16 +961,30 @@ function countWith(cats,only){
   CATS.clear(); c0.forEach(k=>CATS.add(k)); ONLY_SEL.clear(); o0.forEach(k=>ONLY_SEL.add(k));
   return n;
 }
+// 학교별 '학교 전용' 개수 (지금 고른 다른 조건·검색 반영) — 한 번에 센다
+function ownCounts(){
+  const c0=new Set(ONLY_SEL); ONLY_SEL.clear(); ONLY_SEL.add("*");
+  const q=($("#q")&&$("#q").value||"").trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const cnt={}; for(const r of DATA) if(passes(r,q)) for(const k of ownKeys(r)) cnt[k]=(cnt[k]||0)+1;
+  ONLY_SEL.clear(); c0.forEach(k=>ONLY_SEL.add(k)); return cnt;
+}
 function renderOnly(){
-  const box=$("#onlyBox"); if(!box) return; const o=showOnly(), me=mySchool(), anyOther=SCHOOLS.filter(([k])=>k!==me).some(([k])=>o[k]);
-  box.innerHTML=`<h3>학교 전용${ONLY_SEL.size?`<button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button>`:""}</h3><div class="chips">${SCHOOLS.map(([k,l])=>`<button type="button" class="chip" data-only="${k}" aria-pressed="${ONLY_SEL.has(k)}">${l} <b>${countWith([...CATS],[k])}</b></button>`).join("")}</div>`
-    +`<p class="note">${ONLY_SEL.size?"고른 학교 학생만 지원할 수 있는 공고만 보는 중":"그 학교 학생만 지원할 수 있는 공고는 목록에서 빼 두었어요. 학교를 누르면 그것만 보여요."}</p>`;
+  const box=$("#onlyBox"); if(!box) return;
+  const cnt=ownCounts(), me=mySchool();
+  // 보여 줄 학교: 고른 학교 → 내 학교 → 공고가 많은 학교 순 (나머지는 찾기 칸으로)
+  const keys=[...new Set([...ONLY_SEL,...(me&&cnt[me]?[me]:[]),...Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]).slice(0,6)])];
+  const all=Object.keys(cnt).sort((a,b)=>ownLabel(a).localeCompare(ownLabel(b),"ko"));
+  const nm=k=>ownLabel(k).replace(/ 전용$/,"");
+  box.innerHTML=`<h3>학교 전용${ONLY_SEL.size?`<button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button>`:""}</h3><div class="chips">${keys.map(k=>`<button type="button" class="chip" data-only="${esc(k)}" aria-pressed="${ONLY_SEL.has(k)}">${esc(nm(k))} <b>${cnt[k]||0}</b></button>`).join("")}</div>`
+    +`<input type="search" id="onlyFind" list="onlyList" placeholder="다른 학교 찾기 (${all.length}곳)" aria-label="학교 전용 공고를 볼 학교 찾기" style="margin-top:6px;font-size:13px;padding:6px 10px"><datalist id="onlyList">${all.map(k=>`<option value="${esc(nm(k))}">${cnt[k]}건</option>`).join("")}</datalist>`
+    +`<p class="note">${ONLY_SEL.size?"고른 학교 학생만 지원할 수 있는 공고만 보는 중":"그 학교 학생만 지원할 수 있는 공고는 처음 목록에서 빼 두었어요. 학교를 고르면 그것만 보여요."}</p>`;
+  const f=$("#onlyFind"); if(f) f.onchange=()=>{ const v=f.value.trim(); const k=all.find(x=>nm(x)===v); if(k){ ONLY_SEL.add(k); store.set("onlySel",[...ONLY_SEL]); if($("#view-find").hidden) tab("find"); apply() } };
 }
 function renderCats(){ renderOnly();
   const n=k=>countWith(k?[k]:[],[...ONLY_SEL]);
   const o=showOnly(), me=mySchool(), others=SCHOOLS.filter(([k])=>k!==me), anyOther=others.some(([k])=>o[k]);
   $("#cats").innerHTML=[["","전체"],...SUP,["etc","그 밖의 장학"]].map(([k,l])=>`<button type="button" class="cat ${k||"all"}" data-cat="${k}" aria-pressed="${k?CATS.has(k):!CATS.size}"><i></i>${l}<span class="n">${n(k)}</span></button>`).join("")
-    +(CATS.size||ONLY_SEL.size?`<p class="cats-hint">`:"")+`${CATS.size||ONLY_SEL.size?`${[...[...CATS].map(k=>SUPL[k]||"그 밖의 장학"),...[...ONLY_SEL].map(k=>OWNL[k])].join(" · ")}만 보는 중 · <button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button></p>`:""}`;
+    +(CATS.size||ONLY_SEL.size?`<p class="cats-hint">`:"")+`${CATS.size||ONLY_SEL.size?`${[...[...CATS].map(k=>SUPL[k]||"그 밖의 장학"),...[...ONLY_SEL].map(k=>ownLabel(k))].join(" · ")}만 보는 중 · <button type="button" class="linkbtn" data-cat-reset="1">모두 보기</button></p>`:""}`;
 }
 function onCatsClick(e){
   const oo=e.target.closest("[data-only-others]"); if(oo){const me=mySchool(), on=oo.dataset.onlyOthers==="on", o={}; SCHOOLS.forEach(([k])=>o[k]=k===me||on); store.set("only",o); renderKpis(); apply(); return}
@@ -978,7 +1002,7 @@ function stat(r){
   if(r.status==="마감"){ if(!r.next) return {key:"마감",label:"마감"}; const [y,m]=r.next.split("-"); return {key:"마감",label:(y===TODAY.slice(0,4)?"":"’"+y.slice(2)+" ")+(+m)+"월 예상",ny:y,nm:+m} }
   return {key:"상시/미정",label:"일정 확인"};
 }
-function cache(){for(const r of DATA){r._s=stat(r); r._fields=fieldsOf(r); r._n=notes(r); r._m=match(r,profile); r._f=majorFit(r,profile); r._q=[r.title,(r.majors||[]).join(" "),OWNL[ownSchool(r)]||"",r._fields.map(FSHORT).join(" "),r._n.join(" "),(r.support||[]).map(k=>SUPL[k]).join(" "),r.target,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
+function cache(){for(const r of DATA){r._s=stat(r); r._fields=fieldsOf(r); r._n=notes(r); r._m=match(r,profile); r._f=majorFit(r,profile); r._q=[r.title,(r.majors||[]).join(" "),ownKeys(r).map(ownLabel).join(" "),r._fields.map(FSHORT).join(" "),r._n.join(" "),(r.support||[]).map(k=>SUPL[k]).join(" "),r.target,r.org,r.region,r.district,r.kind,r.org_type,r.level,r.amount,r.special,r.residence,r.income].join(" ").toLowerCase()}}
 
 /* ---------- 필터 UI ---------- */
 function chipGroup(title,key,opts){
@@ -1061,10 +1085,10 @@ function gradOK(r){ if(r.level==="대학원생") return true; if(r.level==="고�
 function passes(r,q){
   if(SHOW_HIDDEN) return isHidden(r)&&(!q||!q.length||q.every(t=>r._q.includes(t)));
   if(isHidden(r)) return false;
-  const schoolQ=q&&q.some(t=>SCHOOL_Q.some(([rx])=>rx.test(t))); // 학교 이름을 검색하면 그 학교 전용 공고도 보여 준다
+  const schoolQ=q&&q.some(t=>SCHOOL_Q.some(([rx])=>rx.test(t))||(t.length>=3&&/대$|대학$|대학교$/.test(t)&&ownKeys(r).some(k=>k.startsWith("u:")&&k.slice(2).startsWith(t.replace(/학교$|학$/,""))))); // 학교 이름을 검색하면 그 학교 전용 공고도 보여 준다
   if(CATS.size && !catOf(r).some(k=>CATS.has(k))) return false;
   if(!teenOK(r)) return false;
-  if(ONLY_SEL.size){ if(!ONLY_SEL.has(ownSchool(r))) return false }
+  if(ONLY_SEL.size){ const ks=ownKeys(r); if(ONLY_SEL.has("*")?!ks.length:!ks.some(k=>ONLY_SEL.has(k))) return false }
   else if(!schoolQ&&!schoolOK(r)) return false;
   if(F.within && !(r._s.key==="모집중"&&r._s.d!=null&&r._s.d<=F.within)) return false;
   if(F.status.size && !F.status.has(r._s.key)) return false;
@@ -1095,7 +1119,8 @@ function majorField(t){
 }
 function qMatch(r,t){
   if(r._q.includes(t)) return true;
-  for(const [rx,k] of SCHOOL_Q) if(rx.test(t)) return ownSchool(r)===k||SRC_SCHOOL[r.source]===k;
+  for(const [rx,k] of SCHOOL_Q) if(rx.test(t)) return ownKeys(r).includes(k)||SRC_SCHOOL[r.source]===k;
+  if(t.length>=3&&/대$|대학$|대학교$/.test(t)){ const c=t.replace(/학교$|학$/,""); if(ownKeys(r).some(k=>k.startsWith("u:")&&k.slice(2).startsWith(c))) return true }
   const f=majorField(t); if(f) return r._fields.some(x=>f.has(x));
   return false;
 }
@@ -1138,7 +1163,7 @@ function card(r){
   const amt=moneyOf(r);
   const pills=(r.support||[]).map(k=>`<span class="pill ${esc(k)}">${SUPL[k]}</span>`);
   if(m) pills.push(`<span class="pill ${m.verdict}">${VLABEL[m.verdict]}</span>`);
-  {const own=ownSchool(r); if(own) pills.push(`<span class="pill only">${OWNL[own]}</span>`)}
+  {const own=ownSchool(r); if(own) pills.push(`<span class="pill only">${esc(ownLabel(own))}${ownKeys(r).length>1?" 외":""}</span>`)}
   if(r._f&&r._f.label==="내 학과 대상") pills.push(`<span class="pill ok">내 학과 대상</span>`);
   const mine=profile&&profile.major;
   pills.push(`<span class="pill ${mine&&r._fields.includes(mine)?"ok":mine&&!r._fields.includes("무관")&&!r._fields.includes("특정학과")?"no":"fld"}">${r._fields.map(FSHORT).join("·")}${r._fields[0]==="무관"||r._fields[0]==="특정학과"?"":" 계열"}</span>`);

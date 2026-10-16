@@ -482,6 +482,31 @@ def for_schools(rows: list[dict]) -> list[dict]:
                 r["for"] = []
                 order.append(r["id"])
             picked[r["id"]]["for"].append(key)
+    # 전국 대학 게시판에만 올라온 장학 가운데 위 학교 학생 누구도 지원 근거가 없는 것 = 그 학교(들) 학생만 할 수 있는 장학.
+    # 빼지 않고 own(학교 이름)을 붙여 두면, 앱은 처음 목록에서는 숨기고 '학교 전용'에서 그 학교를 고를 때만 보여 준다.
+    def _school(n):
+        n = re.sub(r"\s.*$", "", (n or "").strip())
+        return n if re.search(r"대학교?$|대학원$|과학기술원$|사관학교$", n) else ""
+    for r in rows:
+        if r["id"] in picked or r.get("level") in ("고등학생", "학점은행제"):
+            continue
+        srcs = set(r.get("_srcs") or [r.get("source")])
+        if not srcs <= {"board", "legacy"}:
+            continue
+        if re.search(r"국가장학금|학자금\s*(대출|지원구간)|가구원\s*(정보\s*)?동의|소득\s*(분위|구간)|한국장학재단|푸른등대", r.get("title") or "") and not re.search(r"교내|근로", r.get("title") or ""):
+            continue  # 학교가 다시 알린 전국 공통 안내(국가장학금 등)는 이미 따로 있다
+        own = sorted({x for x in (_school(n) for n in (r.get("_relay_schools") or [r.get("_relay_school")])) if x})
+        if not own or re.search(r"ERICA|에리카", (r.get("title") or "") + " " + (r.get("org") or "")):
+            continue
+        t = dict(r)
+        for k in ("_univ_only", "_hy", "_relay_ok", "_relay_school", "_relay_schools", "_relay_text", "_srcs", "_st_all", "_alltext", "_textby"):
+            t.pop(k, None)
+        t["for"] = []
+        t["own"] = own[:5]
+        if t.get("org_type") == "대학 게시판" and not t.get("org"):
+            t["org"] = own[0]
+        picked[t["id"]] = t
+        order.append(t["id"])
     # 중·고등학생 장학: 학교와 상관없이 따로 넣고(for=["hs"]), 앱에서 켜야 보인다
     teen = re.compile(r"중학생|중학교|중등")
     for r in rows:
@@ -617,6 +642,8 @@ ROUND_WORDS = re.compile(r"학생\s*신청\s*기간|신청\s*방법|신청\s*기
 
 
 def _org_key(r: dict) -> str:
+    if r.get("own"):
+        return "@" + r["own"][0]
     srcs = set(r.get("_srcs") or [r.get("source")])
     for s in srcs:
         if s in SCHOOL_SRC and (r.get("org_type") == "대학(교내)" or not r.get("org") or re.search(r"20\d\d|\d\s*학기", r.get("org") or "")):
@@ -712,7 +739,7 @@ def collapse(rows: list[dict]) -> list[dict]:
     # A0) 제목·마감일까지 똑같은 줄
     out = []
     for g in _group(rows, lambda r: (_hangul(r.get("title")), r.get("end") or "", _lv(r)) if len(_hangul(r.get("title"))) >= 4 else None):
-        g.sort(key=lambda r: -_richness(r))
+        g.sort(key=lambda r: (bool(r.get("own")), -_richness(r)))  # 일반 장학을 대표로 (학교 전용으로 숨지 않게)
         rep = g[0]
         if len(g) > 1:
             _union_into(rep, g[1:])
@@ -744,6 +771,12 @@ def collapse(rows: list[dict]) -> list[dict]:
     # C) 기관 이름이 다르게 적혔어도 긴 핵심 이름이 같으면 같은 장학 (서로 다른 학교의 교내 공고끼리는 제외)
     rows, out = out, []
     for g in _group(rows, lambda r: ("C", _ccore(r), _lv(r)) if len(_ccore(r)) >= 8 else None):
+        gen = [r for r in g if not r.get("own")]
+        if len(g) > 1 and gen and len(gen) < len(g):
+            # 일반 장학과 이름이 같은 '학교 전용' 줄은 그 학교가 옮겨 실은 같은 공고 → 일반 장학 하나로
+            for r in gen[:1]:
+                _union_into(r, [x for x in g if x.get("own")])
+            g = gen
         if len(g) > 1 and len({_org_key(r) for r in g if _org_key(r).startswith("@")}) <= 1:
             live = [r for r in g if r.get("status") in ("모집중", "예정")]
             if len(live) > 1:  # 같은 공고가 여러 곳에 올라온 것: 내용이 가장 많은 하나로
