@@ -1,9 +1,0 @@
-name: probe-boards
-on: workflow_dispatch
-permissions:
-  contents: write
-jobs:
-  cleanup:
-    runs-on: ubuntu-latest
-    steps:
-      - run: git init -q && git push "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" --delete probe-out probe-out-0 probe-out-1 probe-out-2 probe-out-3 probe-out-4 probe-out-5 || true
