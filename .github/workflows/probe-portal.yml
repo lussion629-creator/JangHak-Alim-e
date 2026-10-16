@@ -43,11 +43,14 @@ jobs:
             sleep 4
             adb exec-out screencap -p > shot1.png
             python3 .github/ci/ui.py tap "portal.학교" 10 || true
-            sleep 1
-            adb shell input text "https://www.konkuk.ac.kr/bbs/konkuk/235/artclList.do"
-            sleep 1
-            adb shell input keyevent 111
-            sleep 1
+            sleep 3
+            python3 .github/ci/ui.py tap "portal.학교" 3 || true
+            sleep 3
+            adb shell input text 'https://www.konkuk.ac.kr/bbs/konkuk/235/artclList.do'
+            sleep 3
+            adb exec-out screencap -p > shot1b.png
+            adb shell input keyevent 4
+            sleep 2
             python3 .github/ci/ui.py tapscroll "^연결하기$" 6 || true
             sleep 25
             adb exec-out screencap -p > shot2.png
