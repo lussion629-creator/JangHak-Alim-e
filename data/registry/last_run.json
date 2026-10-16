@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T07:04:51+00:00",
- "finishedAt": "2026-10-16T07:21:34+00:00",
+ "startedAt": "2026-10-16T07:22:41+00:00",
+ "finishedAt": "2026-10-16T07:36:53+00:00",
  "online": true,
- "total": 4530,
+ "total": 4548,
  "new": 6,
- "changed": 172,
+ "changed": 193,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 147곳",
    "ok": true,
-   "count": 576,
-   "mode": "성공 122 / 실패 25"
+   "count": 595,
+   "mode": "성공 124 / 실패 23"
   },
   {
    "source": "gov24",
@@ -246,7 +246,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 7
    },
    {
     "name": "삼육대학교",
@@ -1186,7 +1186,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 41
+    "count": 40
    },
    {
     "name": "국립군산대학교",
