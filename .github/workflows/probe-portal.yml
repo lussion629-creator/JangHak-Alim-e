@@ -39,7 +39,7 @@ jobs:
             sleep 2
             python3 .github/ci/ui.py tap "^내 정보$" 10 || true
             sleep 3
-            python3 .github/ci/ui.py tap "우리 학교 장학도 보기" 10 || true
+            python3 .github/ci/ui.py tapscroll "우리 학교 장학도 보기" 10 || true
             sleep 4
             adb exec-out screencap -p > shot1.png
             python3 .github/ci/ui.py tap "portal.학교" 10 || true
@@ -48,7 +48,7 @@ jobs:
             sleep 1
             adb shell input keyevent 111
             sleep 1
-            python3 .github/ci/ui.py tap "^연결하기$" 10 || true
+            python3 .github/ci/ui.py tapscroll "^연결하기$" 6 || true
             sleep 25
             adb exec-out screencap -p > shot2.png
             python3 .github/ci/ui.py tap "이 화면 저장" 10 || true

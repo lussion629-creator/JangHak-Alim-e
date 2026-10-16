@@ -19,7 +19,7 @@ cmd, pat = sys.argv[1], sys.argv[2]
 for _ in range(int(sys.argv[3]) if len(sys.argv) > 3 else 10):
     p = find(pat)
     if p:
-        if cmd == "tap": subprocess.run(["adb", "shell", "input", "tap", str(p[0]), str(p[1])])
+        if cmd in ("tap", "tapscroll"): subprocess.run(["adb", "shell", "input", "tap", str(p[0]), str(p[1])])
         print("found", pat, p); sys.exit(0)
     if cmd == "tapscroll": subprocess.run(["adb", "shell", "input", "swipe", "500", "1500", "500", "700", "300"])
     time.sleep(2)
