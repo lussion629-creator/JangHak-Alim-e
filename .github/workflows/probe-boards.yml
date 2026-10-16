@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install -q -r requirements.txt
+      - run: pip install -q -r requirements.txt playwright==1.48.0 && python -m playwright install --with-deps chromium
       - run: mkdir -p out && python3 scripts/discover_boards.py > out/boards.json 2> out/err.txt || true
       - name: push result
         run: |
