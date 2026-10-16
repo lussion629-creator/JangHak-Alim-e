@@ -38,7 +38,8 @@ def allowed(url: str) -> bool:
     if host not in _robots:
         rp = urllib.robotparser.RobotFileParser()
         try:
-            r = requests.get(host + "/robots.txt", headers={"User-Agent": UA}, timeout=10)
+            from .tlsfix import get as tget
+            r = tget(host + "/robots.txt", headers={"User-Agent": UA}, timeout=10)
             if r.status_code >= 400 or "<html" in r.text[:200].lower():
                 rp = None
             else:
@@ -51,7 +52,8 @@ def allowed(url: str) -> bool:
 
 
 def get(url: str, timeout=20) -> requests.Response:
-    r = requests.get(url, headers={"User-Agent": UA, "Accept-Language": "ko"}, timeout=timeout)
+    from .tlsfix import get as tget
+    r = tget(url, headers={"User-Agent": UA, "Accept-Language": "ko"}, timeout=timeout)
     r.raise_for_status()
     if not r.encoding or r.encoding.lower() == "iso-8859-1":
         r.encoding = r.apparent_encoding
@@ -262,6 +264,7 @@ def collect_one(src: dict, since: str):
         status["ok"] = True
     except Exception as e:  # noqa: BLE001
         status["error"] = str(e)[:160]
+        status["needs_render"] = True  # 접속·인증서 문제는 브라우저로 한 번 더 열어 본다 (robots.txt 는 그대로 지킨다)
         return [], status
     if not items:
         status["needs_render"] = True
@@ -317,6 +320,8 @@ def collect(online: bool = True, since: str | None = None, workers: int = 8):
                     continue
                 html = rd.html(s_["notice_url"])
                 items = parse_html(html, s_["notice_url"]) if html else []
+                if html and st.get("error"):
+                    st.update(ok=True, error="")
                 recs = build_recs(s_, items, since, body_fn=lambda u: text_of_html(rd.html(u)) if u else "")
                 out.extend(recs)
                 st.update(count=len(recs), method="render")
