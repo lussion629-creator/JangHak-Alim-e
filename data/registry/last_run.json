@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-17T06:52:13+00:00",
- "finishedAt": "2026-10-17T07:21:59+00:00",
+ "startedAt": "2026-10-17T12:48:26+00:00",
+ "finishedAt": "2026-10-17T13:19:23+00:00",
  "online": true,
- "total": 5033,
+ "total": 5060,
  "new": 3,
- "changed": 419,
+ "changed": 438,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1114,
-   "mode": "성공 231 / 실패 19"
+   "count": 1148,
+   "mode": "성공 233 / 실패 17"
   },
   {
    "source": "gov24",
@@ -725,8 +725,8 @@
     "url": "https://home.sch.ac.kr/sch/06/010300.jsp",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 10
    },
    {
     "name": "경성대학교",
@@ -5726,7 +5726,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 10
    },
    {
     "name": "대구대학교",
@@ -6176,7 +6176,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 2
    },
    {
     "name": "충청대학교",
@@ -6395,8 +6395,8 @@
     "url": "https://www.kmcu.ac.kr/kr/index.php?pCode=notice&CgCode=003",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "광주보건대학교",
