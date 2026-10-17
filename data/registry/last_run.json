@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-17T12:48:26+00:00",
- "finishedAt": "2026-10-17T13:19:23+00:00",
+ "startedAt": "2026-10-17T18:42:46+00:00",
+ "finishedAt": "2026-10-17T19:17:11+00:00",
  "online": true,
- "total": 5060,
- "new": 3,
- "changed": 438,
+ "total": 5055,
+ "new": 8,
+ "changed": 456,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -53,9 +53,9 @@
    "source": "hanyang",
    "label": "한양대 공개 공지(장학/등록·근로 모집)",
    "ok": true,
-   "count": 153,
-   "work": 29,
-   "mode": "seed/seed"
+   "count": 157,
+   "work": 33,
+   "mode": "seed/online"
   },
   {
    "source": "hywoman",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1148,
-   "mode": "성공 233 / 실패 17"
+   "count": 1132,
+   "mode": "성공 231 / 실패 19"
   },
   {
    "source": "gov24",
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -725,8 +725,8 @@
     "url": "https://home.sch.ac.kr/sch/06/010300.jsp",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 10
+    "ok": false,
+    "count": 0
    },
    {
     "name": "경성대학교",
