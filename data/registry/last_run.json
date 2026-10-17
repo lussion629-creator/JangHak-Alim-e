@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-16T18:50:08+00:00",
- "finishedAt": "2026-10-16T19:21:28+00:00",
+ "startedAt": "2026-10-17T00:55:29+00:00",
+ "finishedAt": "2026-10-17T01:25:56+00:00",
  "online": true,
- "total": 4939,
- "new": 5,
- "changed": 419,
+ "total": 5052,
+ "new": 118,
+ "changed": 443,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -53,9 +53,9 @@
    "source": "hanyang",
    "label": "한양대 공개 공지(장학/등록·근로 모집)",
    "ok": true,
-   "count": 38,
-   "work": 26,
-   "mode": "seed/seed"
+   "count": 153,
+   "work": 29,
+   "mode": "online/seed"
   },
   {
    "source": "hywoman",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1142,
+   "count": 1132,
    "mode": "성공 231 / 실패 19"
   },
   {
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "이화여자대학교",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "서울여자대학교",
@@ -6235,8 +6235,8 @@
     "url": "https://www.htus.ac.kr/board/board.php?b_id=001",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "경민대학교",
