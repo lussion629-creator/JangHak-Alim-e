@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-17T00:55:29+00:00",
- "finishedAt": "2026-10-17T01:25:56+00:00",
+ "startedAt": "2026-10-17T06:52:13+00:00",
+ "finishedAt": "2026-10-17T07:21:59+00:00",
  "online": true,
- "total": 5052,
- "new": 118,
- "changed": 443,
+ "total": 5033,
+ "new": 3,
+ "changed": 419,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -55,7 +55,7 @@
    "ok": true,
    "count": 153,
    "work": 29,
-   "mode": "online/seed"
+   "mode": "seed/seed"
   },
   {
    "source": "hywoman",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1132,
+   "count": 1114,
    "mode": "성공 231 / 실패 19"
   },
   {
@@ -5726,7 +5726,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "대구대학교",
@@ -6176,7 +6176,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 0
    },
    {
     "name": "충청대학교",
@@ -6235,8 +6235,8 @@
     "url": "https://www.htus.ac.kr/board/board.php?b_id=001",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "경민대학교",
@@ -6395,8 +6395,8 @@
     "url": "https://www.kmcu.ac.kr/kr/index.php?pCode=notice&CgCode=003",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "광주보건대학교",
