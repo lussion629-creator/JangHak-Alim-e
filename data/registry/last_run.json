@@ -1,9 +1,9 @@
 {
- "startedAt": "2026-10-17T18:42:46+00:00",
- "finishedAt": "2026-10-17T19:17:11+00:00",
+ "startedAt": "2026-10-18T00:55:52+00:00",
+ "finishedAt": "2026-10-18T01:25:18+00:00",
  "online": true,
- "total": 5055,
- "new": 8,
+ "total": 5048,
+ "new": 3,
  "changed": 456,
  "sources": [
   {
@@ -55,7 +55,7 @@
    "ok": true,
    "count": 157,
    "work": 33,
-   "mode": "seed/online"
+   "mode": "seed/seed"
   },
   {
    "source": "hywoman",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1132,
+   "count": 1135,
    "mode": "성공 231 / 실패 19"
   },
   {
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "이화여자대학교",
@@ -316,7 +316,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 31
+    "count": 30
    },
    {
     "name": "상명대학교 서울",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 10
    },
    {
     "name": "서울여자대학교",
@@ -6395,8 +6395,8 @@
     "url": "https://www.kmcu.ac.kr/kr/index.php?pCode=notice&CgCode=003",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "광주보건대학교",
