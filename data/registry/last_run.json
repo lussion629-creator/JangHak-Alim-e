@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-18T12:48:17+00:00",
- "finishedAt": "2026-10-18T13:18:21+00:00",
+ "startedAt": "2026-10-18T18:44:02+00:00",
+ "finishedAt": "2026-10-18T19:22:56+00:00",
  "online": true,
- "total": 5056,
- "new": 3,
- "changed": 433,
+ "total": 5021,
+ "new": 4,
+ "changed": 411,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1135,
-   "mode": "성공 230 / 실패 20"
+   "count": 1095,
+   "mode": "성공 225 / 실패 25"
   },
   {
    "source": "gov24",
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -265,8 +265,8 @@
     "url": "https://www.ewha.ac.kr/ewha/bachelor/scholarship-notice.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 11
+    "ok": false,
+    "count": 0
    },
    {
     "name": "숙명여자대학교",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 13
    },
    {
     "name": "경기대학교 수원/서울",
@@ -675,7 +675,7 @@
     "url": "https://www.jejunu.ac.kr/ara/noticesurvey/degree.htm?category=238",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -745,7 +745,7 @@
     "url": "https://www.hoseo.ac.kr/Home/BBSList.mbz?action=MAPP_1708240139&schCategorycode=CTG_17082400011",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -1905,7 +1905,7 @@
     "url": "https://chest.or.kr/bbs/1000/initPostList.do",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -6395,8 +6395,8 @@
     "url": "https://www.kmcu.ac.kr/kr/index.php?pCode=notice&CgCode=003",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "광주보건대학교",
