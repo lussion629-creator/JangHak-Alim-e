@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-18T06:51:30+00:00",
- "finishedAt": "2026-10-18T07:22:03+00:00",
+ "startedAt": "2026-10-18T12:48:17+00:00",
+ "finishedAt": "2026-10-18T13:18:21+00:00",
  "online": true,
- "total": 5061,
- "new": 8,
- "changed": 437,
+ "total": 5056,
+ "new": 3,
+ "changed": 433,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1140,
-   "mode": "성공 231 / 실패 19"
+   "count": 1135,
+   "mode": "성공 230 / 실패 20"
   },
   {
    "source": "gov24",
@@ -1225,8 +1225,8 @@
     "url": "https://www.cku.ac.kr/cku_kr/5787/subview.do",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 1
+    "ok": false,
+    "count": 0
    },
    {
     "name": "상지대학교",
@@ -5706,7 +5706,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 0
    },
    {
     "name": "대경대학교",
