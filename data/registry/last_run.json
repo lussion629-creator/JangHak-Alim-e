@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-18T00:55:52+00:00",
- "finishedAt": "2026-10-18T01:25:18+00:00",
+ "startedAt": "2026-10-18T06:51:30+00:00",
+ "finishedAt": "2026-10-18T07:22:03+00:00",
  "online": true,
- "total": 5048,
- "new": 3,
- "changed": 456,
+ "total": 5061,
+ "new": 8,
+ "changed": 437,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1135,
+   "count": 1140,
    "mode": "성공 231 / 실패 19"
   },
   {
@@ -146,7 +146,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 7
    },
    {
     "name": "국민대학교",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "서울여자대학교",
@@ -675,7 +675,7 @@
     "url": "https://www.jejunu.ac.kr/ara/noticesurvey/degree.htm?category=238",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -5706,7 +5706,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 4
    },
    {
     "name": "대경대학교",
@@ -6395,8 +6395,8 @@
     "url": "https://www.kmcu.ac.kr/kr/index.php?pCode=notice&CgCode=003",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "광주보건대학교",
