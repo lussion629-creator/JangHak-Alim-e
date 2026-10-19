@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-19T12:56:30+00:00",
- "finishedAt": "2026-10-19T13:27:35+00:00",
+ "startedAt": "2026-10-19T18:54:46+00:00",
+ "finishedAt": "2026-10-19T19:28:55+00:00",
  "online": true,
- "total": 5050,
- "new": 16,
- "changed": 424,
+ "total": 5046,
+ "new": 4,
+ "changed": 446,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -55,7 +55,7 @@
    "ok": true,
    "count": 157,
    "work": 33,
-   "mode": "seed/seed"
+   "mode": "seed/online"
   },
   {
    "source": "hywoman",
@@ -90,7 +90,7 @@
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
    "count": 1127,
-   "mode": "성공 230 / 실패 20"
+   "mode": "성공 228 / 실패 22"
   },
   {
    "source": "gov24",
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 8
+    "ok": false,
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 10
    },
    {
     "name": "서울여자대학교",
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "충북대학교",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "상지대학교",
@@ -6235,8 +6235,8 @@
     "url": "https://www.htus.ac.kr/board/board.php?b_id=001",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 5
+    "ok": false,
+    "count": 0
    },
    {
     "name": "경민대학교",
@@ -6286,7 +6286,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 14
    },
    {
     "name": "부산외국어대학교",
