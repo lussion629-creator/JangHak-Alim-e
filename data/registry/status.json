@@ -7,7 +7,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.2
+  "seconds": 1.8
  },
  {
   "id": "한양대학교erica캠퍼스-2d5b",
@@ -17,17 +17,17 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.9
+  "seconds": 2.6
  },
  {
   "id": "성균관대학교인문사회자연과학-fc72",
   "name": "성균관대학교 인문사회/자연과학",
   "url": "https://www.skku.edu/skku/campus/skk_comm/notice06.do",
   "ok": true,
-  "count": 8,
+  "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 9.0
+  "seconds": 10.4
  },
  {
   "id": "국민대학교-e04c",
@@ -47,7 +47,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 4.5
+  "seconds": 6.5
  },
  {
   "id": "연세대학교신촌-a807",
@@ -57,7 +57,7 @@
   "count": 26,
   "method": "rss",
   "error": "",
-  "seconds": 1.4
+  "seconds": 2.7
  },
  {
   "id": "고려대학교서울-595b",
@@ -73,11 +73,11 @@
   "id": "아주대학교-4571",
   "name": "아주대학교",
   "url": "https://www.ajou.ac.kr/kr/ajou/notice_scholarship.do",
-  "ok": true,
+  "ok": false,
   "count": 0,
-  "method": "html",
-  "error": "",
-  "seconds": 1.8
+  "method": "render",
+  "error": "ConnectTimeout:ConnectTimeoutError HTTPSConnectionPool(host='www.ajou.ac.kr', port=443): Max retries exceeded with url:  / 브라우저도 실패",
+  "needs_render": true
  },
  {
   "id": "중앙대학교서울-b2ca",
@@ -88,7 +88,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 3.3
+  "seconds": 3.4
  },
  {
   "id": "경희대학교서울국제-732a",
@@ -98,17 +98,17 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 2.3
+  "seconds": 2.6
  },
  {
   "id": "동국대학교서울-207c",
   "name": "동국대학교 서울",
   "url": "https://www.dongguk.edu/article/JANGHAKNOTICE/list",
   "ok": true,
-  "count": 13,
+  "count": 15,
   "method": "html",
   "error": "",
-  "seconds": 12.0
+  "seconds": 13.4
  },
  {
   "id": "홍익대학교서울-53af",
@@ -118,7 +118,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 12.2
+  "seconds": 15.2
  },
  {
   "id": "삼육대학교-2977",
@@ -128,7 +128,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 15.9
+  "seconds": 14.0
  },
  {
   "id": "이화여자대학교-6094",
@@ -138,7 +138,7 @@
   "count": 11,
   "method": "html",
   "error": "",
-  "seconds": 28.5
+  "seconds": 16.2
  },
  {
   "id": "숙명여자대학교-43fc",
@@ -148,7 +148,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.7
+  "seconds": 3.0
  },
  {
   "id": "성신여자대학교-5fa3",
@@ -158,7 +158,7 @@
   "count": 0,
   "method": "rss",
   "error": "",
-  "seconds": 1.7
+  "seconds": 2.5
  },
  {
   "id": "세종대학교-1dd1",
@@ -168,17 +168,17 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.2
+  "seconds": 2.5
  },
  {
   "id": "광운대학교-b0d3",
   "name": "광운대학교",
   "url": "https://www.kw.ac.kr/ko/life/notice.jsp",
   "ok": true,
-  "count": 5,
+  "count": 6,
   "method": "html",
   "error": "",
-  "seconds": 11.8
+  "seconds": 12.8
  },
  {
   "id": "명지대학교인문자연-8d4a",
@@ -188,7 +188,7 @@
   "count": 30,
   "method": "rss",
   "error": "",
-  "seconds": 1.8
+  "seconds": 1.7
  },
  {
   "id": "상명대학교서울-3bfb",
@@ -198,17 +198,17 @@
   "count": 2,
   "method": "html",
   "error": "",
-  "seconds": 4.8
+  "seconds": 7.0
  },
  {
   "id": "한성대학교-704b",
   "name": "한성대학교",
   "url": "https://www.hansung.ac.kr/hansung/6172/subview.do",
   "ok": true,
-  "count": 3,
+  "count": 4,
   "method": "html",
   "error": "",
-  "seconds": 4.9
+  "seconds": 4.4
  },
  {
   "id": "숭실대학교-1489",
@@ -218,7 +218,7 @@
   "count": 12,
   "method": "html",
   "error": "",
-  "seconds": 21.2
+  "seconds": 19.8
  },
  {
   "id": "가톨릭대학교성심-c293",
@@ -229,17 +229,17 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 3.3
+  "seconds": 3.7
  },
  {
   "id": "서울과학기술대학교-01c8",
   "name": "서울과학기술대학교",
   "url": "https://www.seoultech.ac.kr/service/info/janghak/",
   "ok": true,
-  "count": 16,
+  "count": 14,
   "method": "html",
   "error": "",
-  "seconds": 20.5
+  "seconds": 20.6
  },
  {
   "id": "덕성여자대학교-9972",
@@ -255,10 +255,10 @@
   "name": "동덕여자대학교",
   "url": "https://www.dongduk.ac.kr/www/contents/kor-noti.do",
   "ok": true,
-  "count": 3,
+  "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 9.1
+  "seconds": 5.4
  },
  {
   "id": "성공회대학교-8941",
@@ -268,17 +268,17 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 6.7
+  "seconds": 9.3
  },
  {
   "id": "한국체육대학교-05a0",
   "name": "한국체육대학교",
   "url": "https://www.knsu.ac.kr/knsu/unilife/notice.do",
   "ok": true,
-  "count": 5,
+  "count": 2,
   "method": "html",
   "error": "",
-  "seconds": 12.9
+  "seconds": 7.0
  },
  {
   "id": "인하대학교-e1ab",
@@ -288,7 +288,7 @@
   "count": 0,
   "method": "rss",
   "error": "",
-  "seconds": 2.1
+  "seconds": 2.3
  },
  {
   "id": "단국대학교죽전천안-3787",
@@ -298,7 +298,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.7
+  "seconds": 3.0
  },
  {
   "id": "한국공학대학교-eea1",
@@ -308,17 +308,17 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 3.2
+  "seconds": 3.3
  },
  {
   "id": "강남대학교-24a4",
   "name": "강남대학교",
   "url": "https://web.kangnam.ac.kr/menu/f19069e6134f8f8aa7f689a4a675e66f.do",
   "ok": true,
-  "count": 2,
+  "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 3.3
+  "seconds": 6.2
  },
  {
   "id": "용인대학교-9ce3",
@@ -328,17 +328,17 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.6
+  "seconds": 2.5
  },
  {
   "id": "인천대학교-bacb",
   "name": "인천대학교",
   "url": "https://www.inu.ac.kr/bbs/inu/249/artclList.do",
   "ok": true,
-  "count": 32,
+  "count": 33,
   "method": "rss",
   "error": "",
-  "seconds": 3.0
+  "seconds": 3.7
  },
  {
   "id": "가천대학교글로벌메디컬-1ae4",
@@ -348,7 +348,7 @@
   "count": 37,
   "method": "html",
   "error": "",
-  "seconds": 69.6
+  "seconds": 69.4
  },
  {
   "id": "한신대학교-702b",
@@ -358,7 +358,7 @@
   "count": 0,
   "method": "rss",
   "error": "",
-  "seconds": 1.7
+  "seconds": 1.9
  },
  {
   "id": "신한대학교-84eb",
@@ -368,7 +368,7 @@
   "count": 0,
   "method": "rss",
   "error": "",
-  "seconds": 1.6
+  "seconds": 1.9
  },
  {
   "id": "안양대학교-8271",
@@ -378,17 +378,17 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.5
+  "seconds": 3.0
  },
  {
   "id": "한국외국어대학교서울글로벌-0148",
   "name": "한국외국어대학교 서울/글로벌",
   "url": "https://www.hufs.ac.kr/hufs/11283/subview.do",
   "ok": true,
-  "count": 13,
+  "count": 12,
   "method": "html",
   "error": "",
-  "seconds": 17.3
+  "seconds": 19.5
  },
  {
   "id": "경기대학교수원서울-5d09",
@@ -407,7 +407,7 @@
   "count": 14,
   "method": "html",
   "error": "",
-  "seconds": 16.2
+  "seconds": 18.9
  },
  {
   "id": "수원대학교-98d5",
@@ -417,7 +417,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 4.1
+  "seconds": 3.8
  },
  {
   "id": "서울시립대학교-e9e7",
@@ -428,7 +428,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 3.1
+  "seconds": 4.1
  },
  {
   "id": "서울여자대학교-65bb",
@@ -448,7 +448,7 @@
   "count": 2,
   "method": "html",
   "error": "",
-  "seconds": 4.5
+  "seconds": 6.3
  },
  {
   "id": "대진대학교-cfdf",
@@ -468,7 +468,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.5
+  "seconds": 3.2
  },
  {
   "id": "부산대학교부산-9629",
@@ -478,27 +478,27 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.7
+  "seconds": 2.4
  },
  {
   "id": "경북대학교대구-ee6d",
   "name": "경북대학교 대구",
   "url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=1&menu_idx=67",
   "ok": true,
-  "count": 1,
+  "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 3.2
+  "seconds": 3.4
  },
  {
   "id": "충북대학교-2ade",
   "name": "충북대학교",
   "url": "https://www.chungbuk.ac.kr/www/selectBbsNttList.do?bbsNo=8&key=815&searchCtgry=학사/장학",
   "ok": true,
-  "count": 4,
+  "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 10.8
+  "seconds": 5.8
  },
  {
   "id": "국립부경대학교-41ab",
@@ -508,17 +508,17 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.1
+  "seconds": 3.3
  },
  {
   "id": "전남대학교-e191",
   "name": "전남대학교",
   "url": "https://www.jnu.ac.kr/WebApp/web/HOM/COM/Board/board.aspx?boardID=5",
   "ok": true,
-  "count": 1,
+  "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 15.1
+  "seconds": 13.1
  },
  {
   "id": "충남대학교-b926",
@@ -533,10 +533,10 @@
   "id": "제주대학교-3157",
   "name": "제주대학교",
   "url": "https://www.jejunu.ac.kr/ara/noticesurvey/degree.htm?category=238",
-  "ok": false,
+  "ok": true,
   "count": 0,
   "method": "render",
-  "error": "SSLError:SSLError HTTPSConnectionPool(host='www.jejunu.ac.kr', port=443): Max retries exceeded with url: /ara/noticesurv / 브라우저도 실패",
+  "error": "",
   "needs_render": true
  },
  {
@@ -548,7 +548,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 2.5
+  "seconds": 2.6
  },
  {
   "id": "영남대학교-cc34",
@@ -558,7 +558,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 3.9
+  "seconds": 5.7
  },
  {
   "id": "동아대학교승학부민-ada4",
@@ -575,10 +575,10 @@
   "name": "원광대학교",
   "url": "https://www.wku.ac.kr/category/notice/scholar-notice",
   "ok": true,
-  "count": 9,
+  "count": 8,
   "method": "rss",
   "error": "",
-  "seconds": 16.6
+  "seconds": 24.7
  },
  {
   "id": "순천향대학교-3bd5",
@@ -593,11 +593,11 @@
   "id": "경성대학교-cb6e",
   "name": "경성대학교",
   "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
-  "ok": true,
-  "count": 12,
-  "method": "html",
-  "error": "",
-  "seconds": 51.1
+  "ok": false,
+  "count": 0,
+  "method": "render",
+  "error": "ConnectTimeout:ConnectTimeoutError HTTPConnectionPool(host='kscms.ks.ac.kr', port=80): Max retries exceeded with url: /k / 브라우저도 실패",
+  "needs_render": true
  },
  {
   "id": "호서대학교아산천안-1939",
@@ -617,7 +617,7 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 6.5
+  "seconds": 8.3
  },
  {
   "id": "국립한국교통대학교충주-848c",
@@ -627,7 +627,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.8
+  "seconds": 3.3
  },
  {
   "id": "한국교원대학교-32b9",
@@ -637,7 +637,7 @@
   "count": 11,
   "method": "html",
   "error": "",
-  "seconds": 20.5
+  "seconds": 23.3
  },
  {
   "id": "포항공과대학교postech-aa1e",
@@ -647,7 +647,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.5
+  "seconds": 1.9
  },
  {
   "id": "신라대학교-1d15",
@@ -657,17 +657,17 @@
   "count": 11,
   "method": "html",
   "error": "",
-  "seconds": 15.3
+  "seconds": 15.5
  },
  {
   "id": "동서대학교-0eaa",
   "name": "동서대학교",
   "url": "https://www.dongseo.ac.kr/kr/?pCode=MN2000195",
   "ok": true,
-  "count": 17,
+  "count": 16,
   "method": "html",
   "error": "",
-  "seconds": 25.0
+  "seconds": 28.5
  },
  {
   "id": "한동대학교-bcd9",
@@ -677,7 +677,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 2.2
+  "seconds": 2.8
  },
  {
   "id": "광주대학교-6af3",
@@ -687,7 +687,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.7
+  "seconds": 2.6
  },
  {
   "id": "국립창원대학교-0298",
@@ -698,7 +698,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 2.7
+  "seconds": 2.6
  },
  {
   "id": "국립한국해양대학교-b742",
@@ -719,7 +719,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 2.5
+  "seconds": 3.0
  },
  {
   "id": "한국방송통신대학교-8c87",
@@ -729,7 +729,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.7
+  "seconds": 3.9
  },
  {
   "id": "한국예술종합학교-dbb1",
@@ -749,7 +749,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.7
+  "seconds": 1.8
  },
  {
   "id": "한경국립대학교-6304",
@@ -760,7 +760,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.7
+  "seconds": 1.4
  },
  {
   "id": "국립한밭대학교-02c5",
@@ -770,7 +770,7 @@
   "count": 11,
   "method": "html",
   "error": "",
-  "seconds": 82.0
+  "seconds": 68.3
  },
  {
   "id": "춘천교육대학교-c952",
@@ -780,7 +780,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.2
+  "seconds": 2.4
  },
  {
   "id": "전북대학교-e274",
@@ -791,7 +791,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 2.3
+  "seconds": 2.2
  },
  {
   "id": "차의과학대학교-5a04",
@@ -811,7 +811,7 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 26.1
+  "seconds": 26.9
  },
  {
   "id": "건양대학교논산대전-aff8",
@@ -821,7 +821,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 4.1
+  "seconds": 4.6
  },
  {
   "id": "중부대학교충청고양-fd5e",
@@ -831,7 +831,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 37.9
+  "seconds": 43.0
  },
  {
   "id": "부산가톨릭대학교-df27",
@@ -842,27 +842,27 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 5.6
+  "seconds": 4.8
  },
  {
   "id": "동명대학교-aaee",
   "name": "동명대학교",
   "url": "https://www.tu.ac.kr/tuhome/sub07_01_03.do",
   "ok": true,
-  "count": 9,
+  "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 15.0
+  "seconds": 18.6
  },
  {
   "id": "영산대학교와이즈유양산부산-21d6",
   "name": "영산대학교(와이즈유) 양산/부산",
   "url": "https://www.ysu.ac.kr/kor/CMS/Board/Board.do?mCode=MN016",
   "ok": true,
-  "count": 2,
+  "count": 3,
   "method": "html",
   "error": "",
-  "seconds": 8.2
+  "seconds": 13.9
  },
  {
   "id": "계명대학교-6f81",
@@ -882,7 +882,7 @@
   "count": 18,
   "method": "html",
   "error": "",
-  "seconds": 26.7
+  "seconds": 27.2
  },
  {
   "id": "울산대학교-752e",
@@ -902,7 +902,7 @@
   "count": 11,
   "method": "html",
   "error": "",
-  "seconds": 15.8
+  "seconds": 16.6
  },
  {
   "id": "인제대학교김해-d83d",
@@ -931,7 +931,7 @@
   "count": 19,
   "method": "html",
   "error": "",
-  "seconds": 18.8
+  "seconds": 14.9
  },
  {
   "id": "배재대학교-2dff",
@@ -941,7 +941,7 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 3.9
+  "seconds": 3.0
  },
  {
   "id": "한림대학교-d28d",
@@ -951,17 +951,17 @@
   "count": 35,
   "method": "rss",
   "error": "",
-  "seconds": 2.5
+  "seconds": 1.4
  },
  {
   "id": "목원대학교-d036",
   "name": "목원대학교",
   "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
   "ok": true,
-  "count": 9,
+  "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 25.3
+  "seconds": 27.5
  },
  {
   "id": "성결대학교-8a4a",
@@ -971,7 +971,7 @@
   "count": 24,
   "method": "rss",
   "error": "",
-  "seconds": 2.3
+  "seconds": 2.6
  },
  {
   "id": "청주대학교-56db",
@@ -981,7 +981,7 @@
   "count": 10,
   "method": "html",
   "error": "",
-  "seconds": 10.5
+  "seconds": 13.5
  },
  {
   "id": "한국기술교육대학교-2a61",
@@ -998,20 +998,20 @@
   "name": "동의대학교",
   "url": "https://www.deu.ac.kr/www/deu-scholarship.do",
   "ok": true,
-  "count": 7,
+  "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 17.0
+  "seconds": 22.7
  },
  {
   "id": "전주대학교-8a0c",
   "name": "전주대학교",
   "url": "https://www.jj.ac.kr/jj/community/notice03.do",
   "ok": true,
-  "count": 14,
+  "count": 13,
   "method": "html",
   "error": "",
-  "seconds": 18.2
+  "seconds": 18.3
  },
  {
   "id": "국립공주대학교-b430",
@@ -1021,7 +1021,7 @@
   "count": 0,
   "method": "rss",
   "error": "",
-  "seconds": 1.8
+  "seconds": 1.9
  },
  {
   "id": "국립순천대학교-b044",
@@ -1032,7 +1032,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.7
+  "seconds": 1.6
  },
  {
   "id": "국립목포대학교-8039",
@@ -1042,7 +1042,7 @@
   "count": 40,
   "method": "rss",
   "error": "",
-  "seconds": 2.6
+  "seconds": 1.9
  },
  {
   "id": "국립군산대학교-79c5",
@@ -1052,7 +1052,7 @@
   "count": 3,
   "method": "html",
   "error": "",
-  "seconds": 4.5
+  "seconds": 4.7
  },
  {
   "id": "세명대학교-7a35",
@@ -1062,7 +1062,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 3.2
+  "seconds": 3.8
  },
  {
   "id": "한서대학교서산태안-d7f0",
@@ -1072,17 +1072,17 @@
   "count": 11,
   "method": "html",
   "error": "",
-  "seconds": 41.9
+  "seconds": 44.3
  },
  {
   "id": "가톨릭관동대학교-5826",
   "name": "가톨릭관동대학교",
   "url": "https://www.cku.ac.kr/cku_kr/5787/subview.do",
   "ok": true,
-  "count": 1,
+  "count": 0,
   "method": "rss",
   "error": "",
-  "seconds": 2.0
+  "seconds": 2.3
  },
  {
   "id": "상지대학교-2c9c",
@@ -1092,7 +1092,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 24.9
+  "seconds": 26.3
  },
  {
   "id": "동신대학교-bb88",
@@ -1111,7 +1111,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 8.2
+  "seconds": 10.0
  },
  {
   "id": "서울신학대학교-5ac7",
@@ -1119,9 +1119,8 @@
   "url": "https://www.stu.ac.kr/CmsHome/stu06_03_03.eznic",
   "ok": false,
   "count": 0,
-  "method": "render",
-  "error": "ConnectionError ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')) / 브라우저도 실패",
-  "needs_render": true
+  "method": "",
+  "error": "robots.txt 비허용"
  },
  {
   "id": "현대차정몽구재단-256b",
@@ -1131,7 +1130,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.2
+  "seconds": 6.8
  },
  {
   "id": "관정이종환교육재단-5c61",
@@ -1141,7 +1140,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 0.8
+  "seconds": 1.0
  },
  {
   "id": "한국고등교육재단sk-a2cf",
@@ -1161,7 +1160,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 2.3
+  "seconds": 3.4
  },
  {
   "id": "롯데장학재단롯데재단-2fa0",
@@ -1171,7 +1170,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.9
+  "seconds": 2.1
  },
  {
   "id": "포스코청암재단-0f3a",
@@ -1181,7 +1180,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.5
+  "seconds": 5.0
  },
  {
   "id": "두산연강재단-d72f",
@@ -1192,7 +1191,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 0.6
+  "seconds": 5.2
  },
  {
   "id": "유한재단-a41a",
@@ -1203,7 +1202,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.3
+  "seconds": 1.8
  },
  {
   "id": "아산사회복지재단-c59b",
@@ -1213,7 +1212,7 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 9.0
+  "seconds": 9.2
  },
  {
   "id": "우양재단-36f0",
@@ -1223,7 +1222,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 2.2
+  "seconds": 8.1
  },
  {
   "id": "월드비전-f2d5",
@@ -1234,7 +1233,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 2.2
+  "seconds": 3.3
  },
  {
   "id": "굿네이버스-0574",
@@ -1245,17 +1244,18 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.7
+  "seconds": 1.8
  },
  {
   "id": "사회복지공동모금회사랑의열매-1af9",
   "name": "사회복지공동모금회(사랑의열매)",
   "url": "https://chest.or.kr/bbs/1000/initPostList.do",
-  "ok": false,
+  "ok": true,
   "count": 0,
   "method": "render",
-  "error": "ConnectTimeout:ConnectTimeoutError HTTPSConnectionPool(host='chest.or.kr', port=443): Max retries exceeded with url: /bb / 브라우저도 실패",
-  "needs_render": true
+  "error": "",
+  "needs_render": true,
+  "seconds": 1.9
  },
  {
   "id": "대한적십자사-4905",
@@ -1266,7 +1266,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 3.6
+  "seconds": 4.3
  },
  {
   "id": "한국예술인복지재단-5951",
@@ -1277,7 +1277,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.8
+  "seconds": 10.2
  },
  {
   "id": "전북특별자치도평생교육장학진흥원-e371",
@@ -1297,7 +1297,7 @@
   "count": 2,
   "method": "html",
   "error": "",
-  "seconds": 4.6
+  "seconds": 4.7
  },
  {
   "id": "강남구강남형장학사업-aeea",
@@ -1307,7 +1307,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.4
+  "seconds": 2.9
  },
  {
   "id": "파주시행복장학회-ab68",
@@ -1317,7 +1317,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.0
+  "seconds": 2.5
  },
  {
   "id": "재과천시애향장학회-cf61",
@@ -1327,7 +1327,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.2
+  "seconds": 2.6
  },
  {
   "id": "legacy-ilsaf",
@@ -1337,7 +1337,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.3
+  "seconds": 3.1
  },
  {
   "id": "legacy-sangah",
@@ -1347,7 +1347,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.7
+  "seconds": 1.9
  },
  {
   "id": "legacy-wolgok",
@@ -1358,7 +1358,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.2
+  "seconds": 1.8
  },
  {
   "id": "legacy-postf",
@@ -1368,7 +1368,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.2
+  "seconds": 5.7
  },
  {
   "id": "legacy-silla",
@@ -1378,7 +1378,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.3
+  "seconds": 5.9
  },
  {
   "id": "legacy-wooyang",
@@ -1388,7 +1388,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 1.7
+  "seconds": 8.5
  },
  {
   "id": "legacy-sontaehee",
@@ -1398,7 +1398,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.1
+  "seconds": 1.5
  },
  {
   "id": "legacy-sanhak",
@@ -1408,7 +1408,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.7
+  "seconds": 2.3
  },
  {
   "id": "legacy-surim",
@@ -1419,7 +1419,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 3.1
+  "seconds": 2.7
  },
  {
   "id": "legacy-rhof",
@@ -1429,7 +1429,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 17.1
+  "seconds": 2.3
  },
  {
   "id": "legacy-seoulfuture",
@@ -1439,7 +1439,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.5
+  "seconds": 1.9
  },
  {
   "id": "legacy-kosaf-housing",
@@ -1449,7 +1449,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 3.4
+  "seconds": 2.8
  },
  {
   "id": "legacy-hanyang",
@@ -1459,7 +1459,7 @@
   "count": 4,
   "method": "html",
   "error": "",
-  "seconds": 7.7
+  "seconds": 23.0
  },
  {
   "id": "legacy-kosaf",
@@ -1469,7 +1469,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 0.9
+  "seconds": 2.3
  },
  {
   "id": "legacy-incheon",
@@ -1479,7 +1479,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 3.1
+  "seconds": 2.9
  },
  {
   "id": "감리교신학대학교-bc39",
@@ -1489,7 +1489,7 @@
   "count": 17,
   "method": "html",
   "error": "",
-  "seconds": 38.3
+  "seconds": 39.2
  },
  {
   "id": "강원도립대학교-c056",
@@ -1499,7 +1499,7 @@
   "count": 6,
   "method": "html",
   "error": "",
-  "seconds": 47.1
+  "seconds": 43.1
  },
  {
   "id": "건양사이버대학교-cf7d",
@@ -1509,7 +1509,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 3.8
+  "seconds": 3.7
  },
  {
   "id": "경북전문대학교-7794",
@@ -1519,7 +1519,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 4.7
+  "seconds": 4.5
  },
  {
   "id": "광주여자대학교-2ab8",
@@ -1529,7 +1529,7 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 24.1
+  "seconds": 20.8
  },
  {
   "id": "국립금오공과대학교-2484",
@@ -1539,7 +1539,7 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 25.5
+  "seconds": 15.3
  },
  {
   "id": "국립목포해양대학교-9299",
@@ -1549,7 +1549,7 @@
   "count": 10,
   "method": "html",
   "error": "",
-  "seconds": 17.1
+  "seconds": 18.1
  },
  {
   "id": "기독간호대학교-f941",
@@ -1559,7 +1559,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 11.4
+  "seconds": 2.9
  },
  {
   "id": "대경대학교-2994",
@@ -1569,7 +1569,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.9
+  "seconds": 5.0
  },
  {
   "id": "대구교육대학교-f8cd",
@@ -1579,7 +1579,7 @@
   "count": 10,
   "method": "html",
   "error": "",
-  "seconds": 41.7
+  "seconds": 14.1
  },
  {
   "id": "대구대학교-255b",
@@ -1589,7 +1589,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 9.8
+  "seconds": 10.9
  },
  {
   "id": "대구예술대학교-e28e",
@@ -1599,7 +1599,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.7
+  "seconds": 3.0
  },
  {
   "id": "목포가톨릭대학교-4c9d",
@@ -1609,7 +1609,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 22.7
+  "seconds": 32.3
  },
  {
   "id": "문경대학교-6b4a",
@@ -1619,7 +1619,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 12.2
+  "seconds": 11.8
  },
  {
   "id": "배화여자대학교-310b",
@@ -1629,7 +1629,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 3.3
+  "seconds": 4.5
  },
  {
   "id": "부산디지털대학교-72f6",
@@ -1639,7 +1639,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 12.5
+  "seconds": 14.4
  },
  {
   "id": "삼육보건대학교-0808",
@@ -1650,7 +1650,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 5.5
+  "seconds": 8.7
  },
  {
   "id": "서울기독대학교-5ae4",
@@ -1661,17 +1661,17 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.3
+  "seconds": 1.4
  },
  {
   "id": "서정대학교-fb43",
   "name": "서정대학교",
   "url": "https://www.seojeong.ac.kr/main/campus-life/scholarship-notice.do",
   "ok": true,
-  "count": 9,
+  "count": 10,
   "method": "html",
   "error": "",
-  "seconds": 19.6
+  "seconds": 38.3
  },
  {
   "id": "선학유피대학원대학교-3c2d",
@@ -1691,7 +1691,7 @@
   "count": 6,
   "method": "html",
   "error": "",
-  "seconds": 8.6
+  "seconds": 9.1
  },
  {
   "id": "세한대학교-f8a3",
@@ -1701,7 +1701,7 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 12.8
+  "seconds": 11.7
  },
  {
   "id": "수성대학교-fbdb",
@@ -1711,7 +1711,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 13.3
+  "seconds": 16.2
  },
  {
   "id": "숭실사이버대학교-2be4",
@@ -1722,7 +1722,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 2.2
+  "seconds": 5.9
  },
  {
   "id": "아신대학교-4cdc",
@@ -1732,7 +1732,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 59.6
+  "seconds": 45.1
  },
  {
   "id": "영남이공대학교-3def",
@@ -1752,7 +1752,7 @@
   "count": 11,
   "method": "html",
   "error": "",
-  "seconds": 16.4
+  "seconds": 17.0
  },
  {
   "id": "우송대학교-dc76",
@@ -1762,7 +1762,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 3.6
+  "seconds": 4.1
  },
  {
   "id": "인하공업전문대학-ca19",
@@ -1772,7 +1772,7 @@
   "count": 11,
   "method": "html",
   "error": "",
-  "seconds": 15.9
+  "seconds": 15.6
  },
  {
   "id": "장안대학교-7b5d",
@@ -1782,17 +1782,17 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 13.6
+  "seconds": 16.0
  },
  {
   "id": "추계예술대학교-a692",
   "name": "추계예술대학교",
   "url": "https://www.chugye.ac.kr/mbs/university/jsp/board/list.jsp?boardId=6768&id=university_040803000000",
   "ok": true,
-  "count": 16,
+  "count": 15,
   "method": "html",
   "error": "",
-  "seconds": 17.1
+  "seconds": 18.5
  },
  {
   "id": "한림성심대학교-2703",
@@ -1802,7 +1802,7 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 85.5
+  "seconds": 67.1
  },
  {
   "id": "한일장신대학교-9c67",
@@ -1813,7 +1813,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 4.2
+  "seconds": 6.6
  },
  {
   "id": "화성의과학대학교-e8a7",
@@ -1842,17 +1842,17 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.8
+  "seconds": 3.0
  },
  {
   "id": "경운대학교-ikw",
   "name": "경운대학교",
   "url": "https://www.ikw.ac.kr/main.tc",
   "ok": true,
-  "count": 4,
+  "count": 2,
   "method": "html",
   "error": "",
-  "seconds": 28.2
+  "seconds": 9.7
  },
  {
   "id": "경인교육대학교-ginue",
@@ -1862,7 +1862,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 18.3
+  "seconds": 20.2
  },
  {
   "id": "경인여자대학교-kiwu",
@@ -1872,7 +1872,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.4
+  "seconds": 2.5
  },
  {
   "id": "국제대학교-kookje",
@@ -1882,7 +1882,7 @@
   "count": 4,
   "method": "html",
   "error": "",
-  "seconds": 9.2
+  "seconds": 12.0
  },
  {
   "id": "글로벌사이버대학교-global",
@@ -1892,7 +1892,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.1
+  "seconds": 2.3
  },
  {
   "id": "금강대학교-ggu",
@@ -1902,7 +1902,7 @@
   "count": 6,
   "method": "html",
   "error": "",
-  "seconds": 13.2
+  "seconds": 16.8
  },
  {
   "id": "대구한의대학교-dhu",
@@ -1912,7 +1912,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.8
+  "seconds": 3.2
  },
  {
   "id": "대전보건대학교-hit",
@@ -1922,7 +1922,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 8.4
+  "seconds": 9.4
  },
  {
   "id": "목포과학대학교-msu",
@@ -1942,7 +1942,7 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 10.6
+  "seconds": 13.7
  },
  {
   "id": "서울여자간호대학-snjc",
@@ -1953,7 +1953,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 3.9
+  "seconds": 3.5
  },
  {
   "id": "서원대학교-seowon",
@@ -1963,7 +1963,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 6.0
+  "seconds": 6.1
  },
  {
   "id": "선린대학교-sunlin",
@@ -1973,7 +1973,7 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 6.3
+  "seconds": 6.7
  },
  {
   "id": "신안산대학교-sau",
@@ -1983,7 +1983,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 10.3
+  "seconds": 11.5
  },
  {
   "id": "영남신학대학교-yntcs",
@@ -2003,7 +2003,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 4.5
+  "seconds": 5.3
  },
  {
   "id": "오산대학교-osan",
@@ -2023,7 +2023,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.7
+  "seconds": 3.2
  },
  {
   "id": "창신대학교-cs",
@@ -2043,7 +2043,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.2
+  "seconds": 2.4
  },
  {
   "id": "한국관광대학교-ktc",
@@ -2053,17 +2053,17 @@
   "count": 3,
   "method": "html",
   "error": "",
-  "seconds": 18.9
+  "seconds": 21.0
  },
  {
   "id": "한국농수산대학교-af",
   "name": "한국농수산대학교",
   "url": "https://www.af.ac.kr/board/post/list.do?boardUid=ff808081944e945801945e1c9f4c03d6&menuUid=ff80808193e179bd0193e1ff6e0b01b4",
   "ok": true,
-  "count": 2,
+  "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 7.1
+  "seconds": 4.8
  },
  {
   "id": "한양사이버대학교-hycu",
@@ -2073,7 +2073,7 @@
   "count": 2,
   "method": "html",
   "error": "",
-  "seconds": 5.1
+  "seconds": 6.0
  },
  {
   "id": "협성대학교-uhs",
@@ -2083,7 +2083,7 @@
   "count": 4,
   "method": "html",
   "error": "",
-  "seconds": 15.8
+  "seconds": 16.0
  },
  {
   "id": "호남신학대학교-htus",
@@ -2093,7 +2093,7 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 39.1
+  "seconds": 16.1
  },
  {
   "id": "경민대학교-kyungm",
@@ -2103,7 +2103,7 @@
   "count": 10,
   "method": "html",
   "error": "",
-  "seconds": 46.2
+  "seconds": 60.0
  },
  {
   "id": "대덕대학교-ddu",
@@ -2113,7 +2113,7 @@
   "count": 3,
   "method": "html",
   "error": "",
-  "seconds": 7.2
+  "seconds": 8.1
  },
  {
   "id": "대동대학교-daedon",
@@ -2123,17 +2123,17 @@
   "count": 2,
   "method": "html",
   "error": "",
-  "seconds": 13.3
+  "seconds": 9.5
  },
  {
   "id": "동양미래대학교-dongya",
   "name": "동양미래대학교",
   "url": "https://www.dongyang.ac.kr/dmu/4904/subview.do",
   "ok": true,
-  "count": 6,
+  "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 8.7
+  "seconds": 10.3
  },
  {
   "id": "동의과학대학교-dit",
@@ -2143,7 +2143,7 @@
   "count": 14,
   "method": "html",
   "error": "",
-  "seconds": 70.3
+  "seconds": 77.1
  },
  {
   "id": "부산외국어대학교-bufs",
@@ -2153,7 +2153,7 @@
   "count": 14,
   "method": "html",
   "error": "",
-  "seconds": 18.4
+  "seconds": 23.1
  },
  {
   "id": "서울장신대학교-sjs",
@@ -2163,7 +2163,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 2.3
+  "seconds": 2.6
  },
  {
   "id": "수원여자대학교-swwu",
@@ -2173,7 +2173,7 @@
   "count": 10,
   "method": "html",
   "error": "",
-  "seconds": 18.1
+  "seconds": 18.5
  },
  {
   "id": "광주교육대학교-gnue",
@@ -2184,7 +2184,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 1.5
+  "seconds": 2.0
  },
  {
   "id": "명지전문대학-mjc",
@@ -2194,7 +2194,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.1
+  "seconds": 2.7
  },
  {
   "id": "송호대학교-songho",
@@ -2214,7 +2214,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 4.5
+  "seconds": 4.9
  },
  {
   "id": "여주대학교-yit",
@@ -2225,7 +2225,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 2.0
+  "seconds": 2.5
  },
  {
   "id": "강동대학교-gangdo",
@@ -2245,17 +2245,17 @@
   "count": 4,
   "method": "html",
   "error": "",
-  "seconds": 15.3
+  "seconds": 17.2
  },
  {
   "id": "계명문화대학교-kmcu",
   "name": "계명문화대학교",
   "url": "https://www.kmcu.ac.kr/kr/index.php?pCode=notice&CgCode=003",
-  "ok": false,
-  "count": 0,
-  "method": "render",
-  "error": "ConnectTimeout:ConnectTimeoutError HTTPSConnectionPool(host='www.kmcu.ac.kr', port=443): Max retries exceeded with url:  / 브라우저도 실패",
-  "needs_render": true
+  "ok": true,
+  "count": 12,
+  "method": "html",
+  "error": "",
+  "seconds": 61.5
  },
  {
   "id": "광주보건대학교-ghu",
@@ -2265,7 +2265,7 @@
   "count": 7,
   "method": "html",
   "error": "",
-  "seconds": 29.2
+  "seconds": 25.8
  },
  {
   "id": "구미대학교-gumi",
@@ -2275,7 +2275,7 @@
   "count": 10,
   "method": "html",
   "error": "",
-  "seconds": 26.9
+  "seconds": 27.9
  },
  {
   "id": "극동대학교-kdu",
@@ -2285,7 +2285,7 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 10.2
+  "seconds": 10.3
  },
  {
   "id": "대구공업대학교-ttc",
@@ -2295,7 +2295,7 @@
   "count": 2,
   "method": "html",
   "error": "",
-  "seconds": 6.6
+  "seconds": 8.0
  },
  {
   "id": "동남보건대학교-dongna",
@@ -2305,7 +2305,7 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 36.6
+  "seconds": 38.2
  },
  {
   "id": "동원과학기술대학교-dist",
@@ -2315,7 +2315,7 @@
   "count": 6,
   "method": "html",
   "error": "",
-  "seconds": 8.0
+  "seconds": 8.7
  },
  {
   "id": "디지털서울문화예술대학교-scau",
@@ -2335,17 +2335,17 @@
   "count": 3,
   "method": "html",
   "error": "",
-  "seconds": 4.5
+  "seconds": 5.2
  },
  {
   "id": "부산장신대학교-bpu",
   "name": "부산장신대학교",
   "url": "https://www.bpu.ac.kr/Board/BoardList.aspx?BoardMstNo=26",
   "ok": true,
-  "count": 12,
+  "count": 10,
   "method": "html",
   "error": "",
-  "seconds": 27.5
+  "seconds": 34.0
  },
  {
   "id": "서영대학교-seoyeo",
@@ -2355,7 +2355,7 @@
   "count": 5,
   "method": "html",
   "error": "",
-  "seconds": 9.5
+  "seconds": 9.0
  },
  {
   "id": "서울디지털대학교-sdu",
@@ -2365,7 +2365,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 2.6
+  "seconds": 2.7
  },
  {
   "id": "서울상담심리대학원대학교-scu",
@@ -2376,7 +2376,7 @@
   "method": "render",
   "error": "",
   "needs_render": true,
-  "seconds": 0.4
+  "seconds": 0.8
  },
  {
   "id": "서울예술대학교-seoula",
@@ -2386,7 +2386,7 @@
   "count": 1,
   "method": "html",
   "error": "",
-  "seconds": 5.9
+  "seconds": 6.1
  },
  {
   "id": "서일대학교-seoil",
@@ -2396,7 +2396,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 7.0
+  "seconds": 9.4
  },
  {
   "id": "영진전문대학교-yju",
@@ -2415,16 +2415,17 @@
   "count": 16,
   "method": "html",
   "error": "",
-  "seconds": 58.3
+  "seconds": 61.6
  },
  {
   "id": "울산과학대학교-uc",
   "name": "울산과학대학교",
   "url": "https://www.uc.ac.kr/kr/b/165",
-  "ok": false,
-  "count": 0,
-  "method": "",
-  "error": "robots.txt 비허용"
+  "ok": true,
+  "count": 8,
+  "method": "html",
+  "error": "",
+  "seconds": 8.5
  },
  {
   "id": "유원대학교-u1",
@@ -2434,7 +2435,7 @@
   "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 1.8
+  "seconds": 2.2
  },
  {
   "id": "을지대학교-eulji",
@@ -2444,7 +2445,7 @@
   "count": 12,
   "method": "html",
   "error": "",
-  "seconds": 16.9
+  "seconds": 19.8
  },
  {
   "id": "인천재능대학교-jeiu",
@@ -2454,7 +2455,7 @@
   "count": 8,
   "method": "html",
   "error": "",
-  "seconds": 31.8
+  "seconds": 32.2
  },
  {
   "id": "장로회신학대학교-puts",
@@ -2499,10 +2500,10 @@
   "name": "한국전통문화대학교",
   "url": "https://www.knuh.ac.kr/kr/brd/list.do?mnuBaseId=MNU0000146&topBaseId=MNU0000009&tplSer=2",
   "ok": true,
-  "count": 2,
+  "count": 0,
   "method": "html",
   "error": "",
-  "seconds": 7.7
+  "seconds": 3.8
  },
  {
   "id": "한라대학교-halla",
@@ -2512,6 +2513,6 @@
   "count": 9,
   "method": "html",
   "error": "",
-  "seconds": 12.7
+  "seconds": 14.0
  }
 ]

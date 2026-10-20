@@ -1,23 +1,23 @@
 {
- "startedAt": "2026-10-20T00:58:12+00:00",
- "finishedAt": "2026-10-20T01:30:17+00:00",
+ "startedAt": "2026-10-20T12:56:21+00:00",
+ "finishedAt": "2026-10-20T13:26:16+00:00",
  "online": true,
- "total": 5041,
- "new": 8,
- "changed": 432,
+ "total": 5048,
+ "new": 76,
+ "changed": 812,
  "sources": [
   {
    "source": "kosaf_univ",
    "label": "한국장학재단 대학생",
    "ok": true,
-   "count": 1913,
+   "count": 1925,
    "mode": "online"
   },
   {
    "source": "kosaf_high",
    "label": "한국장학재단 고등학생",
    "ok": true,
-   "count": 1199,
+   "count": 1205,
    "mode": "online"
   },
   {
@@ -55,7 +55,7 @@
    "ok": true,
    "count": 157,
    "work": 33,
-   "mode": "seed/online"
+   "mode": "seed/seed"
   },
   {
    "source": "hywoman",
@@ -68,7 +68,7 @@
    "source": "kangwon",
    "label": "강원대 장학공지(삼척)",
    "ok": true,
-   "count": 53,
+   "count": 52,
    "mode": "online"
   },
   {
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1115,
-   "mode": "성공 227 / 실패 23"
+   "count": 1102,
+   "mode": "성공 229 / 실패 21"
   },
   {
    "source": "gov24",
@@ -146,7 +146,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 9
    },
    {
     "name": "국민대학교",
@@ -195,7 +195,7 @@
     "url": "https://www.ajou.ac.kr/kr/ajou/notice_scholarship.do",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -226,7 +226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 13
+    "count": 15
    },
    {
     "name": "건국대학교 서울",
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 6
    },
    {
     "name": "명지대학교 인문/자연",
@@ -336,7 +336,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 4
    },
    {
     "name": "숭실대학교",
@@ -366,7 +366,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 16
+    "count": 14
    },
    {
     "name": "덕성여자대학교",
@@ -386,7 +386,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 1
    },
    {
     "name": "성공회대학교",
@@ -406,7 +406,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 2
    },
    {
     "name": "인하대학교",
@@ -446,7 +446,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "용인대학교",
@@ -466,7 +466,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 32
+    "count": 33
    },
    {
     "name": "가천대학교 글로벌/메디컬",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 13
+    "count": 12
    },
    {
     "name": "경기대학교 수원/서울",
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "충북대학교",
@@ -636,7 +636,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 4
+    "count": 1
    },
    {
     "name": "국립부경대학교",
@@ -656,7 +656,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "충남대학교",
@@ -675,7 +675,7 @@
     "url": "https://www.jejunu.ac.kr/ara/noticesurvey/degree.htm?category=238",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -716,7 +716,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "순천향대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 12
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -806,7 +806,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 17
+    "count": 16
    },
    {
     "name": "한동대학교",
@@ -996,7 +996,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "영산대학교(와이즈유) 양산/부산",
@@ -1006,7 +1006,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 3
    },
    {
     "name": "계명대학교",
@@ -1106,7 +1106,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 7
    },
    {
     "name": "성결대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "전주대학교",
@@ -1156,7 +1156,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 14
+    "count": 13
    },
    {
     "name": "국립공주대학교",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "상지대학교",
@@ -1905,7 +1905,7 @@
     "url": "https://chest.or.kr/bbs/1000/initPostList.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -5816,7 +5816,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 9
+    "count": 10
    },
    {
     "name": "선학유피대학원대학교",
@@ -5936,7 +5936,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 16
+    "count": 15
    },
    {
     "name": "한림성심대학교",
@@ -5996,7 +5996,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 2
    },
    {
     "name": "경인교육대학교",
@@ -6206,7 +6206,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "한양사이버대학교",
@@ -6276,7 +6276,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 5
    },
    {
     "name": "동의과학대학교",
@@ -6395,8 +6395,8 @@
     "url": "https://www.kmcu.ac.kr/kr/index.php?pCode=notice&CgCode=003",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "광주보건대학교",
@@ -6486,7 +6486,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 10
    },
    {
     "name": "서영대학교",
@@ -6565,8 +6565,8 @@
     "url": "https://www.uc.ac.kr/kr/b/165",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 8
    },
    {
     "name": "유원대학교",
@@ -6646,7 +6646,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 0
    },
    {
     "name": "한라대학교",
