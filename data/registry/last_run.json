@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-20T12:56:21+00:00",
- "finishedAt": "2026-10-20T13:26:16+00:00",
+ "startedAt": "2026-10-20T18:51:54+00:00",
+ "finishedAt": "2026-10-20T19:22:18+00:00",
  "online": true,
- "total": 5048,
- "new": 76,
- "changed": 812,
+ "total": 5057,
+ "new": 2,
+ "changed": 429,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1102,
+   "count": 1118,
    "mode": "성공 229 / 실패 21"
   },
   {
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 7
+    "ok": false,
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 6
+    "count": 5
    },
    {
     "name": "명지대학교 인문/자연",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 11
    },
    {
     "name": "경기대학교 수원/서울",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 11
    },
    {
     "name": "서울여자대학교",
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "충북대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -806,7 +806,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 16
+    "count": 17
    },
    {
     "name": "한동대학교",
