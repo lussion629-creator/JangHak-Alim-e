@@ -1,38 +1,38 @@
 {
- "startedAt": "2026-10-21T00:57:12+00:00",
- "finishedAt": "2026-10-21T01:34:47+00:00",
+ "startedAt": "2026-10-21T06:57:00+00:00",
+ "finishedAt": "2026-10-21T07:35:12+00:00",
  "online": true,
- "total": 5039,
- "new": 8,
- "changed": 420,
+ "total": 5029,
+ "new": 23,
+ "changed": 432,
  "sources": [
   {
    "source": "kosaf_univ",
    "label": "한국장학재단 대학생",
    "ok": true,
    "count": 1925,
-   "mode": "seed"
+   "mode": "online"
   },
   {
    "source": "kosaf_high",
    "label": "한국장학재단 고등학생",
    "ok": true,
    "count": 1205,
-   "mode": "seed"
+   "mode": "online"
   },
   {
    "source": "kosaf_abroad",
    "label": "한국장학재단 해외유학",
    "ok": true,
    "count": 75,
-   "mode": "seed"
+   "mode": "online"
   },
   {
    "source": "kosaf_creditbank",
    "label": "한국장학재단 학점은행제",
    "ok": true,
    "count": 7,
-   "mode": "seed"
+   "mode": "online"
   },
   {
    "source": "kosaf_hist",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1096,
-   "mode": "성공 227 / 실패 23"
+   "count": 1090,
+   "mode": "성공 229 / 실패 21"
   },
   {
    "source": "gov24",
@@ -146,7 +146,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "국민대학교",
@@ -246,7 +246,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 6
    },
    {
     "name": "삼육대학교",
@@ -266,7 +266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 12
    },
    {
     "name": "숙명여자대학교",
@@ -415,7 +415,7 @@
     "url": "https://www.inha.ac.kr/bbs/kr/8/artclList.do?layout=unknown&bbsClSeq=215",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "충북대학교",
@@ -646,7 +646,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "전남대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 12
    },
    {
     "name": "호서대학교 아산/천안",
@@ -806,7 +806,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 17
+    "count": 16
    },
    {
     "name": "한동대학교",
@@ -846,7 +846,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 10
    },
    {
     "name": "서울교육대학교",
@@ -1006,7 +1006,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "계명대학교",
@@ -1036,7 +1036,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "조선대학교",
@@ -1046,7 +1046,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 12
    },
    {
     "name": "인제대학교 김해",
@@ -1115,8 +1115,8 @@
     "url": "https://www.sungkyul.ac.kr/bbs/skukr/95/artclList.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 24
+    "ok": false,
+    "count": 0
    },
    {
     "name": "청주대학교",
@@ -1216,7 +1216,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 12
    },
    {
     "name": "가톨릭관동대학교",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "상지대학교",
@@ -5666,7 +5666,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 2
    },
    {
     "name": "광주여자대학교",
@@ -5686,7 +5686,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 3
    },
    {
     "name": "국립목포해양대학교",
@@ -6156,7 +6156,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 3
    },
    {
     "name": "웅지세무대학교",
@@ -6205,8 +6205,8 @@
     "url": "https://www.af.ac.kr/board/post/list.do?boardUid=ff808081944e945801945e1c9f4c03d6&menuUid=ff80808193e179bd0193e1ff6e0b01b4",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 1
    },
    {
     "name": "한양사이버대학교",
@@ -6236,7 +6236,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 6
    },
    {
     "name": "경민대학교",
@@ -6266,7 +6266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 3
    },
    {
     "name": "동양미래대학교",
@@ -6276,7 +6276,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 4
    },
    {
     "name": "동의과학대학교",
