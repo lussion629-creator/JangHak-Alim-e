@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-21T06:57:00+00:00",
- "finishedAt": "2026-10-21T07:35:12+00:00",
+ "startedAt": "2026-10-21T12:56:17+00:00",
+ "finishedAt": "2026-10-21T13:33:50+00:00",
  "online": true,
- "total": 5029,
- "new": 23,
- "changed": 432,
+ "total": 5040,
+ "new": 7,
+ "changed": 422,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1090,
+   "count": 1097,
    "mode": "성공 229 / 실패 21"
   },
   {
@@ -436,7 +436,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "강남대학교",
@@ -466,7 +466,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 33
+    "count": 32
    },
    {
     "name": "가천대학교 글로벌/메디컬",
@@ -586,7 +586,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "대진대학교",
@@ -716,7 +716,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 7
    },
    {
     "name": "순천향대학교",
@@ -976,7 +976,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 6
    },
    {
     "name": "부산가톨릭대학교",
@@ -1046,7 +1046,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 11
    },
    {
     "name": "인제대학교 김해",
@@ -1076,7 +1076,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 19
+    "count": 18
    },
    {
     "name": "배재대학교",
@@ -1115,8 +1115,8 @@
     "url": "https://www.sungkyul.ac.kr/bbs/skukr/95/artclList.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 24
    },
    {
     "name": "청주대학교",
@@ -5786,7 +5786,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 7
    },
    {
     "name": "삼육보건대학교",
@@ -6106,7 +6106,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "선린대학교",
@@ -6226,7 +6226,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 3
    },
    {
     "name": "호남신학대학교",
@@ -6235,8 +6235,8 @@
     "url": "https://www.htus.ac.kr/board/board.php?b_id=001",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "경민대학교",
@@ -6266,7 +6266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "동양미래대학교",
