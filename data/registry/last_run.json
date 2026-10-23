@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-23T06:56:26+00:00",
- "finishedAt": "2026-10-23T07:25:11+00:00",
+ "startedAt": "2026-10-23T18:53:09+00:00",
+ "finishedAt": "2026-10-23T19:30:23+00:00",
  "online": true,
- "total": 5015,
- "new": 31,
- "changed": 406,
+ "total": 4975,
+ "new": 13,
+ "changed": 380,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1057,
-   "mode": "성공 230 / 실패 20"
+   "count": 1008,
+   "mode": "성공 223 / 실패 27"
   },
   {
    "source": "gov24",
@@ -110,7 +110,7 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 10,
+   "count": 6,
    "mode": "online"
   }
  ],
@@ -216,7 +216,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 6
    },
    {
     "name": "동국대학교 서울",
@@ -256,7 +256,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 6
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -346,7 +346,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 11
+    "count": 10
    },
    {
     "name": "가톨릭대학교 성심",
@@ -366,7 +366,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 15
+    "count": 14
    },
    {
     "name": "덕성여자대학교",
@@ -625,8 +625,8 @@
     "url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=1&menu_idx=67",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 1
+    "ok": false,
+    "count": 0
    },
    {
     "name": "충북대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 11
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -825,7 +825,7 @@
     "url": "https://www.gwangju.ac.kr/bbs/?b_id=gwangju_notice_se&site=gwangju&mn=538",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -1105,8 +1105,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "성결대학교",
@@ -1225,8 +1225,8 @@
     "url": "https://www.cku.ac.kr/cku_kr/5787/subview.do",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 2
+    "ok": false,
+    "count": 0
    },
    {
     "name": "상지대학교",
@@ -5636,7 +5636,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 18
+    "count": 19
    },
    {
     "name": "강원도립대학교",
@@ -5686,7 +5686,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 6
    },
    {
     "name": "국립목포해양대학교",
@@ -5796,7 +5796,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 0
    },
    {
     "name": "서울기독대학교",
@@ -5845,8 +5845,8 @@
     "url": "https://www.sehan.ac.kr/sehan/229/subview.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 9
+    "ok": false,
+    "count": 0
    },
    {
     "name": "수성대학교",
@@ -6276,7 +6276,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "동의과학대학교",
@@ -6455,8 +6455,8 @@
     "url": "http://www.dist.ac.kr/kor/CMS/Board/Board.do?mCode=MN091",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 5
+    "ok": false,
+    "count": 0
    },
    {
     "name": "디지털서울문화예술대학교",
@@ -6526,7 +6526,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "서일대학교",
@@ -6556,7 +6556,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 15
+    "count": 14
    },
    {
     "name": "울산과학대학교",
