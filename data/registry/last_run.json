@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-24T01:02:09+00:00",
- "finishedAt": "2026-10-24T01:31:08+00:00",
+ "startedAt": "2026-10-24T06:53:49+00:00",
+ "finishedAt": "2026-10-24T07:25:33+00:00",
  "online": true,
- "total": 5002,
- "new": 2,
- "changed": 407,
+ "total": 4992,
+ "new": 1,
+ "changed": 397,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1055,
-   "mode": "성공 228 / 실패 22"
+   "count": 1029,
+   "mode": "성공 230 / 실패 20"
   },
   {
    "source": "gov24",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 0
    },
    {
     "name": "서울여자대학교",
@@ -996,7 +996,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 8
    },
    {
     "name": "영산대학교(와이즈유) 양산/부산",
@@ -5696,7 +5696,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 0
    },
    {
     "name": "기독간호대학교",
@@ -5715,7 +5715,7 @@
     "url": "https://www.tk.ac.kr/bbs/board.php?bo_table=scholarship",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -6305,8 +6305,8 @@
     "url": "https://www.sjs.ac.kr/ht_ml/w_03ed/3010.php",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 1
    },
    {
     "name": "수원여자대학교",
@@ -6556,7 +6556,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 14
+    "count": 0
    },
    {
     "name": "울산과학대학교",
