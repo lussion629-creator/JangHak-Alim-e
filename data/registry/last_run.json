@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-25T12:51:06+00:00",
- "finishedAt": "2026-10-25T13:20:54+00:00",
+ "startedAt": "2026-10-25T18:46:29+00:00",
+ "finishedAt": "2026-10-25T19:16:14+00:00",
  "online": true,
- "total": 5003,
+ "total": 5000,
  "new": 1,
- "changed": 406,
+ "changed": 405,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1053,
-   "mode": "성공 230 / 실패 20"
+   "count": 1044,
+   "mode": "성공 229 / 실패 21"
   },
   {
    "source": "gov24",
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "이화여자대학교",
@@ -725,8 +725,8 @@
     "url": "https://home.sch.ac.kr/sch/06/010300.jsp",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 9
+    "ok": false,
+    "count": 0
    },
    {
     "name": "경성대학교",
@@ -6235,8 +6235,8 @@
     "url": "https://www.htus.ac.kr/board/board.php?b_id=001",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "경민대학교",
