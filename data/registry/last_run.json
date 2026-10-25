@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-25T00:52:55+00:00",
- "finishedAt": "2026-10-25T01:21:23+00:00",
+ "startedAt": "2026-10-25T06:54:40+00:00",
+ "finishedAt": "2026-10-25T07:27:16+00:00",
  "online": true,
- "total": 4992,
+ "total": 4969,
  "new": 1,
- "changed": 399,
+ "changed": 398,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1037,
+   "count": 1007,
    "mode": "성공 229 / 실패 21"
   },
   {
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 0
    },
    {
     "name": "서울여자대학교",
@@ -1115,8 +1115,8 @@
     "url": "https://www.sungkyul.ac.kr/bbs/skukr/95/artclList.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 24
+    "ok": false,
+    "count": 0
    },
    {
     "name": "청주대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 0
    },
    {
     "name": "전주대학교",
@@ -6126,7 +6126,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 7
    },
    {
     "name": "영남신학대학교",
@@ -6235,8 +6235,8 @@
     "url": "https://www.htus.ac.kr/board/board.php?b_id=001",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "경민대학교",
