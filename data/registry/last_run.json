@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-26T14:55:19+00:00",
- "finishedAt": "2026-10-26T15:24:55+00:00",
+ "startedAt": "2026-10-26T19:03:51+00:00",
+ "finishedAt": "2026-10-26T19:31:06+00:00",
  "online": true,
- "total": 4987,
- "new": 16,
- "changed": 400,
+ "total": 4988,
+ "new": 2,
+ "changed": 409,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1027,
-   "mode": "성공 230 / 실패 20"
+   "count": 1038,
+   "mode": "성공 229 / 실패 21"
   },
   {
    "source": "gov24",
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 6
    },
    {
     "name": "명지대학교 인문/자연",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 10
    },
    {
     "name": "경기대학교 수원/서울",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 11
    },
    {
     "name": "서울여자대학교",
@@ -675,7 +675,7 @@
     "url": "https://www.jejunu.ac.kr/ara/noticesurvey/degree.htm?category=238",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
