@@ -1,9 +1,9 @@
 {
- "startedAt": "2026-10-25T18:46:29+00:00",
- "finishedAt": "2026-10-25T19:16:14+00:00",
+ "startedAt": "2026-10-26T01:10:51+00:00",
+ "finishedAt": "2026-10-26T01:40:05+00:00",
  "online": true,
- "total": 5000,
- "new": 1,
+ "total": 4996,
+ "new": 8,
  "changed": 405,
  "sources": [
   {
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1044,
+   "count": 1041,
    "mode": "성공 229 / 실패 21"
   },
   {
@@ -146,7 +146,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "국민대학교",
@@ -255,8 +255,8 @@
     "url": "https://www.syu.ac.kr/scholarship/community/scholarship-notice/",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "이화여자대학교",
@@ -326,7 +326,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "한성대학교",
@@ -386,7 +386,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "성공회대학교",
@@ -436,7 +436,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 9
    },
    {
     "name": "강남대학교",
@@ -586,7 +586,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 2
    },
    {
     "name": "대진대학교",
@@ -1036,7 +1036,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "조선대학교",
@@ -1046,7 +1046,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 11
    },
    {
     "name": "인제대학교 김해",
@@ -1076,7 +1076,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 18
+    "count": 17
    },
    {
     "name": "배재대학교",
@@ -5736,7 +5736,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 7
    },
    {
     "name": "대구예술대학교",
@@ -6226,7 +6226,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "호남신학대학교",
@@ -6235,8 +6235,8 @@
     "url": "https://www.htus.ac.kr/board/board.php?b_id=001",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "경민대학교",
@@ -6286,7 +6286,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 14
+    "count": 12
    },
    {
     "name": "부산외국어대학교",
@@ -6406,7 +6406,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "구미대학교",
