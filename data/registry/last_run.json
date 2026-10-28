@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-28T07:09:02+00:00",
- "finishedAt": "2026-10-28T07:36:18+00:00",
+ "startedAt": "2026-10-28T13:07:48+00:00",
+ "finishedAt": "2026-10-28T13:36:17+00:00",
  "online": true,
- "total": 4984,
- "new": 18,
- "changed": 394,
+ "total": 4823,
+ "new": 14,
+ "changed": 393,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -53,9 +53,9 @@
    "source": "hanyang",
    "label": "한양대 공개 공지(장학/등록·근로 모집)",
    "ok": true,
-   "count": 157,
-   "work": 33,
-   "mode": "seed/seed"
+   "count": 0,
+   "work": 0,
+   "mode": "online/online"
   },
   {
    "source": "hywoman",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1000,
-   "mode": "성공 226 / 실패 24"
+   "count": 997,
+   "mode": "성공 228 / 실패 22"
   },
   {
    "source": "gov24",
@@ -111,7 +111,7 @@
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
    "count": 6,
-   "mode": "online"
+   "mode": "seed"
   }
  ],
  "registry": {
@@ -125,7 +125,7 @@
     "url": "https://www.hanyang.ac.kr/web/www/notice_all",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -246,7 +246,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 6
    },
    {
     "name": "삼육대학교",
@@ -476,7 +476,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 35
+    "count": 36
    },
    {
     "name": "한신대학교",
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 2
    },
    {
     "name": "충북대학교",
@@ -656,7 +656,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "충남대학교",
@@ -806,7 +806,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 11
    },
    {
     "name": "한동대학교",
@@ -846,7 +846,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "서울교육대학교",
@@ -1036,7 +1036,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "조선대학교",
@@ -1076,7 +1076,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 16
+    "count": 15
    },
    {
     "name": "배재대학교",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "상지대학교",
@@ -5555,7 +5555,7 @@
     "url": "https://www.hanyang.ac.kr/ko/notice_all?p_p_id=kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_action=view&_kr_ac_hanyang_noticeBoard_web_portlet_NoticeBoardPortlet_sCategoryId=224311300",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -5676,7 +5676,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 7
+    "count": 6
    },
    {
     "name": "국립금오공과대학교",
@@ -6066,7 +6066,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 5
    },
    {
     "name": "목포과학대학교",
@@ -6246,7 +6246,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 9
    },
    {
     "name": "대덕대학교",
@@ -6276,7 +6276,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 4
    },
    {
     "name": "동의과학대학교",
@@ -6376,7 +6376,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 11
    },
    {
     "name": "경복대학교",
@@ -6396,7 +6396,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 12
+    "count": 11
    },
    {
     "name": "광주보건대학교",
