@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-29T13:09:38+00:00",
- "finishedAt": "2026-10-29T13:41:16+00:00",
+ "startedAt": "2026-10-29T19:02:14+00:00",
+ "finishedAt": "2026-10-29T19:30:44+00:00",
  "online": true,
- "total": 4825,
- "new": 11,
- "changed": 394,
+ "total": 4821,
+ "new": 7,
+ "changed": 393,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1003,
+   "count": 1000,
    "mode": "성공 228 / 실패 22"
   },
   {
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 7
    },
    {
     "name": "명지대학교 인문/자연",
@@ -326,7 +326,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 4
    },
    {
     "name": "한성대학교",
@@ -406,7 +406,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "인하대학교",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 11
+    "count": 12
    },
    {
     "name": "경기대학교 수원/서울",
@@ -796,7 +796,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "동서대학교",
@@ -1046,7 +1046,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 14
+    "count": 13
    },
    {
     "name": "인제대학교 김해",
@@ -1156,7 +1156,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 14
    },
    {
     "name": "국립공주대학교",
@@ -5936,7 +5936,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 16
+    "count": 15
    },
    {
     "name": "한림성심대학교",
@@ -6286,7 +6286,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 14
+    "count": 13
    },
    {
     "name": "부산외국어대학교",
