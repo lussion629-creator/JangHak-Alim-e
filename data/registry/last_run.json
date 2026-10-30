@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-30T07:09:40+00:00",
- "finishedAt": "2026-10-30T07:43:52+00:00",
+ "startedAt": "2026-10-30T13:07:18+00:00",
+ "finishedAt": "2026-10-30T13:33:44+00:00",
  "online": true,
- "total": 4791,
- "new": 12,
- "changed": 370,
+ "total": 4794,
+ "new": 5,
+ "changed": 374,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -68,7 +68,7 @@
    "source": "kangwon",
    "label": "강원대 장학공지(삼척)",
    "ok": true,
-   "count": 56,
+   "count": 61,
    "mode": "online"
   },
   {
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 962,
-   "mode": "성공 225 / 실패 25"
+   "count": 970,
+   "mode": "성공 227 / 실패 23"
   },
   {
    "source": "gov24",
@@ -406,7 +406,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "인하대학교",
@@ -625,8 +625,8 @@
     "url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=1&menu_idx=67",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 2
    },
    {
     "name": "충북대학교",
@@ -1105,8 +1105,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 5
    },
    {
     "name": "성결대학교",
@@ -5796,7 +5796,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 5
    },
    {
     "name": "서울기독대학교",
@@ -5856,7 +5856,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 6
    },
    {
     "name": "숭실사이버대학교",
@@ -6286,7 +6286,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 12
    },
    {
     "name": "부산외국어대학교",
