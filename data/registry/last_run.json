@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-29T19:02:14+00:00",
- "finishedAt": "2026-10-29T19:30:44+00:00",
+ "startedAt": "2026-10-30T01:12:12+00:00",
+ "finishedAt": "2026-10-30T01:41:09+00:00",
  "online": true,
- "total": 4821,
- "new": 7,
- "changed": 393,
+ "total": 4803,
+ "new": 10,
+ "changed": 378,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 1000,
-   "mode": "성공 228 / 실패 22"
+   "count": 978,
+   "mode": "성공 227 / 실패 23"
   },
   {
    "source": "gov24",
@@ -256,7 +256,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 6
+    "count": 5
    },
    {
     "name": "이화여자대학교",
@@ -266,7 +266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 11
    },
    {
     "name": "숙명여자대학교",
@@ -346,7 +346,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 7
    },
    {
     "name": "가톨릭대학교 성심",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 12
+    "count": 11
    },
    {
     "name": "경기대학교 수원/서울",
@@ -616,7 +616,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "경북대학교 대구",
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "충북대학교",
@@ -996,7 +996,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "영산대학교(와이즈유) 양산/부산",
@@ -1026,7 +1026,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 15
+    "count": 13
    },
    {
     "name": "울산대학교",
@@ -1036,7 +1036,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "조선대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 0
    },
    {
     "name": "전주대학교",
@@ -1216,7 +1216,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 9
+    "count": 7
    },
    {
     "name": "가톨릭관동대학교",
@@ -5636,7 +5636,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 21
+    "count": 20
    },
    {
     "name": "강원도립대학교",
@@ -5705,7 +5705,7 @@
     "url": "https://www.ccn.ac.kr/scholarship",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -5766,7 +5766,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 7
+    "count": 6
    },
    {
     "name": "배화여자대학교",
@@ -5966,7 +5966,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "가톨릭꽃동네대학교",
@@ -6266,7 +6266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 3
    },
    {
     "name": "동양미래대학교",
@@ -6596,7 +6596,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 4
    },
    {
     "name": "장로회신학대학교",
@@ -6626,7 +6626,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 2
    },
    {
     "name": "진주교육대학교",
