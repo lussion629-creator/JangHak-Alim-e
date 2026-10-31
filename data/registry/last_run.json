@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-31T12:58:44+00:00",
- "finishedAt": "2026-10-31T13:26:26+00:00",
+ "startedAt": "2026-10-31T18:55:04+00:00",
+ "finishedAt": "2026-10-31T19:29:34+00:00",
  "online": true,
- "total": 4822,
- "new": 28,
- "changed": 379,
+ "total": 4809,
+ "new": 4,
+ "changed": 371,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 976,
-   "mode": "성공 228 / 실패 22"
+   "count": 959,
+   "mode": "성공 227 / 실패 23"
   },
   {
    "source": "gov24",
@@ -110,7 +110,7 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 28,
+   "count": 27,
    "mode": "online"
   }
  ],
@@ -625,8 +625,8 @@
     "url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=1&menu_idx=67",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 3
+    "ok": false,
+    "count": 0
    },
    {
     "name": "충북대학교",
@@ -1076,7 +1076,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 14
    },
    {
     "name": "배재대학교",
@@ -5696,7 +5696,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 1
    },
    {
     "name": "기독간호대학교",
@@ -6116,7 +6116,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 0
    },
    {
     "name": "신안산대학교",
@@ -6376,7 +6376,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 10
    },
    {
     "name": "경복대학교",
