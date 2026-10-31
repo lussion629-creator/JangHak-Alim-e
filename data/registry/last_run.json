@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-31T01:10:40+00:00",
- "finishedAt": "2026-10-31T01:43:30+00:00",
+ "startedAt": "2026-10-31T07:03:48+00:00",
+ "finishedAt": "2026-10-31T07:37:55+00:00",
  "online": true,
- "total": 4797,
- "new": 3,
- "changed": 369,
+ "total": 4789,
+ "new": 4,
+ "changed": 365,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 968,
-   "mode": "성공 226 / 실패 24"
+   "count": 962,
+   "mode": "성공 225 / 실패 25"
   },
   {
    "source": "gov24",
@@ -1105,8 +1105,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 5
+    "ok": false,
+    "count": 0
    },
    {
     "name": "성결대학교",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "상지대학교",
@@ -1905,7 +1905,7 @@
     "url": "https://chest.or.kr/bbs/1000/initPostList.do",
     "enabled": true,
     "verified": true,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -5696,7 +5696,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 11
    },
    {
     "name": "기독간호대학교",
@@ -5776,7 +5776,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 0
    },
    {
     "name": "부산디지털대학교",
@@ -6455,8 +6455,8 @@
     "url": "http://www.dist.ac.kr/kor/CMS/Board/Board.do?mCode=MN091",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 5
    },
    {
     "name": "디지털서울문화예술대학교",
