@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-10-30T18:56:56+00:00",
- "finishedAt": "2026-10-30T19:32:07+00:00",
+ "startedAt": "2026-10-31T01:10:40+00:00",
+ "finishedAt": "2026-10-31T01:43:30+00:00",
  "online": true,
- "total": 4792,
- "new": 7,
- "changed": 371,
+ "total": 4797,
+ "new": 3,
+ "changed": 369,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 963,
-   "mode": "성공 225 / 실패 25"
+   "count": 968,
+   "mode": "성공 226 / 실패 24"
   },
   {
    "source": "gov24",
@@ -625,8 +625,8 @@
     "url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=1&menu_idx=67",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 3
+    "ok": false,
+    "count": 0
    },
    {
     "name": "충북대학교",
@@ -736,7 +736,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 9
+    "count": 8
    },
    {
     "name": "호서대학교 아산/천안",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 6
    },
    {
     "name": "전주대학교",
@@ -1225,8 +1225,8 @@
     "url": "https://www.cku.ac.kr/cku_kr/5787/subview.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 2
    },
    {
     "name": "상지대학교",
@@ -5705,7 +5705,7 @@
     "url": "https://www.ccn.ac.kr/scholarship",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -5776,7 +5776,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 6
    },
    {
     "name": "부산디지털대학교",
@@ -6455,8 +6455,8 @@
     "url": "http://www.dist.ac.kr/kor/CMS/Board/Board.do?mCode=MN091",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 5
+    "ok": false,
+    "count": 0
    },
    {
     "name": "디지털서울문화예술대학교",
@@ -6575,7 +6575,7 @@
     "url": "https://www.u1.ac.kr/u1/community/scholarship.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
