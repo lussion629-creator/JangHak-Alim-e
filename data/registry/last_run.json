@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-01T07:12:39+00:00",
- "finishedAt": "2026-11-01T07:40:40+00:00",
+ "startedAt": "2026-11-01T13:00:08+00:00",
+ "finishedAt": "2026-11-01T13:29:09+00:00",
  "online": true,
- "total": 4809,
+ "total": 4821,
  "new": 3,
- "changed": 358,
+ "changed": 378,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 963,
-   "mode": "성공 226 / 실패 24"
+   "count": 984,
+   "mode": "성공 228 / 실패 22"
   },
   {
    "source": "gov24",
@@ -265,8 +265,8 @@
     "url": "https://www.ewha.ac.kr/ewha/bachelor/scholarship-notice.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 11
    },
    {
     "name": "숙명여자대학교",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 10
    },
    {
     "name": "서울여자대학교",
@@ -1905,7 +1905,7 @@
     "url": "https://chest.or.kr/bbs/1000/initPostList.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
