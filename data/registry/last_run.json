@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-04T07:29:11+00:00",
- "finishedAt": "2026-11-04T07:56:30+00:00",
+ "startedAt": "2026-11-04T13:18:17+00:00",
+ "finishedAt": "2026-11-04T13:42:07+00:00",
  "online": true,
- "total": 4783,
- "new": 22,
- "changed": 339,
+ "total": 4786,
+ "new": 9,
+ "changed": 349,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 918,
+   "count": 923,
    "mode": "성공 230 / 실패 20"
   },
   {
@@ -146,7 +146,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 6
+    "count": 7
    },
    {
     "name": "국민대학교",
@@ -176,7 +176,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 27
+    "count": 26
    },
    {
     "name": "고려대학교 서울",
@@ -566,7 +566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 10
    },
    {
     "name": "서울여자대학교",
@@ -1046,7 +1046,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 12
    },
    {
     "name": "인제대학교 김해",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 5
    },
    {
     "name": "전주대학교",
@@ -6586,7 +6586,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 11
+    "count": 6
    },
    {
     "name": "인천재능대학교",
