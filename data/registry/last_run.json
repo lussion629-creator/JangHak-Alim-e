@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-06T07:37:30+00:00",
- "finishedAt": "2026-11-06T08:01:46+00:00",
+ "startedAt": "2026-11-06T13:18:16+00:00",
+ "finishedAt": "2026-11-06T13:48:21+00:00",
  "online": true,
- "total": 4752,
- "new": 7,
- "changed": 328,
+ "total": 4763,
+ "new": 8,
+ "changed": 319,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 881,
+   "count": 889,
    "mode": "성공 226 / 실패 24"
   },
   {
@@ -616,7 +616,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 2
    },
    {
     "name": "경북대학교 대구",
@@ -626,7 +626,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "충북대학교",
@@ -635,8 +635,8 @@
     "url": "https://www.chungbuk.ac.kr/www/selectBbsNttList.do?bbsNo=8&key=815&searchCtgry=학사/장학",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 2
+    "ok": false,
+    "count": 0
    },
    {
     "name": "국립부경대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "호서대학교 아산/천안",
@@ -866,7 +866,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 2
    },
    {
     "name": "한국예술종합학교",
@@ -886,7 +886,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 2
    },
    {
     "name": "한경국립대학교",
@@ -955,8 +955,8 @@
     "url": "https://www.kduniv.ac.kr/kor/CMS/Board/Board.do?mCode=MN284",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "건양대학교 논산/대전",
@@ -1036,7 +1036,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "조선대학교",
@@ -5686,7 +5686,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 3
    },
    {
     "name": "국립목포해양대학교",
@@ -5996,7 +5996,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "경인교육대학교",
@@ -6245,8 +6245,8 @@
     "url": "https://www.kyungmin.ac.kr/homepage/page.do?page=1&menu=66&m=L",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 8
+    "ok": false,
+    "count": 0
    },
    {
     "name": "대덕대학교",
