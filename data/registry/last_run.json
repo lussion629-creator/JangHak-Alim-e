@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-05T19:08:26+00:00",
- "finishedAt": "2026-11-05T19:35:59+00:00",
+ "startedAt": "2026-11-06T01:23:09+00:00",
+ "finishedAt": "2026-11-06T02:00:33+00:00",
  "online": true,
- "total": 4779,
- "new": 3,
- "changed": 348,
+ "total": 4727,
+ "new": 7,
+ "changed": 336,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -25,7 +25,7 @@
    "label": "한국장학재단 해외유학",
    "ok": true,
    "count": 75,
-   "mode": "online"
+   "mode": "seed"
   },
   {
    "source": "kosaf_creditbank",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 907,
-   "mode": "성공 229 / 실패 21"
+   "count": 848,
+   "mode": "성공 222 / 실패 28"
   },
   {
    "source": "gov24",
@@ -146,7 +146,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "국민대학교",
@@ -176,7 +176,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 26
+    "count": 25
    },
    {
     "name": "고려대학교 서울",
@@ -326,7 +326,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 4
+    "count": 5
    },
    {
     "name": "한성대학교",
@@ -465,8 +465,8 @@
     "url": "https://www.inu.ac.kr/bbs/inu/249/artclList.do",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 35
+    "ok": false,
+    "count": 0
    },
    {
     "name": "가천대학교 글로벌/메디컬",
@@ -625,8 +625,8 @@
     "url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=1&menu_idx=67",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 1
+    "ok": false,
+    "count": 0
    },
    {
     "name": "충북대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -1105,8 +1105,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": true,
-    "count": 4
+    "ok": false,
+    "count": 0
    },
    {
     "name": "성결대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 0
    },
    {
     "name": "전주대학교",
@@ -1226,7 +1226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "상지대학교",
@@ -5686,7 +5686,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 2
    },
    {
     "name": "국립목포해양대학교",
@@ -5705,7 +5705,7 @@
     "url": "https://www.ccn.ac.kr/scholarship",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -5796,7 +5796,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 0
    },
    {
     "name": "서울기독대학교",
@@ -6185,7 +6185,7 @@
     "url": "https://www.ok.ac.kr/www/index.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -6345,8 +6345,8 @@
     "url": "https://www.songho.ac.kr/songho/index.do",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 2
+    "ok": false,
+    "count": 0
    },
    {
     "name": "수원과학대학교",
