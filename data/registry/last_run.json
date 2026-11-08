@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-08T06:02:39+00:00",
- "finishedAt": "2026-11-08T06:28:49+00:00",
+ "startedAt": "2026-11-08T13:26:49+00:00",
+ "finishedAt": "2026-11-08T13:51:07+00:00",
  "online": true,
- "total": 4760,
+ "total": 4758,
  "new": 2,
- "changed": 326,
+ "changed": 321,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 889,
-   "mode": "성공 229 / 실패 21"
+   "count": 888,
+   "mode": "성공 228 / 실패 22"
   },
   {
    "source": "gov24",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 6
+    "ok": false,
+    "count": 0
    },
    {
     "name": "호서대학교 아산/천안",
@@ -6245,8 +6245,8 @@
     "url": "https://www.kyungmin.ac.kr/homepage/page.do?page=1&menu=66&m=L",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 8
    },
    {
     "name": "대덕대학교",
@@ -6595,8 +6595,8 @@
     "url": "https://www.jeiu.ac.kr/board/list.asp?BoardID=00005",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 3
+    "ok": false,
+    "count": 0
    },
    {
     "name": "장로회신학대학교",
