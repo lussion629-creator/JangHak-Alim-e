@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-08T22:06:59+00:00",
- "finishedAt": "2026-11-08T22:41:14+00:00",
+ "startedAt": "2026-11-09T06:32:24+00:00",
+ "finishedAt": "2026-11-09T07:00:22+00:00",
  "online": true,
- "total": 4738,
- "new": 1,
- "changed": 308,
+ "total": 4757,
+ "new": 16,
+ "changed": 325,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 858,
-   "mode": "성공 219 / 실패 31"
+   "count": 887,
+   "mode": "성공 230 / 실패 20"
   },
   {
    "source": "gov24",
@@ -226,7 +226,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "건국대학교 서울",
@@ -246,7 +246,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 3
+    "count": 4
    },
    {
     "name": "삼육대학교",
@@ -326,7 +326,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 4
    },
    {
     "name": "한성대학교",
@@ -386,7 +386,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "성공회대학교",
@@ -625,7 +625,7 @@
     "url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=1&menu_idx=67",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -635,8 +635,8 @@
     "url": "https://www.chungbuk.ac.kr/www/selectBbsNttList.do?bbsNo=8&key=815&searchCtgry=학사/장학",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 2
    },
    {
     "name": "국립부경대학교",
@@ -656,7 +656,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "충남대학교",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "호서대학교 아산/천안",
@@ -745,7 +745,7 @@
     "url": "https://www.hoseo.ac.kr/Home/BBSList.mbz?action=MAPP_1708240139&schCategorycode=CTG_17082400011",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -775,8 +775,8 @@
     "url": "https://www.knue.ac.kr/www/selectBbsNttList.do?bbsNo=207&key=1443",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "포항공과대학교(POSTECH)",
@@ -935,7 +935,7 @@
     "url": "https://www.jbnu.ac.kr/web/news/notice/sub01.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -1036,7 +1036,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 1
+    "count": 0
    },
    {
     "name": "조선대학교",
@@ -1105,8 +1105,8 @@
     "url": "https://www.mokwon.ac.kr/kr/html/sub06/0603.html",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 4
    },
    {
     "name": "성결대학교",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 0
    },
    {
     "name": "전주대학교",
@@ -1255,8 +1255,8 @@
     "url": "https://janghak.kiu.ac.kr/scholarship/sub/04.htm",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 3
    },
    {
     "name": "서울신학대학교",
@@ -5726,7 +5726,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 7
+    "count": 0
    },
    {
     "name": "대구대학교",
@@ -5796,7 +5796,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 5
    },
    {
     "name": "서울기독대학교",
@@ -5856,7 +5856,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 4
+    "count": 3
    },
    {
     "name": "숭실사이버대학교",
@@ -6185,7 +6185,7 @@
     "url": "https://www.ok.ac.kr/www/index.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -6286,7 +6286,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 13
+    "count": 12
    },
    {
     "name": "부산외국어대학교",
@@ -6406,7 +6406,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 9
    },
    {
     "name": "구미대학교",
@@ -6595,8 +6595,8 @@
     "url": "https://www.jeiu.ac.kr/board/list.asp?BoardID=00005",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 4
    },
    {
     "name": "장로회신학대학교",
@@ -6646,7 +6646,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "한라대학교",
@@ -6655,8 +6655,8 @@
     "url": "https://www.halla.ac.kr/kr/244/subview.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 8
    }
   ]
  }
