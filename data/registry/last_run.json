@@ -1,9 +1,9 @@
 {
- "startedAt": "2026-11-10T19:44:55+00:00",
- "finishedAt": "2026-11-10T20:13:28+00:00",
+ "startedAt": "2026-11-11T06:23:33+00:00",
+ "finishedAt": "2026-11-11T06:47:43+00:00",
  "online": true,
- "total": 4766,
- "new": 6,
+ "total": 4772,
+ "new": 19,
  "changed": 338,
  "sources": [
   {
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 897,
+   "count": 905,
    "mode": "성공 229 / 실패 21"
   },
   {
@@ -216,7 +216,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 6
    },
    {
     "name": "동국대학교 서울",
@@ -266,7 +266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 11
    },
    {
     "name": "숙명여자대학교",
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 4
+    "count": 5
    },
    {
     "name": "명지대학교 인문/자연",
@@ -336,7 +336,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 3
    },
    {
     "name": "숭실대학교",
@@ -386,7 +386,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 2
+    "count": 3
    },
    {
     "name": "성공회대학교",
@@ -485,7 +485,7 @@
     "url": "https://www.hs.ac.kr/bbs/kor/275/artclList.do?layout=unknown",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 13
+    "count": 14
    },
    {
     "name": "경기대학교 수원/서울",
@@ -675,7 +675,7 @@
     "url": "https://www.jejunu.ac.kr/ara/noticesurvey/degree.htm?category=238",
     "enabled": true,
     "verified": false,
-    "ok": true,
+    "ok": false,
     "count": 0
    },
    {
@@ -746,7 +746,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "백석대학교",
@@ -1036,7 +1036,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "조선대학교",
@@ -5686,7 +5686,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 4
    },
    {
     "name": "국립목포해양대학교",
@@ -5816,7 +5816,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 10
+    "count": 9
    },
    {
     "name": "선학유피대학원대학교",
@@ -5896,7 +5896,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 8
+    "count": 7
    },
    {
     "name": "우송대학교",
@@ -6026,7 +6026,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 2
+    "count": 1
    },
    {
     "name": "글로벌사이버대학교",
@@ -6176,7 +6176,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 1
    },
    {
     "name": "충청대학교",
@@ -6566,7 +6566,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 4
    },
    {
     "name": "유원대학교",
