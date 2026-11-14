@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-14T06:25:19+00:00",
- "finishedAt": "2026-11-14T06:50:49+00:00",
+ "startedAt": "2026-11-14T18:03:51+00:00",
+ "finishedAt": "2026-11-14T18:34:33+00:00",
  "online": true,
- "total": 4716,
+ "total": 4737,
  "new": 0,
- "changed": 309,
+ "changed": 328,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,8 +89,8 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 849,
-   "mode": "성공 227 / 실패 23"
+   "count": 870,
+   "mode": "성공 229 / 실패 21"
   },
   {
    "source": "gov24",
@@ -265,8 +265,8 @@
     "url": "https://www.ewha.ac.kr/ewha/bachelor/scholarship-notice.do",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 11
    },
    {
     "name": "숙명여자대학교",
@@ -955,8 +955,8 @@
     "url": "https://www.kduniv.ac.kr/kor/CMS/Board/Board.do?mCode=MN284",
     "enabled": true,
     "verified": true,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 6
    },
    {
     "name": "건양대학교 논산/대전",
@@ -1146,7 +1146,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 4
    },
    {
     "name": "전주대학교",
