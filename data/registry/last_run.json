@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-25T08:36:46+00:00",
- "finishedAt": "2026-11-25T09:12:59+00:00",
+ "startedAt": "2026-11-25T21:43:07+00:00",
+ "finishedAt": "2026-11-25T22:12:42+00:00",
  "online": true,
- "total": 4869,
- "new": 48,
- "changed": 387,
+ "total": 4872,
+ "new": 16,
+ "changed": 378,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -89,7 +89,7 @@
    "source": "board",
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
-   "count": 981,
+   "count": 972,
    "mode": "성공 223 / 실패 27"
   },
   {
@@ -110,7 +110,7 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 6,
+   "count": 17,
    "mode": "online"
   }
  ],
@@ -166,7 +166,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 5
+    "count": 6
    },
    {
     "name": "연세대학교 신촌",
@@ -246,7 +246,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 9
+    "count": 10
    },
    {
     "name": "삼육대학교",
@@ -266,7 +266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 18
+    "count": 17
    },
    {
     "name": "숙명여자대학교",
@@ -436,7 +436,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 10
+    "count": 9
    },
    {
     "name": "강남대학교",
@@ -466,7 +466,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 36
+    "count": 37
    },
    {
     "name": "가천대학교 글로벌/메디컬",
@@ -516,7 +516,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 13
+    "count": 12
    },
    {
     "name": "경기대학교 수원/서울",
@@ -796,7 +796,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "동서대학교",
@@ -1905,7 +1905,7 @@
     "url": "https://chest.or.kr/bbs/1000/initPostList.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -5725,8 +5725,8 @@
     "url": "http://www.dnue.ac.kr/kor/CMS/Board/Board.do?mCode=MN169",
     "enabled": true,
     "verified": false,
-    "ok": true,
-    "count": 7
+    "ok": false,
+    "count": 0
    },
    {
     "name": "대구대학교",
@@ -5766,7 +5766,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 7
+    "count": 6
    },
    {
     "name": "배화여자대학교",
@@ -5796,7 +5796,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 0
+    "count": 5
    },
    {
     "name": "서울기독대학교",
@@ -5946,7 +5946,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 7
+    "count": 0
    },
    {
     "name": "한일장신대학교",
