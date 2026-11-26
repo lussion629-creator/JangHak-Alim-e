@@ -1,10 +1,10 @@
 {
- "startedAt": "2026-11-26T08:25:04+00:00",
- "finishedAt": "2026-11-26T08:57:00+00:00",
+ "startedAt": "2026-11-26T21:33:27+00:00",
+ "finishedAt": "2026-11-26T22:00:50+00:00",
  "online": true,
- "total": 4877,
- "new": 30,
- "changed": 372,
+ "total": 4874,
+ "new": 4,
+ "changed": 369,
  "sources": [
   {
    "source": "kosaf_univ",
@@ -68,7 +68,7 @@
    "source": "kangwon",
    "label": "강원대 장학공지(삼척)",
    "ok": true,
-   "count": 59,
+   "count": 58,
    "mode": "online"
   },
   {
@@ -90,7 +90,7 @@
    "label": "대학·재단·지자체 게시판 250곳",
    "ok": true,
    "count": 986,
-   "mode": "성공 223 / 실패 27"
+   "mode": "성공 225 / 실패 25"
   },
   {
    "source": "gov24",
@@ -110,7 +110,7 @@
    "source": "dreamspon",
    "label": "드림스폰 공개 목록(원본 링크로 연결)",
    "ok": true,
-   "count": 17,
+   "count": 15,
    "mode": "online"
   }
  ],
@@ -256,7 +256,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 6
+    "count": 7
    },
    {
     "name": "이화여자대학교",
@@ -266,7 +266,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 17
+    "count": 16
    },
    {
     "name": "숙명여자대학교",
@@ -306,7 +306,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 8
+    "count": 7
    },
    {
     "name": "명지대학교 인문/자연",
@@ -326,7 +326,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 13
+    "count": 11
    },
    {
     "name": "한성대학교",
@@ -466,7 +466,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 37
+    "count": 36
    },
    {
     "name": "가천대학교 글로벌/메디컬",
@@ -735,8 +735,8 @@
     "url": "http://kscms.ks.ac.kr/kor/CMS/Board/Board.do?mCode=MN094",
     "enabled": true,
     "verified": false,
-    "ok": false,
-    "count": 0
+    "ok": true,
+    "count": 8
    },
    {
     "name": "호서대학교 아산/천안",
@@ -796,7 +796,7 @@
     "enabled": true,
     "verified": true,
     "ok": true,
-    "count": 7
+    "count": 8
    },
    {
     "name": "동서대학교",
@@ -866,7 +866,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 6
+    "count": 5
    },
    {
     "name": "한국예술종합학교",
@@ -965,7 +965,7 @@
     "url": "https://www.konyang.ac.kr/cop/bbs/BBSMSTR_000000000585/selectBoardList.do",
     "enabled": true,
     "verified": true,
-    "ok": false,
+    "ok": true,
     "count": 0
    },
    {
@@ -5766,7 +5766,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 5
+    "count": 7
    },
    {
     "name": "배화여자대학교",
@@ -5776,7 +5776,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 7
+    "count": 0
    },
    {
     "name": "부산디지털대학교",
@@ -6646,7 +6646,7 @@
     "enabled": true,
     "verified": false,
     "ok": true,
-    "count": 3
+    "count": 4
    },
    {
     "name": "한라대학교",
